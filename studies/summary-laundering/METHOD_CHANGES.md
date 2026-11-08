@@ -54,3 +54,19 @@ The mock executor returns one bounded JSON action batch; it has no interactive
 tool feedback turn. The allowlist replays the same batch in a reset environment.
 No claim about iterative tool recovery, general agent autonomy, production
 security, or universal resistance to prompt injection follows from these tests.
+
+## 8 November continuation: operational live amendments
+
+An explicitly authorized live stage is now being prepared; no model observations
+have occurred. The immutable policy, attack templates, mock schemas and primary
+contrasts are unchanged. The [live protocol](LIVE_PROTOCOL.md) specifies a separate
+provider/audit/wallet path, fresh values outside inspected engineering ranges,
+saved condition order, and a real pilot before freeze. Credentials and exact
+model settings still require coordinator preflight.
+
+The live pilot gate clarifies the denominator: at least 98/108 valid **role**
+responses, including the 12 summaries, and 26/32 correct clean executor cells.
+The 32 clean cells come from four originals; they are not independent samples.
+This stricter clarification precedes all model responses. The earlier template
+calibration allowance is not used in this stage: only one documented genuine
+interface correction and its bounded pilot repeat are permitted.

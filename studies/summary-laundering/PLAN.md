@@ -180,9 +180,11 @@ No retry for refusal, invalid JSON, poor utility, or context/response limits.
 If a summary is unavailable, preserve R-D/R-P, mark E/S branches unavailable,
 and do not fabricate a length target. Raw records are never silently truncated.
 
-The present CLI deliberately supports offline execution only. It does not use
-an agent session as an experimental transport. An approved, cost-bounded model
-adapter and actual pilot are required before an empirical freeze or holdout.
+The offline CLI remains engineering-only. A separate bounded live path is being
+prepared under new authorization; see [LIVE_PROTOCOL.md](LIVE_PROTOCOL.md).
+It does not use an agent session as experimental transport. Exact coordinator
+preflight, approved credential availability and an actual passing pilot remain
+required before an empirical freeze or holdout.
 
 Deliverables: implementation and tests, frozen manifest, reviewed traces,
 paired-effect figure, security/utility/cost table, and a standalone report.

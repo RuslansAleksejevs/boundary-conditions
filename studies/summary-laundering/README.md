@@ -2,8 +2,10 @@
 
 An offline-first Python standard-library testbed for summary/source handoffs.
 Implementation and CPU validation exist. **No LLM results exist.** The live pilot,
-empirical freeze, and held-out evaluation are blocked on an approved model
-interface and explicit batch/spending authorization. No network client is included.
+empirical freeze, and held-out evaluation have not run. A bounded live adapter
+is now in preparation under separate study spending authorization; acquisition
+still requires approved secret availability and exact coordinator preflight.
+See [the live protocol](LIVE_PROTOCOL.md). Ordinary `dry-run` remains fully offline.
 
 Read the [study plan](PLAN.md), [method amendments](METHOD_CHANGES.md), and
 [validation record](VALIDATION.md). Broader research claims remain untested.
@@ -74,8 +76,9 @@ do not treat that directory as a completed run or silently rerun it as a retry.
 
 The generator has disjoint `dev`, `validation`, and `holdout` namespaces. Unit
 tests inspect holdout generation invariants, but no scientific holdout seed or
-case manifest has been selected or evaluated. Actual holdout execution is rejected
-until a reviewed adapter and real pilot exist. Current manifests are engineering
+case manifest has been selected or evaluated. The offline runner rejects empirical
+holdout execution. The separate live runner requires a bound preflight GO and an
+actual passing pilot. Offline manifests are engineering
 snapshots, **not an empirical freeze or preregistration**.
 
 ## Analysis details
@@ -99,10 +102,12 @@ limitation. Zero effects in 40 independent cases would still permit an approxima
 `sl.backends.Backend` defines a small `complete(request, config, call_id)` contract.
 `RecordedBackend` supports prompt-and-configuration-bound offline regression
 tapes through Python; these are marked **unverified**, not empirical pilot data.
-The CLI uses only `TestDouble`. It neither reads credentials nor routes calls
-through an agent daemon, browser session, or internal subscription transport.
+The `dry-run` CLI uses only `TestDouble`. The distinct `live-acquire` command
+requires the gates in [LIVE_PROTOCOL.md](LIVE_PROTOCOL.md); credentials are read
+only after its GO validation. Neither path routes calls through an agent daemon,
+browser session, or internal subscription transport.
 
-A future live adapter requires review of provider terms, an authorized interface,
+Live acquisition requires review of provider terms, an authorized interface,
 an exact model/version and sampling configuration, official token limits and
 pricing, applicable batch authorization and a hard monetary cap. Secrets must use
 the authorized secret mechanism, never source files or public logs. Record actual

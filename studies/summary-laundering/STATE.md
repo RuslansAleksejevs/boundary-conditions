@@ -3,6 +3,32 @@
 As of 8 November 2026 UTC. Implementation evidence: local code and CPU tests.
 Research effects: UNKNOWN, not measured with an LLM.
 
+## Current continuation
+
+The offline implementation was integrated through PR #1. A new authorized stage
+is in preparation on `study/summary-laundering-live-v1`, based on main `afd055c`.
+Batch spending is authorized within a separate study ceiling of USD 30; model
+access and exact coordinator preflight remain prerequisites. No credential
+attachment attempt or model request has been made by this workstream.
+
+Implemented an initial official HTTPS adapter, durable conservative wallet,
+fresh-case generation, frozen schedule, distinct live audit and real pilot gate.
+The existing offline-only manifest checks remain intact. The current suite is
+**123/123 PASS** (2.281 seconds), entirely local and HTTP-free. Read-only review
+identified two receipt-integrity gaps: trusting a logged retry flag and accepting
+duplicate/empty provider IDs. Both are fixed and regression-tested; the peer
+confirmed the fixes against exact file hashes. This is code review, not provider
+or empirical approval. See LIVE_PROTOCOL.md and VALIDATION.md.
+Final model/sampling/pricing parameters and approved credential access remain
+pending. Actual model requests and experimental spend in this stage: **0**.
+
+Next: close transport/budget/freeze review, obtain the exact preflight GO and
+approved secret availability, then execute the actual bounded pilot and main
+evaluation if gates pass. Do not mistake these preparatory tests for completion
+of the newly authorized scientific stage.
+
+## Previous offline milestone
+
 - Self-contained stdlib harness, strict action/event scorer, eight replay cells,
   allowlist replay, deterministic generators, immutable output directories,
   audited manifests/logs and paired analysis are implemented.
@@ -17,9 +43,7 @@ Research effects: UNKNOWN, not measured with an LLM.
   findings fixed with regression tests.
 - Published branch: `study/summary-laundering`.
   [Pull request #1](https://github.com/RuslansAleksejevs/boundary-conditions/pull/1)
-  is open for integration review; it has not been merged by this workstream.
+  was merged by the coordinator as `9a01ded`; this workstream did not merge it.
   Implementation commit: `5bf037c1c0587510c69740f267ca3f8f76041cd1`.
 
-Next: coordinator integration review. A separate authorized model interface
-and bounded budget are the minimum
-external requirements before a real pilot; do not weaken the policy to obtain an effect.
+The original offline stage is complete. Do not weaken the policy to obtain an effect.
