@@ -236,3 +236,26 @@ seed and dataset, not a repeat pilot or outcome-conditioned resampling.
 The unchanged-source rerun completed successfully: **163 tests passed in 35.580
 seconds**, Python 3.14.6, using the same full-suite command. No external inference
 or experimental spending occurred during this compatibility correction.
+
+## 2026-11-08 — Prospective transport pacing before the first study request
+
+The companion study's rate-limited pilot stopped under its existing circuit.
+Before this study's first model call, the coordinator's read-only account check
+showed funding remained; the exact 429 source was unknown. Approved a prospective
+20s minimum between HTTP attempt starts and a 60s minimum cooldown after 429,
+respecting longer valid Retry-After up to 300s. Values above 300s stop instead of
+being shortened; absent/invalid values use 60s. Runtime waits use a monotonic clock
+and chunks no longer than 30s. This is not an extra pilot, model probe, budget
+increase, resampling, or change to model parameters, prompts, gates or sample.
+
+Added explicit manifest pacing metadata, virtual-clock tests, safe normalized
+Retry-After seconds and allowlisted error-code/source/reason diagnostics. Raw
+provider error bodies and arbitrary headers are not retained. The audit checks
+recorded start spacing and post-429 cooldown. Shared-route use is serialized by
+the coordinator. Existing source preparations are retained unused; the replacement
+must preserve the exact dataset and obtain a new source-bound GO.
+
+The complete unchanged-source suite passed: **171 tests in 28.092 seconds**,
+Python 3.14.6, same command. Seven virtual-clock/no-network HTTP tests and one
+SSE error-privacy regression supplement the prior 163 tests. The model call count
+is still zero at this prospective amendment; pilot-v1 remains unused.

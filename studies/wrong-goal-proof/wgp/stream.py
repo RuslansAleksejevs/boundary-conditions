@@ -6,6 +6,7 @@ import threading
 from contextlib import contextmanager
 
 from .logic import SchemaError, canonical, keys, strict_json
+from .pacing import safe_error_envelope
 
 
 MAX_WIRE_BYTES = 8_000_000
@@ -116,6 +117,9 @@ def read_sse(response, redact, visible, record):
             raise SchemaError("SSE data after DONE")
         raw_chunk = strict_json(redact(text), max_bytes=MAX_WIRE_BYTES)
         chunk = visible(raw_chunk)
+        if type(raw_chunk) is dict and raw_chunk.get("error") is not None:
+            trace["chunks"].append(safe_error_envelope(raw_chunk))
+            return
         # Preserve only the fact that hidden fields existed, never their text.
         # This lets the repeatable audit reject hidden continuation in a footer.
         if type(raw_chunk) is dict and type(raw_chunk.get("choices")) is list:

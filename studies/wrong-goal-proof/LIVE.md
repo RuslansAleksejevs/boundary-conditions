@@ -211,3 +211,25 @@ Official interface references read during preparation:
 [native answer/thinking token semantics](https://www.alibabacloud.com/help/en/model-studio/qwen-api-via-openai-chat-completions).
 Shared funding, context assumptions and the prospective amendment are recorded
 in [the execution budget](https://github.com/RuslansAleksejevs/boundary-conditions/blob/main/docs/EXECUTION_BUDGET.md).
+
+## Prospective pacing amendment — 8 November 2026 UTC
+
+Before this study's first request, the companion study encountered provider HTTP
+429 responses. Account funding was not exhausted; the precise rate-limit source
+was not established. The coordinator prospectively approved transport pacing:
+at least 20 seconds between HTTP attempt starts, measured with a monotonic clock;
+after a 429, at least 60 seconds from response completion, respecting any longer
+valid Retry-After up to 300 seconds. A longer valid value stops acquisition,
+rather than being truncated. Missing/invalid values use 60 seconds. Sleep chunks
+are at most 30 seconds. A new stage also waits conservatively before its first
+attempt. No additional requests, repeats, model changes or gate changes result.
+
+The manifest explicitly binds this pacing policy. Receipt auditing checks the
+observed wall-timestamp spacing and 429 cooldown, independently of the runtime's
+monotonic scheduler. HTTP dates are normalized upward to delay seconds; only
+those safe seconds are logged, not arbitrary headers. Non-200 and SSE error
+records keep only numeric/allowlisted code, limit_source and reason fields, never
+raw error bodies. The original single identical technical retry, global retry
+ceiling, unknown-charge reservations and three-failed-logical-call circuit remain.
+The shared route is serialized across studies during this pilot; main requires
+a separate coordinator GO after the pilot's gates and cost projection.

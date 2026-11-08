@@ -193,3 +193,10 @@ nonfinal, unbilled, extra-content and hidden-continuation repeats. The observed
 fixture is explicitly attributed to the companion study and is not one of this
 study's model results. A preceding test run was invalidated by a concurrent source
 inventory edit; the final successful run used unchanged source.
+
+After the prospective pre-inference pacing amendment, the complete unchanged-
+source suite passed **171 tests in 28.092 seconds**. Seven virtual-clock tests
+check attempt-start spacing, response-relative 429 waits, HTTP-date rounding,
+invalid/missing/long Retry-After, new-stage spacing and safe error diagnostics.
+One further SSE regression checks raw error-body removal. No test uses a network
+credential, actual model response acquisition or real cooldown wait.

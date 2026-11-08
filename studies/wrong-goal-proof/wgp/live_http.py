@@ -14,6 +14,7 @@ from .adapters import UNKNOWN_USAGE
 from .live_budget import money
 from .logic import SchemaError, canonical, digest, keys, strict_json
 from .pipeline import timestamp
+from .pacing import Pacer, cooldown, safe_error_envelope, safe_retry_after
 from .stream import audit_stream, read_sse, wall_timeout
 
 
@@ -123,14 +124,18 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 class OpenRouterHTTP:
     kind = "official_openrouter_http"
 
-    def __init__(self, api_key, timeout_seconds):
+    def __init__(self, api_key, timeout_seconds, previous_receipt=None):
         if type(api_key) is not str or not api_key.strip():
             raise SchemaError("authorized secret attachment is missing")
         self._key = api_key
         self.timeout = timeout_seconds
         self.opener = urllib.request.build_opener(NoRedirect())
+        self.pacer = Pacer()
+        if previous_receipt is not None:
+            self.pacer.after_prior_stage(previous_receipt)
 
     def send(self, body):
+        self.pacer.wait_before_start()
         started, clock = timestamp(), time.perf_counter()
         record = {"started_at": started, "finished_at": None, "latency_seconds": None,
                   "http_status": None, "headers": {}, "response": None,
@@ -146,9 +151,8 @@ class OpenRouterHTTP:
                     response = error
                 with response:
                     record["http_status"] = response.status
-                    record["headers"] = {name: response.headers[name].replace(self._key, "[REDACTED_CREDENTIAL]") for name in
-                                         ("x-request-id", "x-openrouter-request-id", "retry-after")
-                                         if response.headers.get(name) is not None}
+                    retry_after = safe_retry_after(response.headers.get("retry-after"))
+                    record["headers"] = {} if retry_after is None else {"retry-after": retry_after}
                     if response.status == 200:
                         if "text/event-stream" not in response.headers.get("content-type", "").lower():
                             raise SchemaError("expected event-stream content type")
@@ -159,7 +163,7 @@ class OpenRouterHTTP:
                         if len(raw) > 2_000_000:
                             raise SchemaError("provider error envelope exceeds 2 MB")
                         text = raw.decode("utf-8").replace(self._key, "[REDACTED_CREDENTIAL]")
-                        record["response"] = visible_response(strict_json(text, max_bytes=2_000_000))
+                        record["response"] = safe_error_envelope(strict_json(text, max_bytes=2_000_000))
         except (TimeoutError, urllib.error.URLError) as error:
             reason = error.reason if isinstance(error, urllib.error.URLError) else error
             timed_out = isinstance(reason, TimeoutError)
@@ -171,8 +175,11 @@ class OpenRouterHTTP:
             record["transport_error"] = "invalid_or_incomplete_provider_envelope"
         if record["http_status"] in (429, 502, 503, 504):
             record["retryable_transport"] = True
+        if record["http_status"] == 429 and cooldown(record["headers"]) is None:
+            record["retryable_transport"] = False
         record["finished_at"] = timestamp()
         record["latency_seconds"] = time.perf_counter() - clock
+        self.pacer.after_response(record["http_status"], record["headers"])
         return record
 
 
@@ -181,6 +188,8 @@ def interpret_receipt(receipt, config):
     response = receipt["response"]
     usage = {**UNKNOWN_USAGE}
     retryable = (receipt["transport_error"] == "timeout" or receipt["http_status"] in (429, 502, 503, 504))
+    if receipt["http_status"] == 429 and cooldown(receipt["headers"]) is None:
+        retryable = False
     if type(receipt["retryable_transport"]) is not bool or receipt["retryable_transport"] != retryable:
         raise SchemaError("transport retry eligibility contradicts HTTP status/error")
     result = {"status": "transport_error", "text": None, "usage": usage,
@@ -197,7 +206,9 @@ def interpret_receipt(receipt, config):
                 return result
     if receipt["transport_error"] is not None or receipt["http_status"] != 200:
         result["fatal"] = not result["retryable"]
-        result["error"] = result["error"] or "HTTP " + str(receipt["http_status"])
+        result["error"] = ("HTTP 429 Retry-After exceeds 300 seconds; stop without retry"
+                           if receipt["http_status"] == 429 and cooldown(receipt["headers"]) is None
+                           else result["error"] or "HTTP " + str(receipt["http_status"]))
         return result
     try:
         if receipt.get("stream") is not None:

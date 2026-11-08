@@ -195,6 +195,14 @@ class StreamTests(unittest.TestCase):
         self.assertNotIn("unit-test-no-secret", canonical(receipt))
         self.assertIn("[REDACTED_CREDENTIAL]", canonical(receipt))
 
+    def test_sse_errors_retain_allowlisted_diagnostics_not_raw_message(self):
+        data = chunks()[:1] + [{"error": {"code": 429, "message": "PRIVATE_RAW_ERROR",
+                                        "metadata": {"raw": "PRIVATE_RAW_ERROR"}}}]
+        receipt = acquire_fixture(wire(data))
+        self.assertNotIn("PRIVATE_RAW_ERROR", canonical(receipt))
+        self.assertEqual(receipt["stream"]["chunks"][-1], {"error": {"code": 429}})
+        self.assertTrue(interpret_receipt(receipt, fixture_config())["fatal"])
+
     def test_wall_timer_is_bounded_and_restored(self):
         previous = signal.getsignal(signal.SIGALRM)
         with self.assertRaises(TimeoutError):

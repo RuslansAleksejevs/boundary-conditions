@@ -7,8 +7,8 @@ classification: PROJECT_REPORTED. This is an engineering record, not model evide
   scalar/vector semantics, exhaustive certificates, seeded disjoint datasets,
   natural translation and paired certificate replay, offline adapters, manifest,
   incremental logging, freeze rehearsal, audit, and paired analysis.
-- Latest complete test pass: 163 tests, Python 3.14.6, 35.580 seconds. This includes
-  the original 105 tests plus 58 live-interface/exclusion/ledger/SSE tests.
+- Latest complete test pass: 171 tests, Python 3.14.6, 28.092 seconds. This includes
+  the original 105 tests plus 66 live-interface/exclusion/ledger/SSE/pacing tests.
 - No experimental model calls, paid batches, or competition submission.
 - A separate live HTTP interface, persistent USD20 wallet, source/configuration/
   manifest-bound GO, actual-pilot freeze and campaign auditor are implemented.
@@ -95,3 +95,12 @@ terminal repeats. A sanitized, explicitly attributed interface fixture is
 included in the source inventory. The initial unused preparation is preserved;
 its replacement uses the same seed and dataset, with no outcome-based resampling
 and no use of the conditional pilot-repeat allowance.
+
+The companion subsequently encountered HTTP 429 and stopped. Before this study's
+first request, a further prospective operational amendment added monotonic 20s
+minimum attempt-start spacing and a 60s minimum 429 cooldown, honoring valid
+Retry-After up to 300s and stopping above that bound. Waits are chunked at 30s.
+No model/profile, prompt, task, gate, sample, quota or attempt limit changed. Only
+safe normalized Retry-After and allowlisted error diagnostics are retained. The
+first two unused preflights remain preserved; a new immutable preparation with
+the identical dataset will bind the amended source and explicit pacing policy.

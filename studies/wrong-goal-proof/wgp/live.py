@@ -22,6 +22,7 @@ from .live_http import (OpenRouterHTTP, budget_configuration_hash, interpret_rec
 from .logic import SchemaError, canonical, digest, keys, strict_json
 from .pipeline import (audit_content, collect_records, pilot_statistics, timestamp)
 from .prompts import prompt_spec
+from .pacing import PACING_POLICY, cooldown
 from .records import code_hashes, git_revision, read_json as read_record_json, write_new
 from .vector import signature
 
@@ -65,7 +66,7 @@ def validate_manifest(dataset, manifest):
                     "dataset_hash", "exclusion_hash", "configuration", "configuration_hash",
                     "budget_configuration_hash", "prompt_spec", "orders", "schedule",
                     "worst_case_attempt_usd", "worst_case_379_attempts_usd", "full_schedule_reservation_fits_quota",
-                    "ground_truth_audit", "revision"))
+                    "ground_truth_audit", "revision", "pacing_policy"))
     audit = audit_dataset(dataset)
     config = validate_configuration(manifest["configuration"])
     time_value(manifest["created_at"])
@@ -75,7 +76,7 @@ def validate_manifest(dataset, manifest):
             or manifest["exclusion_hash"] != dataset["exclusions"]["hash"]
             or manifest["configuration_hash"] != digest(config)
             or manifest["budget_configuration_hash"] != budget_configuration_hash(config)
-            or manifest["orders"] != frozen_orders(dataset)
+            or manifest["orders"] != frozen_orders(dataset) or manifest["pacing_policy"] != PACING_POLICY
             or manifest["schedule"] != SCHEDULE or manifest["prompt_spec"] != prompt_spec()
             or manifest["ground_truth_audit"] != audit
             or money(manifest["worst_case_attempt_usd"]) != upper_cost(config)
@@ -145,6 +146,7 @@ def prepare_live(path, config, seed, extra_excluded_datasets=()):
                 "worst_case_attempt_usd": str(upper_cost(config)),
                 "worst_case_379_attempts_usd": str(379 * upper_cost(config)),
                 "full_schedule_reservation_fits_quota": 379 * upper_cost(config) <= money("20"),
+                "pacing_policy": dict(PACING_POLICY),
                 "ground_truth_audit": audit_dataset(dataset), "revision": None}
     path.mkdir(parents=True, mode=0o700)
     write_new(path / "dataset.json", dataset)
@@ -285,6 +287,7 @@ def audit_live(dataset, manifest, run, allow_fixture=False):
         raise SchemaError("role order differs from the prospectively fixed schedule")
     state = ledger_state(run["ledger_events"], manifest["budget_configuration_hash"])
     by_request, seen_ids, provider_ids = {}, set(), set()
+    prior_receipt = None
     for receipt in run["receipts"]:
         keys(receipt, ("attempt_id", "logical_id", "stage", "transport_kind", "prompt_hash", "payload",
                        "payload_hash", "started_at", "finished_at", "latency_seconds", "http_status",
@@ -298,6 +301,24 @@ def audit_live(dataset, manifest, run, allow_fixture=False):
                 or receipt["response"] != visible_response(receipt["response"])
                 or receipt["stream"] != visible_response(receipt["stream"])):
             raise SchemaError("invalid acquisition timing/schema or retained reasoning text")
+        if expected_kind == LIVE_KIND:
+            if (set(receipt["headers"]) - {"retry-after"}
+                    or any(type(v) is not str or not v.isascii() or not v.isdigit()
+                           for v in receipt["headers"].values())):
+                raise SchemaError("unexpected unsanitized provider headers")
+            if receipt["http_status"] != 200 and receipt["response"] is not None:
+                from .pacing import safe_error_envelope
+                if receipt["response"] != safe_error_envelope(receipt["response"]):
+                    raise SchemaError("raw non-200 provider error retained")
+            if prior_receipt is not None:
+                start = time_value(receipt["started_at"])
+                if (start - time_value(prior_receipt["started_at"])).total_seconds() < 19.99:
+                    raise SchemaError("HTTP attempt starts violate prospective pacing")
+                if prior_receipt["http_status"] == 429:
+                    delay = cooldown(prior_receipt["headers"])
+                    if delay is None or (start - time_value(prior_receipt["finished_at"])).total_seconds() < delay - .01:
+                        raise SchemaError("HTTP attempt violates recorded Retry-After cooldown")
+            prior_receipt = receipt
         aid = receipt["attempt_id"]
         reservation, settlement = state["reservations"].get(aid), state["settlements"].get(aid)
         if aid in seen_ids or reservation is None or settlement is None:
@@ -432,7 +453,8 @@ def run_live_stage(path, stage, go, api_key=None, transport=None):
             raise SchemaError("invalid or nonprospective empirical freeze")
         previous = pilot
     config = manifest["configuration"]
-    transport = transport or OpenRouterHTTP(api_key, config["timeout_seconds"])
+    transport = transport or OpenRouterHTTP(api_key, config["timeout_seconds"],
+        previous_receipt=previous["receipts"][-1] if previous and previous["receipts"] else None)
     split = "holdout" if stage == "main" else "dev"
     with BudgetLedger(path / "budget.jsonl", manifest["budget_configuration_hash"]) as ledger:
         if canonical(ledger.events) != canonical(previous["ledger_events"] if previous else []):
