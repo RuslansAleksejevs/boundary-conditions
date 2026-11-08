@@ -259,3 +259,170 @@ The complete unchanged-source suite passed: **171 tests in 28.092 seconds**,
 Python 3.14.6, same command. Seven virtual-clock/no-network HTTP tests and one
 SSE error-privacy regression supplement the prior 163 tests. The model call count
 is still zero at this prospective amendment; pilot-v1 remains unused.
+
+## 2026-11-08 — Original live pilot started under exact GO
+
+The coordinator independently repeated 171 tests (39.727s), verified exact
+configuration/source/manifest, 14 engineering exclusions and the unchanged fresh
+dataset, and issued pilot-v1-only GO at 20:35:36Z. Acquisition source commit is
+`83aa8ee313d4f054ac47af038a8b5c33a6a1e859`; existing draft PR #4 was updated.
+The first planned natural translation began at 20:36:59Z through the official
+OpenRouter API and approved ordinary secret attachment. No extra smoke call,
+model change, unpublished resampling or shared-route concurrent study was used.
+
+At 20:43:42Z, 14 actual HTTP200 replies had complete SSE and valid response
+schemas, with known API cost USD0.12559222 across all 14 receipts. No retry or
+HTTP429 occurred by that checkpoint. The first two natural C/Q translations
+preserved the original open functions and final answers were correct. These are
+interim operational observations; all 52 planned pilot roles remain in scope,
+and no gate, freeze, main evaluation or confirmatory conclusion is asserted.
+
+While acquisition continued with unchanged source inventory, added a separate
+presentation-only figure renderer. Its four tests passed in0.004s using explicitly
+fabricated count fixtures and no network. It does not rescore outcomes or acquire
+responses. No empirical figure or report PDF has been generated yet.
+
+## 2026-11-08 — Pilot completed and prospective main freeze prepared
+
+The original live pilot finished20:59:48.911404Z after1369.875s. Full campaign
+audit, pilot gate and standalone empty false-guarantee evidence verification all
+passed. Fifty of52 scheduled roles were schema-completed; one translator emitted
+malformed JSON and its dependent review was blocked. This was preserved, not
+repaired or resampled. Eleven of12 clean originals were correct in all arms.
+There were51 physical HTTP200 requests, no technical retries or HTTP429, no
+unknown charges or pricing overruns. Actual API cost and conservative settled
+wallet both equalUSD0.39923650. Input42437/output186636/reasoning184388 tokens
+were reported across all51 receipts.
+
+Natural utility was7/8, with0/7 drift among valid translations and one unassessed.
+Planted false SAFE was0/8 in each B/N/S arm, with8/8 correct witnesses each;
+equivalent utility was4/4 in each arm. The paired zero result is pilot evidence
+only: bootstrap95=[0,0] is degenerate, while bounded-iid95 is approximately
+[-0.960323,0.960323]. There were no actual false guarantees to place in the
+evidence packet. Actual candidate/holdout separation passed with19 distinct
+observed functions and0 overlaps; fourteen prior engineering bundles remained
+excluded. No scientific prompt, task, scorer, sample or model was changed.
+
+After receiving the complete checkpoint, the coordinator explicitly authorized
+freeze preparation only. At21:03:14.925378Z, saved a prospective freeze for the
+unchanged100 held-out originals/260 logical roles. Freeze digest is
+`e5b6cc5c66c3698284e5af2145add1983a02b195067c23ef920c7a1c766dab7a`, binding pilot
+`f696c9be737a22278b76b7f1bfa91527b1e8a23226ea5914e93e70b4111fb2c1` and source
+inventory `87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e`.
+No main API call or main GO exists at this snapshot. Shared-route handoff and
+separate main authorization remain the next external step.
+
+Pilot SVG/PDF was generated from actual audited analysis, rasterized and visually
+checked with an explicit development/not-confirmatory label. A separate cached-
+package Tectonic0.16.9 format check compiled successfully after reviewed host
+access resolved a sandbox system-configuration failure; it is not an empirical
+paper. Official template structure, bibliography metadata and mandatory ethics
+appendix were prepared outside the frozen source inventory. Standalone report
+result text and empirical PDF remain pending the actual main outcome or blocker.
+
+## 2026-11-08 — Pilot-only report preview and publication boundary checks
+
+At21:24Z, main acquisition and main GO remained pending the serialized shared
+route. The acquisition inventory was unchanged. Nine presentation/export tests
+passed in0.003s with fabricated-count/no-network inputs, separate from the171
+acquisition tests. The coordinator reviewed the report/export/figure preparation
+without a blocking finding; actual completed-main export and manual content
+review remain required before publication.
+
+Compiled a private six-page actual-pilot-only preview with cached Tectonic0.16.9.
+The abstract contains240 words. Mandatory ethics and AI-use statements and the
+human author name were checked; extracted text contains no private host path.
+No overfull warning remained. Enlarged the chart text and visually checked its
+in-page rendering together with exact pilot counts. No held-out results were
+invented, no held-out corpus was published, and no competition submission was
+performed. The preview and its private path wrapper are not public deliverables.
+
+The unchanged-source rerun then passed171 acquisition tests in21.834s and9
+presentation/export tests in0.004s. The first command mistakenly omitted the
+documented PYTHONPATH and stopped at nine import errors before any tests ran;
+the correct full command was:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=studies/wrong-goal-proof python3 -m unittest discover -s studies/wrong-goal-proof/tests -q
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s studies/wrong-goal-proof/reports -p 'test_*.py' -q
+```
+
+Campaign audit again passed with51 physical calls, zero false guarantees and
+USD0.39923650. Source inventory remained
+`87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e`.
+No new API calls were made during these CPU checks.
+
+## 2026-11-08 — Main-only GO passed; execution blocked before launch
+
+After the companion explicitly released its route, the coordinator issued the
+exact main-only GO at21:29:15Z. The unchanged-source main preflight passed with
+zero calls. The paid260-role acquisition was submitted once to the execution
+permission layer, which denied it before launch because it required new direct
+user authorization rather than delegated GO alone. No retry, alternative
+transport or smaller-call workaround was attempted. The shared route was
+released while this external blocker is resolved.
+
+Read-only verification at21:31:08Z found no main directory and exactly102 wallet
+events, unchanged from the completed pilot. Full campaign audit still passed:
+51 actual HTTP calls, zero confirmed false guarantees, zero technical retries
+and known/settledUSD0.39923650. The100-original/260-role sample, source and freeze
+were not changed. No model outcome was discarded and no holdout corpus released.
+The next paid attempt requires new explicit user authorization accepted by the
+execution layer and renewed exclusive-route coordination; no submission occurred.
+
+## 2026-11-08 — Pilot-only report and bounded public evidence view
+
+Prepared an English development-only PDF/Markdown snapshot with a 21:50 UTC
+cutoff. It preserves the actual null planted result, malformed translation and
+dependent blocked review. No held-out result is asserted. Public records contain
+20 development originals, 52 logical roles, 44 reviewer outcomes and 51 visible
+HTTP receipts. The full 100-case holdout and engineering-exclusion corpus remain
+private. Original run, manifest, freeze and 102-event ledger copies were checked
+byte-for-byte equal; the source run digest remains f696c9be737a22278b76b7f1bfa91527b1e8a23226ea5914e93e70b4111fb2c1.
+
+The public-view verifier repeats unchanged mathematics, aggregate analysis and
+physical-receipt usage and passes with zero actual false guarantees. It explicitly
+does not reproduce the full acquisition or cross-split audit without the withheld
+corpus. Its first integration check caught a reporting-code mismatch between
+52 scheduled roles and 51 physical attempts; the verifier was corrected and the
+existing immutable records then passed. No response, cost or source analysis was
+changed. Eighteen reporting/publication tests passed in 0.284 s, including five
+saved-pilot mutation checks. These are additional to 171 acquisition tests and
+make no new model calls.
+
+Read-only peer review reran the public verifier and found no scientific blocker.
+Clarified the natural table to show 0/7 assessed false-SAFE answers, 7/8 correct
+scheduled originals and one unassessed review. The exact purpose-written
+scientific pilot authorization paragraph was independently compared to its private
+original and approved for publication. This does not include private messages,
+execution-review text, later authorization records or account responses. All 51
+visible answer texts were manually inspected; privacy scans found no personal
+host paths, credentials or hidden reasoning.
+
+The portable report compiled with cached Tectonic 0.16.9 to six pages (five through
+references, one appendix), with no TeX warnings after layout checks. Title,
+table/figure and appendix were visually inspected. The abstract has 204
+whitespace-delimited words in its TeX source. The earlier 240-word preview note
+could not be reproduced and is corrected here; it does not change any empirical
+number. Required ethics/limitations and AI-use statements are present, no private
+path appears in extracted PDF text, and human author review remains pending.
+The frozen acquisition inventory remains87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e.
+No competition submission was performed.
+
+## 2026-11-08 — Exact main acquisition started after renewed authorization
+
+New stage-specific user authorization was verified in the execution-owning
+context, which submitted the exact previously denied command once to a fresh
+execution review. It passed and started the main process at21:51:10.093347Z.
+This study worker did not launch a duplicate process, use another provider
+interface or alter any frozen source, configuration, prompt, task, score or
+sample. The100-original/260-role schedule, hardUSD20 study wallet and original
+retry/circuit rules remain unchanged. The companion route remains idle.
+
+The existing journal's early checkpoint at21:52:35.436624Z has three HTTP200
+receipts and three schema-completed roles, with known main costUSD0.02207062.
+The recorded model is qwen/qwen3.5-122b-a10b, providerAlibaba, complete SSE and
+observed minimum start spacing22.670035s. One request was still in flight.
+These interim operational counts are not a completed main analysis. The
+pilot-only report is explicitly preserved as of21:50UTC, before main began;
+no held-out task content is released while acquisition is ongoing.

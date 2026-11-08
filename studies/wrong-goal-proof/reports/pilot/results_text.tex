@@ -1,0 +1,108 @@
+% Actual development observations only; no held-out results are supplied.
+\newcommand{\ReportDate}{8 November 2026, 21:50 UTC --- development pilot only}
+\newcommand{\RunAbstract}{An exact local proof need not establish the task a user
+originally requested. We study this boundary in a finite agent pipeline with an
+LLM translator, an exhaustive Boolean solver and independent checker, and an LLM
+reviewer of the original contract. Honest translation is separated from deliberate
+handoff faults. For fixed original tasks, altered candidates and valid local
+certificates, the reviewer sees an ordinary PASS heading, a neutral heading or
+an explicit candidate-only scope statement. All conditions retain the original
+task and correspondence-checking instruction. The first real Qwen3.5-122B-A10B
+pilot used 51 API requests for 52 scheduled roles. Fifty roles met the response
+schema and 11 of 12 clean originals were correctly solved. One malformed
+translation blocked its dependent review and was not repaired or resampled.
+Natural utility was 7/8, with no open-function drift among seven valid
+translations. Each presentation produced 0/8 false SAFE answers on planted
+faults and 4/4 correct equivalent controls. These small development results do
+not establish absence of a presentation effect. The 100-original, 260-role
+held-out evaluation is prospectively frozen but has not yet been acquired at
+this checkpoint. The contribution at this checkpoint is a verified measurement
+procedure and transparent feasibility result, not a new general equivalence
+criterion or model-safety guarantee.}
+\newcommand{\PilotResults}{The original pilot passed its fixed gate: 50/52
+scheduled roles were schema-valid and 11/12 clean originals were correct in all
+their conditions. There were 51 physical HTTP200 requests, one malformed JSON
+translation and one dependent blocked reviewer. The malformed response was
+retained verbatim. No interface-repair pilot, model change or resampling was used.
+Natural utility was 7/8; open C/Q drift was 0/7 among valid translations, with one
+unassessed translation. All four natural UNSAFE witnesses were valid.}
+\newcommand{\MainResults}{\textbf{Development only: no held-out result is reported.}
+The same 100 held-out originals and 260 role opportunities were frozen before any
+main response. Actual-pilot/holdout comparison found 19 distinct candidate
+functions and zero overlap. At this report's cutoff, main preflight had passed
+but execution permission was denied before dispatch. Main remained unstarted,
+pending verified authorization and exclusive use of the provider route.
+No alternate interface was attempted.}
+\newcommand{\ResultsTable}{\begin{table}[htbp]\centering
+\caption{Development outcomes by population. False SAFE uses assessed answers;
+correct completion uses all scheduled originals. Arms reuse the same originals.
+The blocked natural review is unassessed, not imputed safe.}
+\begin{tabular}{lrrr}\toprule
+Population/arm & False SAFE & Correct completion & Unassessed\\\midrule
+Natural B & 0/7 assessed & 7/8 & 1\\
+Planted B & 0/8 & 8/8 & 0\\
+Planted N & 0/8 & 8/8 & 0\\
+Planted S & 0/8 & 8/8 & 0\\
+Equivalent B & 0/4 & 4/4 & 0\\
+Equivalent N & 0/4 & 4/4 & 0\\
+Equivalent S & 0/4 & 4/4 & 0\\\bottomrule
+\end{tabular}\end{table}}
+\newcommand{\FigurePath}{figure.pdf}
+\newcommand{\FigureCaption}{Development-pilot observations, not confirmatory
+evaluation. B/N/S each classify eight planted originals correctly and retain
+utility on four equivalent controls. Marginal Wilson intervals and wide
+bounded-iid paired intervals show the limited evidence despite zero observed
+discordance. The original task and local certificate are unchanged across arms.}
+\newcommand{\PrimaryResults}{Both S minus B and N minus B equal zero on eight
+complete planted pairs. The paired bootstrap interval collapses to [0,0] because
+all observed differences are zero; this does not establish equivalence. The
+bounded-iid 95\% interval is approximately [-0.9603,0.9603], with shared-template
+dependence still limiting its interpretation. All 24 planted reviewer answers
+contain valid original UNSAFE witnesses. No reviewer abstention or actual false
+SAFE guarantee was observed. The independently verified false-guarantee packet
+is therefore empty, not populated with an invented counterexample.}
+\newcommand{\ResourceResults}{Reported API cost was USD 0.39923650 across all
+51 requests, equal to the conservative settled wallet. There were no technical
+retries, HTTP 429, unknown charges or pricing overruns. Input/output token totals
+were 42,437/186,636, including 184,388 reasoning tokens. Wall time was 1369.875 s
+(22 min 49.9 s), mean HTTP latency 25.825 s and maximum 46.977 s. The observed
+minimum attempt-start interval was 20.000618 s. Pilot-based main projections
+are estimates, not guaranteed bounds: approximately 116.4 min for 260 attempts
+at the observed wall time per attempt, and 215.3 min for 275 at the observed
+maximum paced latency.}
+\newcommand{\DiscussionResults}{This pilot shows that the strict interface and
+clean-task utility gates can pass under the selected route, while also exposing
+a genuine formatting failure. On these development cases, scope wording did
+not change any observed planted verdict. The sample is too small to treat that
+as evidence that scope is irrelevant. No task or prompt is changed to elicit
+a more attractive failure. The preplanned held-out comparison remains the next
+empirical step, but it has not been executed.}
+\newcommand{\ConclusionResults}{The first real pilot passed with complete
+cost accounting and one preserved translation-format failure. Valid local
+certificates for altered contracts did not produce observed false assurances
+on its eight planted originals in any presentation. This is a feasibility
+checkpoint, not the held-out result or a general safety guarantee. The next
+step is the unchanged, prospectively frozen evaluation, subject to the hard
+budget, fixed gates and separate execution authorization.}
+\newcommand{\ReproductionResults}{The acquisition suite passed 171 tests on
+Python 3.14.6 in 21.834 s; a separate pre-acquisition review repeated 171 tests
+in 39.727 s.
+Presentation/export boundary tests use explicitly fabricated or no-network
+fixtures; they are not additional empirical cases. All real 51-call pilot records
+passed complete private campaign, gate and mathematical evidence audits.
+
+The public development-only view contains 20 originals and exact visible pilot
+records, not the full dataset. Its verifier reproduces 52 scheduled roles,
+44 reviewer outcomes, zero false guarantees and the aggregate calculations.
+It does not independently reproduce the complete acquisition or dev/holdout
+separation audit without the withheld corpus. The held-out task records, private
+raw journals, credentials and account responses are not released.
+
+\begin{itemize}
+\item Run digest: \code{f696c9be737a22278b76b7f1bfa91527b1e8a23226ea5914e93e70b4111fb2c1}.
+\item Prospective freeze: \code{e5b6cc5c66c3698284e5af2145add1983a02b195067c23ef920c7a1c766dab7a}.
+\end{itemize}
+The freeze was saved 2026-11-08T21:03:14.925378Z, after the pilot and before any
+main acquisition; it is not a public preregistration. The 102-event ledger,
+complete manifest/source digests and credential-free reproduction commands
+accompany the public view. Only the explicit acquire command invokes the API.}

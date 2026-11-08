@@ -1,0 +1,5038 @@
+{
+  "cases": [
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "s"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "p"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "implies"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "s"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "p"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "b092f8e6c62d2abc48b367a5a94f287cc39228a2003c18f89509f4c3b6e7a19a",
+        "rows": [
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "drop_conjunct",
+      "group": "fault",
+      "id": "dev-fault-005",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "s"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "p"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "implies"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "q"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "p"
+                        }
+                      ],
+                      "op": "and"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "p"
+                        },
+                        {
+                          "var": "q"
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "implies"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "var": "s"
+            }
+          ],
+          "op": "and"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: (((s IMPLIES q) IMPLIES (r AND p)) IMPLIES ((p AND q) AND (r IMPLIES s)))\nRequired Q: ((((s IMPLIES q) IMPLIES (r AND p)) IMPLIES ((p AND q) AND (r IMPLIES s))) AND s)\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "const": true
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "arg": {
+                        "var": "q"
+                      },
+                      "op": "not"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "implies"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "p"
+                      },
+                      {
+                        "var": "s"
+                      }
+                    ],
+                    "op": "implies"
+                  },
+                  "op": "not"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "q"
+                        }
+                      ],
+                      "op": "and"
+                    }
+                  ],
+                  "op": "or"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "const": true
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "arg": {
+                        "var": "q"
+                      },
+                      "op": "not"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "implies"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "p"
+                      },
+                      {
+                        "var": "s"
+                      }
+                    ],
+                    "op": "implies"
+                  },
+                  "op": "not"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "q"
+                        }
+                      ],
+                      "op": "and"
+                    }
+                  ],
+                  "op": "or"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "18f917f358ec32ed928f279fc1e20d5e2340e41a04a2bf65c358c96ddf56ac9f",
+        "rows": [
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "and_to_or",
+      "group": "fault",
+      "id": "dev-fault-006",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "const": true
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "arg": {
+                        "var": "q"
+                      },
+                      "op": "not"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "implies"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "p"
+                      },
+                      {
+                        "var": "s"
+                      }
+                    ],
+                    "op": "implies"
+                  },
+                  "op": "not"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "q"
+                        }
+                      ],
+                      "op": "and"
+                    }
+                  ],
+                  "op": "or"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "const": true
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "arg": {
+                        "var": "q"
+                      },
+                      "op": "not"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "implies"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "p"
+                      },
+                      {
+                        "var": "s"
+                      }
+                    ],
+                    "op": "implies"
+                  },
+                  "op": "not"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "q"
+                        }
+                      ],
+                      "op": "and"
+                    }
+                  ],
+                  "op": "or"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "and"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((((r AND TRUE) IMPLIES (NOT q)) AND (p AND (s IMPLIES s))) OR ((NOT (p IMPLIES s)) AND ((q IMPLIES r) OR (q AND q))))\nRequired Q: ((((r AND TRUE) IMPLIES (NOT q)) AND (p AND (s IMPLIES s))) AND ((NOT (p IMPLIES s)) AND ((q IMPLIES r) OR (q AND q))))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "p"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "and"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "q"
+                      },
+                      {
+                        "var": "q"
+                      }
+                    ],
+                    "op": "or"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "q"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "or"
+                },
+                {
+                  "var": "r"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "q"
+                },
+                {
+                  "var": "q"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "var": "r"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "5b97594c169e5ecaf7cdae1a13fa32442ea6f308d76b84f83b671e5a41f43d36",
+        "rows": [
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "restrict_C",
+      "group": "fault",
+      "id": "dev-fault-000",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "q"
+                    },
+                    {
+                      "var": "p"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "s"
+                    },
+                    {
+                      "var": "r"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "q"
+                  },
+                  {
+                    "var": "q"
+                  }
+                ],
+                "op": "or"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "implies"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "q"
+                },
+                {
+                  "var": "q"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "var": "r"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: (((q IMPLIES p) AND (s AND r)) IMPLIES (NOT (q OR q)))\nRequired Q: ((q OR q) OR r)\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "p"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "var": "r"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "p"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "var": "r"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "6544b844ca1c61fe4f6e25bac0373afb7326df217b8b5197b2e298fcee702c07",
+        "rows": [
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "and_to_or",
+      "group": "fault",
+      "id": "dev-fault-002",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "p"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "var": "r"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "p"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "var": "r"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "and"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((((q OR s) AND (r OR s)) AND (NOT p)) OR (r IMPLIES s))\nRequired Q: ((((q OR s) AND (r OR s)) AND (NOT p)) AND (r IMPLIES s))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": null,
+      "certificate": null,
+      "family": "SAFE",
+      "group": "natural",
+      "id": "dev-natural-006",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "var": "p"
+            },
+            {
+              "var": "q"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "var": "p"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "q"
+                    },
+                    {
+                      "var": "r"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "s"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: (p AND q)\nRequired Q: (p OR ((q AND r) OR (s IMPLIES q)))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": null,
+      "certificate": null,
+      "family": "SAFE",
+      "group": "natural",
+      "id": "dev-natural-002",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "r"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "q"
+                        }
+                      ],
+                      "op": "or"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "var": "p"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "r"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "q"
+                        }
+                      ],
+                      "op": "or"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "const": false
+                    }
+                  ],
+                  "op": "or"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "q"
+                    },
+                    {
+                      "var": "p"
+                    }
+                  ],
+                  "op": "or"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((r IMPLIES ((q OR q) AND (s OR r))) AND p)\nRequired Q: ((r IMPLIES ((q OR q) AND (s OR r))) OR ((r OR FALSE) OR (q OR p)))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": null,
+      "certificate": null,
+      "family": "SAFE",
+      "group": "natural",
+      "id": "dev-natural-004",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "p"
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "var": "r"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "var": "p"
+                },
+                {
+                  "var": "r"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "p"
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "var": "r"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "s"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "or"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "q"
+                    },
+                    {
+                      "const": false
+                    }
+                  ],
+                  "op": "or"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((((r AND p) IMPLIES r) AND s) AND (p OR r))\nRequired Q: ((((r AND p) IMPLIES r) AND s) OR ((s OR s) AND (q OR FALSE)))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": null,
+      "certificate": null,
+      "family": "UNSAFE",
+      "group": "natural",
+      "id": "dev-natural-003",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "s"
+                },
+                {
+                  "var": "r"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "arg": {
+                "var": "s"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "implies"
+        },
+        "Q": {
+          "args": [
+            {
+              "var": "q"
+            },
+            {
+              "var": "p"
+            }
+          ],
+          "op": "and"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((s IMPLIES r) IMPLIES (NOT s))\nRequired Q: (q AND p)\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "arg": {
+            "args": [
+              {
+                "arg": {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "p"
+                      },
+                      {
+                        "var": "r"
+                      }
+                    ],
+                    "op": "implies"
+                  },
+                  "op": "not"
+                },
+                "op": "not"
+              },
+              {
+                "arg": {
+                  "arg": {
+                    "var": "q"
+                  },
+                  "op": "not"
+                },
+                "op": "not"
+              }
+            ],
+            "op": "or"
+          },
+          "op": "not"
+        },
+        "Q": {
+          "arg": {
+            "args": [
+              {
+                "var": "p"
+              },
+              {
+                "var": "r"
+              }
+            ],
+            "op": "implies"
+          },
+          "op": "not"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "f81e6553dd9e6bf1df6c575879ca518a9df663fbd1e34b884899fc713ab93861",
+        "rows": [
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "de_morgan",
+      "group": "equivalent",
+      "id": "dev-equivalent-001",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "p"
+                  },
+                  {
+                    "var": "r"
+                  }
+                ],
+                "op": "implies"
+              },
+              "op": "not"
+            },
+            {
+              "arg": {
+                "var": "q"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "arg": {
+            "args": [
+              {
+                "var": "p"
+              },
+              {
+                "var": "r"
+              }
+            ],
+            "op": "implies"
+          },
+          "op": "not"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((NOT (p IMPLIES r)) AND (NOT q))\nRequired Q: (NOT (p IMPLIES r))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": null,
+      "certificate": null,
+      "family": "UNSAFE",
+      "group": "natural",
+      "id": "dev-natural-007",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "var": "q"
+            },
+            {
+              "var": "r"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "arg": {
+                    "var": "r"
+                  },
+                  "op": "not"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "var": "p"
+            }
+          ],
+          "op": "and"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: (q AND r)\nRequired Q: (((NOT r) IMPLIES (p AND s)) AND p)\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "var": "q"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "arg": {
+                        "var": "s"
+                      },
+                      "op": "not"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "s"
+                      },
+                      {
+                        "var": "p"
+                      }
+                    ],
+                    "op": "and"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "s"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "s"
+                  },
+                  {
+                    "var": "p"
+                  }
+                ],
+                "op": "and"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "d7cca83a24f5f89e2bda8044451aba87af2ae350d8c6c4b927c2930596b490ab",
+        "rows": [
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "restrict_C",
+      "group": "fault",
+      "id": "dev-fault-004",
+      "original": {
+        "C": {
+          "var": "q"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "s"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "s"
+                  },
+                  {
+                    "var": "p"
+                  }
+                ],
+                "op": "and"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: q\nRequired Q: (((r AND s) IMPLIES (NOT s)) IMPLIES (NOT (s AND p)))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": null,
+      "certificate": null,
+      "family": "SAFE",
+      "group": "natural",
+      "id": "dev-natural-000",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "q"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "arg": {
+                "var": "s"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "q"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "or"
+                },
+                {
+                  "args": [
+                    {
+                      "arg": {
+                        "var": "s"
+                      },
+                      "op": "not"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((q OR s) AND (NOT s))\nRequired Q: ((q OR s) OR ((r OR s) OR ((NOT s) AND (r OR s))))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "var": "p"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "p"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "arg": {
+                        "var": "s"
+                      },
+                      "op": "not"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "var": "p"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "9557fa976739d601df70635c3845d67fdf5d5e3e39e98b63d5da6da042926cbe",
+        "rows": [
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "reverse_implication",
+      "group": "fault",
+      "id": "dev-fault-003",
+      "original": {
+        "C": {
+          "var": "p"
+        },
+        "Q": {
+          "args": [
+            {
+              "var": "p"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "p"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "q"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "arg": {
+                        "var": "s"
+                      },
+                      "op": "not"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "or"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: p\nRequired Q: (p IMPLIES (((s IMPLIES p) AND (q OR r)) IMPLIES ((NOT s) IMPLIES (s OR s))))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "arg": {
+                "var": "s"
+              },
+              "op": "not"
+            },
+            {
+              "arg": {
+                "args": [
+                  {
+                    "arg": {
+                      "var": "r"
+                    },
+                    "op": "not"
+                  },
+                  {
+                    "args": [
+                      {
+                        "var": "s"
+                      },
+                      {
+                        "var": "q"
+                      }
+                    ],
+                    "op": "and"
+                  }
+                ],
+                "op": "or"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "arg": {
+            "args": [
+              {
+                "arg": {
+                  "var": "r"
+                },
+                "op": "not"
+              },
+              {
+                "args": [
+                  {
+                    "var": "s"
+                  },
+                  {
+                    "var": "q"
+                  }
+                ],
+                "op": "and"
+              }
+            ],
+            "op": "or"
+          },
+          "op": "not"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "b2260e0c669e8f70b5428a6ff29d5a8c89689cb3a25f8601331d6a41fc516591",
+        "rows": [
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "reorder",
+      "group": "equivalent",
+      "id": "dev-equivalent-000",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "arg": {
+                "args": [
+                  {
+                    "arg": {
+                      "var": "r"
+                    },
+                    "op": "not"
+                  },
+                  {
+                    "args": [
+                      {
+                        "var": "s"
+                      },
+                      {
+                        "var": "q"
+                      }
+                    ],
+                    "op": "and"
+                  }
+                ],
+                "op": "or"
+              },
+              "op": "not"
+            },
+            {
+              "arg": {
+                "var": "s"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "arg": {
+            "args": [
+              {
+                "arg": {
+                  "var": "r"
+                },
+                "op": "not"
+              },
+              {
+                "args": [
+                  {
+                    "var": "s"
+                  },
+                  {
+                    "var": "q"
+                  }
+                ],
+                "op": "and"
+              }
+            ],
+            "op": "or"
+          },
+          "op": "not"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((NOT ((NOT r) OR (s AND q))) AND (NOT s))\nRequired Q: (NOT ((NOT r) OR (s AND q)))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "p"
+                  },
+                  {
+                    "const": true
+                  }
+                ],
+                "op": "and"
+              },
+              "op": "not"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "r"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "var": "r"
+            },
+            {
+              "args": [
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "p"
+                      },
+                      {
+                        "const": true
+                      }
+                    ],
+                    "op": "and"
+                  },
+                  "op": "not"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "p"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "implies"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "637c534cc4ea3faea19280532faf922d7214b8f3be70a63d92a358151fdf4fe8",
+        "rows": [
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "reverse_implication",
+      "group": "fault",
+      "id": "dev-fault-007",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "p"
+                  },
+                  {
+                    "const": true
+                  }
+                ],
+                "op": "and"
+              },
+              "op": "not"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "r"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "and"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "p"
+                      },
+                      {
+                        "const": true
+                      }
+                    ],
+                    "op": "and"
+                  },
+                  "op": "not"
+                },
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "r"
+                        }
+                      ],
+                      "op": "implies"
+                    },
+                    {
+                      "args": [
+                        {
+                          "var": "p"
+                        },
+                        {
+                          "var": "s"
+                        }
+                      ],
+                      "op": "implies"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "var": "r"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((NOT (p AND TRUE)) OR ((r IMPLIES r) AND (p IMPLIES s)))\nRequired Q: (((NOT (p AND TRUE)) OR ((r IMPLIES r) AND (p IMPLIES s))) IMPLIES r)\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "s"
+                },
+                {
+                  "var": "r"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "var": "r"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "q"
+                  },
+                  {
+                    "args": [
+                      {
+                        "arg": {
+                          "var": "s"
+                        },
+                        "op": "not"
+                      },
+                      {
+                        "var": "q"
+                      }
+                    ],
+                    "op": "and"
+                  }
+                ],
+                "op": "or"
+              },
+              "op": "not"
+            },
+            {
+              "args": [
+                {
+                  "var": "s"
+                },
+                {
+                  "var": "r"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "06ef316c8bdfedf0ac2fa2e7a4f0327f214c26bd925cb29bfc16b65a9fc1283d",
+        "rows": [
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "expand_implication",
+      "group": "equivalent",
+      "id": "dev-equivalent-002",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "s"
+                },
+                {
+                  "var": "r"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "var": "r"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "q"
+                },
+                {
+                  "args": [
+                    {
+                      "arg": {
+                        "var": "s"
+                      },
+                      "op": "not"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "args": [
+                {
+                  "var": "s"
+                },
+                {
+                  "var": "r"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((s IMPLIES r) AND r)\nRequired Q: ((q OR ((NOT s) AND q)) IMPLIES (s IMPLIES r))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "p"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "s"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "r"
+                  },
+                  {
+                    "var": "p"
+                  }
+                ],
+                "op": "and"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "p"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "s"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "r"
+                  },
+                  {
+                    "var": "p"
+                  }
+                ],
+                "op": "and"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "953e3cf943d11ef3174981b093557f660024924da88c8ce40c547d4bb6e101e3",
+        "rows": [
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": false,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "drop_conjunct",
+      "group": "fault",
+      "id": "dev-fault-001",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "p"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "arg": {
+                    "var": "s"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "implies"
+            },
+            {
+              "arg": {
+                "args": [
+                  {
+                    "var": "r"
+                  },
+                  {
+                    "var": "p"
+                  }
+                ],
+                "op": "and"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "args": [
+                        {
+                          "var": "r"
+                        },
+                        {
+                          "var": "p"
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    {
+                      "arg": {
+                        "var": "s"
+                      },
+                      "op": "not"
+                    }
+                  ],
+                  "op": "implies"
+                },
+                {
+                  "arg": {
+                    "args": [
+                      {
+                        "var": "r"
+                      },
+                      {
+                        "var": "p"
+                      }
+                    ],
+                    "op": "and"
+                  },
+                  "op": "not"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "var": "r"
+            }
+          ],
+          "op": "and"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: (((r AND p) IMPLIES (NOT s)) OR (NOT (r AND p)))\nRequired Q: ((((r AND p) IMPLIES (NOT s)) OR (NOT (r AND p))) AND r)\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": null,
+      "certificate": null,
+      "family": "UNSAFE",
+      "group": "natural",
+      "id": "dev-natural-001",
+      "original": {
+        "C": {
+          "var": "r"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "p"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "const": true
+                    }
+                  ],
+                  "op": "and"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "var": "q"
+            }
+          ],
+          "op": "and"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: r\nRequired Q: ((p OR (r AND TRUE)) AND q)\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "q"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "or"
+                },
+                {
+                  "var": "p"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "certificate": {
+        "contract_hash": "69ba34949371d0151d2f4db65b6613e6b0a98aabbd501be59156dd4c0740e8f0",
+        "rows": [
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": false,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": false,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": false,
+              "r": true,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": false,
+              "s": true
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": false
+            }
+          },
+          {
+            "C": true,
+            "Q": true,
+            "state": {
+              "p": true,
+              "q": true,
+              "r": true,
+              "s": true
+            }
+          }
+        ],
+        "verdict": "SAFE",
+        "version": 1
+      },
+      "family": "redundancy",
+      "group": "equivalent",
+      "id": "dev-equivalent-003",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "r"
+                },
+                {
+                  "var": "s"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "args": [
+                {
+                  "var": "p"
+                },
+                {
+                  "var": "q"
+                }
+              ],
+              "op": "implies"
+            }
+          ],
+          "op": "or"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "r"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "implies"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "q"
+                    },
+                    {
+                      "var": "s"
+                    }
+                  ],
+                  "op": "or"
+                },
+                {
+                  "var": "p"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: ((r AND s) OR (p IMPLIES q))\nRequired Q: (((r AND s) OR (p IMPLIES q)) OR ((q OR s) OR p))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    },
+    {
+      "candidate": null,
+      "certificate": null,
+      "family": "UNSAFE",
+      "group": "natural",
+      "id": "dev-natural-005",
+      "original": {
+        "C": {
+          "args": [
+            {
+              "var": "r"
+            },
+            {
+              "var": "r"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "arg": {
+            "args": [
+              {
+                "var": "s"
+              },
+              {
+                "var": "r"
+              }
+            ],
+            "op": "and"
+          },
+          "op": "not"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "split": "dev",
+      "task": "Variables: p, q, r, s\nEach variable denotes its own fixed Boolean input; meanings cannot be renamed.\nAdmissible C: (r AND r)\nRequired Q: (NOT (s AND r))\nQuestion: does Q hold for EVERY assignment satisfying C?\nReturn UNSAFE with a concrete C=true, Q=false assignment if not.\nAn empty admissible domain makes the universal claim vacuously SAFE."
+    }
+  ],
+  "kind": "development_subset_not_full_dataset",
+  "source_dataset_hash": "d933a93993f05df6fdca3df487f5e909cd528fb8752989566a656db4edac281a",
+  "version": 1
+}

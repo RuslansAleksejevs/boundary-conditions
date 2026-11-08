@@ -1,0 +1,63 @@
+{
+  "exported_at": "2026-11-08T21:38:10.445173+00:00",
+  "files": {
+    "analysis.json": {
+      "bytes": 36244,
+      "canonical_digest": "8498323186176194352cb15ecdade968326455ffd7421aca1fda9776fa26fbb4",
+      "sha256": "76c1c644e58baa90eca48944f50cdf35d8a6baefd7a755f0232da384251fe2b0"
+    },
+    "audit.json": {
+      "bytes": 406,
+      "canonical_digest": "a3256cade873d074b331c959fb17eebcc86a01449f4737d873b6a817c275d6ce",
+      "sha256": "b155aacb90958a73064c344a2af146f9f075448b1aac896beec89561a9d6b580"
+    },
+    "budget.jsonl": {
+      "bytes": 54039,
+      "sha256": "7412da3ad7d6b4194336a998ceb2a70214015c868fe283436691e104da3e3d7b"
+    },
+    "development-cases.json": {
+      "bytes": 119100,
+      "canonical_digest": "4dad5137a27448f54b4df3b989091fe4db7e9cba313f7190382f6aa745ebc37b",
+      "sha256": "49fed6b25b90debffe4ccd24ddf4c419bf80d4519e940231f3f04ba3e3b57bf0"
+    },
+    "evidence.json": {
+      "bytes": 1718,
+      "canonical_digest": "e54d0f2d398567032dafb11a8694cb64b0db72a282e35ab343838dc657657ef3",
+      "sha256": "7813a84940a0f2fe66e73a079cd3a527e6857ed10d0976d87f033f60a35a9a5a"
+    },
+    "freeze.json": {
+      "bytes": 4864,
+      "canonical_digest": "e5b6cc5c66c3698284e5af2145add1983a02b195067c23ef920c7a1c766dab7a",
+      "sha256": "2cf48bcca900c502136ef5816afaeea88b891b39634cd681b06eecbc74694242"
+    },
+    "gate.json": {
+      "bytes": 1255,
+      "canonical_digest": "a01072c8b454dcd6a3b7d301a20056a3d84933d88b883ec4365b0e6b91efcc2e",
+      "sha256": "82d33e590675a0392c83c859e4677824f2fdf8f013a1f5ed4c093369c7655c70"
+    },
+    "manifest.json": {
+      "bytes": 18168,
+      "canonical_digest": "30146d523418e4f3aab5155eeea41a310864c7dfb793ef57eed523b2444e8bf8",
+      "sha256": "77b64a08eb18015c69406753b42a22c6f39cdc6af853def60239ce8da12f2de6"
+    },
+    "run.json": {
+      "bytes": 1327547,
+      "canonical_digest": "f696c9be737a22278b76b7f1bfa91527b1e8a23226ea5914e93e70b4111fb2c1",
+      "sha256": "5182ddf2ba55cee7e1e81a38a7587d7b0f9349c966c65eaee614af59c1c5c871"
+    }
+  },
+  "full_private_campaign_audit_hash": "d5aa9b8408b070208b21bfa71cf260b23ca413b744e5893aa32b166026657fd6",
+  "full_private_campaign_audit_passed_before_export": true,
+  "held_out_task_records_released": 0,
+  "kind": "development_only_public_view_not_full_campaign",
+  "new_calls_sent_by_export": 0,
+  "original_actual_model_calls": 51,
+  "privacy_review": "Automated known-pattern scan passed; manual review remains required. The source scientific pilot authorization reference is preserved unchanged, not replaced by private coordination messages.",
+  "private_account_records_exported": false,
+  "provenance_authenticated": false,
+  "raw_event_journals_exported": false,
+  "scope": "Exact pilot records and a labeled development subset, not the complete campaign dataset. Public checks repeat pilot mathematics and aggregate analysis, not full acquisition or cross-split exclusion auditing. Manifest/freeze preserve hashes and schedule metadata only for the withheld holdout.",
+  "source_manifest_hash": "30146d523418e4f3aab5155eeea41a310864c7dfb793ef57eed523b2444e8bf8",
+  "source_run_hash": "f696c9be737a22278b76b7f1bfa91527b1e8a23226ea5914e93e70b4111fb2c1",
+  "version": 1
+}

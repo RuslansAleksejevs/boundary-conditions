@@ -164,7 +164,7 @@ pilot candidate exclusions through an allowed interface-repair pilot. Review is
 not API access verification or an empirical result. The deterministic math engines
 were not changed.
 
-## Remaining blockers and non-claims
+## Earlier preparation snapshot (superseded by the real pilot below)
 
 The subsequent Qwen/Alibaba compatibility preflight passed **159 tests in 23.014
 seconds**, using the same command and Python version above. Thirteen additional
@@ -200,3 +200,54 @@ check attempt-start spacing, response-relative 429 waits, HTTP-date rounding,
 invalid/missing/long Retry-After, new-stage spacing and safe error diagnostics.
 One further SSE regression checks raw error-body removal. No test uses a network
 credential, actual model response acquisition or real cooldown wait.
+
+## Actual development pilot and public reporting — 8 November 2026
+
+The first real pilot used 51 HTTP 200 requests for 52 scheduled roles. Full private
+campaign audit, fixed gate and live evidence verification passed: 50/52 valid
+roles, 11/12 clean originals correct, zero actual false guarantees, zero retries
+or unknown charges, and USD 0.39923650 known/settled cost. One malformed JSON
+translation and its blocked dependent review remain unchanged. The source-bound
+main freeze was saved at 21:03:14.925378Z. Main preflight passed but execution
+permission was denied before launch; main has made zero calls.
+
+The unchanged acquisition suite passed **171 tests in 21.834 s**, Python 3.14.6.
+The presentation/export suite passed **18 tests in 0.284 s**: four figure tests,
+five complete-export privacy tests, four pilot-view boundary tests and five
+saved-pilot replay/mutation tests. None makes a new model request. Commands:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=studies/wrong-goal-proof python3 -m unittest discover -s studies/wrong-goal-proof/tests -q
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s studies/wrong-goal-proof/reports -p 'test_*.py' -q
+PYTHONDONTWRITEBYTECODE=1 python3 studies/wrong-goal-proof/reports/pilot_release.py verify --view studies/wrong-goal-proof/results/live-pilot-2026-11-08
+```
+
+The public development-only view check passed with 20 originals, 52 roles,
+44 reviewer outcomes and zero false guarantees. It repeats unchanged mathematical
+scoring, aggregate analysis and physical-receipt usage, and verifies the exact
+public inventory. It explicitly does not reproduce complete acquisition or
+dev/holdout separation without the withheld full corpus. The first export-check
+attempt found a presentation-code mismatch between scheduled-role accounting and
+physical-attempt accounting; the verifier was corrected, not the saved responses
+or source analysis. The existing immutable export then passed. Mutation tests
+reject altered responses/statistics even after file hashes are updated.
+
+All 51 visible response texts were manually inspected for publication. No private
+host path, credential, coordination identifier or hidden reasoning text was found.
+The invalid translation is published verbatim. Full held-out tasks, raw event
+journals and account responses are excluded. The exact purpose-written scientific
+pilot authorization reference was compared to the private original and separately
+approved for publication; this does not authorize publishing private coordination
+messages, execution-review text or later authorization records.
+
+The English pilot-only PDF uses the official template's structure and mandatory
+ethics appendix, names the human author with review pending, and discloses AI
+assistance. It is built with cached Tectonic 0.16.9:
+
+```sh
+tectonic --only-cached --untrusted studies/wrong-goal-proof/reports/pilot/report.tex
+```
+
+Main findings and a full-campaign export remain unavailable. The acquired pilot
+source inventory remains
+`87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e`.

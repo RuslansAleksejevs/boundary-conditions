@@ -2,9 +2,16 @@
 
 A finite, independently checked testbed for **certificate scope at an agent handoff**.
 
-**Status: implemented; engineering tests only. No experimental LLM calls.**
-The experiment remains unrun. Test-double failure rates are deliberately scripted
-software checks, not estimates of any model's behavior. See [STATE](STATE.md),
+**Status: real development pilot completed; frozen main acquisition in progress.**
+Qwen3.5-122B-A10B / Alibaba made 51 requests for 52 scheduled roles at a known
+cost of USD 0.39923650. The fixed gate passed: 50/52 schema-valid roles and 11/12
+clean originals correct. Each B/N/S arm had 0/8 false SAFE answers on planted
+faults; this small development null is not a safety or equivalence guarantee.
+One malformed translation and its blocked review remain preserved.
+See the [pilot-only report and PDF](reports/pilot/README.md),
+[public development evidence](results/live-pilot-2026-11-08/README.md), and
+[STATE](STATE.md). Earlier test-double failure rates remain deliberately scripted
+software checks, not model-behavior estimates. Also see
 [the study plan](PLAN.md), [design decisions](DESIGN.md), and
 [actual engineering validation](VALIDATION.md).
 
@@ -33,9 +40,11 @@ for C'=p AND q, Q'=q does not repair that original claim.
 
 All task inputs are synthetic. The implementation never executes generated code
 and uses no external dependencies. Offline commands remain network-free. The
-separate [live acquisition interface](LIVE.md) is implemented but has not contacted
-a model at the preparation snapshot: approved credential access is restored and
-the Qwen/Alibaba source-bound acquisition preflight is in progress.
+separate [live acquisition interface](LIVE.md) acquired the real pilot. After an
+initial permission stop before dispatch, renewed stage-specific authorization and
+a fresh successful execution review allowed the unchanged main to start at
+21:51:10Z on 8 November 2026. No complete main result is reported yet; only pilot
+records are public. No alternate provider route or competition submission occurred.
 
 ## Quick check
 
@@ -138,6 +147,7 @@ handling, and the distinction between requested output and financial reservation
 | `wgp/records.py`, `analysis.py`, `cli.py` | Manifests, freeze rehearsal, counts and uncertainty |
 | `wgp/live*.py`, `run_live.py` | Explicit acquisition, persistent budget, strict live audit and evidence |
 | `tests/` | Unit and seeded property tests; no third-party testing library |
+| `reports/`, `results/live-pilot-2026-11-08/` | Development-only manuscript, figures and scoped public replay |
 
 No shared infrastructure was copied from the other study. Public plans predate
 this implementation; all testbed code here was added during the hackathon work.

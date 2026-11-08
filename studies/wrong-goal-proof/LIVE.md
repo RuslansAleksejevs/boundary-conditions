@@ -1,9 +1,15 @@
 # Prospective live acquisition
 
-Status, 8 November 2026: implemented and CPU-tested; **zero experimental model
-calls at this preflight snapshot**. Approved credential access is restored; the
-Qwen/Alibaba source/configuration-bound coordinator GO is pending. There is no real pilot, empirical freeze, holdout result,
-or empirical report/PDF yet. No transport fixture qualifies as a real pilot.
+Status, 8 November 2026: **real pilot completed; frozen main in progress**. The original
+Qwen/Alibaba pilot used 51 requests for 52 roles, with 50 valid responses and
+11/12 clean originals correct; known cost USD 0.39923650. Both fixed gates passed.
+The empirical freeze exists. Initial main execution was denied before dispatch;
+renewed stage-specific authorization and a fresh successful review subsequently
+allowed the unchanged acquisition to start at 21:51:10Z. No complete main result
+or submission is claimed. No held-out task records are public during acquisition.
+The [pilot-only PDF and evidence view](reports/pilot/README.md) preserve the null
+fault result and one malformed translation with its blocked review. Earlier
+transport fixtures remain software tests, not empirical observations.
 
 ## Scope and stop rules
 
