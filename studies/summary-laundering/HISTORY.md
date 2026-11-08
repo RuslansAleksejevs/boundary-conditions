@@ -174,3 +174,37 @@ Final suite: 133/133 PASS (1.957 seconds), with targeted regressions. The earlie
 unused source-bound GO was withdrawn before any inference, and the pilot plan
 will be regenerated under the corrected source hash. Configuration, sample seed,
 prompts, scorer and monetary cap are unchanged. Actual model calls remain zero.
+
+## 2026-11-08 20:12 UTC — first real pilot stopped on SSE compatibility
+
+Exact source/configuration-bound GO was issued for commit `02e34e6`. Sent the
+first planned clean-summary request through the approved OpenRouter/Alibaba
+route. The response returned HTTP 200, the correct model/provider, a visible
+answer, final usage and DONE in 16.575 seconds. The provider repeated the same
+empty assistant `stop` chunk when adding usage; the strict parser rejected this
+second finish marker. Acquisition stopped after one API request, without an
+automatic retry, executor call or attacked input.
+
+The immutable run audit passed; 0/108 role responses qualified and all 96
+executor cells remain missing. Reported usage: 231 prompt tokens, 2,575 completion
+tokens (2,531 reasoning), USD 0.00541606. The rejected receipt did not release
+the full USD 0.61341696 wallet reservation. Hidden reasoning text was not retained.
+This is an interface failure, not evidence for or against the research hypotheses.
+Proposed a narrow terminal-usage compatibility repair and the one permitted
+fresh repair pilot; no prompt, scorer, model or outcome-based tuning is proposed.
+
+## 2026-11-08 UTC — approved narrow repair, validated without further inference
+
+The coordinator independently inspected the failed receipt, confirmed its actual
+USD 0.00541606 billing through read-only account reconciliation, and approved the
+single permitted interface correction/repeat. The conservative USD 0.61341696
+wallet hold is retained. No original outcome or financial record is rewritten.
+
+The corrected assembler accepts only a final usage-bearing, idempotent empty
+terminal repeat, with unchanged finish/native finish and identity; continued
+content, refusal, tool calls, reasoning deltas or further events are rejected.
+Added the sanitized real terminal pair and negative regressions. The local suite
+passed 135/135 tests in 1.735 seconds. A read-only in-memory replay of the actual
+14 sanitized events passed, and the original failed-run audit still passed.
+No new API request was made during diagnosis or validation. Fresh repair-plan
+seed, commit and source-bound GO are recorded separately before any repeat.

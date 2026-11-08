@@ -143,3 +143,25 @@ input-plus-output native-context bound. Both are implemented, with wrong-provide
 malformed-finish and joint-cap regressions. The final command above passed
 **133/133 tests in 1.957 seconds**. A validly billed refusal or truncation retains
 its financial record without becoming a successful model outcome.
+
+## Observed terminal-usage compatibility repair
+
+The first real pilot sent one clean-summary request. Its complete HTTP 200 SSE
+receipt repeated the empty `stop` choice when supplying final usage. The original
+assembler rejected that receipt and acquisition stopped; the saved run remains
+failed, not retroactively reclassified. No executor or attack request was sent.
+
+The sole approved interface correction accepts one matching terminal finish only
+in the final event with usage, no extra content/refusal/tool/reasoning delta, and
+unchanged identity/native finish. Conflicting finishes, changed identities,
+nonempty deltas, missing usage, extra events and further duplicates still fail.
+The public fixture preserves the observed sanitized terminal pair with the
+generation identifier redacted. Its prefix in the test is explicitly synthetic.
+
+Actual command: `python3 -m unittest discover -s studies/summary-laundering/tests -q`.
+Result: **135/135 PASS in 1.735 seconds**, all HTTP-free. A separate read-only
+in-memory replay of all 14 saved sanitized events also assembled correctly;
+the failed original run and ledger were not edited. Its CLI audit still passes.
+An independent read-only account reconciliation confirmed USD 0.00541606 billed;
+the wallet conservatively retains USD 0.61341696 rather than rewriting history.
+The new real repair pilot requires a fresh plan and renewed exact-source GO.

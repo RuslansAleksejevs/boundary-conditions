@@ -359,8 +359,17 @@ def assemble_stream(events, done):
             tools = tools or choice["unexpected_tool_calls"]
             if choice["finish_reason"] is not None:
                 if finish is not None:
-                    raise ValueError("duplicate SSE terminal finish")
-                finish, native_finish, finish_index = choice["finish_reason"], choice["native_finish_reason"], index
+                    # Alibaba/OpenRouter repeats the terminal empty choice in
+                    # its final usage chunk. Accept that one idempotent receipt,
+                    # not a second answer, changed finish or continued stream.
+                    if (index != len(events) - 1 or event.get("usage") is None
+                            or choice["finish_reason"] != finish
+                            or choice["native_finish_reason"] != native_finish
+                            or delta.get("content") or delta.get("refusal")
+                            or choice["unexpected_tool_calls"] or choice["reasoning_fields_removed"]):
+                        raise ValueError("non-idempotent duplicate SSE terminal finish")
+                else:
+                    finish, native_finish, finish_index = choice["finish_reason"], choice["native_finish_reason"], index
     if finish is None or usage is None or usage_index < finish_index or role != "assistant":
         raise ValueError("SSE lacks terminal finish, final usage, or assistant role")
     return {**identity, "usage": usage, "choices": [{

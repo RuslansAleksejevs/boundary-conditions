@@ -387,6 +387,47 @@ class StreamTests(unittest.TestCase):
             with self.subTest(field=field), self.assertRaisesRegex(ValueError, "identity"):
                 assemble_stream(events, True)
 
+    def test_observed_idempotent_terminal_usage_pair(self):
+        fixture = Path(__file__).parent / "fixtures" / "alibaba-terminal-usage.json"
+        events = json.loads(fixture.read_text())["events"]
+        # The observed final pair is exact except its redacted generation ID;
+        # this prefix is deliberately synthetic and is not a saved model answer.
+        prefix = deepcopy(events[0])
+        prefix["choices"][0]["finish_reason"] = None
+        prefix["choices"][0]["native_finish_reason"] = None
+        prefix["choices"][0]["delta"]["content"] = "synthetic fixture prefix"
+        result = assemble_stream([prefix, *events], True)
+        self.assertEqual(result["choices"][0]["message"]["content"], "synthetic fixture prefix")
+        self.assertEqual(result["usage"]["total_tokens"], 2806)
+        record = response()
+        record["visible_response"] = result
+        classified = inspect_response(record, config())
+        self.assertEqual(classified["status"], "completed")
+        self.assertEqual(classified["charge_for_ledger"], Decimal("0.00541606"))
+
+    def test_non_idempotent_terminal_duplicates_rejected(self):
+        fixture = Path(__file__).parent / "fixtures" / "alibaba-terminal-usage.json"
+        original = json.loads(fixture.read_text())["events"]
+        variants = []
+        for field, value in (("finish_reason", "length"), ("native_finish_reason", "length"),
+                             ("unexpected_tool_calls", True), ("reasoning_fields_removed", True)):
+            changed = deepcopy(original)
+            changed[-1]["choices"][0][field] = value
+            variants.append(changed)
+        for field, value in (("content", "extra"), ("refusal", "extra"), ("role", "user")):
+            changed = deepcopy(original)
+            changed[-1]["choices"][0]["delta"][field] = value
+            variants.append(changed)
+        for field, value in (("usage", None), ("id", "different"), ("model", "different"), ("provider", "different")):
+            changed = deepcopy(original)
+            changed[-1][field] = value
+            variants.append(changed)
+        variants.append([*deepcopy(original), deepcopy(original[-1])])
+        variants.append([*deepcopy(original), {"choices": []}])
+        for index, events in enumerate(variants):
+            with self.subTest(variant=index), self.assertRaises(ValueError):
+                assemble_stream(events, True)
+
     def test_byte_and_wall_time_bounds(self):
         cfg = config()
         cfg["max_response_utf8_bytes"] = 30
