@@ -5,8 +5,8 @@
 Two small, controlled studies of trust and meaning at agent boundaries.
 Built for the [Swarm Alignment Hackathon 2026](https://apartresearch.com/sprints/swarm-alignment-2026).
 
-> **Research status — 7 November 2026:** study designs prepared; implementation
-> and experiments have not started. This repository contains plans, not findings.
+> **Research status — 7 November 2026:** study designs prepared; two isolated
+> implementation workstreams have started. No model experiments or measured findings yet.
 
 ## Two boundaries
 
