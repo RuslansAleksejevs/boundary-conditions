@@ -23,7 +23,9 @@ classification: PROJECT_REPORTED. This is an engineering record, not model evide
   scripted false SAFE answers. Scope contrasts are zero in both doubles by design;
   no empirical claim follows. See VALIDATION.md and results/RECORD.json.
 - Implementation commit: `c15e8401a9c41f4bf73deee3a02bdbf82394cc47`.
-- Publication: implementation branch only; PR not yet opened, not integrated.
+- Publication: branch `study/wrong-goal-proof` pushed; pull request
+  https://github.com/RuslansAleksejevs/boundary-conditions/pull/2 is open.
+  Awaiting integration-coordinator review/merge; not integrated by this workstream.
 
-Next: review the synthetic result files, publish the study branch and open a pull
-request. A real model pilot and confirmatory holdout remain separately blocked.
+Next: coordinator review and sequential integration. A real model pilot and
+confirmatory holdout remain separately blocked on authorization and acquisition.

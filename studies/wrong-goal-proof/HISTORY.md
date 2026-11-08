@@ -70,3 +70,20 @@ explicitly not an untouched or preregistered confirmatory LLM evaluation.
 All six saved runs were re-audited before publication. Recomputed analysis matched
 each public aggregate exactly; the exported packet matched the audited local run,
 and every file hash in results/RECORD.json matched. Repository diff checks passed.
+
+## 2026-11-08 — Study branch published for coordinator review
+
+Pushed the study-only implementation and reviewed synthetic results to
+`study/wrong-goal-proof`, then opened
+https://github.com/RuslansAleksejevs/boundary-conditions/pull/2 into `main`.
+Implementation commit: `c15e8401a9c41f4bf73deee3a02bdbf82394cc47`;
+rehearsal/results commit: `b851d515fbcd43f5ab1065412c7c3f2ff6ce85bf`.
+Fetched the current upstream and confirmed the PR diff changes only this study.
+Staged privacy/path scans found no personal paths, credentials, or private
+coordination identifiers. No direct main push, force-push, or self-merge occurred.
+
+Read-only reciprocal review is complete; the integration coordinator will perform
+the merge decision. Opening this PR is not integration or contest submission.
+The deterministic validation remains 105 passing tests and six audited synthetic
+runs, with zero experimental model calls. Future empirical work remains blocked
+on an approved interface, configuration, budget and fresh prospective holdout.
