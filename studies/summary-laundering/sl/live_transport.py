@@ -7,12 +7,16 @@ GO bound to the exact configuration. Credentials and reasoning text are not logg
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from decimal import Decimal, InvalidOperation
+from email.utils import parsedate_to_datetime
 import fcntl
 import hashlib
+import math
 from http.client import IncompleteRead, RemoteDisconnected
 import os
 from pathlib import Path
+import signal
 import socket
+import threading
 import time
 from urllib import error, request
 
@@ -21,6 +25,9 @@ from .protocol import canonical, digest
 
 
 ENDPOINT = "https://openrouter.ai/api/v1/chat/completions"
+PACING_POLICY = {"minimum_start_spacing_seconds": 20, "initial_stage_pause_seconds": 20,
+                 "minimum_429_cooldown_seconds": 60, "maximum_retry_after_seconds": 300,
+                 "maximum_sleep_chunk_seconds": 30, "over_limit": "stop_without_retry"}
 CONFIG_KEYS = {
     "schema_version", "model", "provider_slug", "response_provider", "temperature", "top_p",
     "reasoning_enabled", "stream", "max_tokens", "context_tokens", "output_reservation_tokens",
@@ -167,9 +174,9 @@ class Ledger:
             finally:
                 fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
 
-    def start_stage(self, stage, manifest_hash):
+    def start_stage(self, stage, manifest_hash, parent=None):
         with self._locked() as (stream, events):
-            if stage not in {"pilot", "pilot_repair", "main"}:
+            if stage not in {"pilot", "pilot_repair", "pilot_repair_continuation", "main"}:
                 raise ValueError("unknown acquisition stage")
             if any(e["event"] == "stage_start" and e["stage"] == stage for e in events):
                 raise BudgetStop("stage already started; no implicit rerun/resume")
@@ -178,11 +185,23 @@ class Ledger:
             if any(e["event"] == "reserve" and not any(
                     s["event"] == "settle" and s["attempt_id"] == e["attempt_id"] for s in events) for e in events):
                 raise BudgetStop("unresolved in-flight attempt; manual reconciliation required")
-            self._append(stream, events, {"event": "stage_start", "stage": stage, "manifest_hash": manifest_hash})
+            record = {"event": "stage_start", "stage": stage, "manifest_hash": manifest_hash}
+            if stage == "pilot_repair_continuation":
+                if (type(parent) is not dict or set(parent) != {"manifest_hash", "run_hash", "ledger_tail_hash"}
+                        or events[-1]["record_hash"] != parent["ledger_tail_hash"]
+                        or not any(e["event"] == "stage_start" and e["stage"] == "pilot_repair"
+                                   and e["manifest_hash"] == parent["manifest_hash"] for e in events)):
+                    raise ValueError("continuation stage needs its exact immutable parent ledger")
+                record["parent"] = parent
+            elif parent is not None:
+                raise ValueError("parent binding is only valid for the explicit continuation")
+            self._append(stream, events, record)
 
     def reserve(self, attempt_id, stage, retry=False):
         with self._locked() as (stream, events):
             state = audit_ledger(events, self.config)
+            if not any(e["event"] == "stage_start" and e["stage"] == stage for e in events):
+                raise BudgetStop("request stage has not been explicitly started")
             if attempt_id in state["attempts"]:
                 raise BudgetStop("attempt identifier already reserved")
             if state["in_flight"]:
@@ -193,6 +212,11 @@ class Ledger:
                 raise BudgetStop("global request ceiling")
             if retry and state["retries"] >= self.config["max_technical_retries"]:
                 raise BudgetStop("global technical retry ceiling")
+            if stage == "pilot_repair_continuation":
+                combined = sum(e["stage"] in {"pilot_repair", "pilot_repair_continuation"}
+                               for e in state["attempts"].values())
+                if retry or combined >= 113 or not attempt_id.startswith("pilot_repair/"):
+                    raise BudgetStop("continuation cannot add retries or exceed the original 113-attempt phase cap")
             maximum = reservation(self.config)
             if state["charged_or_reserved"] + maximum > money(self.config["budget_usd"]):
                 raise BudgetStop("hard monetary ceiling before dispatch")
@@ -238,12 +262,23 @@ def audit_ledger(events, config):
         if kind == "stage_start":
             if event["stage"] in stages:
                 raise ValueError("repeated acquisition stage")
+            if event["stage"] == "pilot_repair_continuation":
+                parent = event.get("parent", {})
+                if ("pilot_repair" not in stages or parent.get("ledger_tail_hash") != event["previous_hash"]
+                        or not parent.get("run_hash") or not any(e["event"] == "stage_start"
+                        and e["stage"] == "pilot_repair" and e["manifest_hash"] == parent.get("manifest_hash")
+                        for e in events[:index])):
+                    raise ValueError("unbound continuation ledger stage")
             stages.add(event["stage"])
         elif kind == "reserve":
             if event["attempt_id"] in attempts or event["stage"] not in stages or type(event["retry"]) is not bool:
                 raise ValueError("invalid reservation")
             if money(event["reserved_usd"]) != reservation(config):
                 raise ValueError("reservation amount mismatch")
+            if event["stage"] == "pilot_repair_continuation":
+                combined = sum(e["stage"] in {"pilot_repair", "pilot_repair_continuation"} for e in attempts.values())
+                if event["retry"] or combined >= 113 or not event["attempt_id"].startswith("pilot_repair/"):
+                    raise ValueError("continuation retries or combined attempt cap violated")
             if in_flight or bound_violated or historical_charge + reservation(config) > money(config["budget_usd"]):
                 raise ValueError("reservation violated pre-dispatch budget/concurrency")
             attempts[event["attempt_id"]] = event
@@ -291,6 +326,113 @@ def wire_request(messages, config):
 class NoRedirect(request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         return None
+
+
+@contextmanager
+def wall_timeout(seconds):
+    """Enforce total POSIX request time, including a slowly dripped SSE line."""
+    if threading.current_thread() is not threading.main_thread():
+        raise ValueError("bounded HTTP acquisition requires the main thread")
+    if signal.getitimer(signal.ITIMER_REAL) != (0.0, 0.0):
+        raise ValueError("an existing process alarm conflicts with the HTTP wall timer")
+    previous = signal.getsignal(signal.SIGALRM)
+
+    def expired(signum, frame):
+        raise TimeoutError("bounded total HTTP wall deadline")
+
+    signal.signal(signal.SIGALRM, expired)
+    signal.setitimer(signal.ITIMER_REAL, seconds)
+    try:
+        yield
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous)
+
+
+def safe_retry_after(value, now=None):
+    """Only canonical decimal seconds are retained, never arbitrary header text."""
+    if type(value) is not str or len(value) > 128:
+        return None
+    value = value.strip()
+    if value.isascii() and value.isdigit():
+        return str(int(value))
+    try:
+        when = parsedate_to_datetime(value)
+        if when.tzinfo is None:
+            return None
+        return str(max(0, math.ceil((when - (now or datetime.now(timezone.utc))).total_seconds())))
+    except (ValueError, TypeError, OverflowError):
+        return None
+
+
+def cooldown_seconds(acquisition):
+    value = acquisition.get("retry_after_seconds")
+    if value is not None and (type(value) is not str or len(value) > 128 or not value.isascii()
+                              or not value.isdigit() or str(int(value)) != value):
+        raise ValueError("Retry-After must be canonical nonnegative seconds")
+    if acquisition.get("http_status") != 429:
+        return 0
+    delay = 60 if value is None else max(60, int(value))
+    return None if delay > 300 else delay
+
+
+def audit_pacing(calls, stop_reason):
+    previous = None
+    for index, call in enumerate(calls):
+        acquisition = call["acquisition"]
+        start = acquisition.get("paced_attempt_started_monotonic_seconds")
+        finish = acquisition.get("paced_attempt_finished_monotonic_seconds")
+        if (any(type(v) not in (int, float) or not math.isfinite(v) for v in (start, finish))
+                or finish < start or acquisition.get("minimum_start_spacing_seconds") != 20):
+            raise ValueError("attempt spacing has invalid monotonic metadata")
+        delay = cooldown_seconds(acquisition)
+        expected_stop = "retry_after_over_300_seconds" if delay is None else None
+        if (acquisition.get("applied_429_cooldown_seconds") != delay
+                or acquisition.get("pacing_stop_reason") != expected_stop):
+            raise ValueError("recorded cooldown differs from the operational policy")
+        if delay is None and (index != len(calls) - 1 or stop_reason != expected_stop):
+            raise ValueError("an over-limit Retry-After must halt without another attempt")
+        if previous is not None:
+            prior, prior_delay = previous
+            if start - prior["paced_attempt_started_monotonic_seconds"] < 20:
+                raise ValueError("attempt spacing is below 20 seconds")
+            if prior_delay and start - prior["paced_attempt_finished_monotonic_seconds"] < prior_delay:
+                raise ValueError("HTTP 429 cooldown was not respected")
+        previous = (acquisition, delay)
+
+
+class PacedTransport:
+    """Explicit operational pacing; it never retries or changes a request."""
+    kind = "openrouter_live"
+
+    def __init__(self, backend, interval=20):
+        if interval != 20:
+            raise ValueError("the approved operational spacing is exactly 20 seconds")
+        self.backend, self.config, self.interval = backend, backend.config, interval
+        # A fresh process cannot recover another stage's monotonic origin.
+        # Waiting 20s from construction conservatively separates its first call.
+        self.next_start = time.monotonic() + 20
+        self.blocked = False
+
+    def send(self, payload):
+        if self.blocked:
+            raise ValueError("Retry-After exceeds 300 seconds; acquisition must remain stopped")
+        while True:
+            remaining = self.next_start - time.monotonic()
+            if remaining <= 0:
+                break
+            time.sleep(min(remaining, 30))
+        started = time.monotonic()
+        result = self.backend.send(payload)
+        result["paced_attempt_started_monotonic_seconds"] = started
+        result["paced_attempt_finished_monotonic_seconds"] = time.monotonic()
+        result["minimum_start_spacing_seconds"] = self.interval
+        delay = cooldown_seconds(result)
+        result["applied_429_cooldown_seconds"] = delay
+        result["pacing_stop_reason"] = "retry_after_over_300_seconds" if delay is None else None
+        self.blocked = delay is None
+        self.next_start = max(started + self.interval, result["paced_attempt_finished_monotonic_seconds"] + (delay or 0))
+        return result
 
 
 def visible_stream_event(body):
@@ -437,9 +579,10 @@ class OpenRouterTransport:
                   "visible_response": None, "technical_error": None, "retryable": False,
                   "stream_events": [], "stream_done": False, "response_bytes": 0}
         try:
-            with self._opener.open(req, timeout=self.config["timeout_seconds"]) as response:
+            with wall_timeout(self.config["timeout_seconds"]), self._opener.open(req, timeout=self.config["timeout_seconds"]) as response:
                 record.update(http_status=response.status, request_id=response.headers.get("x-request-id"),
-                              server_date=response.headers.get("date"))
+                              server_date=response.headers.get("date"),
+                              retry_after_seconds=safe_retry_after(response.headers.get("retry-after")))
                 if "text/event-stream" not in response.headers.get("content-type", "").lower():
                     raise ValueError("provider did not return the requested SSE transport")
                 # CPython's HTTPS response exposes the socket here. Fail closed
@@ -450,7 +593,8 @@ class OpenRouterTransport:
                 read_sse(response, record, self.config, started + self.config["timeout_seconds"], sock.settimeout)
         except error.HTTPError as exc:
             record.update(http_status=exc.code, technical_error=f"http_{exc.code}",
-                          retryable=exc.code in {408, 429, 500, 502, 503, 504})
+                          retryable=exc.code in {408, 429, 500, 502, 503, 504},
+                          retry_after_seconds=safe_retry_after(exc.headers.get("retry-after") if exc.headers else None))
             exc.close()
         except (error.URLError, TimeoutError, socket.timeout, ConnectionError, IncompleteRead, RemoteDisconnected):
             record.update(technical_error="transport_failure", retryable=True)

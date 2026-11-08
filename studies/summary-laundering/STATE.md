@@ -1,7 +1,7 @@
 # Study state
 
 As of 8 November 2026 UTC. Implementation evidence: local code and CPU tests.
-Research effects: UNKNOWN; the first real pilot stopped on an interface error.
+Research effects: UNKNOWN; the repaired real pilot was interrupted by HTTP 429.
 
 ## Current continuation
 
@@ -41,17 +41,51 @@ interface correction and one fresh repair pilot. The correction passes
 **135/135 tests in 1.735 seconds**, including the sanitized observed terminal
 pair and malformed variants. A read-only replay of the complete saved 14-event
 stream also passes; the original run remains failed and unchanged. The renewed
-exact-source GO is still required; no repeat is running.
+exact-source GO was then issued for commit `40280f6`, and the one permitted
+fresh repair pilot was run. No acquisition process is currently running.
+
+## Current external blocker
+
+The repair pilot stopped after 59 API attempts (54 distinct logical requests,
+five identical technical retries): 51 completed responses and eight HTTP 429
+errors. The frozen three-consecutive-failed-logical-transports circuit fired.
+Its audit passes; its pilot gate fails: **47/108 valid role responses**, versus
+98 required. Clean correctness is **29/32**, versus 26 required. Four invalid
+executor batches and three exhausted transport failures remain unsuccessful;
+other scheduled cells are missing. Main freeze and holdout have not occurred.
+
+Accepted repair-pilot receipts total USD 0.09577568. Including the independently
+reconciled first request gives USD 0.10119174 accounted billing, with eight
+HTTP-error charges unresolved in local receipts. The unchanged wallet conservatively
+holds **USD 5.61652832**. There were **60 actual API attempts** across both stages.
+
+An offline assessment identified exactly 54 never-attempted roles (six summaries,
+48 executors) forming the remaining frozen schedule suffix. An explicit operational
+continuation could at most reach 101/108 valid roles; it would need 51/54 new valid
+responses, zero new retries, and at most 113 total repair-stage attempts. Such a
+continuation was subsequently **authorized for implementation, not execution**.
+The documented stop-rule/pacing amendment and separate append-only/composite
+audit are implemented and under review. A new exact-source GO and exclusive
+provider-route availability remain required. It cannot replay any attempted
+response or rewrite the original failed pilot. The exact rate-limit cause
+remains unknown; read-only account reconciliation confirmed USD 0.10119174 billed
+in total, with no extra charge for the eight HTTP 429 errors in that snapshot.
+
+Reporting-only code and minimized pilot exports have been prepared outside the
+frozen acquisition inventory. The operational amendment and reporting suite pass
+**161/161 tests in 4.836 seconds**. The initial continuation design passed focused
+peer review; the final aligned HTTP 429 cooldown diff is being checked. No further
+API call is authorized until exact GO and exclusive provider-route availability.
 
 Prepared code is published in [draft pull request #3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3),
 initial preparation commit `4030c75c16f88b4add9e652073e8ba0216344d34`.
 It is not integrated into main. The draft records implementation and subsequent
 live-stage progress, not completion of the empirical research goal.
 
-Next: resolve the exact terminal-usage SSE compatibility issue under a renewed
-source-bound GO, using the sole allowed fresh interface-repair pilot. Preserve
-the failed pilot and its financial hold. Main evaluation still requires a
-passing real pilot, an audit and a measured cost/time checkpoint.
+Next: finalize amendment validation/review and obtain a separate exact-source GO
+only when the shared provider route is free. Retain all failed records and holds.
+Prepare an honest report; do not call this completed scientific evaluation or
+interpret sparse pilot observations as a held-out result.
 
 ## Previous offline milestone
 

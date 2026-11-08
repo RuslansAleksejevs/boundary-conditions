@@ -1,10 +1,13 @@
 # Who Said That? — runnable study harness
 
 An offline-first Python standard-library testbed for summary/source handoffs.
-Implementation and CPU validation exist. **No LLM results exist.** The live pilot,
-empirical freeze, and held-out evaluation have not run. A bounded live adapter
-is now in preparation under separate study spending authorization; acquisition
-still requires approved secret availability and exact coordinator preflight.
+Implementation and CPU validation exist. A real Qwen/Alibaba development pilot
+was interrupted by HTTP 429 after one documented SSE compatibility repair.
+**The pilot gate failed; no empirical main freeze or held-out evaluation ran.**
+The two stages made 60 actual API attempts. See [current state](STATE.md) and the
+[explicitly pilot-only export](results/pilot-2026-11-08/RESULTS.md). These sparse
+observations do not resolve the planned research hypotheses. Any further live
+stage requires a documented operational decision and exact coordinator preflight.
 See [the live protocol](LIVE_PROTOCOL.md). Ordinary `dry-run` remains fully offline.
 
 Read the [study plan](PLAN.md), [method amendments](METHOD_CHANGES.md), and

@@ -1,8 +1,9 @@
-# Bounded live acquisition — preparation record
+# Bounded live acquisition
 
-8 November 2026 UTC. **No live calls have run.** The implementation is being
-prepared for independent review and an explicit coordinator preflight. Test
-configuration values are fixtures, not approved experimental settings.
+8 November 2026 UTC. Two real development stages made 60 API attempts and stopped;
+no main freeze or held-out acquisition has run. See [current state](STATE.md) and
+the explicit [operational amendment](OPERATIONAL_AMENDMENT.md). Test configuration
+values remain fixtures, not authorization for an experimental batch.
 
 The research question, attack templates, mock action schema, policy, exact
 scorer and primary contrasts remain unchanged. This stage connects an approved
@@ -36,7 +37,8 @@ retained privately. Sanitized SSE events are retained; raw stream bytes are hash
 through the terminal marker but not persisted. A complete answer requires a
 terminal finish, complete final usage, consistent identity and `[DONE]`. Partial
 or timed-out streams never become complete outcomes. Reads are bounded by eight
-million bytes and 180 seconds total wall time, with a shrinking socket timeout.
+million bytes and 180 seconds total wall time. The operational amendment adds a
+POSIX total timer to the shrinking socket timeout, covering a slowly dripped line.
 Reasoning usage is part of completion tokens and is not billed
 twice in analysis. Exact weight versions may be unavailable from the hosted API;
 this must be disclosed rather than equating the model name to a pinned checkpoint.
@@ -93,6 +95,18 @@ After three consecutive failed logical transport calls, acquisition stops and
 the remaining scheduled cells stay missing. The counter resets after a successful
 transport; model refusals, invalid answers and truncation do not trip this outage
 circuit. The circuit never selects an alternative provider.
+
+The stopped repair pilot has a separately authorized **implementation**, not
+execution, of one operational continuation. It can acquire only the exact 54
+never-attempted suffix roles, with zero new retries and at most 113 total attempts
+including the original 59. It preserves the original failed run/gate and all
+financial holds. See the amendment for the pre-data disclosure and full limits.
+Attempt starts are spaced at least 20 seconds, including a conservative initial
+pause in a new process. The provider route must be exclusive to one study.
+After HTTP 429, a minimum 60-second cooldown honors a longer normalized
+Retry-After up to 300 seconds; a larger delay stops without another attempt.
+Wait chunks are at most 30 seconds. This applies to the next logical request as
+well as an already-authorized main retry; it grants no additional retry.
 
 ## Data, schedule and freeze
 
@@ -155,6 +169,40 @@ manually supplied passing-gate flag does not replace the original pilot record.
 This is local integrity evidence, not cryptographic attestation by the provider.
 Keep unreviewed acquisition logs private. Publish only audited, sanitized outputs
 and actual uncertainty/cost, including failed pilots, truncations and null results.
+
+## Explicit operational continuation
+
+These commands do not silently resume the ordinary acquisition stage. Preparation
+checks the exact interrupted parent and creates a new immutable amendment plan:
+
+```sh
+python3 studies/summary-laundering/run.py continuation-prepare --parent REPAIR_RUN --out CONTINUATION_PLAN.json
+```
+
+After independent review, a new GO must additionally bind `continuation_plan_hash`
+and `provider_route_exclusive=true`. It still binds the configuration, amended
+source inventory, study budget and campaign cap. No inference occurs without it:
+
+```sh
+python3 studies/summary-laundering/run.py continuation-acquire --parent REPAIR_RUN --plan CONTINUATION_PLAN.json --go CONTINUATION_GO.json --ledger CAMPAIGN_WALLET.jsonl --out CONTINUATION_RUN
+python3 studies/summary-laundering/run.py audit CONTINUATION_RUN
+python3 studies/summary-laundering/run.py analyze CONTINUATION_RUN
+```
+
+The new directory contains the original manifest unchanged, the distinct
+continuation plan, new-call event records and a clearly labeled composite run
+embedding its immutable parent. The original 59 calls are locally replayed for
+state reconstruction, never sent again. The union audit requires unchanged prior
+calls, outcomes, summaries and ledger prefix, disjoint new first attempts,
+preserved scientific modules/function hashes, exact pacing and the original
+combined cap. The original failed gate remains available alongside the amended
+composite gate. The analysis functions and thresholds are unchanged.
+
+A future main freeze must bind the audited composite's actual run and amendment
+hashes and its effective acquisition-source inventory. A standalone passing flag,
+an old failed pilot, or a fixture cannot qualify it. Main has a separately frozen
+20-second minimum start spacing and still requires a new explicit GO.
+Its manifest also binds the same 60/300-second HTTP 429 cooldown/stop policy.
 
 ## Primary references for transport preparation
 

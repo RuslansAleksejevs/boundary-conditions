@@ -2,8 +2,9 @@
 
 ## Separating summary rewriting from agent authority
 
-**Status:** implemented offline harness, 8 November 2026 UTC. No LLM pilot or
-empirical findings; the research protocol is not yet frozen.
+**Status:** implemented harness and interrupted real development pilot,
+8 November 2026 UTC. Main evaluation is not frozen or run; the hypotheses remain
+unresolved. See [the operational amendment](OPERATIONAL_AMENDMENT.md).
 **Tracks:** Strengthening Agent Infrastructure; Multi-Agent Oversight and Control.
 
 See [runnable commands](README.md), [method amendments](METHOD_CHANGES.md),

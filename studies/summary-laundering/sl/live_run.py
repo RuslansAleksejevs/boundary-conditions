@@ -117,7 +117,7 @@ def live_manifest(config, phase, seed, *, pilot=None, repair_reason=None, fixtur
                 raise ValueError("fresh acquisition overlaps the prior pilot")
         if phase == "main" and pilot["manifest"]["config"] != config:
             raise ValueError("model configuration changed after pilot")
-        if phase == "main" and pilot["manifest"]["code_hashes"] != code_hashes():
+        if phase == "main" and pilot.get("acquisition_code_hashes", pilot["manifest"]["code_hashes"]) != code_hashes():
             raise ValueError("acquisition/analysis code changed after passing pilot")
     planned = len(scenarios) * 9
     manifest = {
@@ -143,9 +143,14 @@ def live_manifest(config, phase, seed, *, pilot=None, repair_reason=None, fixtur
         "freeze_status": "empirical_main_freeze" if phase == "main" and not fixture else "prospective_acquisition_plan",
         "pilot_binding": None if pilot is None else {
             "manifest_hash": pilot["manifest"]["manifest_hash"], "run_hash": pilot["run_hash"], "gate": pilot["gate"],
+            "continuation_plan_hash": pilot.get("continuation_plan_hash"),
         },
         "repair_reason": repair_reason,
     }
+    if phase == "main":
+        from .live_transport import PACING_POLICY
+        manifest["minimum_start_spacing_seconds"] = 20
+        manifest["pacing_policy"] = dict(PACING_POLICY)
     manifest["manifest_hash"] = digest(manifest)
     return manifest
 
@@ -184,6 +189,10 @@ def validate_live_manifest(manifest, check_code=True):
         raise ValueError("prospective monetary bounds differ from configuration")
     if manifest["phase"] == "main" and (not manifest["pilot_binding"] or not manifest["pilot_binding"]["gate"]["passed"]):
         raise ValueError("main freeze is missing its passing pilot binding")
+    if manifest["phase"] == "main":
+        from .live_transport import PACING_POLICY
+        if manifest.get("minimum_start_spacing_seconds") != 20 or manifest.get("pacing_policy") != PACING_POLICY:
+            raise ValueError("main must bind the prospective operational pacing")
 
 
 class LiveRunner(Runner):
@@ -208,7 +217,7 @@ class LiveRunner(Runner):
         for attempt in range(2):
             attempt_id = self.manifest["phase"] + "/" + call_id + f"/{attempt}"
             try:
-                reserved = self.ledger.reserve(attempt_id, self.manifest["phase"], retry=attempt == 1)
+                reserved = self.ledger.reserve(attempt_id, getattr(self, "ledger_stage", self.manifest["phase"]), retry=attempt == 1)
             except BudgetStop as exc:
                 self.stop_reason = str(exc)
                 return None, "transport_error" if attempt else "acquisition_stopped", request_hash
@@ -238,6 +247,8 @@ class LiveRunner(Runner):
             self.emit(entry)
             if classified["fatal"]:
                 self.stop_reason = classified["status"]
+            if acquisition.get("pacing_stop_reason"):
+                self.stop_reason = acquisition["pacing_stop_reason"]
             if classified["status"] == "completed":
                 self.consecutive_transport_failures = 0
                 if request_value["role"] == "summarizer" and len(classified["text"].encode()) > self.config["max_summary_utf8_bytes"]:
@@ -272,6 +283,10 @@ def audit_live(manifest, run):
     a provider. Local fixtures remain explicitly ineligible for empirical gates.
     """
     validate_live_manifest(manifest, check_code=False)
+    phase_stages = {manifest["phase"]}
+    if "continuation" in run:
+        from .continuation import audit_continuation_binding
+        phase_stages = audit_continuation_binding(manifest, run)
     if (run["manifest_hash"] != manifest["manifest_hash"] or run["evidence_label"] != manifest["evidence_label"]
             or run["acquisition_mode"] != manifest["acquisition_mode"]):
         raise ValueError("live run/manifest mismatch")
@@ -355,12 +370,17 @@ def audit_live(manifest, run):
             raise ValueError("live spend accounting mismatch")
     if seen_order != [call_id for call_id in requested_order if call_id in calls]:
         raise ValueError("live condition order differs from freeze")
-    phase_attempts = {key for key, event in wallet["attempts"].items() if event["stage"] == manifest["phase"]}
+    phase_attempts = {key for key, event in wallet["attempts"].items() if event["stage"] in phase_stages}
     if phase_attempts != {c["attempt_id"] for c in run["calls"]} or run["requests_attempted"] != len(run["calls"]):
         raise ValueError("unlogged/miscounted acquisition attempt")
     retries = sum(c["attempt"] for c in run["calls"])
     if retries != run["retries_used"] or retries > manifest["retry_budget"]:
         raise ValueError("live retry budget mismatch")
+    if len(run["calls"]) > manifest["max_requests"]:
+        raise ValueError("live phase attempt cap exceeded")
+    if manifest["phase"] == "main":
+        from .live_transport import audit_pacing
+        audit_pacing(run["calls"], run["stop_reason"])
 
     def expected_status(call_id, expected):
         sequence = calls.get(call_id, [])
@@ -445,6 +465,7 @@ def live_gate(manifest, run):
 
 
 def verify_pilot_binding(manifest, pilot_manifest, pilot_run, ledger_events):
+    from .continuation import effective_pilot_sources
     binding = manifest["pilot_binding"]
     gate = live_gate(pilot_manifest, pilot_run)
     if (binding is None or binding["manifest_hash"] != pilot_manifest["manifest_hash"]
@@ -453,8 +474,11 @@ def verify_pilot_binding(manifest, pilot_manifest, pilot_run, ledger_events):
             or pilot_run["ledger"] != ledger_events[:len(pilot_run["ledger"])]):
         raise ValueError("actual pilot/ledger does not match the frozen pilot binding")
     if manifest["phase"] == "main" and (not gate["passed"] or pilot_manifest["config"] != manifest["config"]
-                                         or pilot_manifest["code_hashes"] != manifest["code_hashes"]):
+                                         or effective_pilot_sources(pilot_manifest, pilot_run) != manifest["code_hashes"]):
         raise ValueError("main cannot use a failed or changed pilot")
+    continuation_hash = pilot_run.get("continuation", {}).get("plan", {}).get("plan_hash")
+    if binding.get("continuation_plan_hash") != continuation_hash:
+        raise ValueError("main/repair binding omitted or changed its operational amendment")
     if manifest["phase"] == "pilot_repair" and (gate["passed"] or not manifest["repair_reason"]):
         raise ValueError("interface repair requires a failed pilot and recorded reason")
 
@@ -475,6 +499,9 @@ def acquire(plan_path, go_path, ledger_path, out, pilot_path=None):
         pilot_run = strict_json((pilot_path / "run.json").read_text(encoding="utf-8"))
         verify_pilot_binding(manifest, pilot_manifest, pilot_run, ledger.snapshot())
     transport = OpenRouterTransport(manifest["config"], go)
+    if manifest["phase"] == "main":
+        from .live_transport import PacedTransport
+        transport = PacedTransport(transport, manifest["minimum_start_spacing_seconds"])
     out = Path(out)
     out.mkdir(parents=True, exist_ok=False)
     write_json(out / "manifest.json", manifest)

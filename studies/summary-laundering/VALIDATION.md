@@ -165,3 +165,36 @@ the failed original run and ledger were not edited. Its CLI audit still passes.
 An independent read-only account reconciliation confirmed USD 0.00541606 billed;
 the wallet conservatively retains USD 0.61341696 rather than rewriting history.
 The new real repair pilot requires a fresh plan and renewed exact-source GO.
+
+## Explicit operational continuation validation
+
+After the real repaired pilot stopped on HTTP 429, the coordinator authorized
+implementation of a narrowly documented operational continuation, not execution
+or a replacement pilot. The amendment preserves all original observations and
+can dispatch only the 54 never-attempted suffix roles, with zero additional
+retries and the original combined 113-attempt cap. Scientific modules and ten
+preserved generator/metric/receipt functions are checked for byte identity.
+
+Actual command: `python3 -m unittest discover -s studies/summary-laundering/tests -q`.
+Final result: **161/161 PASS in 4.836 seconds**, Python 3.14.6, HTTP-free. Earlier
+intermediate suites passed 154 and 157 tests. New tests run a complete artificial
+interruption/continuation/union audit, reject old-result or ledger edits, refuse
+attempted-role resampling, prevent new retries/phase overrun/second continuation,
+bind the new GO and exclusive route, reject changed scientific source, retain
+the outage circuit, and prevent fixtures from qualifying empirical gates.
+
+Virtual-clock checks cover 20-second starts including the initial stage pause,
+60-second HTTP 429 cooldown, longer normalized Retry-After values, 300-second
+maximum wait, over-limit stop without retry, and wait chunks no larger than
+30 seconds. A real short POSIX-timer test interrupts a slow-drip stand-in and
+checks alarm/handler cleanup. Reporting-only tests preserve nonzero conservative
+uncertainty at zero estimates, distinguish missing estimates, and keep financial
+reconciliation separate from unchanged conservative wallet reservations.
+
+Both original real-run CLI audits still pass under the amended code; neither
+saved run nor wallet was edited. A read-only prospective-plan check against the
+actual stopped pilot confirms 54 remaining roles, maximum validity 101/108 and
+51 additional valid responses needed. New real API requests during this work: 0.
+Independent peer review closed the initial continuation-integrity findings;
+the final aligned cooldown diff is undergoing focused review. A new exact GO is
+still required before any continuation data.

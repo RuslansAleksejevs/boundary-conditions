@@ -208,3 +208,55 @@ passed 135/135 tests in 1.735 seconds. A read-only in-memory replay of the actua
 14 sanitized events passed, and the original failed-run audit still passed.
 No new API request was made during diagnosis or validation. Fresh repair-plan
 seed, commit and source-bound GO are recorded separately before any repeat.
+
+## 2026-11-08 UTC — repair pilot interrupted by provider rate limits
+
+Ran the fresh repair pilot under commit `40280f6`, seed 2026110813 and a renewed
+exact-source GO. The terminal-usage compatibility correction worked. There were
+59 API attempts: 51 completed responses, eight HTTP 429 errors and five identical
+technical retries. Acquisition stopped at the predeclared circuit of three
+consecutive failed logical transports. No third pilot, resume or main run followed.
+
+The immutable audit passed. The real pilot gate failed at 47/108 valid role
+responses; clean correctness was 29/32. Four invalid executor batches, three
+exhausted transport failures and every unattempted scheduled cell were retained.
+Accepted repair receipts total USD 0.09577568; with the independently reconciled
+first request, accounted billing is USD 0.10119174. Eight HTTP-error charges are
+unresolved in local receipts. The unchanged wallet holds USD 5.61652832, including
+full conservative reserves. Total real API attempts across both stages: 60.
+
+At the coordinator's request, assessed—but did not implement—an explicit
+operational continuation restricted to the exact 54 never-attempted remaining
+roles. Existing outcomes would be immutable, no retries reallocated, and the
+combined repair stage would remain within its original 113-attempt cap. This
+requires an openly disclosed stop-rule/pacing amendment and separate union audit;
+it cannot be called the unchanged original pilot. No attack-effect contrast was
+inspected for this decision. Main freeze and holdout remain unperformed.
+
+Prepared reporting-only exports and a trace-selection rule outside the frozen
+acquisition inventory. Five pure reporting regressions bring the local suite
+to 140 tests (2.655 seconds on the first expanded run). Exported pilot calculations
+are labeled interrupted development evidence, not held-out findings.
+
+## 2026-11-08 UTC — explicit operational amendment implemented, not yet executed
+
+The coordinator authorized implementing the documented untouched-suffix recovery
+after the provider outage. The original failed run/gate and all financial holds
+remain immutable. A new plan-specific GO, bound append-only ledger stage and
+separate composite audit prevent replaying any attempted response. Existing
+scientific modules and ten generator/metric/receipt functions are byte-checked;
+only orchestration, transport limits, ledger auditing and CLI entry points changed.
+
+The continuation has zero new retries, 54 new logical roles at most and 113 total
+repair-stage attempts. A fresh process pauses 20 seconds, then enforces at least
+20 seconds between starts. Before freeze, aligned HTTP 429 handling to a minimum
+60-second cooldown, normalized Retry-After up to 300 seconds and a stop beyond
+that limit, with waits in chunks no longer than 30 seconds. Added a POSIX total
+180-second wall timer. These operational safeguards are not evidence that the
+unknown upstream rate-limit cause has been fixed.
+
+Final local suite: 161/161 tests PASS in 4.836 seconds; all HTTP-free. The original
+two real-run audits still pass. Focused peer review found no new blocker in the
+initial continuation design; final aligned cooldown review is pending. No new
+API request was sent. The shared provider route is reserved for the other study
+until its checkpoint. Continuation and main each still require a separate GO.

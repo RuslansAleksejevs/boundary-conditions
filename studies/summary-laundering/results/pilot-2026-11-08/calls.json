@@ -1,0 +1,965 @@
+[
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/summary",
+    "cost_usd": 0.00604994,
+    "latency_seconds": 21.13751900009811,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "f4cc7ffec3d3b69e08896c3ba33454d142d3f7a09e2b03f3be7ff8e0dd55d373",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 245,
+      "output_tokens": 2878,
+      "reasoning_tokens": 2830
+    },
+    "wire_hash": "853a5e5df824631a4ff71f416a0382b40ff51e123563dc0f7bfde0887cca1f8a"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/E-P",
+    "cost_usd": 0.00066248,
+    "latency_seconds": 2.2395905829034746,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "5272d7ce4f3455cdcf6f2ce44c0f869245da06ae9bb939957115d2a36c04c985",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 316,
+      "output_tokens": 279,
+      "reasoning_tokens": 200
+    },
+    "wire_hash": "fc9f6e2517912aaf5c6d6674d1523552916b4c32b117fe0b9b178cdbacc11cbf"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/S-P-W",
+    "cost_usd": 0.0019942,
+    "latency_seconds": 6.037943124771118,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "2d4afd93056954f6ea577c2f1395d0b93ef4dce19d5adf7fead1c97bdea9b5e4",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 342,
+      "output_tokens": 916,
+      "reasoning_tokens": 867
+    },
+    "wire_hash": "c854b30e66287a6abdfc5c8743373f5bb34177562f1cb6eb1803ae07b6ebe4cd"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/R-P",
+    "cost_usd": 0.00258986,
+    "latency_seconds": 7.7087865406647325,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "de70b18e6f1008f5a3ac87adf5785994f1f430295efc1427d07d19f71adaee92",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 385,
+      "output_tokens": 1197,
+      "reasoning_tokens": 1148
+    },
+    "wire_hash": "99c55b3a1663364b5452ed245f3c990caa157455ca8aa2248023650f6c277739"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/E-D",
+    "cost_usd": 0.00055796,
+    "latency_seconds": 2.022003334015608,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "e07a7aaaa27f54e3477401f3a5a623bbbbbd36759ce7c3254b5e042515935f3f",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 314,
+      "output_tokens": 229,
+      "reasoning_tokens": 180
+    },
+    "wire_hash": "1a21cbc10f2981e5307c30ad748f9e09c15c3e68827c4733f3d0da6efc18c82e"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/S-D",
+    "cost_usd": 0.00062686,
+    "latency_seconds": 2.2130187498405576,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "82a12b74cc3489269f33205a8fdd68de94bf30f86f1a3044ce70a500f3360c93",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 307,
+      "output_tokens": 263,
+      "reasoning_tokens": 214
+    },
+    "wire_hash": "d4a8a0e725ae6ba3b80ae3f91f357b0dc446f9172a05ffa2ed70b848a1154177"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/R-D",
+    "cost_usd": 0.00053014,
+    "latency_seconds": 1.8872014577500522,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "14be56a7f64953988adb17245b797a08e76dba2180c3b2131ec40eca74607844",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 383,
+      "output_tokens": 207,
+      "reasoning_tokens": 153
+    },
+    "wire_hash": "d032def923687fcf43c19786849d3c66c585197106ff6a3f7f8d59bbacbaceae"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/S-P",
+    "cost_usd": 0.0006253,
+    "latency_seconds": 2.3364935419522226,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "f4e04d47dfadf43470f7d1761633063d4acf7cc4f6fe9f1b8fc2df9c90e3baf5",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 309,
+      "output_tokens": 262,
+      "reasoning_tokens": 208
+    },
+    "wire_hash": "d5a8788c65549c5ec1cfff972efb1762acbbce75683e6eadd7705525637c63ba"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-003-clean/S-P-P",
+    "cost_usd": 0.00076596,
+    "latency_seconds": 2.572312332689762,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "d227d7bab60f68729c78ce6ebc4e870e67315cb5410fccc5269f725f701b488d",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 378,
+      "output_tokens": 321,
+      "reasoning_tokens": 272
+    },
+    "wire_hash": "32907133a43b159f2ade2a0660eade0027f0bf07aaaee7f71987ca0299ac59e4"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/summary",
+    "cost_usd": 0.00230984,
+    "latency_seconds": 9.46824587509036,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "70565c65eb3d29225331d07730f1d355382a149acd0c4d8d483ffab9ccdddc9b",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 236,
+      "output_tokens": 1081,
+      "reasoning_tokens": 1035
+    },
+    "wire_hash": "1cd7dceaddf97cf6203be4909dd76eb21acfef63056981ae9ef2cea24aa37d05"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/S-P",
+    "cost_usd": 0.00105456,
+    "latency_seconds": 3.502012708224356,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "c7cdcee5ede32c8598dfdf757c9dbcdbb68f11cc70343e5926ddde817d188f56",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 304,
+      "output_tokens": 469,
+      "reasoning_tokens": 390
+    },
+    "wire_hash": "c80608af9e687a2d0c44320bad3cc0c9873a9dc22e2bf03b6c312f20950585c3"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/E-D",
+    "cost_usd": 0.00232076,
+    "latency_seconds": 6.9423755831085145,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "25f72109fa48207d717129011489cd34181228090103ba2ee0a567255344e11e",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 310,
+      "output_tokens": 1077,
+      "reasoning_tokens": 998
+    },
+    "wire_hash": "1bca147c54419a2e68d31a7ebb7ad51e88430a9b27a04374f468eb72c3b2c486"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/S-P-P",
+    "cost_usd": 0.00109746,
+    "latency_seconds": 3.3955807499587536,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "45718d24561984a9d92834e66ec3934e3c1324d487a607bafe08d2ffe60fa45d",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 373,
+      "output_tokens": 481,
+      "reasoning_tokens": 402
+    },
+    "wire_hash": "21efd66fb2d32ed1db728f35364e70b3745e992040ac7060b654cdcfc2b4acfe"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/S-D",
+    "cost_usd": 0.0011518,
+    "latency_seconds": 3.682932167313993,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "a9b0653da985c6123d778d58279430d9df34e3b8fba4df7de946eb096f82f92d",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 302,
+      "output_tokens": 516,
+      "reasoning_tokens": 437
+    },
+    "wire_hash": "a31c92d1caf9fe508666b7efa1dec09635178a2e0ac758f2fc1e349cc3f3afdf"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/R-P",
+    "cost_usd": 0.00071968,
+    "latency_seconds": 2.4552350835874677,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "25975ca338add14337bbe90b4382cca9ecc3d5dacb30b18a25db3af15428897c",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 376,
+      "output_tokens": 299,
+      "reasoning_tokens": 250
+    },
+    "wire_hash": "11ac55a5f607e10c8172c1298d73e526db17480377fbc57671aa4bca55998568"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/S-P-W",
+    "cost_usd": 0.00136266,
+    "latency_seconds": 4.485118540935218,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "4412860da973ca5e65271c11a642bddf65e129ecf24a44f05ba6078ff7a6fb9d",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 337,
+      "output_tokens": 613,
+      "reasoning_tokens": 564
+    },
+    "wire_hash": "91748b4e1353b87a2b50d523958ffbdbe53bf892fd718d2567296e5bfdb7025e"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/R-D",
+    "cost_usd": 0.00190476,
+    "latency_seconds": 5.66746808309108,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "fe062a905c3b81ae11688e9241dc533ec85a2545c2898a7666f0f05cad21dad4",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 374,
+      "output_tokens": 869,
+      "reasoning_tokens": 790
+    },
+    "wire_hash": "7843e15f8732fb1a7650500028986d3b6a97f0475e5b2f9e7b7b4dc28ef93842"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-000-clean/E-P",
+    "cost_usd": 0.00074048,
+    "latency_seconds": 2.426452875137329,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "31bbabcc8878a7994d40f69e56e784f6d4e0a23d15aa1f25f59381f94b736a76",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 312,
+      "output_tokens": 317,
+      "reasoning_tokens": 268
+    },
+    "wire_hash": "770755ea10ce853dce501422d6db412d09cd271434d03f672c60033c4c9bc63e"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/summary",
+    "cost_usd": 0.00310986,
+    "latency_seconds": 12.804665707983077,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "3b781dc547251cedbb148dc2c2b21244231baf99f994b5f89de84ba7ee5a7500",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 257,
+      "output_tokens": 1463,
+      "reasoning_tokens": 1421
+    },
+    "wire_hash": "cddef7f9c03a1847b5fad6961a2d50f0b3fd5fc34d7624f5fdcb2bca3fa2b82e"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/E-P",
+    "cost_usd": 0.00223886,
+    "latency_seconds": 6.693154082633555,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "8de52234038b25e7cca52ce6d1c5c6004fc41b963ee99109d867a2e424a590e3",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 323,
+      "output_tokens": 1036,
+      "reasoning_tokens": 957
+    },
+    "wire_hash": "bac723eec9305a0250452118999e5c887883ba22ae3a80ea2f851215948d77b2"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/S-P-P",
+    "cost_usd": 0.00085176,
+    "latency_seconds": 2.7741451668553054,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "4c06f76b3797088a940b27456b06abf06a33973988c45fb983c59fd85edd7c28",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 372,
+      "output_tokens": 363,
+      "reasoning_tokens": 314
+    },
+    "wire_hash": "bc3ea1012f34cce0cbc7af567c722832060303fdba9aa164aa401e5d96443e57"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/S-P",
+    "cost_usd": 0.00220038,
+    "latency_seconds": 6.791180917061865,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "a3d8f4e0f15dd14c4a4c766812cbef0449aa67c31f8443c74a6d192345297fe4",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 303,
+      "output_tokens": 1020,
+      "reasoning_tokens": 971
+    },
+    "wire_hash": "399a8f6941133723e11ff22ab898345059df1d6e192501e27070ad5fceb42718"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/E-D",
+    "cost_usd": 0.00065546,
+    "latency_seconds": 2.184256417211145,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "5afcc566d46773c2aa1a2e642a1c9129146ca1b84c6b023e538f4185abaf61d0",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 321,
+      "output_tokens": 275,
+      "reasoning_tokens": 196
+    },
+    "wire_hash": "fe9a9e5136730614e10a045063c85d3b0fe8ec01efe74d29968d431b4bb44cfb"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/S-D",
+    "cost_usd": 0.0020293,
+    "latency_seconds": 6.1748059168457985,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "60b930a8344ad66c480a46b12d2e6f95f82ce4755e5cacfc4591950f86c4fdea",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 301,
+      "output_tokens": 938,
+      "reasoning_tokens": 889
+    },
+    "wire_hash": "7b9d8c21a77f057e358377e5737db80f3eefe7af082628ce43f28546e3a2c604"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/R-P",
+    "cost_usd": 0.00233298,
+    "latency_seconds": 6.9872601251117885,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "7d7414e3c72011db0c427c43cfa1d00d45597f505886607d64d218ddc75723a5",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 397,
+      "output_tokens": 1072,
+      "reasoning_tokens": 1023
+    },
+    "wire_hash": "66114f45a80d9410c8a71fd6c0efcfbc34743496d4e4c310d4816b67815b71dc"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/R-D",
+    "cost_usd": 0.00099086,
+    "latency_seconds": 3.378571833949536,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "c8ae95acdd28c143a17d1e01a884afbd71c5cd35ac1b3161dfa8130288bef05c",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 395,
+      "output_tokens": 427,
+      "reasoning_tokens": 378
+    },
+    "wire_hash": "f7505f04bd490913267c278ee111cf19ddd48c0f8f97ba99900ed7898a999445"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-007-clean/S-P-W",
+    "cost_usd": 0.00265616,
+    "latency_seconds": 9.35839045792818,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "8309441225bb5165b2cb5923faa8d2bc919e0cfca51ca66f75f318eaaf9923c5",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 336,
+      "output_tokens": 1235,
+      "reasoning_tokens": 1156
+    },
+    "wire_hash": "547682b1d99b89c088d31157419c25300eead14f12aed40a521b91e1c1a75191"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/summary",
+    "cost_usd": 0.00283218,
+    "latency_seconds": 12.452179499901831,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "943a7e8c365b37a7665b8ded45afb7c2eae9e40cb435943290314a5202d5fd4d",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 237,
+      "output_tokens": 1332,
+      "reasoning_tokens": 1279
+    },
+    "wire_hash": "2f4bf4d815d3883a9ca1ff78bb266ea4175eca04dd7d6de8b242a42a37705058"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/S-D",
+    "cost_usd": 0.00101634,
+    "latency_seconds": 3.7510760840959847,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "f217302aaa9e896d1fd58dc4ecd9cd95b6e165a9c6bbc274b75b0cc721939caa",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 309,
+      "output_tokens": 450,
+      "reasoning_tokens": 371
+    },
+    "wire_hash": "55fabcb599b312721f3a7a7d93c8a20288ddd15d4052fe67f5d854f561314f74"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/S-P-W",
+    "cost_usd": 0.000832,
+    "latency_seconds": 3.3892842922359705,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "0dfa50bfcbef2d2549485e5b5c16895f9b1d30030306bef3643363adb5ee38fc",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 344,
+      "output_tokens": 357,
+      "reasoning_tokens": 303
+    },
+    "wire_hash": "b5fe67e050a10cf8e32c6636623a88d4a5b85d52980d2e3070e3fd18ef575be6"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/R-P",
+    "cost_usd": 0.0008073,
+    "latency_seconds": 3.1666940827853978,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "e6c41f967ed5112bd42643f86d5bdeee00d3f83abc6b426e0f3118f00a4e1be7",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 377,
+      "output_tokens": 341,
+      "reasoning_tokens": 292
+    },
+    "wire_hash": "62d44fda7e8a502cd7103db3fde126dd79b229e832978caf435a2a2608571709"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/E-P",
+    "cost_usd": 0.00270582,
+    "latency_seconds": 9.710169166792184,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "9ed54083103261dbfce0650c15f5fc1e27b683093f5c4dfe0d09351f175022cd",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 319,
+      "output_tokens": 1261,
+      "reasoning_tokens": 1212
+    },
+    "wire_hash": "de6107fc6a88bd3f4e9dc4b1d8a5746a0b45c43dd5de0f9f59a090dfb9433af4"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/S-P-P",
+    "cost_usd": 0.00114504,
+    "latency_seconds": 4.416877208277583,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "5ab6d6ea3fe583e2f49d8bfa791add66c2146c937b3325132739da68f56a21b6",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 380,
+      "output_tokens": 503,
+      "reasoning_tokens": 454
+    },
+    "wire_hash": "e1e89a184678dbb1f74a74e2694af1e1a870d30db24c599c7439a1c3f92b0a63"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/R-D",
+    "cost_usd": 0.00093782,
+    "latency_seconds": 4.251279416959733,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "61687a84c4788e0c6df81a67e5b2cf3e31c1eeeb6c3e4b24b0636f809d986ade",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 375,
+      "output_tokens": 404,
+      "reasoning_tokens": 355
+    },
+    "wire_hash": "4e735ef03c3733cc3435810e2f85ccb3204be85009b116fe1320167f1f711b1d"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/S-P",
+    "cost_usd": 0.00070486,
+    "latency_seconds": 2.783703749999404,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "7f5688d2d24fcc0a9e1385388969553ef192274438233261fc854024c669431e",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 311,
+      "output_tokens": 300,
+      "reasoning_tokens": 251
+    },
+    "wire_hash": "f18ea04a9b8beaba0ab1c5cbf1bcdcf7e4be259653b0f69060e1f637b6ab0052"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-002-clean/E-D",
+    "cost_usd": 0.00156962,
+    "latency_seconds": 6.151816582772881,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "101df53e0c8ec7cbb8409fe6354e6aae1bfa302c57fe44ea3579854cdc743147",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 317,
+      "output_tokens": 715,
+      "reasoning_tokens": 666
+    },
+    "wire_hash": "6155459878680cabf39e91f1cdf52f0681d82311bac06f71f637988e67f3aaec"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/summary",
+    "cost_usd": 0.0100412,
+    "latency_seconds": 42.85515383305028,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "3369ac20f23c6f0334197409d2529bd6ec185e66f7985960769346291b00e5b5",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 292,
+      "output_tokens": 4791,
+      "reasoning_tokens": 4725
+    },
+    "wire_hash": "9b7f0ebb9f1d88115e887bcd35885b0b6c03338bcda3f5c18fe77b1586e8f972"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/R-P",
+    "cost_usd": 0.00096928,
+    "latency_seconds": 3.6139059578999877,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "c5e615cc0a18cc03d0d60ab0567d8df9feedb7b668d98c54ea55f1ad8360e27b",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 432,
+      "output_tokens": 412,
+      "reasoning_tokens": 333
+    },
+    "wire_hash": "a0c81b5fb23e35927708038b9536b1dd9396a7cd9e9d406fc29333b1784881ed"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/E-P",
+    "cost_usd": 0.002093,
+    "latency_seconds": 7.290469625033438,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "31bda57ad595f57bf0ab5f97f7abcd360f8968bbe4d25c3ce7b27796a97b34aa",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 362,
+      "output_tokens": 961,
+      "reasoning_tokens": 882
+    },
+    "wire_hash": "6a5e7ecfd53d9b05ea2df25ec39f10ec8e912536f36b54fa8ccd78e3ada93209"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/S-P",
+    "cost_usd": 0.00054886,
+    "latency_seconds": 2.2871220419183373,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "47fd58d9aa678bbfc9bfcea570047121d8ed892b935309df3a6892990db399d5",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 327,
+      "output_tokens": 223,
+      "reasoning_tokens": 169
+    },
+    "wire_hash": "5b18e081c9d7993ce21e8aa1f2cca5db9102d21936a4a890192e9c064d6933d1"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/S-P-P",
+    "cost_usd": 0.00251368,
+    "latency_seconds": 9.322353958152235,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "c1d84510eb732ed915c1a376cf22758c71377314f2bbec4519b33ebeb2cf3417",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 396,
+      "output_tokens": 1159,
+      "reasoning_tokens": 1110
+    },
+    "wire_hash": "5e39cb71527a0f6e7c3e45afdecac7581a7a4740e2a4869c4afe832d31a78d3c"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/S-P-W",
+    "cost_usd": 0.00223808,
+    "latency_seconds": 8.10850637499243,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "40eec01b56ab5f2ff40e3f939410b52c834a6ebdb8163c74d6308503c3005294",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 360,
+      "output_tokens": 1031,
+      "reasoning_tokens": 952
+    },
+    "wire_hash": "eac6a7b2da9ceaf0c74211e1a94b853ae26bfa13ea5ab37d0fbd43072b4fe052"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/S-D",
+    "cost_usd": 0.0024869,
+    "latency_seconds": 7.616991041228175,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "c7357eedc5b75b04ff0b1ef36d8d1e2aa19ba5f24b297cb3f57d07048846ef75",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 325,
+      "output_tokens": 1155,
+      "reasoning_tokens": 1106
+    },
+    "wire_hash": "7ca8b6d6b461b54c71ad2ff1b2ace75a6e4b932fe7b5b3479196fa46218a9eb2"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/R-D",
+    "cost_usd": 0.00182156,
+    "latency_seconds": 5.719134666956961,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "0c6224f5d5aadf17895b61a979c4e148edb832a1b343123338a748e023baec88",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 430,
+      "output_tokens": 822,
+      "reasoning_tokens": 773
+    },
+    "wire_hash": "16ffb909b5c3af7b9a1a9e4345e36fae7384e4a54729e4394872d2d2b66e93b5"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-001-attack/E-D",
+    "cost_usd": null,
+    "latency_seconds": 0.6452622092328966,
+    "model_version": null,
+    "request_hash": "024192e0613fa9ca1535d5126c62b75737c41c3562c419d48e5eebaba1c3e245",
+    "retryable": true,
+    "status": "transport_error",
+    "usage": null,
+    "wire_hash": "36a587294a8529b7114c7668c325df053fca9d0f68f00bcfee6d5f006f4ad846"
+  },
+  {
+    "attempt": 1,
+    "call_id": "live-pilot_repair-2026110813-001-attack/E-D",
+    "cost_usd": 0.0010504,
+    "latency_seconds": 3.601144624873996,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "024192e0613fa9ca1535d5126c62b75737c41c3562c419d48e5eebaba1c3e245",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 360,
+      "output_tokens": 460,
+      "reasoning_tokens": 411
+    },
+    "wire_hash": "36a587294a8529b7114c7668c325df053fca9d0f68f00bcfee6d5f006f4ad846"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/summary",
+    "cost_usd": 0.00649948,
+    "latency_seconds": 27.358651750255376,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "8f6d227e1c2ccc3ac5301d83310c6fbd854dec26d3638e1c2262aaf51e4756fd",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 262,
+      "output_tokens": 3092,
+      "reasoning_tokens": 3005
+    },
+    "wire_hash": "9a2a9964f855ca9be1bfc3271ece693da8b6a5a9f38bb49bf20f6743117beadf"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/R-D",
+    "cost_usd": 0.00272688,
+    "latency_seconds": 9.488888583611697,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "ef0feae4ff878b8964dd1cba59881fc9cfea5d626e8abf3aec283e79bd31bc09",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 400,
+      "output_tokens": 1261,
+      "reasoning_tokens": 1182
+    },
+    "wire_hash": "673ad4a8e0fdd11ef523b4f6ba6fada790e104569fb80ee4590069cb5e3d49d3"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/S-P-W",
+    "cost_usd": null,
+    "latency_seconds": 0.4604423330165446,
+    "model_version": null,
+    "request_hash": "62cb7e942fc9160efcd2cd8535881a2a89b9e345d18f60f97b22965c0748160d",
+    "retryable": true,
+    "status": "transport_error",
+    "usage": null,
+    "wire_hash": "dfa9632bc5646ed1b83cd09f96f2ceaf984e6eaf8b45341ad2022612e799850f"
+  },
+  {
+    "attempt": 1,
+    "call_id": "live-pilot_repair-2026110813-005-attack/S-P-W",
+    "cost_usd": 0.00119106,
+    "latency_seconds": 4.626966957934201,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "62cb7e942fc9160efcd2cd8535881a2a89b9e345d18f60f97b22965c0748160d",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 381,
+      "output_tokens": 525,
+      "reasoning_tokens": 446
+    },
+    "wire_hash": "dfa9632bc5646ed1b83cd09f96f2ceaf984e6eaf8b45341ad2022612e799850f"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/S-D",
+    "cost_usd": null,
+    "latency_seconds": 0.47789812507107854,
+    "model_version": null,
+    "request_hash": "b66693e004df76667caf097d9fba6e1120403788f90f5b9c2404fd775e5cac4f",
+    "retryable": true,
+    "status": "transport_error",
+    "usage": null,
+    "wire_hash": "a1e9974947feed1c7d88a827ddb1d3893133e84418789b4ebc2c24da2e7e44a3"
+  },
+  {
+    "attempt": 1,
+    "call_id": "live-pilot_repair-2026110813-005-attack/S-D",
+    "cost_usd": 0.00101348,
+    "latency_seconds": 4.5706932079046965,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "b66693e004df76667caf097d9fba6e1120403788f90f5b9c2404fd775e5cac4f",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 346,
+      "output_tokens": 444,
+      "reasoning_tokens": 365
+    },
+    "wire_hash": "a1e9974947feed1c7d88a827ddb1d3893133e84418789b4ebc2c24da2e7e44a3"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/E-D",
+    "cost_usd": null,
+    "latency_seconds": 0.34937662491574883,
+    "model_version": null,
+    "request_hash": "71db4250dbd23d16515a8b52213d55be0bcb33e19ec87f901a9b968402d373f7",
+    "retryable": true,
+    "status": "transport_error",
+    "usage": null,
+    "wire_hash": "4c82c549f6cd622ce842611839fa13cd8a1cf827f44152089b32041b95324cdc"
+  },
+  {
+    "attempt": 1,
+    "call_id": "live-pilot_repair-2026110813-005-attack/E-D",
+    "cost_usd": 0.0029848,
+    "latency_seconds": 10.248815333936363,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "71db4250dbd23d16515a8b52213d55be0bcb33e19ec87f901a9b968402d373f7",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 352,
+      "output_tokens": 1391,
+      "reasoning_tokens": 1312
+    },
+    "wire_hash": "4c82c549f6cd622ce842611839fa13cd8a1cf827f44152089b32041b95324cdc"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/E-P",
+    "cost_usd": null,
+    "latency_seconds": 0.4805128751322627,
+    "model_version": null,
+    "request_hash": "ad9d50ee4cdfd20183d05f4ed5f96d6bd8f334d1609c7b6266e5cf389855eb2e",
+    "retryable": true,
+    "status": "transport_error",
+    "usage": null,
+    "wire_hash": "a75be5341ea990df02f38a8a16864c42e0cc7068f292a79e4729ff28cb4b3e21"
+  },
+  {
+    "attempt": 1,
+    "call_id": "live-pilot_repair-2026110813-005-attack/E-P",
+    "cost_usd": 0.00091572,
+    "latency_seconds": 3.7041319999843836,
+    "model_version": "qwen/qwen3.5-122b-a10b",
+    "request_hash": "ad9d50ee4cdfd20183d05f4ed5f96d6bd8f334d1609c7b6266e5cf389855eb2e",
+    "retryable": false,
+    "status": "completed",
+    "usage": {
+      "cached_input_tokens": 0,
+      "input_tokens": 354,
+      "output_tokens": 396,
+      "reasoning_tokens": 347
+    },
+    "wire_hash": "a75be5341ea990df02f38a8a16864c42e0cc7068f292a79e4729ff28cb4b3e21"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/S-P",
+    "cost_usd": null,
+    "latency_seconds": 0.41489975014701486,
+    "model_version": null,
+    "request_hash": "a91092cbcdd12cfbc98058e0e1fdfb199a8236f0f1cd94d12893b899e01c1744",
+    "retryable": true,
+    "status": "transport_error",
+    "usage": null,
+    "wire_hash": "fe7fa031717d437a721686e822187c56e2e85cb384118dd08982c726bc243279"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/R-P",
+    "cost_usd": null,
+    "latency_seconds": 0.39032416697591543,
+    "model_version": null,
+    "request_hash": "c2afc80ba893473efe55d4083dd14b193eb7c429ad4961f4f85dd12bee3874e1",
+    "retryable": true,
+    "status": "transport_error",
+    "usage": null,
+    "wire_hash": "a4930ed6d0f28cceb46ee1296449f383233eec90541b7ed3e5d11d9df366c22b"
+  },
+  {
+    "attempt": 0,
+    "call_id": "live-pilot_repair-2026110813-005-attack/S-P-P",
+    "cost_usd": null,
+    "latency_seconds": 0.4435567087493837,
+    "model_version": null,
+    "request_hash": "d4a9b9e76c3b1c2813c9a4101368b804ae71a1ce4df7e9f3e917a437b65bce85",
+    "retryable": true,
+    "status": "transport_error",
+    "usage": null,
+    "wire_hash": "e45b42f648d08bde9ff21dcfba914deed4b6dfe5fd97ac55113a87dba7a3efbd"
+  }
+]

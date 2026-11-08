@@ -37,6 +37,12 @@ def main(argv=None):
     for name in ("plan", "go", "ledger", "out"):
         acquire_command.add_argument("--" + name, type=Path, required=True)
     acquire_command.add_argument("--pilot", type=Path, help="actual prior pilot directory; mandatory for main/repair")
+    continuation_plan = commands.add_parser("continuation-prepare", help="plan the explicit untouched-suffix operational amendment; no API calls")
+    continuation_plan.add_argument("--parent", type=Path, required=True)
+    continuation_plan.add_argument("--out", type=Path, required=True)
+    continuation = commands.add_parser("continuation-acquire", help="one source-bound, paced continuation; never resamples attempted roles")
+    for name in ("parent", "plan", "go", "ledger", "out"):
+        continuation.add_argument("--" + name, type=Path, required=True)
     args = parser.parse_args(argv)
     if args.command == "access":
         print(canonical({
@@ -51,8 +57,25 @@ def main(argv=None):
         }))
         return 0
     try:
-        if args.command == "live-prepare":
+        if args.command == "continuation-prepare":
+            from .continuation import make_continuation_plan
+            manifest = strict_json((args.parent / "manifest.json").read_text(encoding="utf-8"))
+            parent = strict_json((args.parent / "run.json").read_text(encoding="utf-8"))
+            plan = make_continuation_plan(manifest, parent)
+            write_json(args.out, plan)
+            print(canonical({"plan_hash": plan["plan_hash"], "new_request_cap": plan["new_request_cap"],
+                             "new_model_calls": 0, "maximum_possible_valid_roles": plan["maximum_possible_valid_roles"]}))
+        elif args.command == "continuation-acquire":
+            from .continuation import acquire_continuation
+            manifest, run = acquire_continuation(args.parent, args.plan, args.go, args.ledger, args.out)
+            report = analyze(manifest, run)
+            write_json(args.out / "analysis.json", report)
+            print(canonical({"audit": report["audit"], "amended_composite_gate": report["pilot_gate"],
+                             "new_api_requests": len(run["calls"]) - len(run["continuation"]["parent_run"]["calls"]),
+                             "stop_reason": run["stop_reason"]}))
+        elif args.command == "live-prepare":
             from .live_run import live_gate, live_manifest
+            from .continuation import effective_pilot_sources
             from .protocol import digest
             config = strict_json(args.config.read_text(encoding="utf-8"))
             pilot = None
@@ -60,6 +83,8 @@ def main(argv=None):
                 pilot_manifest = strict_json((args.pilot / "manifest.json").read_text(encoding="utf-8"))
                 pilot_run = strict_json((args.pilot / "run.json").read_text(encoding="utf-8"))
                 pilot = {"manifest": pilot_manifest, "gate": live_gate(pilot_manifest, pilot_run), "run_hash": digest(pilot_run)}
+                pilot["acquisition_code_hashes"] = effective_pilot_sources(pilot_manifest, pilot_run)
+                pilot["continuation_plan_hash"] = pilot_run.get("continuation", {}).get("plan", {}).get("plan_hash")
             manifest = live_manifest(config, args.phase, args.seed, pilot=pilot, repair_reason=args.repair_reason)
             write_json(args.out, manifest)
             print(canonical({"manifest_hash": manifest["manifest_hash"], "planned_requests": manifest["planned_requests"],
