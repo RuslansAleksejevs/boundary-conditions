@@ -9,7 +9,7 @@ See the [pilot report](../../reports/pilot/README.md) for results and limitation
 This directory preserves exact visible pilot records and a clearly labeled
 development-only subset. It is intentionally **not** a valid complete dataset for
 `run_live.py audit-campaign`. The 100 held-out task records and engineering-exclusion
-corpus are withheld while main is unstarted. Manifest/freeze hashes and schedule
+corpus are withheld until main acquisition ends. Manifest/freeze hashes and schedule
 metadata are not the held-out task contents or an empirical main result.
 
 | File | Scope |

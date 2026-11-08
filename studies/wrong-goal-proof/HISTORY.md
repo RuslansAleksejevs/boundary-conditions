@@ -426,3 +426,22 @@ observed minimum start spacing22.670035s. One request was still in flight.
 These interim operational counts are not a completed main analysis. The
 pilot-only report is explicitly preserved as of21:50UTC, before main began;
 no held-out task content is released while acquisition is ongoing.
+
+## 2026-11-08 — Pilot report published while the fixed main continues
+
+Fetched origin, reviewed all staged paths and privacy markers, checked append-only
+history, and committed only 32 owned study files as
+`8b431b26a6020bad9c98defd7a027ada5f34d6c5` (Report the real development pilot with
+scoped replayable evidence). Pushed the existing study branch and updated draft
+PR#4 in English. No force-push, direct main change, self-merge or submission was
+performed. The last reporting-test rerun passed 18 tests in0.292s. The final PDF
+has six pages, an explicit21:50UTC pilot cutoff, no TeX warnings, required ethics
+and AI disclosures, and no private host paths in extracted text. The PDF was
+also presented to the user; author review remains pending.
+
+Read-only main checkpoint at21:58:31Z:17 HTTP200 receipts,17 schema-completed
+roles and17 known costs totaling USD0.12502880; the last receipt finished at
+21:58:03.924727Z. No completed run.json existed. The already-running acquisition
+remains owned by its execution context; this worker starts no second process.
+Frozen source and all scientific settings are unchanged. Full main audit,
+analysis, counterexample verification and eventual public export remain pending.

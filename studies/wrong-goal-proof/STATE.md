@@ -49,8 +49,9 @@ The first main execution review denied dispatch without creating any run or
 wallet event. A later genuinely renewed authorization in the execution-owning
 context enabled one fresh review and the existing main process; no duplicate
 process was started by this study worker.
-Publication remains draft PR #4, now at acquisition commit
-`83aa8ee313d4f054ac47af038a8b5c33a6a1e859`; it has not been integrated.
+Publication remains draft PR #4. The pilot report/evidence update was pushed at
+`8b431b26a6020bad9c98defd7a027ada5f34d6c5`; it has not been integrated. Acquisition
+source remains bound to `83aa8ee313d4f054ac47af038a8b5c33a6a1e859`.
 
 ## Earlier preparation — 8 November 2026 UTC, before restored access
 
@@ -226,3 +227,10 @@ The recorded model/provider is Qwen3.5-122B-A10B/Alibaba, complete SSE, observed
 minimum attempt-start gap22.670035s. These are operational observations, not a
 completed scientific main result. The acquisition inventory remains unchanged.
 Only the separately dated pilot view/report may be published until main ends.
+
+At 21:58:31Z, the existing main journal contained 17 HTTP200 receipts and
+17 schema-completed roles, all costs known, totaling USD0.12502880 for main only.
+No completed main run file existed. The pilot-only update was committed and
+pushed to PR#4 after staged scope/privacy, append-only history and PDF checks.
+The final reporting-test rerun passed 18 tests in0.292s. The PR description now
+distinguishes the completed pilot from the ongoing main; no self-merge occurred.

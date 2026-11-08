@@ -54,6 +54,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 studies/wrong-goal-proof/reports/pilot_release
 Four envelope-boundary tests and five saved-pilot replay/mutation tests cover this
 additional publication path. They make no new model calls or observations.
 The official report template and source-reading scope are in [SOURCES.md](SOURCES.md).
-The [development-only manuscript](pilot/README.md) is compiled from actual pilot
-results and remains pending human author review. Main has not started; no
-held-out report or competition submission is claimed.
+The [development-only manuscript](pilot/README.md) records the 21:50 UTC pilot
+cutoff and remains pending human author review. Current acquisition status is in
+[STATE.md](../STATE.md); no completed held-out report or competition submission is
+claimed by this historical manuscript.
