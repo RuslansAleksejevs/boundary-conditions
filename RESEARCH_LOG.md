@@ -1,0 +1,14 @@
+# Research log
+
+## 2026-11-07 — Repository foundation
+
+- Established two separate study plans: summary laundering and certificate scope.
+- Defined shared standards for exact scoring, frozen evaluation, uncertainty,
+  utility, cost, and publication review.
+- Added a focused reading list and explicit boundaries on novelty claims.
+- Prepared an English public research record for Swarm Alignment Hackathon 2026.
+
+**Evidence status:** no implementation, model experiments, or measured results yet.
+The proposed combined budget is 960 model calls, including pilots; this is a
+planning estimate, not executed work. Next: implement and test the local harnesses,
+then run bounded pilots once model access and execution limits are settled.
