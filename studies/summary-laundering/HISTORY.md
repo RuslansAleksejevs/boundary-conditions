@@ -45,3 +45,17 @@ scientific holdout, or contest submission occurred. Test doubles are prominently
 marked as engineering-only. The live experiment remains blocked on an approved
 model interface and explicit bounded-spending authorization. Fetched origin
 before preparing publication; no shared branch or other study was modified.
+
+## 2026-11-08 UTC — branch published and pull request opened
+
+Committed the implementation as `5bf037c1c0587510c69740f267ca3f8f76041cd1` and
+pushed `study/summary-laundering` without force. Opened
+[pull request #1](https://github.com/RuslansAleksejevs/boundary-conditions/pull/1)
+against main. All 17 published paths were under this study. Staged whitespace and
+private-path/credential-pattern checks passed; the commit uses a GitHub noreply
+address. Raw logs, coordination identifiers and personal paths were not published.
+
+The branch is ready for integration review, not claimed to be integrated into
+main. The implementation worker did not merge the PR or edit shared repository
+documents. Publication is not competition submission. The empirical model-access
+and bounded-budget blocker remains unchanged.

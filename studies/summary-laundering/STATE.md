@@ -14,9 +14,12 @@ Research effects: UNKNOWN, not measured with an LLM.
 - Approved experimental model interface, price and batch authorization: NOT
   ESTABLISHED. No network/model batch was attempted; external API requests: 0.
 - Read-only peer review completed; manifest/profile and usage/cost integrity
-  findings fixed with regression tests. Publication is in progress, not integrated
-  into main.
+  findings fixed with regression tests.
+- Published branch: `study/summary-laundering`.
+  [Pull request #1](https://github.com/RuslansAleksejevs/boundary-conditions/pull/1)
+  is open for integration review; it has not been merged by this workstream.
+  Implementation commit: `5bf037c1c0587510c69740f267ca3f8f76041cd1`.
 
-Next: publish the study branch/PR for coordinator integration. A separate
-authorized model interface and bounded budget are the minimum
+Next: coordinator integration review. A separate authorized model interface
+and bounded budget are the minimum
 external requirements before a real pilot; do not weaken the policy to obtain an effect.
