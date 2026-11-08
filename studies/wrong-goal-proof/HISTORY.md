@@ -211,3 +211,28 @@ Command unchanged:
 158-test run passed in 21.500 seconds before the final usage-order regression.
 No experimental model requests, paid experiment outcomes or empirical freeze
 exist yet. An exact reviewed source/configuration/manifest GO is still required.
+
+## 2026-11-08 — Pre-inference terminal SSE compatibility correction
+
+The companion study's first real request exposed the provider's repeated empty
+terminal choice in its final usage footer. This study still had zero model
+requests. Added the exact sanitized terminal events as an attributed interface
+fixture, not a wrong-goal-proof outcome. Acceptance is restricted to the last
+event with final usage, identical finish/native-finish/identity, and empty allowed
+delta fields. Hidden reasoning is still discarded before storage; its presence
+is marked only as a Boolean so a hidden footer continuation also fails audit.
+Tests reject nonfinal/no-usage/third terminals, changed finish, new content or
+refusal, extra delta fields and hidden continuation. JSON test fixtures are now
+included in the source inventory.
+
+An initial 163-test run was invalidated when the fixture-inventory line was added
+while that run was in progress: the existing source-change guard correctly
+stopped its offline CLI audit/analysis (two failed assertions and one downstream
+missing-file error). A full unchanged-source rerun is required. No scientific
+logic, prompts, cases, scoring rule or sample size changed. The earlier unused
+campaign preparation is retained; the replacement will use the same prospective
+seed and dataset, not a repeat pilot or outcome-conditioned resampling.
+
+The unchanged-source rerun completed successfully: **163 tests passed in 35.580
+seconds**, Python 3.14.6, using the same full-suite command. No external inference
+or experimental spending occurred during this compatibility correction.

@@ -185,3 +185,11 @@ or internal provider-daemon workaround is outside this implementation.
 Prepared infrastructure can be reviewed independently of those blockers. A draft
 pull request is not integration or a competition submission. The old engineering
 bundles remain tests and cannot be relabeled as a confirmatory model evaluation.
+
+Final pre-inference terminal-footer compatibility validation: **163 tests passed
+in 35.580 seconds**, Python 3.14.6, unchanged full-suite command. Four more tests
+cover the observed empty terminal usage footer and rejection of inconsistent,
+nonfinal, unbilled, extra-content and hidden-continuation repeats. The observed
+fixture is explicitly attributed to the companion study and is not one of this
+study's model results. A preceding test run was invalidated by a concurrent source
+inventory edit; the final successful run used unchanged source.

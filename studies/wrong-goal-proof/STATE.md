@@ -7,8 +7,8 @@ classification: PROJECT_REPORTED. This is an engineering record, not model evide
   scalar/vector semantics, exhaustive certificates, seeded disjoint datasets,
   natural translation and paired certificate replay, offline adapters, manifest,
   incremental logging, freeze rehearsal, audit, and paired analysis.
-- Latest complete test pass: 159 tests, Python 3.14.6, 23.014 seconds. This includes
-  the original 105 tests plus 54 live-interface/exclusion/ledger/SSE tests.
+- Latest complete test pass: 163 tests, Python 3.14.6, 35.580 seconds. This includes
+  the original 105 tests plus 58 live-interface/exclusion/ledger/SSE tests.
 - No experimental model calls, paid batches, or competition submission.
 - A separate live HTTP interface, persistent USD20 wallet, source/configuration/
   manifest-bound GO, actual-pilot freeze and campaign auditor are implemented.
@@ -33,8 +33,8 @@ classification: PROJECT_REPORTED. This is an engineering record, not model evide
   https://github.com/RuslansAleksejevs/boundary-conditions/pull/4, not yet integrated.
   Live implementation commit: `040b36dbd203e34c9f80180c266ea413e028b90c`.
 
-Next: coordinator review of the published live preparation, then resolve
-credential availability and the exact source-bound acquisition GO. No real model
+Next: obtain the exact source-bound acquisition GO after the successful
+pre-inference SSE compatibility tests. Credential access is restored. No real model
 pilot, empirical freeze, main evaluation or empirical report/PDF exists yet.
 
 ## Earlier preparation — 8 November 2026 UTC, before restored access
@@ -86,3 +86,12 @@ reported API cost and conservatively uses the larger of that cost and the
 no-cache token-price bound. Malformed/partial/missing-cost billing keeps the full
 unknown-charge reservation. The final 159-test suite passed. Exact source-bound
 GO and fresh campaign preparation are the remaining pre-inference steps.
+
+Before this study's first inference, the companion study observed OpenRouter
+repeating an identical empty terminal choice in its final usage event. The
+parser now accepts exactly that final idempotent footer and rejects changed
+finish/native-finish, extra delta fields, hidden continuation, or earlier/extra
+terminal repeats. A sanitized, explicitly attributed interface fixture is
+included in the source inventory. The initial unused preparation is preserved;
+its replacement uses the same seed and dataset, with no outcome-based resampling
+and no use of the conditional pilot-repeat allowance.

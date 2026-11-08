@@ -5,12 +5,14 @@ import io
 import signal
 import time
 import unittest
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
 from test_live import fixture_config
 from wgp.live_http import OpenRouterHTTP, interpret_receipt, visible_response
 from wgp.logic import SchemaError, canonical
+from wgp.records import read_json
 from wgp.stream import assemble, audit_stream, read_sse, wall_timeout
 
 
@@ -76,6 +78,55 @@ class StreamTests(unittest.TestCase):
         self.assertTrue(result["fatal"])
         self.assertIsNone(result["ledger_charge_usd"])
         self.assertIsNone(result["usage"]["cost_usd"])
+
+    def test_idempotent_terminal_usage_footer_is_accepted(self):
+        data = chunks()
+        data[-1]["choices"] = [{"index": 0, "delta": {"role": "assistant", "content": ""}, "finish_reason": "stop"}]
+        result = interpret_receipt(acquire_fixture(wire(data)), fixture_config())
+        self.assertEqual(result["status"], "response")
+        self.assertEqual(result["ledger_charge_usd"], "0.000135")
+
+    def test_repeated_terminal_cannot_change_finish_or_add_content(self):
+        for finish, delta in (("length", {}), ("stop", {"content": "more"}), ("stop", {"refusal": "new"})):
+            data = chunks()
+            data[-1]["choices"] = [{"index": 0, "delta": delta, "finish_reason": finish}]
+            result = interpret_receipt(acquire_fixture(wire(data)), fixture_config())
+            with self.subTest(finish=finish, delta=delta):
+                self.assertTrue(result["fatal"])
+                self.assertIsNone(result["ledger_charge_usd"])
+
+    def test_duplicate_finish_requires_the_last_event_with_final_usage(self):
+        for defect in ("not_last", "no_usage", "native_mismatch", "third_terminal", "extra_delta", "hidden_reasoning"):
+            data = chunks()
+            data[-1]["choices"] = [{"index": 0, "delta": {"content": ""}, "finish_reason": "stop"}]
+            if defect == "not_last":
+                data.append({"choices": []})
+            elif defect == "no_usage":
+                data[-1].pop("usage")
+            elif defect == "native_mismatch":
+                data[-1]["choices"][0]["native_finish_reason"] = "length"
+            elif defect == "third_terminal":
+                data.insert(-1, {"choices": copy.deepcopy(data[-1]["choices"])})
+            elif defect == "extra_delta":
+                data[-1]["choices"][0]["delta"]["tool_calls"] = []
+            else:
+                data[-1]["choices"][0]["delta"]["reasoning_content"] = "HIDDEN_FOOTER_FIXTURE"
+            receipt = acquire_fixture(wire(data))
+            result = interpret_receipt(receipt, fixture_config())
+            with self.subTest(defect=defect):
+                self.assertTrue(result["fatal"])
+                self.assertIsNone(result["ledger_charge_usd"])
+                self.assertNotIn("HIDDEN_FOOTER_FIXTURE", canonical(receipt))
+
+    def test_observed_sanitized_alibaba_terminal_footer(self):
+        fixture = read_json(Path(__file__).parent / "fixtures" / "alibaba-terminal-usage.json")
+        receipt = acquire_fixture(wire(fixture["events"]))
+        result = interpret_receipt(receipt, fixture_config())
+        self.assertEqual(result["status"], "response")
+        self.assertEqual(result["usage"]["input_tokens"], 231)
+        self.assertEqual(result["usage"]["output_tokens"], 2575)
+        self.assertEqual(result["usage"]["cost_usd"], 0.00541606)
+        self.assertEqual(result["text"], "")
 
     def test_missing_done_finish_usage_or_identity_is_rejected(self):
         for defect in ("done", "finish", "usage", "provider", "role"):

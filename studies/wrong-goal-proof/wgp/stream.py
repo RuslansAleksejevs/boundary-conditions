@@ -35,7 +35,7 @@ def assemble(chunks, done):
     if type(chunks) is not list or done is not True:
         raise SchemaError("incomplete SSE stream: final DONE required")
     identity, contents, usage, finish, role, refusals = {}, [], None, None, None, []
-    usage_index, finish_index = -1, -1
+    usage_index, finish_index, native_finish = -1, -1, None
     for index, chunk in enumerate(chunks):
         if type(chunk) is not dict or chunk.get("error") is not None:
             raise SchemaError("provider error or non-object SSE event")
@@ -69,7 +69,7 @@ def assemble(chunks, done):
             role = "assistant"
         content = delta.get("content")
         if delta.get("refusal") is not None:
-            if type(delta["refusal"]) is not str:
+            if type(delta["refusal"]) is not str or (finish is not None and delta["refusal"]):
                 raise SchemaError("invalid SSE refusal")
             refusals.append(delta["refusal"])
         if content is not None:
@@ -77,10 +77,20 @@ def assemble(chunks, done):
                 raise SchemaError("invalid content or content after SSE finish")
             contents.append(content)
         if choice.get("finish_reason") is not None:
-            if finish is not None or type(choice["finish_reason"]) is not str:
-                raise SchemaError("duplicate or invalid SSE finish")
-            finish = choice["finish_reason"]
-            finish_index = index
+            terminal = choice["finish_reason"]
+            if type(terminal) is not str or (finish is not None and terminal != finish):
+                raise SchemaError("conflicting or invalid SSE finish")
+            if finish is not None:
+                # The observed OpenRouter footer repeats the terminal choice
+                # with final usage. Accept only that final, empty, idempotent
+                # receipt, never a second answer or a continuing stream.
+                if (index != len(chunks) - 1 or chunk.get("usage") is None
+                        or choice.get("native_finish_reason") != native_finish
+                        or set(delta) - {"role", "content", "refusal"}
+                        or content or delta.get("refusal")):
+                    raise SchemaError("non-idempotent duplicate SSE terminal finish")
+            else:
+                finish, finish_index, native_finish = terminal, index, choice.get("native_finish_reason")
     if (set(identity) != {"id", "model", "provider"} or usage is None or finish is None
             or role != "assistant" or usage_index < finish_index):
         raise SchemaError("SSE lacks complete provider identity, assistant role, usage or finish")
@@ -104,7 +114,17 @@ def read_sse(response, redact, visible, record):
             return
         if trace["done"]:
             raise SchemaError("SSE data after DONE")
-        trace["chunks"].append(visible(strict_json(redact(text), max_bytes=MAX_WIRE_BYTES)))
+        raw_chunk = strict_json(redact(text), max_bytes=MAX_WIRE_BYTES)
+        chunk = visible(raw_chunk)
+        # Preserve only the fact that hidden fields existed, never their text.
+        # This lets the repeatable audit reject hidden continuation in a footer.
+        if type(raw_chunk) is dict and type(raw_chunk.get("choices")) is list:
+            for raw_choice, choice in zip(raw_chunk["choices"], chunk["choices"]):
+                raw_delta = raw_choice.get("delta") if type(raw_choice) is dict else None
+                if (type(raw_delta) is dict and any(raw_delta.get(k) is not None
+                        for k in ("reasoning", "reasoning_details", "reasoning_content"))):
+                    choice["delta"]["reasoning_fields_removed"] = True
+        trace["chunks"].append(chunk)
 
     try:
         while True:
