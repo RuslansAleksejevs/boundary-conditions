@@ -16,11 +16,14 @@ from .backends import Response
 from .data import Scenario, extract, generate
 from .environment import evaluate, strict_json
 from .live_transport import (
-    BudgetStop, Ledger, OpenRouterTransport, audit_ledger, inspect_response,
+    BudgetStop, Ledger, OpenRouterTransport, assemble_stream, audit_ledger, inspect_response,
     money, reservation, utc_now, validate_config, validate_go, wire_request,
 )
 from .protocol import CONDITIONS, canonical, digest, executor_request, lexical_retention, protocol_fingerprint, summary_request
 from .runner import Runner, code_hashes, revision, validate_manifest, write_json
+
+
+INSPECTED_LIVE_FIXTURES = (("pilot", 2026110801), ("pilot", 1), ("main", 2))
 
 
 def fresh_cases(phase, seed):
@@ -69,6 +72,14 @@ def fresh_cases(phase, seed):
     return [s if s.attacked else replace(s, paragraph=_clean_paragraph(attack_lengths[s.cluster_id])) for s in result]
 
 
+def check_fixture_separation(scenarios):
+    """Exclude the exact live-interface fixtures inspected before acquisition."""
+    fixtures = [s for phase, seed in INSPECTED_LIVE_FIXTURES for s in fresh_cases(phase, seed)]
+    for key in ("scenario_id", "task_id", "facts", "raw"):
+        if {getattr(s, key) for s in scenarios} & {getattr(s, key) for s in fixtures}:
+            raise ValueError("prospective acquisition overlaps an inspected live-interface fixture")
+
+
 def frozen_schedule(scenarios, phase, seed):
     rng = random.Random(f"live-order/v1/{phase}/{seed}")
     clean = [s for s in scenarios if not s.attacked]
@@ -95,6 +106,8 @@ def live_manifest(config, phase, seed, *, pilot=None, repair_reason=None, fixtur
     if phase == "pilot_repair" and (not repair_reason or pilot is None or pilot["gate"]["passed"]):
         raise ValueError("repair needs a failed pilot and a genuine documented interface correction")
     scenarios = fresh_cases(phase, seed)
+    if not fixture:
+        check_fixture_separation(scenarios)
     if pilot is not None:
         if not fixture and pilot["manifest"]["acquisition_mode"] != "official_https":
             raise ValueError("a fixture cannot qualify an empirical pilot")
@@ -124,6 +137,9 @@ def live_manifest(config, phase, seed, *, pilot=None, repair_reason=None, fixtur
         "exclusion_rule": "First numeric fact outside all old [10,89] engineering values; new namespace and disjoint pilot/main task templates.",
         "reserved_per_attempt_usd": str(reservation(config)),
         "maximum_campaign_reservation_usd": str(reservation(config) * config["max_attempts"]),
+        "budget_admission": "Reserve full native context separately for input and billed output before each request; confirmed unused reserve may be released. The hard wallet is binding, not the all-attempt upper bound. Budget stop leaves scheduled rows missing; no adaptive sample shrink.",
+        "output_bound_assumption": "The advertised native context applies to the entire sequence including reasoning. Each output component is therefore bounded by that context; reported violations halt acquisition.",
+        "inspected_fixture_recipes": [list(recipe) for recipe in INSPECTED_LIVE_FIXTURES],
         "freeze_status": "empirical_main_freeze" if phase == "main" and not fixture else "prospective_acquisition_plan",
         "pilot_binding": None if pilot is None else {
             "manifest_hash": pilot["manifest"]["manifest_hash"], "run_hash": pilot["run_hash"], "gate": pilot["gate"],
@@ -149,6 +165,8 @@ def validate_live_manifest(manifest, check_code=True):
     scenarios = [Scenario(**s) for s in manifest["scenarios"]]
     if scenarios != fresh_cases(manifest["phase"], manifest["seed"]):
         raise ValueError("case generator identity changed")
+    if manifest["acquisition_mode"] == "official_https":
+        check_fixture_separation(scenarios)
     if manifest["schedule"] != frozen_schedule(scenarios, manifest["phase"], manifest["seed"]):
         raise ValueError("frozen acquisition order changed")
     if manifest["planned_requests"] != len(scenarios) * 9:
@@ -158,6 +176,7 @@ def validate_live_manifest(manifest, check_code=True):
             or manifest["conditions"] != list(CONDITIONS)
             or manifest["primary_contrasts"] != [["S-P", "S-D"], ["S-P", "E-P"]]
             or manifest["secondary_contrasts"] != [["S-P-W", "S-P"], ["S-P-P", "S-P"], ["S-P-P", "S-P-W"]]
+            or manifest["inspected_fixture_recipes"] != [list(recipe) for recipe in INSPECTED_LIVE_FIXTURES]
             or manifest["bootstrap"] != {"unit": "cluster_id", "draws": 2000, "seed": 8128}):
         raise ValueError("frozen limits/primary analysis differ from protocol")
     if (manifest["reserved_per_attempt_usd"] != str(reservation(manifest["config"]))
@@ -177,6 +196,7 @@ class LiveRunner(Runner):
         self.ledger, self.go = ledger, go
         self.stop_reason = None
         self.provider_ids = set()
+        self.consecutive_transport_failures = 0
 
     def call(self, request_value, call_id):
         request_hash = digest({"request": request_value, "config": self.config})
@@ -219,6 +239,7 @@ class LiveRunner(Runner):
             if classified["fatal"]:
                 self.stop_reason = classified["status"]
             if classified["status"] == "completed":
+                self.consecutive_transport_failures = 0
                 if request_value["role"] == "summarizer" and len(classified["text"].encode()) > self.config["max_summary_utf8_bytes"]:
                     return None, "summary_limit", request_hash
                 return Response(classified["text"], classified["usage"], classified["cost_usd"], entry["model_version"]), "completed", request_hash
@@ -226,6 +247,12 @@ class LiveRunner(Runner):
                     and self.retries_used < self.manifest["retry_budget"]):
                 time.sleep(1)
                 continue
+            if classified["status"] == "transport_error":
+                self.consecutive_transport_failures += 1
+                if self.consecutive_transport_failures >= 3 and self.stop_reason is None:
+                    self.stop_reason = "three_consecutive_failed_logical_transports"
+            else:
+                self.consecutive_transport_failures = 0
             return None, classified["status"], request_hash
         raise AssertionError("unreachable")
 
@@ -298,6 +325,11 @@ def audit_live(manifest, run):
         if call["attempt"] == 0:
             seen_order.append(call["call_id"])
         classified = inspect_response(call["acquisition"], manifest["config"])
+        if call["acquisition"].get("stream_done") and not call["acquisition"]["technical_error"]:
+            if assemble_stream(call["acquisition"]["stream_events"], True) != call["acquisition"]["visible_response"]:
+                raise ValueError("visible answer differs from recorded SSE events")
+        elif manifest["acquisition_mode"] == "official_https" and not call["acquisition"]["technical_error"]:
+            raise ValueError("official acquisition lacks complete SSE receipt")
         provider_id = (call["acquisition"].get("visible_response") or {}).get("id")
         if type(provider_id) is str and provider_id.strip():
             if provider_id in provider_ids:

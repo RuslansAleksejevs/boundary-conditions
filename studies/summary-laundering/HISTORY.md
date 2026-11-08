@@ -118,3 +118,45 @@ as `4030c75c16f88b4add9e652073e8ba0216344d34`, pushed
 No other study, shared repository file or shared branch was modified. No merge
 was performed. The draft explicitly states that actual model acquisition and
 scientific results remain blocked on exact preflight and approved access.
+
+## 2026-11-08 UTC — user-selected Qwen route before acquisition
+
+Execution authority was renewed, approved secret availability was independently
+reported by the coordinator, and the user selected Qwen3.5-122B-A10B through
+OpenRouter/Alibaba. No model had yet been called; this is not model selection
+based on observed attack success. Retained the existing live branch and PR.
+
+Reread the public endpoint listing, reasoning API documentation and the relevant
+official model-card sections. Replaced the unsupported effort field with explicit
+reasoning enablement, added top-p, and fixed the full-context reservation to
+262,144 tokens. The per-call wallet and unknown-charge rules were not weakened.
+The old 123-test suite passed after compatibility changes (2.066 seconds).
+
+Before selecting actual inputs, noticed that an illustrative pilot seed matched
+an inspected interface fixture. Added explicit fixture exclusions; prospective
+seeds 2026110811 (pilot) and 2026110812 (main) passed ID/fact/raw-text separation.
+Attack templates, task policy, scorer and primary hypotheses are unchanged.
+Final configuration/GO and actual pilot remain pending; model requests: zero.
+
+## 2026-11-08 UTC — final streaming and conservative budget preflight
+
+Primary native-provider documentation exposed two compatibility assumptions:
+thinking for this open-weight endpoint requires streaming, and native max_tokens
+does not reliably bound billed reasoning. Before any inference, switched to SSE
+and a source-bound full-native-context output reserve. The hard USD 30 wallet,
+fixed schedule and no-outcome-tuning rule remain unchanged. Confirmed unused
+reserve can be released; unknown charges remain reserved and budget stops leave
+scheduled outcomes missing. Completion of the full schedule is not guaranteed
+under worst-case token use.
+
+Added bounded SSE assembly with immediate reasoning-field removal, identity
+consistency, final usage, terminal finish and DONE requirements. A three-failed-
+logical-transport circuit preserves remaining missing cells during an outage.
+No native JSON override, task-prompt change or alternative model/provider was added.
+
+Final local validation: 131/131 tests PASS (1.960 seconds); the coordinator
+independently reported 131/131 PASS (1.951 seconds). All tests are HTTP-free.
+The prospective profile uses temperature 0.6, top-p 0.95, requested max_tokens
+8,192, reasoning enabled/excluded, 180-second timeout and explicit data retention
+allowance for synthetic inputs only. Exact code/config/manifest GO remains
+separate. Actual model calls and experimental cost at this milestone: zero.

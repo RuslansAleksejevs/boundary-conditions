@@ -11,24 +11,33 @@ assistant session or weaken the original offline evidence checks.
 
 ## Authorization and transport
 
-The intended single route is OpenRouter to Together, `openai/gpt-oss-120b`.
+The user-selected single route is OpenRouter to Alibaba,
+`qwen/qwen3.5-122b-a10b`. The earlier Together/gpt-oss configuration was a
+preparation fixture, never a model evaluation or outcome-based model choice.
 Before acquisition, pin the exact provider slug/response name, temperature,
-reasoning effort, maximum output tokens, data policy, applicable prices and
+top-p, reasoning enablement, maximum output tokens, data policy, applicable prices and
 model-version limitation in a configuration file. A separate preflight GO must
 bind its hash, source-code hash inventory, study, monetary allocation and maximum attempts. The live CLI
 cannot use an offline fixture as empirical pilot evidence.
 
 Only the fixed official HTTPS chat-completions endpoint is supported. Requests
 set `only`, `order`, `allow_fallbacks=false`, `require_parameters=true`, and maximum
-input/output prices. No SDK or redirect retries occur. Authentication comes only
+input/output prices. They use SSE (`stream=true`) with final usage requested.
+No SDK or redirect retries occur. Authentication comes only
 from the approved `OPENROUTER_API_KEY` environment attachment, after the GO check;
 there is no credential-store scan, alternate key, daemon endpoint or fallback.
 Headers containing credentials are never logged.
 
-Reasoning effort is explicit and `reasoning.exclude=true`; hidden reasoning text
+Reasoning uses explicit `reasoning.enabled` and `reasoning.exclude=true`; the
+selected endpoint does not advertise `reasoning_effort`, so it is not sent. Hidden reasoning text
 is not requested or stored. The exact visible message, selected provider metadata,
 usage, generation ID, available HTTP request ID, timestamps and body hash are
-retained privately. Reasoning usage is part of completion tokens and is not billed
+retained privately. Sanitized SSE events are retained; raw stream bytes are hashed
+through the terminal marker but not persisted. A complete answer requires a
+terminal finish, complete final usage, consistent identity and `[DONE]`. Partial
+or timed-out streams never become complete outcomes. Reads are bounded by eight
+million bytes and 180 seconds total wall time, with a shrinking socket timeout.
+Reasoning usage is part of completion tokens and is not billed
 twice in analysis. Exact weight versions may be unavailable from the hosted API;
 this must be disclosed rather than equating the model name to a pinned checkpoint.
 
@@ -49,12 +58,41 @@ Any provider charge above its conservative bound stops further acquisition.
 The local guard cannot guarantee behavior of a misbilling external service; its
 assumptions, tariff, output margin and violations must be reported explicitly.
 
+The verified Alibaba quote is USD 0.26/2.08 per million input/output tokens,
+with a 262,144-token native context. Reserve that full context separately for
+input and billed output: **USD 0.61341696 per attempt**. The explicit assumption
+is that the advertised native context bounds the entire sequence, including
+reasoning. The endpoint's 65,536 completion listing is not assumed to include
+all hidden reasoning. Reported violations halt acquisition.
+Multiplying the conservative bound by all 788 authorized attempts gives
+USD 483.37256448, **not** a spending authorization or expected expense.
+The USD 30 wallet remains binding before every dispatch; confirmed settlements
+release only unused reserve. This guards expenditure but does not guarantee that
+all planned calls fit under worst-case token use. Pilot cost/time must be reviewed
+before main freeze; any budget stop preserves the remaining scheduled missing rows.
+
+The fixed requested `max_tokens` is 8,192, temperature 0.6 and top-p 0.95.
+Native Alibaba documentation describes this token parameter as an answer cap
+excluding reasoning for these models; it is therefore not used as the billed
+output bound. No response-format override or reasoning-budget guess is added.
+The model's native thinking endpoint is documented as streaming-only, motivating
+the SSE adaptation before any observations.
+
+Routing uses `data_collection="allow"`: provider metadata reports prompt logging
+with 30-day retention, no training on submitted data, and no zero-retention
+guarantee. Only synthetic study tasks are sent, never private coordination or
+personal context. This policy is explicit rather than claiming incompatible ZDR.
+
 The maximum authorized schedule is 648 core requests, at most 32 identical
 technical retries across the whole campaign, and at most one 108-request repeat
 pilot for a genuine documented interface correction: **788 total attempts**.
 Per-pilot retry allowance is five, main at most 27, further restricted by the
 shared 32-attempt reserve and monetary cap. Refusals, malformed action JSON,
 truncated model output and unfavorable outcomes are never resampled.
+After three consecutive failed logical transport calls, acquisition stops and
+the remaining scheduled cells stay missing. The counter resets after a successful
+transport; model refusals, invalid answers and truncation do not trip this outage
+circuit. The circuit never selects an alternative provider.
 
 ## Data, schedule and freeze
 
@@ -65,6 +103,8 @@ API role level, one summary is saved and reused, and state is reset per conditio
 
 Fresh task values are outside every old engineering generator range: pilot uses
 four-digit values, the prospective main uses five-digit values, with new IDs.
+The inspected live-interface fixtures are also excluded explicitly by their
+IDs, facts and raw text; their old illustrative pilot seed is not reused.
 Pilot/main task templates remain disjoint, and clean counterparts intentionally
 share an original. Attack templates are unchanged and were already known to the
 developers; one family remains outside empirical pilot tuning, not unknown prior
@@ -89,7 +129,7 @@ All paths below are placeholders for private files, not checked-in secrets.
 Preparation and wallet creation make no inference request:
 
 ```sh
-python3 studies/summary-laundering/run.py live-prepare --config CONFIG.json --phase pilot --seed 2026110801 --out PILOT_PLAN.json
+python3 studies/summary-laundering/run.py live-prepare --config CONFIG.json --phase pilot --seed 2026110811 --out PILOT_PLAN.json
 python3 studies/summary-laundering/run.py live-wallet --config CONFIG.json --out CAMPAIGN_WALLET.jsonl
 ```
 
@@ -99,7 +139,7 @@ Only after approved secret attachment and the exact coordinator GO:
 python3 studies/summary-laundering/run.py live-acquire --plan PILOT_PLAN.json --go PREFLIGHT_GO.json --ledger CAMPAIGN_WALLET.jsonl --out PILOT_RUN
 python3 studies/summary-laundering/run.py audit PILOT_RUN
 python3 studies/summary-laundering/run.py analyze PILOT_RUN
-python3 studies/summary-laundering/run.py live-prepare --config CONFIG.json --phase main --seed 2026110802 --pilot PILOT_RUN --out MAIN_FREEZE.json
+python3 studies/summary-laundering/run.py live-prepare --config CONFIG.json --phase main --seed 2026110812 --pilot PILOT_RUN --out MAIN_FREEZE.json
 python3 studies/summary-laundering/run.py live-acquire --plan MAIN_FREEZE.json --go PREFLIGHT_GO.json --ledger CAMPAIGN_WALLET.jsonl --pilot PILOT_RUN --out MAIN_RUN
 ```
 
@@ -124,3 +164,14 @@ The reasoning documentation warns that output caps include billed reasoning and
 gives examples of slightly over-cap reported counts. The output reservation
 margin and live tariff therefore require explicit preflight approval; neither
 is inferred from the research assistant configuration.
+
+The [selected endpoint listing](https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints)
+was reread before acquisition: tag `alibaba`, response provider `Alibaba`, display
+name dated `20260224`, context 262,144, maximum completion 65,536. A dated display
+name is not proof of an immutable served weight revision. The
+[official model card](https://huggingface.co/Qwen/Qwen3.5-122B-A10B)
+documents thinking mode and sampling recommendations; hosted support is checked
+against the endpoint, not assumed from self-hosted examples.
+Native API caveats were verified in Alibaba's
+[deep-thinking documentation](https://www.alibabacloud.com/help/en/model-studio/deep-thinking)
+and [Chat Completions reference](https://www.alibabacloud.com/help/en/model-studio/qwen-api-via-openai-chat-completions).

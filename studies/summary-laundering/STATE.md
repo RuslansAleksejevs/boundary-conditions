@@ -14,20 +14,26 @@ attachment attempt or model request has been made by this workstream.
 Implemented an initial official HTTPS adapter, durable conservative wallet,
 fresh-case generation, frozen schedule, distinct live audit and real pilot gate.
 The existing offline-only manifest checks remain intact. The current suite is
-**123/123 PASS** (2.281 seconds), entirely local and HTTP-free. Read-only review
+**131/131 PASS** (1.960 seconds), entirely local and HTTP-free. Read-only review
 identified two receipt-integrity gaps: trusting a logged retry flag and accepting
 duplicate/empty provider IDs. Both are fixed and regression-tested; the peer
 confirmed the fixes against exact file hashes. This is code review, not provider
 or empirical approval. See LIVE_PROTOCOL.md and VALIDATION.md.
-Final model/sampling/pricing parameters and approved credential access remain
-pending. Actual model requests and experimental spend in this stage: **0**.
+The user renewed execution authority and selected Qwen3.5-122B-A10B through
+OpenRouter/Alibaba before any observations. Approved secret access is now reported
+available. The old gpt-oss fixture is superseded, without model search or observed
+effects. The fixed Qwen-compatible SSE configuration reserves full native context
+for both input and billed output, with the hard USD 30 wallet unchanged.
+The coordinator independently reported 131 tests passing (1.951 seconds); final
+source-bound GO and current peer confirmation are pending. Actual model requests
+and experimental spend in this stage remain **0**.
 
 Prepared code is published in [draft pull request #3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3),
 implementation commit `4030c75c16f88b4add9e652073e8ba0216344d34`.
 It is not integrated into main. The draft records an access-blocked preparatory
 milestone, not completion of the empirical research goal.
 
-Next: obtain the exact preflight GO and approved secret availability, then
+Next: obtain final code/config-bound preflight GO, then
 execute the actual bounded pilot and main
 evaluation if gates pass. Do not mistake these preparatory tests for completion
 of the newly authorized scientific stage.

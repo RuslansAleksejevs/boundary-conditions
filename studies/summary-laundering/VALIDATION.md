@@ -1,7 +1,7 @@
 # Engineering validation
 
 This file records software tests only. No LLM results or scientific holdout have
-been produced. The latest live-contract suite is **123/123 PASS**; see the final
+been produced. The latest live-contract suite is **131/131 PASS**; see the final
 section. The earlier offline milestone on 8 November 2026 UTC was **90 tests passed** with Python 3.14.6
 (stdlib only; observed unittest wall time 1.238 seconds). Earlier 76-test and
 81-test milestones remain in HISTORY.md. The research protocol is not empirically
@@ -115,3 +115,24 @@ clean originals; passing these thresholds in a fixture never authorizes main.
 These checks establish software behavior, not API compatibility or model effects.
 The actual pilot, empirical freeze, main evaluation, measured cost/latency and
 scientific report are still blocked on exact preflight and approved model access.
+
+## Qwen/SSE compatibility validation before acquisition
+
+After the user's model selection and renewed execution authority, adapted the
+same study to the fixed Qwen/Alibaba route. Official native-provider documentation
+revealed streaming-only thinking and a visible-answer cap distinct from reasoning.
+The pre-observation amendment therefore uses SSE and reserves the full verified
+native context separately for input and billed output. The spending ceiling is
+unchanged; no guessed character-to-token conversion is used.
+
+Actual command: `python3 -m unittest discover -s studies/summary-laundering/tests -q`.
+Result: **131/131 PASS in 1.960 seconds**, Python 3.14.6, no network/model calls.
+The coordinator independently reported 131/131 PASS in 1.951 seconds. Tests cover
+fragmented UTF-8 SSE delivery, keepalives, usage-only final chunks, missing terminal
+markers/finish/usage, midstream error, reasoning-text removal, changing identities,
+byte/wall-time limits and unknown-charge handling. The outage circuit stops after
+three failed logical transports, without treating model truncation as an outage.
+Inspected live-interface fixture inputs cannot be acquired as fresh cases.
+
+These are interface tests, not proof that the actual provider works. The exact
+fresh pilot manifest and source-bound GO still precede all empirical acquisition.

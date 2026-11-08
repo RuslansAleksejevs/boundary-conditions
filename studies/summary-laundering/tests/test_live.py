@@ -8,6 +8,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import json
+import io
+from types import SimpleNamespace
 from urllib.error import HTTPError
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -15,10 +17,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from sl.analysis import analyze
 from sl.backends import TestDouble
 from sl.data import generate
-from sl.live_run import LiveRunner, audit_live, fresh_cases, live_gate, live_manifest, validate_live_manifest, verify_pilot_binding
+from sl.live_run import LiveRunner, audit_live, check_fixture_separation, fresh_cases, live_gate, live_manifest, validate_live_manifest, verify_pilot_binding
 from sl.live_transport import (
-    BudgetStop, ENDPOINT, Ledger, NoRedirect, OpenRouterTransport, audit_ledger, inspect_response,
-    reservation, utc_now, validate_config, validate_go, visible_envelope, wire_request,
+    BudgetStop, ENDPOINT, Ledger, NoRedirect, OpenRouterTransport, assemble_stream, audit_ledger, inspect_response,
+    read_sse, reservation, utc_now, validate_config, validate_go, visible_envelope, visible_stream_event, wire_request,
 )
 from sl.protocol import digest
 from sl.runner import code_hashes
@@ -27,13 +29,13 @@ from sl.runner import code_hashes
 def config():
     # A local fixture, NOT the approved acquisition configuration.
     return {
-        "schema_version": 1, "model": "openai/gpt-oss-120b", "provider_slug": "together",
-        "response_provider": "Together", "temperature": 0, "reasoning_effort": "medium",
-        "max_tokens": 8192, "context_tokens": 131072, "output_reservation_tokens": 16384,
-        "input_price_per_million": "0.15", "output_price_per_million": "0.60",
-        "price_source": "https://openrouter.ai/api/v1/models/openai/gpt-oss-120b/endpoints",
-        "price_as_of": "fixture-only", "data_collection": "deny", "timeout_seconds": 120,
-        "max_request_utf8_bytes": 16000, "max_response_utf8_bytes": 1_000_000,
+        "schema_version": 2, "model": "qwen/qwen3.5-122b-a10b", "provider_slug": "alibaba",
+        "response_provider": "Alibaba", "temperature": 0.6, "top_p": 0.95, "reasoning_enabled": True, "stream": True,
+        "max_tokens": 8192, "context_tokens": 262144, "output_reservation_tokens": 262144,
+        "input_price_per_million": "0.26", "output_price_per_million": "2.08", "request_price_usd": "0",
+        "price_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints",
+        "price_as_of": "fixture-only", "data_collection": "deny", "timeout_seconds": 180,
+        "max_request_utf8_bytes": 16000, "max_response_utf8_bytes": 8_000_000,
         "max_summary_utf8_bytes": 8000, "budget_usd": "30", "max_attempts": 788,
         "max_technical_retries": 32, "max_pilot_repeats": 1,
         "version_pin_status": "fixture; served weights not pinned",
@@ -47,9 +49,9 @@ def go(cfg):
             "approved_at_utc": "fixture-only", "authorization_reference": "UNIT_TEST_NOT_AUTHORIZATION"}
 
 
-def response(text="visible", *, finish="stop", provider="Together", cost=0.00021, generation_id="fixture-response"):
+def response(text="visible", *, finish="stop", provider="Alibaba", cost=0.000468, generation_id="fixture-response"):
     now = utc_now()
-    raw = {"id": generation_id, "model": "openai/gpt-oss-120b", "provider": provider,
+    raw = {"id": generation_id, "model": "qwen/qwen3.5-122b-a10b", "provider": provider,
            "usage": {"prompt_tokens": 1000, "completion_tokens": 100, "total_tokens": 1100, "cost": cost,
                      "completion_tokens_details": {"reasoning_tokens": 30},
                      "prompt_tokens_details": {"cached_tokens": 0}},
@@ -90,10 +92,33 @@ def fixture_run(fail=False):
     return manifest, run
 
 
+def stream_frames():
+    body = response()["visible_response"]
+    base = {key: body[key] for key in ("id", "model", "provider", "created")}
+    return [
+        {**base, "choices": [{"index": 0, "delta": {"role": "assistant", "reasoning_content": "HIDDEN_FIXTURE_REASONING"}, "finish_reason": None}]},
+        {**base, "choices": [{"index": 0, "delta": {"content": "vis"}, "finish_reason": None}]},
+        {**base, "choices": [{"index": 0, "delta": {"content": "ible"}, "finish_reason": "stop"}]},
+        {**base, "choices": [], "usage": body["usage"]},
+    ]
+
+
+def stream_bytes(frames=None, done=True):
+    frames = stream_frames() if frames is None else frames
+    body = b": keepalive\n\n" + b"".join(b"data: " + json.dumps(frame, ensure_ascii=False).encode() + b"\n\n" for frame in frames)
+    return body + (b"data: [DONE]\n\n" if done else b"")
+
+
+def stream_record():
+    return {"stream_events": [], "stream_done": False, "visible_response": None}
+
+
 class TransportTests(unittest.TestCase):
     def test_model_and_spending_constraints(self):
         for key, value in (("budget_usd", "50"), ("max_attempts", 789), ("max_technical_retries", 33),
-                           ("model", "another-model"), ("provider_slug", "groq")):
+                           ("model", "openai/gpt-oss-120b"), ("provider_slug", "together"),
+                           ("top_p", 0), ("reasoning_enabled", "medium"), ("context_tokens", 131072),
+                           ("request_price_usd", "0.01"), ("timeout_seconds", 181)):
             cfg = config()
             cfg[key] = value
             with self.assertRaises(ValueError):
@@ -122,15 +147,16 @@ class TransportTests(unittest.TestCase):
         cfg = config()
         class HTTPResponse:
             status = 200
-            headers = {"x-request-id": "test-id", "date": "test-date"}
+            headers = {"x-request-id": "test-id", "date": "test-date", "content-type": "text/event-stream"}
+            def __init__(self):
+                self.data = io.BytesIO(stream_bytes())
+                self.fp = SimpleNamespace(raw=SimpleNamespace(_sock=SimpleNamespace(settimeout=lambda seconds: None)))
             def __enter__(self):
                 return self
             def __exit__(self, *args):
                 return False
-            def read(self, limit):
-                body = response()["visible_response"]
-                body["choices"][0]["message"]["reasoning"] = "HIDDEN_FIXTURE_REASONING"
-                return json.dumps(body).encode()
+            def readline(self, limit):
+                return self.data.readline(limit)
         with patch("sl.live_transport.os.environ.get", return_value="UNIT_TEST_FAKE_KEY"), patch("sl.live_transport.request.build_opener") as builder:
             builder.return_value.open.return_value = HTTPResponse()
             transport = OpenRouterTransport(cfg, go(cfg))
@@ -142,6 +168,8 @@ class TransportTests(unittest.TestCase):
             self.assertNotIn("UNIT_TEST_FAKE_KEY", str(record))
             self.assertNotIn("HIDDEN_FIXTURE_REASONING", str(record))
             self.assertEqual(record["request_id"], "test-id")
+            self.assertTrue(record["stream_done"])
+            self.assertEqual(inspect_response(record, cfg)["status"], "completed")
 
     def test_http_error_classification_no_sdk_retry(self):
         cfg = config()
@@ -155,10 +183,14 @@ class TransportTests(unittest.TestCase):
 
     def test_route_has_no_fallback_and_no_reasoning_text(self):
         payload = wire_request([], config())
-        self.assertEqual(payload["provider"]["only"], ["together"])
+        self.assertEqual(payload["provider"]["only"], ["alibaba"])
         self.assertFalse(payload["provider"]["allow_fallbacks"])
         self.assertTrue(payload["provider"]["require_parameters"])
+        self.assertTrue(payload["stream"])
+        self.assertEqual(payload["stream_options"], {"include_usage": True})
         self.assertTrue(payload["reasoning"]["exclude"])
+        self.assertEqual(payload["reasoning"], {"enabled": True, "exclude": True})
+        self.assertEqual(payload["top_p"], 0.95)
         envelope = response()["visible_response"]
         self.assertNotIn("never log this", str(envelope))
         self.assertEqual(envelope["choices"][0]["message"]["content"], "visible")
@@ -168,7 +200,7 @@ class TransportTests(unittest.TestCase):
         self.assertEqual(result["status"], "completed")
         self.assertEqual(result["usage"]["output_tokens"], 100)
         self.assertEqual(result["usage"]["reasoning_tokens"], 30)
-        self.assertEqual(result["charge_for_ledger"], Decimal("0.00021"))
+        self.assertEqual(result["charge_for_ledger"], Decimal("0.000468"))
 
     def test_truncation_not_a_retry(self):
         result = inspect_response(response("", finish="length"), config())
@@ -229,8 +261,10 @@ class WalletTests(unittest.TestCase):
                 ledger.reserve("main/second", "main", retry=True)
             self.assertEqual(audit_ledger(ledger.snapshot(), cfg)["retries"], 1)
 
-    def test_complete_campaign_upper_bound(self):
-        self.assertLess(reservation(config()) * 788, Decimal("30"))
+    def test_full_campaign_upper_bound_is_not_spending_authority(self):
+        self.assertEqual(reservation(config()), Decimal("0.61341696"))
+        self.assertEqual(reservation(config()) * 788, Decimal("483.37256448"))
+        self.assertGreater(reservation(config()) * 788, Decimal("30"))
 
     def test_persistent_unknown_reservation_and_no_overdraft(self):
         cfg = config()
@@ -289,6 +323,81 @@ class WalletTests(unittest.TestCase):
                 ledger.reserve("b", "pilot")
 
 
+class StreamTests(unittest.TestCase):
+    def test_fragmented_utf8_comments_and_usage_only_final(self):
+        frames = stream_frames()
+        frames[1]["choices"][0]["delta"]["content"] = "答"
+        frames[2]["choices"][0]["delta"]["content"] = "案"
+        raw = stream_bytes(frames)
+        class Fragmented(io.RawIOBase):
+            def __init__(self):
+                self.position = 0
+            def readable(self):
+                return True
+            def readinto(self, buffer):
+                part = raw[self.position:self.position + min(3, len(buffer))]
+                buffer[:len(part)] = part
+                self.position += len(part)
+                return len(part)
+        record = stream_record()
+        with patch("sl.live_transport.time.perf_counter", return_value=0):
+            read_sse(io.BufferedReader(Fragmented()), record, config(), 1, lambda seconds: None)
+        self.assertEqual(record["visible_response"]["choices"][0]["message"]["content"], "答案")
+        self.assertEqual(record["visible_response"]["usage"]["total_tokens"], 1100)
+        self.assertNotIn("HIDDEN_FIXTURE_REASONING", str(record))
+        self.assertEqual(record["response_bytes"], len(raw))
+
+    def test_missing_done_finish_or_usage_is_not_complete(self):
+        variants = [(stream_frames(), False), (stream_frames()[:-1], True)]
+        no_finish = stream_frames()
+        no_finish[2]["choices"][0]["finish_reason"] = None
+        variants.append((no_finish, True))
+        for frames, done in variants:
+            with self.subTest(done=done, frames=len(frames)):
+                record = stream_record()
+                with patch("sl.live_transport.time.perf_counter", return_value=0), self.assertRaises(ValueError):
+                    read_sse(io.BytesIO(stream_bytes(frames, done)), record, config(), 1, lambda seconds: None)
+                self.assertIsNone(record["visible_response"])
+
+    def test_midstream_error_is_not_an_answer(self):
+        frames = stream_frames()[:2] + [{"error": {"code": 500, "message": "DO_NOT_RETAIN_SERVER_TEXT"}}]
+        record = stream_record()
+        with patch("sl.live_transport.time.perf_counter", return_value=0), self.assertRaises(ValueError):
+            read_sse(io.BytesIO(stream_bytes(frames)), record, config(), 1, lambda seconds: None)
+        self.assertNotIn("DO_NOT_RETAIN_SERVER_TEXT", str(record))
+
+    def test_changed_identity_is_rejected(self):
+        for field in ("id", "model", "provider"):
+            events = [visible_stream_event(frame) for frame in stream_frames()]
+            events[1][field] = "changed"
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, "identity"):
+                assemble_stream(events, True)
+
+    def test_byte_and_wall_time_bounds(self):
+        cfg = config()
+        cfg["max_response_utf8_bytes"] = 30
+        with patch("sl.live_transport.time.perf_counter", return_value=0), self.assertRaisesRegex(ValueError, "byte ceiling"):
+            read_sse(io.BytesIO(stream_bytes()), stream_record(), cfg, 1, lambda seconds: None)
+        with patch("sl.live_transport.time.perf_counter", return_value=2), self.assertRaises(TimeoutError):
+            read_sse(io.BytesIO(stream_bytes()), stream_record(), config(), 1, lambda seconds: None)
+
+    def test_partial_timeout_keeps_transport_unknown(self):
+        cfg = config()
+        class HTTPResponse:
+            status = 200
+            headers = {"content-type": "text/event-stream"}
+            fp = SimpleNamespace(raw=SimpleNamespace(_sock=SimpleNamespace(settimeout=lambda seconds: None)))
+            def __enter__(self): return self
+            def __exit__(self, *args): return False
+            def readline(self, limit): raise TimeoutError("fixture")
+        with patch("sl.live_transport.os.environ.get", return_value="UNIT_TEST_FAKE_KEY"), patch("sl.live_transport.request.build_opener") as builder:
+            builder.return_value.open.return_value = HTTPResponse()
+            record = OpenRouterTransport(cfg, go(cfg)).send(wire_request([], cfg))
+        self.assertEqual(record["technical_error"], "transport_failure")
+        self.assertFalse(record["stream_done"])
+        self.assertIsNone(inspect_response(record, cfg)["charge_for_ledger"])
+
+
 class LivePipelineTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -309,6 +418,12 @@ class LivePipelineTests(unittest.TestCase):
         self.assertFalse(original & {s.facts for s in pilot + main})
         self.assertFalse({s.facts for s in pilot} & {s.facts for s in main})
         self.assertTrue(all(item["scenario_id"].endswith("-clean") for item in self.manifest["schedule"][:4]))
+
+    def test_inspected_live_fixtures_cannot_be_acquired_as_fresh(self):
+        with self.assertRaisesRegex(ValueError, "inspected live-interface fixture"):
+            live_manifest(config(), "pilot", 2026110801)
+        with self.assertRaisesRegex(ValueError, "inspected live-interface fixture"):
+            check_fixture_separation(fresh_cases("main", 2))
 
     def test_main_requires_real_pilot(self):
         with self.assertRaises(ValueError):
@@ -377,12 +492,28 @@ class LivePipelineTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "content/request"):
             audit_live(self.manifest, changed)
 
-    def test_transport_missingness_and_retry_cap(self):
+    def test_transport_missingness_and_outage_circuit(self):
         manifest, run = fixture_run(fail=True)
         self.assertTrue(audit_live(manifest, run)["passed"])
-        self.assertEqual(run["retries_used"], 5)
+        self.assertEqual(run["retries_used"], 3)
+        self.assertEqual(run["requests_attempted"], 6)
+        self.assertEqual(run["stop_reason"], "three_consecutive_failed_logical_transports")
         self.assertTrue(all(row["score"] is None for row in run["rows"]))
         self.assertFalse(live_gate(manifest, run)["passed"])
+
+    def test_model_truncation_does_not_trip_outage_circuit(self):
+        cfg = config()
+        manifest = live_manifest(cfg, "pilot", 2026110801, fixture=True)
+        class Truncated(FixtureTransport):
+            def send(self, payload):
+                self.responses += 1
+                return response("", finish="length", generation_id=f"truncated-{self.responses}")
+        with tempfile.TemporaryDirectory() as tmp:
+            ledger = Ledger(Path(tmp) / "wallet", cfg, create=True)
+            run = LiveRunner(manifest, Truncated(cfg), ledger, go(cfg)).run()
+        self.assertIsNone(run["stop_reason"])
+        self.assertEqual(run["retries_used"], 0)
+        self.assertTrue(audit_live(manifest, run)["passed"])
 
     def test_analysis_keeps_fixture_nonempirical(self):
         result = analyze(self.manifest, self.run_data)

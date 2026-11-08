@@ -22,9 +22,9 @@ from .protocol import canonical, digest
 
 ENDPOINT = "https://openrouter.ai/api/v1/chat/completions"
 CONFIG_KEYS = {
-    "schema_version", "model", "provider_slug", "response_provider", "temperature",
-    "reasoning_effort", "max_tokens", "context_tokens", "output_reservation_tokens",
-    "input_price_per_million", "output_price_per_million", "price_source", "price_as_of",
+    "schema_version", "model", "provider_slug", "response_provider", "temperature", "top_p",
+    "reasoning_enabled", "stream", "max_tokens", "context_tokens", "output_reservation_tokens",
+    "input_price_per_million", "output_price_per_million", "request_price_usd", "price_source", "price_as_of",
     "data_collection", "timeout_seconds", "max_request_utf8_bytes", "max_response_utf8_bytes",
     "max_summary_utf8_bytes", "budget_usd", "max_attempts", "max_technical_retries",
     "max_pilot_repeats", "version_pin_status",
@@ -50,14 +50,17 @@ def money(value):
 def validate_config(config):
     if type(config) is not dict or set(config) != CONFIG_KEYS:
         raise ValueError("live configuration must have exactly the documented fields")
-    if (type(config["schema_version"]) is not int or config["schema_version"] != 1 or config["model"] != "openai/gpt-oss-120b"
-            or type(config["provider_slug"]) is not str or config["provider_slug"].lower() != "together"
-            or config["response_provider"] != "Together"):
+    if (type(config["schema_version"]) is not int or config["schema_version"] != 2 or config["model"] != "qwen/qwen3.5-122b-a10b"
+            or config["provider_slug"] != "alibaba" or config["response_provider"] != "Alibaba"):
         raise ValueError("only the prospectively selected model/provider is supported")
     if type(config["temperature"]) not in (int, float) or not 0 <= config["temperature"] <= 2:
         raise ValueError("invalid temperature")
-    if config["reasoning_effort"] not in {"low", "medium", "high"}:
-        raise ValueError("explicit supported reasoning effort required")
+    if type(config["top_p"]) not in (int, float) or not 0 < config["top_p"] <= 1:
+        raise ValueError("invalid top_p")
+    if type(config["reasoning_enabled"]) is not bool:
+        raise ValueError("explicit reasoning enablement required; effort is not supported by this route")
+    if config["stream"] is not True:
+        raise ValueError("the selected thinking endpoint requires streaming acquisition")
     for name in ("max_tokens", "context_tokens", "output_reservation_tokens", "timeout_seconds",
                  "max_request_utf8_bytes", "max_response_utf8_bytes", "max_summary_utf8_bytes",
                  "max_attempts", "max_technical_retries", "max_pilot_repeats"):
@@ -65,6 +68,10 @@ def validate_config(config):
             raise ValueError("positive integer live limits required")
     if not config["max_tokens"] <= config["output_reservation_tokens"] <= config["context_tokens"]:
         raise ValueError("output reservation must cover the requested output cap")
+    if config["context_tokens"] != 262144 or config["output_reservation_tokens"] != 262144 or config["max_tokens"] > 65536:
+        raise ValueError("reservation must cover the verified full native context for both input and billed output")
+    if config["timeout_seconds"] > 180:
+        raise ValueError("live request timeout exceeds the bounded profile")
     if config["max_attempts"] > 788 or config["max_technical_retries"] > 32 or config["max_pilot_repeats"] != 1:
         raise ValueError("study request/retry/repeat authorization exceeded")
     if money(config["budget_usd"]) > Decimal("30") or money(config["budget_usd"]) == 0:
@@ -72,6 +79,8 @@ def validate_config(config):
     for name in ("input_price_per_million", "output_price_per_million"):
         if money(config[name]) <= 0:
             raise ValueError("verified positive tariffs required")
+    if money(config["request_price_usd"]) != 0:
+        raise ValueError("the selected endpoint has no authorized per-request surcharge")
     if config["data_collection"] not in {"allow", "deny"}:
         raise ValueError("explicit data policy required")
     for name in ("price_source", "price_as_of", "version_pin_status"):
@@ -84,7 +93,7 @@ def reservation(config):
     """Reserve the full model input context, not a guessed local token count."""
     validate_config(config)
     return (config["context_tokens"] * money(config["input_price_per_million"])
-            + config["output_reservation_tokens"] * money(config["output_price_per_million"])) / Decimal(1_000_000)
+            + config["output_reservation_tokens"] * money(config["output_price_per_million"])) / Decimal(1_000_000) + money(config["request_price_usd"])
 
 
 def validate_go(go, config, expected_code_hashes=None):
@@ -105,7 +114,7 @@ def wallet_hash(config):
     # A documented interface repair can adjust max_tokens within the pre-reserved
     # output bound, without resetting the campaign wallet or changing models.
     fields = ("model", "provider_slug", "response_provider", "context_tokens", "output_reservation_tokens",
-              "input_price_per_million", "output_price_per_million", "budget_usd", "max_attempts", "max_technical_retries")
+              "input_price_per_million", "output_price_per_million", "request_price_usd", "budget_usd", "max_attempts", "max_technical_retries")
     return digest({key: config[key] for key in fields})
 
 
@@ -264,15 +273,17 @@ def audit_ledger(events, config):
 def wire_request(messages, config):
     validate_config(config)
     return {
-        "model": config["model"], "messages": messages, "stream": False,
-        "temperature": config["temperature"], "max_tokens": config["max_tokens"],
-        "reasoning": {"effort": config["reasoning_effort"], "exclude": True},
+        "model": config["model"], "messages": messages, "stream": True,
+        "stream_options": {"include_usage": True},
+        "temperature": config["temperature"], "top_p": config["top_p"], "max_tokens": config["max_tokens"],
+        "reasoning": {"enabled": config["reasoning_enabled"], "exclude": True},
         "provider": {
             "order": [config["provider_slug"]], "only": [config["provider_slug"]],
             "allow_fallbacks": False, "require_parameters": True,
             "data_collection": config["data_collection"],
             "max_price": {"prompt": float(money(config["input_price_per_million"])),
-                          "completion": float(money(config["output_price_per_million"]))},
+                          "completion": float(money(config["output_price_per_million"])),
+                          "request": float(money(config["request_price_usd"]))},
         },
     }
 
@@ -280,6 +291,118 @@ def wire_request(messages, config):
 class NoRedirect(request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         return None
+
+
+def visible_stream_event(body):
+    """Strip reasoning and provider error text before any event is retained."""
+    if type(body) is not dict:
+        raise ValueError("SSE payload must be an object")
+    event = {key: body.get(key) for key in ("id", "model", "provider", "usage", "created")}
+    event["choices"] = []
+    if "error" in body:
+        event["error_code"] = body["error"].get("code") if type(body["error"]) is dict else "unknown"
+    choices = body.get("choices", [])
+    if type(choices) is not list:
+        raise ValueError("SSE choices must be an array")
+    for choice in choices:
+        if type(choice) is not dict or type(choice.get("delta")) is not dict:
+            raise ValueError("invalid SSE choice/delta")
+        delta = choice["delta"]
+        event["choices"].append({
+            "index": choice.get("index"), "finish_reason": choice.get("finish_reason"),
+            "native_finish_reason": choice.get("native_finish_reason"),
+            "delta": {key: delta.get(key) for key in ("role", "content", "refusal")},
+            "reasoning_fields_removed": any(delta.get(key) is not None for key in ("reasoning", "reasoning_details", "reasoning_content")),
+            "unexpected_tool_calls": bool(delta.get("tool_calls") or delta.get("function_call")),
+        })
+    return event
+
+
+def assemble_stream(events, done):
+    """Reconstruct one completed visible answer from sanitized SSE records."""
+    if not done:
+        raise ValueError("SSE terminal DONE marker missing")
+    identity = {key: None for key in ("id", "model", "provider", "created")}
+    content, refusal = [], []
+    role, finish, native_finish = None, None, None
+    usage, usage_index, finish_index = None, -1, -1
+    removed, tools = False, False
+    for index, event in enumerate(events):
+        if "error_code" in event:
+            raise ValueError("SSE provider error")
+        for key in identity:
+            value = event.get(key)
+            if value is not None:
+                if identity[key] is not None and value != identity[key]:
+                    raise ValueError("SSE identity changed between chunks")
+                identity[key] = value
+        if event.get("usage") is not None:
+            usage, usage_index = event["usage"], index
+        choices = event["choices"]
+        if len(choices) > 1:
+            raise ValueError("multiple SSE choices")
+        for choice in choices:
+            if type(choice["index"]) is not int or choice["index"] != 0:
+                raise ValueError("unexpected SSE choice index")
+            delta = choice["delta"]
+            if delta.get("role") is not None:
+                if delta["role"] != "assistant" or (role is not None and role != delta["role"]):
+                    raise ValueError("SSE assistant role mismatch")
+                role = delta["role"]
+            for field, target in (("content", content), ("refusal", refusal)):
+                value = delta.get(field)
+                if value is not None:
+                    if type(value) is not str or (finish is not None and value):
+                        raise ValueError("invalid or post-finish SSE content")
+                    target.append(value)
+            removed = removed or choice["reasoning_fields_removed"]
+            tools = tools or choice["unexpected_tool_calls"]
+            if choice["finish_reason"] is not None:
+                if finish is not None:
+                    raise ValueError("duplicate SSE terminal finish")
+                finish, native_finish, finish_index = choice["finish_reason"], choice["native_finish_reason"], index
+    if finish is None or usage is None or usage_index < finish_index or role != "assistant":
+        raise ValueError("SSE lacks terminal finish, final usage, or assistant role")
+    return {**identity, "usage": usage, "choices": [{
+        "index": 0, "finish_reason": finish, "native_finish_reason": native_finish,
+        "message": {"role": role, "content": "".join(content), "refusal": "".join(refusal) or None},
+        "reasoning_fields_removed": removed, "unexpected_tool_calls": tools,
+    }]}
+
+
+def read_sse(response, record, config, deadline, set_read_timeout):
+    """Bound total bytes and wall time; hash raw bytes but retain no raw body."""
+    hasher, total, data_lines = hashlib.sha256(), 0, []
+    try:
+        while True:
+            remaining = deadline - time.perf_counter()
+            if remaining <= 0:
+                raise TimeoutError("bounded SSE wall time")
+            set_read_timeout(remaining)
+            line = response.readline(config["max_response_utf8_bytes"] - total + 1)
+            if not line:
+                raise ValueError("SSE stream ended without DONE")
+            total += len(line)
+            hasher.update(line)
+            if total > config["max_response_utf8_bytes"]:
+                raise ValueError("SSE byte ceiling exceeded")
+            line = line.rstrip(b"\r\n")
+            if line.startswith(b"data:"):
+                data_lines.append(line[5:].lstrip(b" "))
+            elif not line and data_lines:
+                payload = b"\n".join(data_lines)
+                data_lines = []
+                if payload == b"[DONE]":
+                    record["stream_done"] = True
+                    record["visible_response"] = assemble_stream(record["stream_events"], True)
+                    return
+                # The unsanitized decoded event is discarded immediately.
+                record["stream_events"].append(visible_stream_event(strict_json(payload.decode("utf-8"))))
+            elif line and not line.startswith((b":", b"event:", b"id:", b"retry:")):
+                raise ValueError("unsupported SSE field")
+    finally:
+        record["raw_body_sha256"] = hasher.hexdigest()
+        record["response_bytes"] = total
 
 
 class OpenRouterTransport:
@@ -302,26 +425,28 @@ class OpenRouterTransport:
         started = time.perf_counter()
         record = {"started_at_utc": utc_now(), "endpoint": ENDPOINT, "http_status": None,
                   "request_id": None, "server_date": None, "raw_body_sha256": None,
-                  "visible_response": None, "technical_error": None, "retryable": False}
+                  "visible_response": None, "technical_error": None, "retryable": False,
+                  "stream_events": [], "stream_done": False, "response_bytes": 0}
         try:
             with self._opener.open(req, timeout=self.config["timeout_seconds"]) as response:
                 record.update(http_status=response.status, request_id=response.headers.get("x-request-id"),
                               server_date=response.headers.get("date"))
-                raw = response.read(self.config["max_response_utf8_bytes"] + 1)
-                record["raw_body_sha256"] = hashlib.sha256(raw).hexdigest()
-                if len(raw) > self.config["max_response_utf8_bytes"]:
-                    record["technical_error"] = "response_envelope_too_large"
-                else:
-                    try:
-                        decoded = strict_json(raw.decode("utf-8"))
-                        record["visible_response"] = visible_envelope(decoded)
-                    except (ValueError, UnicodeError, TypeError):
-                        record["technical_error"] = "invalid_provider_envelope"
+                if "text/event-stream" not in response.headers.get("content-type", "").lower():
+                    raise ValueError("provider did not return the requested SSE transport")
+                # CPython's HTTPS response exposes the socket here. Fail closed
+                # if an unsupported wrapper prevents enforcing remaining time.
+                sock = getattr(getattr(getattr(response, "fp", None), "raw", None), "_sock", None)
+                if sock is None:
+                    raise ValueError("cannot enforce remaining SSE wall time")
+                read_sse(response, record, self.config, started + self.config["timeout_seconds"], sock.settimeout)
         except error.HTTPError as exc:
             record.update(http_status=exc.code, technical_error=f"http_{exc.code}",
                           retryable=exc.code in {408, 429, 500, 502, 503, 504})
+            exc.close()
         except (error.URLError, TimeoutError, socket.timeout, ConnectionError, IncompleteRead, RemoteDisconnected):
             record.update(technical_error="transport_failure", retryable=True)
+        except (ValueError, UnicodeError, TypeError):
+            record.update(technical_error="invalid_provider_stream", retryable=False, visible_response=None)
         record["finished_at_utc"] = utc_now()
         record["latency_seconds"] = time.perf_counter() - started
         return record
@@ -396,14 +521,15 @@ def inspect_response(acquisition, config):
         # Cache discounts may reduce actual bills; retain the no-discount bound
         # in the local wallet while reporting the actual provider cost separately.
         calculated = (prompt * money(config["input_price_per_million"])
-                      + completion * money(config["output_price_per_million"])) / Decimal(1_000_000)
+                      + completion * money(config["output_price_per_million"])) / Decimal(1_000_000) + money(config["request_price_usd"])
         result["charge_for_ledger"] = max(cost, calculated)
     if (prompt > config["context_tokens"] or completion > config["output_reservation_tokens"]
             or body.get("model") != config["model"] or body.get("provider") != config["response_provider"]
             or type(body.get("id")) is not str or not body["id"].strip()):
         return result
     choices = body.get("choices")
-    if type(choices) is not list or len(choices) != 1 or choices[0].get("index") != 0:
+    if (type(choices) is not list or len(choices) != 1
+            or type(choices[0].get("index")) is not int or choices[0]["index"] != 0):
         return result
     choice = choices[0]
     if choice["message"].get("role") != "assistant" or choice.get("unexpected_tool_calls"):
