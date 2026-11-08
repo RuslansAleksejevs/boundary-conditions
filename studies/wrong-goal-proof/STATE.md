@@ -7,13 +7,14 @@ classification: PROJECT_REPORTED. This is an engineering record, not model evide
   scalar/vector semantics, exhaustive certificates, seeded disjoint datasets,
   natural translation and paired certificate replay, offline adapters, manifest,
   incremental logging, freeze rehearsal, audit, and paired analysis.
-- Latest complete test pass: 146 tests, Python 3.14.6, 20.539 seconds. This includes
-  the original 105 tests plus 41 live-interface/exclusion/ledger tests.
+- Latest complete test pass: 159 tests, Python 3.14.6, 23.014 seconds. This includes
+  the original 105 tests plus 54 live-interface/exclusion/ledger/SSE tests.
 - No experimental model calls, paid batches, or competition submission.
 - A separate live HTTP interface, persistent USD20 wallet, source/configuration/
   manifest-bound GO, actual-pilot freeze and campaign auditor are implemented.
-  Acquisition is blocked by unavailable approved credential access and the final
-  provider/settings/pricing/data-policy preflight. Offline replay does not attest
+  The renewed authorized experiment now targets Qwen3.5-122B-A10B via Alibaba.
+  Credential access has been restored; the compatible provider/settings/pricing/
+  data-policy and budget admission preflight is in progress. Offline replay does not attest
   external acquisition chronology, and fixtures cannot qualify a live freeze.
 - Read-only peer review found no C/Q-vs-closed-truth blocker. Its request/response
   consistency recommendation is implemented and passes regression tests.
@@ -36,7 +37,7 @@ Next: coordinator review of the published live preparation, then resolve
 credential availability and the exact source-bound acquisition GO. No real model
 pilot, empirical freeze, main evaluation or empirical report/PDF exists yet.
 
-## Next stage — live preparation, 8 November 2026 UTC
+## Earlier preparation — 8 November 2026 UTC, before restored access
 
 The offline PR is integrated upstream. Work continues on
 `study/wrong-goal-proof-live-v1`, based on the refreshed main branch. Baseline:
@@ -61,3 +62,27 @@ exclusion omission in the conditional-repeat path. It confirmed budget, routing,
 source/pilot binding and audit controls, without claiming provider capability or
 price verification. Tests use explicitly labeled no-network fixtures only.
 No new model findings or empirical report exist yet.
+
+## Renewed live execution — 8 November 2026, 11:40 PST
+
+The user explicitly authorized continuation and results publication and selected
+Qwen3.5-122B-A10B via OpenRouter/Alibaba. The previously unavailable approved
+credential is now attached through the ordinary secret mechanism. No raw value
+was requested, copied or printed. The researcher session and existing branch/PR
+are unchanged; no new model calls have occurred yet.
+
+The Qwen endpoint supports enabled reasoning, not the previously proposed effort
+parameter, and requires streaming in thinking mode. Final reservations cover the
+entire 262,144-token context separately for input and billed output at verified
+USD0.26/2.08 per million: USD0.61341696 per attempt. The narrower initial output
+reservation was withdrawn before inference. The approved prospective amendment
+removes only the full-campaign upfront-fit requirement; the hard USD20 wallet,
+fixed 312-call core schedule and 379-attempt ceiling are unchanged. Budget stops
+leave unassessed outcomes, never an adaptive smaller sample.
+
+Bounded SSE with final usage, finish and DONE, reasoning-text removal, and a
+180-second wall deadline is implemented. Billing settlement is separate from
+reported API cost and conservatively uses the larger of that cost and the
+no-cache token-price bound. Malformed/partial/missing-cost billing keeps the full
+unknown-charge reservation. The final 159-test suite passed. Exact source-bound
+GO and fresh campaign preparation are the remaining pre-inference steps.

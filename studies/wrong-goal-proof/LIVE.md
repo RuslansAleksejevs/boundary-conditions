@@ -1,8 +1,8 @@
 # Prospective live acquisition
 
 Status, 8 November 2026: implemented and CPU-tested; **zero experimental model
-calls**. Credential access and the final source/configuration-bound coordinator
-preflight are unresolved. There is no real pilot, empirical freeze, holdout result,
+calls at this preflight snapshot**. Approved credential access is restored; the
+Qwen/Alibaba source/configuration-bound coordinator GO is pending. There is no real pilot, empirical freeze, holdout result,
 or empirical report/PDF yet. No transport fixture qualifies as a real pilot.
 
 ## Scope and stop rules
@@ -72,43 +72,58 @@ Local timestamps and hashes are not a public preregistration or signed attestati
 ## HTTP contract and financial bound
 
 Only the official OpenRouter chat-completions endpoint is supported, with
-`openai/gpt-oss-120b`, an explicit Together-only route, no fallback, and
+`qwen/qwen3.5-122b-a10b`, an explicit Alibaba-only route, no fallback, and
 `require_parameters=true`. Redirects are forbidden. There are no provider-daemon
 calls, hidden SDK retries, tools, web plugins, alternate keys or account fallbacks.
 The only credential lookup is `OPENROUTER_API_KEY` in the explicitly authorized
 `acquire` command. No credential is read by prepare, preflight, audit or import.
 
-The exact JSON configuration has these required fields; there is no approved
-tariff/default configuration shipped as if it had already been verified:
+The exact version-2 JSON configuration has these required fields. The selected
+Qwen/Alibaba tariff and operational policy were checked before inference; unit
+fixture prices remain explicitly fictional and are not an acquisition profile:
 
 | Fields | Meaning |
 | --- | --- |
-| `version`, `model`, `provider_slug`, `provider_response_name` | Version 1; fixed model/route and required response identity |
-| `temperature`, `top_p`, `reasoning_effort`, `max_tokens` | Explicit sampling and requested completion cap |
+| `version`, `model`, `provider_slug`, `provider_response_name` | Version 2; fixed Qwen/Alibaba route and required response identity |
+| `temperature`, `top_p`, `reasoning_enabled`, `stream`, `max_tokens` | Explicit sampling, enabled reasoning, SSE and requested answer cap |
 | `context_token_bound`, `output_reservation_tokens` | Verified provider context and separately agreed billable-output ceiling |
-| `max_request_bytes`, `timeout_seconds` | Request-size and at-most-60-second per-HTTP timeout |
+| `max_request_bytes`, `timeout_seconds` | Request-size and at-most-180-second HTTP wall deadline |
 | `input_usd_per_million`, `output_usd_per_million`, `request_usd` | Decimal price ceilings; no guessed free requests |
 | `price_source`, `price_as_of`, `quota_usd` | Dated official tariff source; study quota exactly 20 |
 | `data_collection`, `version_pin_status` | Explicit allow/deny policy; disclose any mutable model-alias limitation |
+| `budget_admission` | Explicit per-request full-context reservation and hard-wallet stop; no guaranteed campaign completion |
 
 For each physical attempt, the wallet reserves
 
 `(context_token_bound * input_price + output_reservation_tokens * output_price) / 1_000_000 + request_price`.
 
-This uses the full confirmed input context, not an estimated local tokenizer
-ratio. The maximum over all 379 attempts must fit USD20. The completion reservation
-may exceed requested `max_tokens` to cover an explicitly agreed provider accounting
-margin; the request cap is not silently raised. Usage above the requested cap is
-reported separately; usage above the reserved cap is fatal. Response identity,
-completion/total/reasoning/cache usage and billed cost are checked again by audit.
-Exact supported routing fields, final tariffs and output margin still require
-the common preflight; passing parser tests is not provider confirmation.
+This uses the full confirmed context, not an estimated local tokenizer ratio.
+The final profile reserves 262,144 input and 262,144 output tokens at USD0.26/2.08
+per million, with zero per-request fee: **USD0.61341696 per attempt**. This is
+deliberately doubly conservative. The stated native total context includes input
+and output, including reasoning; violations stop acquisition. Native Alibaba
+`max_tokens` may exclude reasoning, so 8,192 requested tokens are not treated as
+a proven total output bound. The earlier 16,384 reservation proposal was rejected
+before inference. Output above the requested answer cap is reported separately;
+output or total context above the confirmed reservation assumption is fatal.
+
+**Prospective admission amendment, before any model observations:** the entire
+379-attempt worst-case reservation (USD232.48502784) need not fit upfront. Every
+individual dispatch must still fit the unchanged persistent USD20 wallet.
+Full campaign completion is not guaranteed. The fixed schedule is retained and
+budget-stopped outcomes remain unassessed, with missingness bounds; no adaptive
+sample shrink or outcome tuning. Pilot-based mean, observed-maximum and full-
+context cost projections are recorded before main. Projections are not guarantees.
 
 The exclusive campaign lock spans reservation, dispatch and settlement. Every
 reservation is hash-chained, appended and fsynced before HTTP. An abandoned or
 unknown-charge reservation remains fully committed after restart. Known provider
 cost is retained, including a pricing overrun; a recorded overrun prevents further
-requests. The ledger enforces per-stage logical caps and global retry/attempt caps.
+requests. Confirmed settlement is the maximum of provider-reported cost and the
+no-cache usage-based price bound, recorded separately from reported API cost.
+Only a complete valid billing envelope can release unused reservation; malformed,
+partial or cost-missing responses retain the full unknown-charge reserve.
+The ledger enforces per-stage logical caps and global retry/attempt caps.
 There is no implicit resume, new wallet per stage or automatic budget release.
 
 ## Reproducible commands
@@ -173,7 +188,26 @@ including failed/retried attempts; unknown totals stay null. The first false
 guarantee in the frozen order is the primary example, if one exists. A zero count
 must be reported with its upper bound and narrow scope, not as model safety.
 
+SSE requires a terminal finish, final usage at or after that finish, `[DONE]`,
+consistent model/provider/request identity and one assistant choice. Raw wire
+bytes are capped at 8 MB per attempt and hashed; only sanitized parsed events are
+retained. `reasoning`, `reasoning_details` and native `reasoning_content` are
+discarded before logging. A POSIX wall timer bounds the whole HTTP operation;
+the exclusive wallet lock remains held through dispatch and settlement. Neither
+an incomplete stream nor a hidden-reasoning field becomes an accepted answer.
+
+The selected route explicitly allows provider data collection: published metadata
+permits logging for 30 days and reports no training use; it does not promise ZDR.
+Only synthetic finite-contract tasks are sent. Sampling is temperature 0.6,
+top-p 0.95, enabled reasoning with reasoning text excluded; JSON-only task prompts
+are unchanged and no `response_format` is requested. The model alias is not a
+cryptographically pinned weight revision, and provider quantization is unknown.
+
 Official interface references read during preparation:
 [API overview](https://openrouter.ai/docs/api/reference/overview),
-[provider selection](https://openrouter.ai/docs/guides/routing/provider-selection).
-These document interface fields, not this study's as-yet-unapproved live tariff.
+[provider selection](https://openrouter.ai/docs/guides/routing/provider-selection),
+[exact model/provider quote](https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints),
+[native thinking requirements](https://www.alibabacloud.com/help/en/model-studio/deep-thinking),
+[native answer/thinking token semantics](https://www.alibabacloud.com/help/en/model-studio/qwen-api-via-openai-chat-completions).
+Shared funding, context assumptions and the prospective amendment are recorded
+in [the execution budget](https://github.com/RuslansAleksejevs/boundary-conditions/blob/main/docs/EXECUTION_BUDGET.md).

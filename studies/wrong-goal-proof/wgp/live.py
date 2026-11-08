@@ -10,6 +10,7 @@ import time
 import math
 import platform
 from datetime import datetime
+from decimal import Decimal
 from pathlib import Path
 
 from .adapters import parse_review, parse_translation
@@ -21,7 +22,7 @@ from .live_http import (OpenRouterHTTP, budget_configuration_hash, interpret_rec
 from .logic import SchemaError, canonical, digest, keys, strict_json
 from .pipeline import (audit_content, collect_records, pilot_statistics, timestamp)
 from .prompts import prompt_spec
-from .records import code_hashes, git_revision, read_json, write_new
+from .records import code_hashes, git_revision, read_json as read_record_json, write_new
 from .vector import signature
 
 
@@ -30,6 +31,12 @@ LIVE_KIND = "live_model_acquisition"
 FIXTURE_KIND = "live_transport_fixture"
 SCHEDULE = {"pilot-v1": 52, "pilot-v2": 52, "main": 260,
             "max_extra_technical_attempts": 15, "max_total_attempts": 379}
+
+
+def read_json(path):
+    # Visible SSE events make live acquisition records larger than offline tapes.
+    # This is a bounded local-record limit, never a provider-response byte cap.
+    return read_record_json(path, max_bytes=512_000_000)
 
 
 def known_transport_fixture_datasets():
@@ -57,7 +64,8 @@ def validate_manifest(dataset, manifest):
     keys(manifest, ("version", "kind", "created_at", "python_version", "code_revision", "code_hashes",
                     "dataset_hash", "exclusion_hash", "configuration", "configuration_hash",
                     "budget_configuration_hash", "prompt_spec", "orders", "schedule",
-                    "worst_case_attempt_usd", "worst_case_379_attempts_usd", "ground_truth_audit", "revision"))
+                    "worst_case_attempt_usd", "worst_case_379_attempts_usd", "full_schedule_reservation_fits_quota",
+                    "ground_truth_audit", "revision"))
     audit = audit_dataset(dataset)
     config = validate_configuration(manifest["configuration"])
     time_value(manifest["created_at"])
@@ -71,7 +79,8 @@ def validate_manifest(dataset, manifest):
             or manifest["schedule"] != SCHEDULE or manifest["prompt_spec"] != prompt_spec()
             or manifest["ground_truth_audit"] != audit
             or money(manifest["worst_case_attempt_usd"]) != upper_cost(config)
-            or money(manifest["worst_case_379_attempts_usd"]) != 379 * upper_cost(config)):
+            or money(manifest["worst_case_379_attempts_usd"]) != 379 * upper_cost(config)
+            or manifest["full_schedule_reservation_fits_quota"] is not (379 * upper_cost(config) <= money("20"))):
         raise SchemaError("live campaign binding mismatch")
     hashes = manifest["code_hashes"]
     if (type(hashes) is not dict or not hashes
@@ -135,6 +144,7 @@ def prepare_live(path, config, seed, extra_excluded_datasets=()):
                 "schedule": dict(SCHEDULE),
                 "worst_case_attempt_usd": str(upper_cost(config)),
                 "worst_case_379_attempts_usd": str(379 * upper_cost(config)),
+                "full_schedule_reservation_fits_quota": 379 * upper_cost(config) <= money("20"),
                 "ground_truth_audit": audit_dataset(dataset), "revision": None}
     path.mkdir(parents=True, mode=0o700)
     write_new(path / "dataset.json", dataset)
@@ -225,6 +235,7 @@ class Acquirer:
                 # arbitrary permission errors or programming exceptions.
                 result = {"started_at": send_started, "finished_at": timestamp(), "latency_seconds": time.perf_counter() - send_clock,
                           "http_status": None, "headers": {}, "response": None,
+                          "stream": None,
                           "transport_error": "client_exception_" + type(error).__name__,
                           "retryable_transport": False}
             receipt = {"attempt_id": aid, "logical_id": request["id"], "stage": self.stage,
@@ -233,7 +244,7 @@ class Acquirer:
             self.receipts.append(receipt)
             self.emit({"event": "http_receipt", "record": receipt})
             interpreted = interpret_receipt(receipt, self.config)
-            self.ledger.settle(aid, interpreted["usage"]["cost_usd"], interpreted["retryable"], receipt)
+            self.ledger.settle(aid, interpreted["ledger_charge_usd"], interpreted["retryable"], receipt)
             pid = interpreted["provider_request_id"]
             if pid is not None:
                 if pid in self.provider_ids:
@@ -277,14 +288,15 @@ def audit_live(dataset, manifest, run, allow_fixture=False):
     for receipt in run["receipts"]:
         keys(receipt, ("attempt_id", "logical_id", "stage", "transport_kind", "prompt_hash", "payload",
                        "payload_hash", "started_at", "finished_at", "latency_seconds", "http_status",
-                       "headers", "response", "transport_error", "retryable_transport"))
+                       "headers", "response", "stream", "transport_error", "retryable_transport"))
         if (not time_value(run["go"]["approved_at"]) <= time_value(receipt["started_at"]) <= time_value(receipt["finished_at"])
                 or type(receipt["latency_seconds"]) not in (int, float)
                 or not math.isfinite(receipt["latency_seconds"]) or receipt["latency_seconds"] < 0
                 or type(receipt["headers"]) is not dict
                 or (receipt["http_status"] is not None and type(receipt["http_status"]) is not int)
                 or (receipt["transport_error"] is not None and type(receipt["transport_error"]) is not str)
-                or receipt["response"] != visible_response(receipt["response"])):
+                or receipt["response"] != visible_response(receipt["response"])
+                or receipt["stream"] != visible_response(receipt["stream"])):
             raise SchemaError("invalid acquisition timing/schema or retained reasoning text")
         aid = receipt["attempt_id"]
         reservation, settlement = state["reservations"].get(aid), state["settlements"].get(aid)
@@ -301,9 +313,9 @@ def audit_live(dataset, manifest, run, allow_fixture=False):
                 or money(reservation["reserve_usd"]) != upper_cost(config)):
             raise SchemaError("acquisition/reservation binding mismatch")
         interpreted = interpret_receipt(receipt, config)
-        actual = interpreted["usage"]["cost_usd"]
-        expected_cost = None if actual is None else str(money(actual))
-        if settlement["actual_usd"] != expected_cost or settlement["retryable"] != interpreted["retryable"]:
+        charge = interpreted["ledger_charge_usd"]
+        expected_cost = None if charge is None else str(money(charge))
+        if settlement["confirmed_charge_usd"] != expected_cost or settlement["retryable"] != interpreted["retryable"]:
             raise SchemaError("settlement does not match provider receipt")
         pid = interpreted["provider_request_id"]
         if pid is not None:
@@ -346,7 +358,7 @@ def audit_live(dataset, manifest, run, allow_fixture=False):
     math_audit = audit_content(dataset, run, live=True)
     return {**math_audit, "mode": expected_kind, "new_model_calls": run["new_model_calls"],
             "physical_attempts": len(run["receipts"]), "ledger": {
-                k: state[k] for k in ("attempts", "retries", "committed_usd", "known_usd", "unknown_charges", "pricing_overrun")},
+                k: state[k] for k in ("attempts", "retries", "committed_usd", "settled_conservative_usd", "unknown_charges", "pricing_overrun")},
             "provenance_authenticated": False}
 
 
@@ -469,11 +481,38 @@ def live_pilot_gate(dataset, manifest, run, previous_pilots=()):
     gate = pilot_statistics(run, "prospective live-model pilot")
     gate["actual_pilot_holdout_separation"] = actual_pilot_separation(dataset, run,
         previous_pilots=[prior_run for _, prior_run in previous_pilots])
+    gate["main_budget_projection"] = main_budget_projection(manifest["configuration"], run, result["ledger"])
     gate["passed"] = (gate["passed"] and run["halt_reason"] is None
                       and not result["ledger"]["pricing_overrun"]
                       and gate["actual_pilot_holdout_separation"]["valid"]
                       and money(result["ledger"]["committed_usd"]) <= money("20"))
     return gate
+
+
+def main_budget_projection(config, pilot, ledger):
+    """Prospective operational projection, not a guarantee or an outcome filter.
+
+    The fixed main sample is not shortened. The coordinator inspects this record
+    before main; the actual wallet independently guards every later dispatch.
+    """
+    charges = [interpret_receipt(r, config)["ledger_charge_usd"] for r in pilot["receipts"]]
+    reserved = upper_cost(config)
+    amounts = [reserved if charge is None else money(charge) for charge in charges]
+    remaining = 260 + max(0, 15 - ledger["retries"])
+    committed = money(ledger["committed_usd"])
+    mean = sum(amounts, Decimal(0)) / len(amounts) if amounts else None
+    maximum = max(amounts) if amounts else None
+    return {"planned_main_logical_calls": 260, "maximum_remaining_main_attempts": remaining,
+            "pilot_physical_attempts": len(charges), "unknown_pilot_costs": sum(c is None for c in charges),
+            "already_charged_or_reserved_usd": str(committed),
+            "mean_with_unknown_costs_at_full_reserve_usd": None if mean is None else str(mean),
+            "observed_max_with_unknown_costs_at_full_reserve_usd": None if maximum is None else str(maximum),
+            "projected_campaign_mean_usd": None if mean is None else str(committed + remaining * mean),
+            "projected_campaign_observed_max_usd": None if maximum is None else str(committed + remaining * maximum),
+            "full_context_worst_case_campaign_usd": str(committed + remaining * reserved),
+            "next_full_reservation_fits_quota": committed + reserved <= money("20"),
+            "projection_is_a_guaranteed_bound": False,
+            "policy": "No adaptive sample shrink; a hard-wallet stop leaves scheduled outcomes unassessed."}
 
 
 def actual_pilot_separation(dataset, pilot, previous_pilots=()):

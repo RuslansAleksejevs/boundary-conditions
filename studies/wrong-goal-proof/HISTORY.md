@@ -163,3 +163,51 @@ Actual experimental requests and new external experimental cost remain zero.
 Approved credential availability and final source/configuration/manifest-bound
 coordinator preflight still block acquisition. No workaround or new batch was
 attempted while waiting for these external requirements.
+
+## 2026-11-08 — Renewed authorized execution and selected Qwen route
+
+After a new explicit user start, continued the same branch and existing PR.
+Approved credential availability was restored through the standard secret
+mechanism; no credential value was read into messages, copied or printed.
+The selected experimental target is Qwen3.5-122B-A10B via OpenRouter/Alibaba,
+not the earlier unexecuted gpt-oss proposal. Official endpoint metadata was
+rechecked: context 262,144, maximum prompt 258,048, maximum completion 65,536,
+USD0.26 input/USD2.08 output per million, quantization unknown. Enabled reasoning
+is supported; reasoning_effort is not advertised. The official contest page
+again confirmed 8 November 23:59 AoE (9 November 03:59 PST).
+
+Compatibility changes are being prepared before the exact code/configuration GO.
+Full-context reservation for all 379 possible attempts is USD38.74750464, above
+the unchanged USD20 study allocation. No guessed tokenizer bound or relaxed
+wallet is used; the prospective campaign admission policy is under explicit
+coordinator review. No inference has occurred during this preparation.
+
+## 2026-11-08 — Qwen SSE and conservative billing preflight
+
+Before any inference, the coordinator approved full 262,144-token reservations
+for both input and billed output (USD0.61341696 per attempt). The earlier 16,384-
+output proposal was withdrawn after native answer-versus-thinking token semantics
+were checked. Streamed SSE is explicit, with an 8 MB wire cap, a 180-second hard
+wall timer, one consistent assistant/model/provider identity, terminal finish,
+final usage at or after finish, and DONE. Native reasoning_content as well as
+reasoning/reasoning_details are removed before persistent records.
+
+The explicit prospective budget amendment removes only the requirement to fund
+all 379 worst-case attempts upfront. The per-dispatch full-context reservation,
+hard USD20 persistent wallet, fixed schedule, technical retry and conditional
+pilot limits remain. Mean/observed-maximum/full-context projections are available
+from the pilot before main; budget-stopped cases remain unassessed.
+
+Confirmed ledger charges now use max(provider-reported cost, no-cache token-price
+bound), separately from reported API cost. Only complete valid billing releases
+unused reserve; malformed/partial/missing-cost responses remain fully reserved.
+Coordinator review caught interim usage being accepted before terminal finish;
+that ordering defect was fixed and regression-tested. Reciprocal peer review
+also checked route/cap/identity-before-settlement and joint total-context bounds.
+
+Command unchanged:
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=studies/wrong-goal-proof python3 -m unittest discover -s studies/wrong-goal-proof/tests -q`.
+**159 tests passed in 23.014 seconds**, Python 3.14.6. The immediately preceding
+158-test run passed in 21.500 seconds before the final usage-order regression.
+No experimental model requests, paid experiment outcomes or empirical freeze
+exist yet. An exact reviewed source/configuration/manifest GO is still required.

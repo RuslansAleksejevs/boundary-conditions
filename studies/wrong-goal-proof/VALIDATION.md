@@ -166,9 +166,18 @@ were not changed.
 
 ## Remaining blockers and non-claims
 
-This study has an authorized USD20 allocation, but approved credential access and
-the final provider/settings/pricing/data-policy/source-bound preflight remain
-pending. No model request, new external experimental spending, real pilot, empirical
+The subsequent Qwen/Alibaba compatibility preflight passed **159 tests in 23.014
+seconds**, using the same command and Python version above. Thirteen additional
+tests cover streaming completion/billing, hidden-reasoning removal, wall deadline,
+identity and context consistency, and the prospective hard-wallet admission rule.
+This includes the final interim-usage-before-finish regression found in coordinator
+review. Read-only peer review of the final critical source found no new blocker;
+it is distinct from this study's actual test execution.
+
+This study has an authorized USD20 allocation and approved credential access.
+The selected Qwen/Alibaba settings, tariff, retention policy and double-full-context
+reservation are documented in LIVE.md. Exact source/configuration/manifest GO is
+the remaining pre-inference step at this snapshot. No model request, new external experimental spending, real pilot, empirical
 freeze or main evaluation has occurred. No actual-result figure or standalone
 empirical report/PDF is therefore claimed. A new API purchase, alternate account,
 or internal provider-daemon workaround is outside this implementation.

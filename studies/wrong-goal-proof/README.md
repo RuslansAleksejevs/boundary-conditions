@@ -34,7 +34,8 @@ for C'=p AND q, Q'=q does not repair that original claim.
 All task inputs are synthetic. The implementation never executes generated code
 and uses no external dependencies. Offline commands remain network-free. The
 separate [live acquisition interface](LIVE.md) is implemented but has not contacted
-a model: approved credential availability and a source-bound preflight are pending.
+a model at the preparation snapshot: approved credential access is restored and
+the Qwen/Alibaba source-bound acquisition preflight is in progress.
 
 ## Quick check
 
@@ -118,7 +119,9 @@ review of service terms. No keys or provider daemon access are needed here.
 live auditor, pilot gate, and empirical freeze. Offline guards are unchanged.
 The fixed schedule is 52 pilot +260 main role calls, at most 15 identical technical
 retries across the campaign, and at most one genuine transport-correction pilot.
-All 379 possible attempts must fit the assigned USD20 allocation before dispatch.
+Every physical attempt must fit the remaining USD20 allocation before dispatch;
+the complete fixed schedule is not guaranteed to fit. Budget stops preserve
+unassessed outcomes rather than silently shrinking the sample.
 No inference or empirical result is implied by the transport unit tests.
 
 See [LIVE.md](LIVE.md) for configuration, exclusion inventory, commands, failure

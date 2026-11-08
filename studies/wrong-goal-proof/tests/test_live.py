@@ -26,14 +26,15 @@ from wgp.records import read_json, write_new
 
 def fixture_config():
     # Illustrative parser/budget-test values, NOT a verified tariff or approval.
-    return {"version": 1, "model": "openai/gpt-oss-120b", "provider_slug": "together",
-            "provider_response_name": "Together", "temperature": 0, "top_p": 1,
-            "reasoning_effort": "low", "max_tokens": 4096, "context_token_bound": 131072,
-            "output_reservation_tokens": 8192,
+    return {"version": 2, "model": "qwen/qwen3.5-122b-a10b", "provider_slug": "alibaba",
+            "provider_response_name": "Alibaba", "temperature": 0, "top_p": 1,
+            "reasoning_enabled": True, "stream": True, "max_tokens": 4096, "context_token_bound": 262144,
+            "output_reservation_tokens": 262144,
             "max_request_bytes": 24000, "timeout_seconds": 60,
             "input_usd_per_million": "0.15", "output_usd_per_million": "0.60",
             "request_usd": "0", "quota_usd": "20",
             "data_collection": "deny", "version_pin_status": "fixture-only; no immutable revision claim",
+            "budget_admission": "per_request_full_context_hard_cap",
             "price_source": "https://example.invalid/fixture-not-a-tariff", "price_as_of": "fixture-only"}
 
 
@@ -55,7 +56,7 @@ class FixtureHTTP:
         self.count += 1
         now = timestamp()
         result = {"started_at": now, "finished_at": now, "latency_seconds": 0.0,
-                  "http_status": 200, "headers": {}, "transport_error": None,
+                  "http_status": 200, "headers": {}, "stream": None, "transport_error": None,
                   "retryable_transport": False}
         if self.error == "timeout":
             return {**result, "http_status": None, "response": None,
@@ -68,7 +69,7 @@ class FixtureHTTP:
             certificate = solve(original)
             answer = {"verdict": certificate["verdict"], "witness": certificate.get("witness")}
         response = {"id": "fixture-acquisition-" + str(self.count), "model": payload["model"],
-                    "provider": "Together", "choices": [{"finish_reason": "stop",
+                    "provider": "Alibaba", "choices": [{"finish_reason": "stop",
                     "message": {"role": "assistant", "content": canonical(answer)}}],
                     "usage": {"prompt_tokens": 100, "completion_tokens": 200, "total_tokens": 300,
                               "completion_tokens_details": {"reasoning_tokens": 70},
@@ -239,13 +240,17 @@ class TransportTests(unittest.TestCase):
 
     def test_no_fallback_no_tools_no_hidden_reasoning_and_explicit_caps(self):
         body = payload_for(self.request, fixture_config())
-        self.assertEqual(body["provider"]["only"], ["together"])
+        self.assertEqual(body["provider"]["only"], ["alibaba"])
+        self.assertEqual(body["model"], "qwen/qwen3.5-122b-a10b")
+        self.assertTrue(body["reasoning"]["enabled"])
+        self.assertNotIn("effort", body["reasoning"])
         self.assertFalse(body["provider"]["allow_fallbacks"])
         self.assertTrue(body["provider"]["require_parameters"])
         self.assertTrue(body["reasoning"]["exclude"])
         self.assertNotIn("tools", body)
         self.assertEqual(body["plugins"], [])
-        self.assertLess(379 * upper_cost(fixture_config()), money("20"))
+        self.assertLess(upper_cost(fixture_config()), money("20"))
+        self.assertGreater(379 * upper_cost(fixture_config()), money("20"))
 
     def test_unapproved_model_oversized_request_and_unaffordable_caps_rejected(self):
         for change in ({"model": "other"}, {"max_tokens": 131072}, {"input_usd_per_million": "1000"}, {"quota_usd": "50"}):
@@ -254,12 +259,25 @@ class TransportTests(unittest.TestCase):
         with self.assertRaises(SchemaError):
             payload_for(self.request, {**fixture_config(), "max_request_bytes": 10})
 
+    def test_qwen_full_context_admission_preserves_hard_wallet_not_completion_promise(self):
+        config = {**fixture_config(), "context_token_bound": 262144, "max_tokens": 8192,
+                  "output_reservation_tokens": 262144, "input_usd_per_million": "0.26",
+                  "output_usd_per_million": "2.08", "timeout_seconds": 180,
+                  "temperature": 0.6, "top_p": 0.95}
+        self.assertEqual(upper_cost(config), money("0.61341696"))
+        self.assertEqual(379 * upper_cost(config), money("232.48502784"))
+        self.assertEqual(validate_configuration(config), config)
+        with self.assertRaises(SchemaError):
+            validate_configuration({**config, "budget_admission": "unbounded"})
+        with self.assertRaises(SchemaError):
+            validate_configuration({**config, "timeout_seconds": 181})
+
     def test_wrong_provider_usage_and_false_retry_flag_rejected(self):
         body = payload_for(self.request, fixture_config())
         receipt = FixtureHTTP("provider").send(body)
         self.assertEqual(interpret_receipt(receipt, fixture_config())["status"], "integrity_error")
         receipt = FixtureHTTP().send(body)
-        receipt["response"]["usage"]["completion_tokens"] = 10_000
+        receipt["response"]["usage"]["completion_tokens"] = 300_000
         self.assertEqual(interpret_receipt(receipt, fixture_config())["status"], "integrity_error")
         receipt = FixtureHTTP().send(body)
         receipt["retryable_transport"] = True
@@ -280,7 +298,7 @@ class TransportTests(unittest.TestCase):
         usage = receipt["response"]["usage"]
         usage.update(completion_tokens=4098, total_tokens=4198)
         self.assertEqual(interpret_receipt(receipt, config)["status"], "response")
-        usage.update(completion_tokens=8193, total_tokens=8293)
+        usage.update(completion_tokens=262145, total_tokens=262245)
         self.assertEqual(interpret_receipt(receipt, config)["status"], "integrity_error")
         with self.assertRaises(SchemaError):
             validate_configuration({**config, "output_reservation_tokens": 4095})
@@ -315,7 +333,7 @@ class TransportTests(unittest.TestCase):
             validate_configuration({**fixture_config(), "data_collection": None})
 
     def test_hidden_reasoning_text_is_not_kept(self):
-        normalized = visible_response({"choices": [{"message": {"content": "visible", "reasoning": "hidden", "reasoning_details": []}}],
+        normalized = visible_response({"choices": [{"message": {"content": "visible", "reasoning": "hidden", "reasoning_details": [], "reasoning_content": "also hidden"}}],
                                        "usage": {"reasoning_tokens": 7}})
         self.assertEqual(normalized["choices"][0]["message"], {"content": "visible"})
         self.assertEqual(normalized["usage"]["reasoning_tokens"], 7)

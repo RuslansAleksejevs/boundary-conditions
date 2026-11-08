@@ -48,7 +48,7 @@ def ledger_state(events, configuration_hash, quota="20"):
         if event["action"] == "reserve":
             keys(data, ("attempt_id", "logical_id", "stage", "request_hash", "reserve_usd", "retry_of"))
             aid, lid, stage = data["attempt_id"], data["logical_id"], data["stage"]
-            if any(s["actual_usd"] is not None and money(s["actual_usd"]) > money(reservations[a]["reserve_usd"])
+            if any(s["confirmed_charge_usd"] is not None and money(s["confirmed_charge_usd"]) > money(reservations[a]["reserve_usd"])
                    for a, s in settlements.items()):
                 raise SchemaError("reservation after a pricing overrun is forbidden")
             if (type(aid) is not str or aid in reservations or type(lid) is not str
@@ -73,34 +73,34 @@ def ledger_state(events, configuration_hash, quota="20"):
             if retries > 15 or len(reservations) >= 379:
                 raise SchemaError("total attempt/retry limit exceeded")
             reserve = money(data["reserve_usd"])
-            committed = sum((money(settlements[a]["actual_usd"])
-                             if a in settlements and settlements[a]["actual_usd"] is not None
+            committed = sum((money(settlements[a]["confirmed_charge_usd"])
+                             if a in settlements and settlements[a]["confirmed_charge_usd"] is not None
                              else money(r["reserve_usd"])) for a, r in reservations.items())
             if committed + reserve > money(quota):
                 raise SchemaError("reservation exceeds the assigned USD20 quota")
             reservations[aid] = data
         elif event["action"] == "settle":
-            keys(data, ("attempt_id", "actual_usd", "retryable", "receipt_hash"))
+            keys(data, ("attempt_id", "confirmed_charge_usd", "retryable", "receipt_hash"))
             aid = data["attempt_id"]
             if aid not in reservations or aid in settlements or type(data["retryable"]) is not bool:
                 raise SchemaError("invalid or repeated settlement")
-            if data["actual_usd"] is not None:
-                money(data["actual_usd"])
+            if data["confirmed_charge_usd"] is not None:
+                money(data["confirmed_charge_usd"])
             if type(data["receipt_hash"]) is not str:
                 raise SchemaError("settlement needs an acquisition receipt hash")
             settlements[aid] = data
         else:
             raise SchemaError("unknown budget journal action")
-    committed = sum((money(settlements[a]["actual_usd"])
-                     if a in settlements and settlements[a]["actual_usd"] is not None
+    committed = sum((money(settlements[a]["confirmed_charge_usd"])
+                     if a in settlements and settlements[a]["confirmed_charge_usd"] is not None
                      else money(r["reserve_usd"])) for a, r in reservations.items())
-    known = sum((money(s["actual_usd"]) for s in settlements.values() if s["actual_usd"] is not None), Decimal(0))
-    unknown = sum(a not in settlements or settlements[a]["actual_usd"] is None for a in reservations)
-    overrun = any(s["actual_usd"] is not None and money(s["actual_usd"]) > money(reservations[a]["reserve_usd"])
+    known = sum((money(s["confirmed_charge_usd"]) for s in settlements.values() if s["confirmed_charge_usd"] is not None), Decimal(0))
+    unknown = sum(a not in settlements or settlements[a]["confirmed_charge_usd"] is None for a in reservations)
+    overrun = any(s["confirmed_charge_usd"] is not None and money(s["confirmed_charge_usd"]) > money(reservations[a]["reserve_usd"])
                   for a, s in settlements.items())
     return {"reservations": reservations, "settlements": settlements, "retries": retries,
             "attempts": len(reservations), "committed_usd": str(committed),
-            "known_usd": str(known), "unknown_charges": unknown,
+            "settled_conservative_usd": str(known), "unknown_charges": unknown,
             "pricing_overrun": overrun, "last_hash": previous,
             "logical_counts": {stage: len(ids) for stage, ids in stages.items()}}
 
@@ -169,7 +169,7 @@ class BudgetLedger:
             raise BudgetStop(str(exc)) from exc
         return attempt_id
 
-    def settle(self, attempt_id, actual_usd, retryable, receipt):
+    def settle(self, attempt_id, confirmed_charge_usd, retryable, receipt):
         return self.append("settle", {"attempt_id": attempt_id,
-                           "actual_usd": None if actual_usd is None else str(money(actual_usd)),
+                           "confirmed_charge_usd": None if confirmed_charge_usd is None else str(money(confirmed_charge_usd)),
                            "retryable": retryable, "receipt_hash": digest(receipt, "wgp-receipt-v1")})

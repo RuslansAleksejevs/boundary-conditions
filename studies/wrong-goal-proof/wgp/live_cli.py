@@ -8,7 +8,7 @@ from pathlib import Path
 
 from .live import (analyze_live, audit_campaign, audit_live, freeze_live,
                    known_transport_fixture_datasets, live_pilot_gate, load_live,
-                   prepare_live, revised_pilot_manifest, run_live_stage, validate_go)
+                   prepare_live, read_json as read_live_json, revised_pilot_manifest, run_live_stage, validate_go)
 from .live_evidence import export_live_evidence, verify_live_evidence
 from .logic import SchemaError, digest
 from .records import read_json, write_new
@@ -64,7 +64,7 @@ def main(argv=None):
         elif args.command == "audit-campaign":
             result = audit_campaign(args.campaign)
         elif args.command == "verify-evidence":
-            result = verify_live_evidence(read_json(args.evidence))
+            result = verify_live_evidence(read_live_json(args.evidence))
         else:
             path = Path(args.campaign)
             name = (read_json(path / "freeze.json")["manifest_name"] if args.stage == "main"
@@ -81,7 +81,7 @@ def main(argv=None):
                     run = run_live_stage(path, args.stage, go, api_key=os.environ.get("OPENROUTER_API_KEY"))
                     result = audit_live(dataset, manifest, run)
             else:
-                run = read_json(path / args.stage / "run.json")
+                run = read_live_json(path / args.stage / "run.json")
                 if args.command == "audit":
                     result = audit_live(dataset, manifest, run)
                 elif args.command == "pilot-gate":
