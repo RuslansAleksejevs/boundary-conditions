@@ -31,8 +31,10 @@ for C'=p AND q, Q'=q does not repair that original claim.
   textual-match baseline, and a privileged oracle ceiling. The oracle's guarantee
   is an engineering property, not an empirical safety discovery.
 
-All inputs are synthetic. The implementation never executes generated code,
-uses no external dependencies, and contains no network/model client.
+All task inputs are synthetic. The implementation never executes generated code
+and uses no external dependencies. Offline commands remain network-free. The
+separate [live acquisition interface](LIVE.md) is implemented but has not contacted
+a model: approved credential availability and a source-bound preflight are pending.
 
 ## Quick check
 
@@ -110,6 +112,18 @@ A live adapter still needs explicit service/spending authorization, pinned model
 and sampling settings, pricing, provider token limits, bounded acquisition, and
 review of service terms. No keys or provider daemon access are needed here.
 
+## Separately authorized live acquisition
+
+`run_live.py` has a separate manifest, persistent budget ledger, HTTP receipts,
+live auditor, pilot gate, and empirical freeze. Offline guards are unchanged.
+The fixed schedule is 52 pilot +260 main role calls, at most 15 identical technical
+retries across the campaign, and at most one genuine transport-correction pilot.
+All 379 possible attempts must fit the assigned USD20 allocation before dispatch.
+No inference or empirical result is implied by the transport unit tests.
+
+See [LIVE.md](LIVE.md) for configuration, exclusion inventory, commands, failure
+handling, and the distinction between requested output and financial reservation.
+
 ## Files
 
 | Files | Responsibility |
@@ -119,6 +133,7 @@ review of service terms. No keys or provider daemon access are needed here.
 | `wgp/dataset.py`, `prompts.py` | Disjoint generated cases and fixed role/presentation text |
 | `wgp/adapters.py`, `pipeline.py` | Offline interfaces, natural/replay execution, rescoring |
 | `wgp/records.py`, `analysis.py`, `cli.py` | Manifests, freeze rehearsal, counts and uncertainty |
+| `wgp/live*.py`, `run_live.py` | Explicit acquisition, persistent budget, strict live audit and evidence |
 | `tests/` | Unit and seeded property tests; no third-party testing library |
 
 No shared infrastructure was copied from the other study. Public plans predate

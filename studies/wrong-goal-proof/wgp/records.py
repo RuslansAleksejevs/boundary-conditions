@@ -32,7 +32,7 @@ def write_new(path, value):
 
 def code_hashes():
     paths = sorted(STUDY_ROOT.glob("wgp/*.py")) + sorted(STUDY_ROOT.glob("tests/*.py"))
-    paths += [STUDY_ROOT / "run.py"]
+    paths += [STUDY_ROOT / "run.py"] + sorted(STUDY_ROOT.glob("run_live.py"))
     return {str(path.relative_to(STUDY_ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
             for path in paths}
 

@@ -87,3 +87,57 @@ the merge decision. Opening this PR is not integration or contest submission.
 The deterministic validation remains 105 passing tests and six audited synthetic
 runs, with zero experimental model calls. Future empirical work remains blocked
 on an approved interface, configuration, budget and fresh prospective holdout.
+
+## 2026-11-08 — Authorized live-stage preparation
+
+After explicit start authorization, fetched upstream and created
+`study/wrong-goal-proof-live-v1` from main `afd055c`, preserving the prior branch.
+The baseline 105 tests passed in 4.375 seconds. Allocation for this study is USD20,
+not the combined project budget. Core schedule remains 52 pilot +260 evaluation;
+up to 15 identical technical retries and one genuine-interface-correction pilot
+are reserved within the same allocation. No extra model or experimental arm.
+
+Credential availability and the common coordinator preflight remain blockers to
+acquisition. Preparation adds cross-bundle exclusions and a separately audited
+live transport/ledger while preserving offline-only guards. No secret attachment,
+credential bypass, or inference attempt occurred during this preparation.
+
+## 2026-11-08 — Live preparation and 146-test validation
+
+Implemented the separate official-HTTP acquisition path, strict live/campaign
+audit, immutable preparation/freeze commands, cross-bundle exclusions and actual
+translator-output/main separation check. The persistent hash-chained wallet
+reserves before HTTP, fsyncs, retains unknown/abandoned charges, and enforces the
+USD20 /379-attempt /15-extra-technical-attempt limits across stages and restarts.
+Requested completion cap and the approved financial output margin are separate.
+Provider identity, data policy, no fallback/redirect, receipt/request binding,
+duplicate acquisition IDs and actual pilot/ledger binding are checked explicitly.
+
+The original offline auditor was not widened to admit live metadata. Transport
+fixtures cannot qualify a real pilot, revision or freeze. Mathematical evidence
+verification remains separate from provider-origin claims. The union of actual
+candidate functions from all preserved pilots is checked against main. Collision
+blocks freeze and cannot justify a repeated pilot; no post-outcome automatic
+resampling exists. Solver/scalar/vector/certificate algorithms did not change.
+No extra experimental model or arm was introduced.
+
+Exact final command:
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=studies/wrong-goal-proof python3 -m unittest discover -s studies/wrong-goal-proof/tests -q`.
+Result: **146 tests passed in 20.539 seconds**, Python 3.14.6 (105 original tests
++41 new tests). `git diff --check` and `run_live.py --help` also passed.
+An earlier 128-test run found a Decimal reservation bug; it was corrected.
+The expanded 144-test run initially exposed two test-harness assertions, which
+were corrected; the complete 144-test rerun passed before the leakage tests.
+Read-only peer review independently identified the Decimal issue and the omitted
+first-pilot exclusion in the repeat path. Both fixes were independently reread;
+the reviewer did not run this suite or assert live API access.
+
+All new calls were explicitly labeled, in-process transport fixtures in unit
+tests. **Actual experimental model requests: 0; new external experimental cost:
+USD0.** Assistant-session costs are not measured or claimed to be zero. No secret
+attachment/read/bypass was attempted. Approved credential availability and final
+tariff/settings/source-bound coordinator GO remain unresolved. No real pilot,
+main evaluation, findings, or empirical PDF is claimed. These are external
+blockers, not a reason to invent another synthetic experiment. Public LIVE.md
+documents the intended authorized commands. Upstream was fetched before preparing
+publication; only this study's paths are being changed.

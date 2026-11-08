@@ -140,12 +140,39 @@ reports are [perfect holdout](results/perfect-holdout-analysis.json),
 [abstaining development](results/abstain-dev-analysis.json), and
 [malformed development](results/malformed-dev-analysis.json).
 
+## Separately authorized live preparation
+
+The earlier results above remain synthetic and unchanged. A subsequent explicitly
+authorized stage added the separate acquisition path documented in [LIVE.md](LIVE.md).
+The final command below passed **146 tests in 20.539 seconds**, Python 3.14.6:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=studies/wrong-goal-proof python3 -m unittest discover -s studies/wrong-goal-proof/tests -q
+```
+
+This is 105 prior tests plus 41 live-interface tests: exact cross-bundle exclusions,
+actual-candidate leakage across both permitted pilots, persistent unknown-charge
+reservations, restart/global-retry limits, locks and torn journals, no redirect or
+fallback, output-reservation margin, provider/usage/schema errors, receipt/order/
+wallet tampering, duplicate IDs, fixture exclusion, actual pilot binding and
+credential-free preflight. Transport fixtures are in-process test doubles; they
+contact no model. `git diff --check` and `run_live.py --help` also passed.
+
+Read-only peer review confirmed the final budget/HTTP/gating changes and identified
+two corrected defects: Decimal reservation handling and preservation of first-
+pilot candidate exclusions through an allowed interface-repair pilot. Review is
+not API access verification or an empirical result. The deterministic math engines
+were not changed.
+
 ## Remaining blockers and non-claims
 
-No approved experimental model interface/budget was established, and no live
-transport was added. A new API purchase, paid batch, provider switch, or access
-through an internal assistant daemon is not part of this implementation.
-Real model inference, pricing/token enforcement, a prospective empirical freeze,
-fresh confirmatory cases, empirical figures and a standalone competition report
-remain future work. The implementation can be reviewed and merged independently
-of that authorization. A pull request is not a merged result or contest submission.
+This study has an authorized USD20 allocation, but approved credential access and
+the final provider/settings/pricing/data-policy/source-bound preflight remain
+pending. No model request, new external experimental spending, real pilot, empirical
+freeze or main evaluation has occurred. No actual-result figure or standalone
+empirical report/PDF is therefore claimed. A new API purchase, alternate account,
+or internal provider-daemon workaround is outside this implementation.
+
+Prepared infrastructure can be reviewed independently of those blockers. A draft
+pull request is not integration or a competition submission. The old engineering
+bundles remain tests and cannot be relabeled as a confirmatory model evaluation.

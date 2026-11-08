@@ -91,13 +91,70 @@ def case_valid(original, candidate, group, family):
     return result["verdict"] == "SAFE" and comparison["open_functions_equal"]
 
 
-def make_dataset(seed=6006):
+def make_exclusions(datasets):
+    """Exact, inspectable exclusion inventory; no model outcomes are consulted."""
+    semantic, shapes, sources = set(), set(), []
+    for dataset in datasets:
+        audit_dataset(dataset)
+        sources.append({"seed": dataset["seed"], "dataset_hash": digest(dataset)})
+        for cases in dataset["splits"].values():
+            for case in cases:
+                for name in ("original", "candidate"):
+                    if case[name] is not None:
+                        variables, c, q = signature(case[name])
+                        semantic.add((tuple(variables), c, q))
+                shapes.add(skeleton(case["original"]))
+    payload = {"sources": sorted(sources, key=lambda x: (x["seed"], x["dataset_hash"])),
+               "semantic": [[list(v), c, q] for v, c, q in sorted(semantic)],
+               "original_skeletons": sorted(shapes)}
+    return {**payload, "hash": digest(payload, "wgp-exclusions-v1")}
+
+
+def exclusion_sets(exclusions):
+    from .logic import keys, variables_valid
+    keys(exclusions, ("sources", "semantic", "original_skeletons", "hash"))
+    payload = {k: v for k, v in exclusions.items() if k != "hash"}
+    if exclusions["hash"] != digest(payload, "wgp-exclusions-v1"):
+        raise SchemaError("exclusion hash mismatch")
+    if any(type(exclusions[name]) is not list for name in ("sources", "semantic", "original_skeletons")):
+        raise SchemaError("exclusion inventories must be lists")
+    source_hashes = set()
+    for source in exclusions["sources"]:
+        keys(source, ("seed", "dataset_hash"))
+        if (type(source["seed"]) is not int or not 0 <= source["seed"] < 2**32
+                or type(source["dataset_hash"]) is not str or len(source["dataset_hash"]) != 64
+                or source["dataset_hash"] in source_hashes):
+            raise SchemaError("invalid or repeated exclusion source")
+        source_hashes.add(source["dataset_hash"])
+    semantic = set()
+    for entry in exclusions["semantic"]:
+        if type(entry) is not list or len(entry) != 3:
+            raise SchemaError("invalid excluded semantic signature")
+        variables, c, q = entry
+        variables_valid(variables)
+        if any(type(x) is not int or not 0 <= x < 2**(2**len(variables)) for x in (c, q)):
+            raise SchemaError("invalid excluded truth vector")
+        semantic.add((tuple(variables), c, q))
+    if any(type(s) is not str for s in exclusions["original_skeletons"]):
+        raise SchemaError("excluded skeleton hashes must be strings")
+    shapes = set(exclusions["original_skeletons"])
+    if (len(semantic) != len(exclusions["semantic"])
+            or len(shapes) != len(exclusions["original_skeletons"])
+            or any(type(s) is not str or len(s) != 64 for s in shapes)):
+        raise SchemaError("duplicate or invalid exclusions")
+    return semantic, shapes
+
+
+def make_dataset(seed=6006, exclusions=None):
     if type(seed) is not int or not 0 <= seed < 2**32:
         raise ValueError("seed must be a uint32")
     rng = random.Random(seed)
     dataset = {"version": 1, "seed": seed, "splits": {}}
     previous_signatures = set()
     previous_shapes = set()
+    if exclusions is not None:
+        previous_signatures, previous_shapes = exclusion_sets(exclusions)
+        dataset.update(version=2, exclusions=exclusions)
     for split, sizes in SIZES.items():
         cases = []
         split_originals = set()
@@ -139,12 +196,17 @@ def make_dataset(seed=6006):
 def audit_dataset(dataset):
     """Revalidate saved input, including math, identity, splits, and row coverage."""
     from .logic import keys
-    keys(dataset, ("version", "seed", "splits"))
-    if (type(dataset["version"]) is not int or dataset["version"] != 1
+    if type(dataset) is not dict:
+        raise SchemaError("dataset must be an object")
+    keys(dataset, (("version", "seed", "splits", "exclusions") if dataset.get("version") == 2
+                   else ("version", "seed", "splits")))
+    if (type(dataset["version"]) is not int or dataset["version"] not in (1, 2)
             or type(dataset["seed"]) is not int or not 0 <= dataset["seed"] < 2**32):
         raise SchemaError("invalid dataset version/seed")
     keys(dataset["splits"], SIZES)
     ids, earlier_signatures, earlier_shapes = set(), set(), set()
+    if dataset["version"] == 2:
+        earlier_signatures, earlier_shapes = exclusion_sets(dataset["exclusions"])
     for split, sizes in SIZES.items():
         cases = dataset["splits"][split]
         if type(cases) is not list or len(cases) != sum(sizes.values()):
