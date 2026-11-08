@@ -13,6 +13,11 @@ The [execution budget](EXECUTION_BUDGET.md) fixes the sampling profile and recor
 the prospective budget-admission amendment. These are now approved execution
 limits, not yet evidence that the planned calls have completed.
 
+**Later development amendment:** [provider-throttling recovery](OPERATIONAL_AMENDMENTS.md)
+adds paced, serialized acquisition and an explicitly audited continuation of
+never-attempted Study A roles. It does not permit repeated observed outcomes,
+additional retries, larger samples, relaxed gates, or higher monetary ceilings.
+
 ## Shared readiness gate
 
 Before acquisition, record an approved official API, exact model/version,

@@ -7,8 +7,9 @@ Built for the [Swarm Alignment Hackathon 2026](https://apartresearch.com/sprints
 
 > **Research status — 8 November 2026:** Both offline harnesses are implemented,
 > independently tested, and integrated through separate reviewed pull requests.
-> Live acquisition is now authorized with a **$50 total API cap** and a fixed
-> Qwen/Alibaba route. Preflight is in progress; no real-model findings yet.
+> Live development acquisition has begun under a **$50 total API cap** on
+> Qwen/Alibaba. Study A reached a provider-throttling stop; controlled recovery
+> is being prepared. No held-out model evaluation or final scientific claims yet.
 
 ## Two boundaries
 
@@ -75,9 +76,10 @@ Runnable harnesses and engineering records are available for
 [Study B](studies/wrong-goal-proof/README.md). Their **90 + 105 tests** and
 deterministic CLI rehearsals validate software, not model behavior.
 The [next experiment plan](docs/NEXT_EXPERIMENTS.md) starts with bounded live
-pilots, then a frozen evaluation. The interface and spending allocation are
-approved; source-bound acquisition checks remain. Neither pilot has run as of
-the 8 November 2026, 19:48 UTC preflight snapshot.
+pilots, then a frozen evaluation. The [operational amendment](docs/OPERATIONAL_AMENDMENTS.md)
+preserves the interrupted pilot, its missing cases and original spending limits,
+and specifies the conditions for a paced continuation. Preparations and failed
+development gates are not completed evaluations.
 
 ## Scope and safety
 

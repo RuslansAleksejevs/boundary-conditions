@@ -79,3 +79,21 @@ Pilot viability and cost must be reviewed before the frozen evaluation.
 The two existing workstreams are adapting and testing their live transports.
 **Experimental calls: 0 at this snapshot.** Engineering tests and funding are
 not model findings. No competition submission has been made by this project.
+
+## 2026-11-08 — First model acquisition; throttling and explicit recovery amendment
+
+Study A made one planned clean request, then used its one permitted interface
+correction for an idempotent terminal SSE usage chunk. The failed original was
+preserved. The repaired pilot made 59 attempts for 54 scheduled roles before
+HTTP 429 responses triggered its declared three-failure stop. Audit passed;
+the full-pilot gate failed at 47/108 valid roles, with clean correctness 29/32.
+No held-out evaluation ran and no completed answer is being resampled.
+
+A read-only account reconciliation at 20:27 UTC confirmed total actual API spend
+of $0.10119174, not the larger conservative wallet reservations. The
+[dated operational amendment](docs/OPERATIONAL_AMENDMENTS.md) specifies paced,
+serialized acquisition and a separately audited continuation of only the 54
+never-attempted roles. It preserves the original attempt/money caps and gate.
+This development amendment precedes continuation data; it is not represented as
+an unchanged pilot protocol or evidence that recovery has succeeded. Study B
+has not yet made its first model request at this checkpoint.

@@ -3,6 +3,10 @@
 Snapshot: **8 November 2026, 19:48 UTC**, before experimental inference.
 This records authorization and a prospective protocol, not experimental results.
 
+**Later development update:** the [operational amendment](OPERATIONAL_AMENDMENTS.md)
+records the first real API expenditure, a provider-throttling stop, serialized
+acquisition and paced retry handling. Monetary and attempt ceilings do not increase.
+
 ## Funding
 
 The project contributor prepaid **USD 50 in OpenRouter credits** and authorized
@@ -45,7 +49,7 @@ over alternatives or equivalence to a local deployment.
 | HTTP timeout | 180 seconds; no implicit SDK retries |
 | Transport | Streaming SSE, with complete visible response and usage checks |
 | JSON response mode | Not requested; JSON-only task instructions retained |
-| Concurrency | One in-flight request per study |
+| Concurrency | One acquiring study at a time after the throttling amendment |
 
 Local seeds fix generated cases and condition order, not hosted-model randomness.
 The public model ID is not a cryptographic pin of provider weights. Capture
