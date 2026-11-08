@@ -112,3 +112,39 @@ continues at the amended pace; this early checkpoint is not a passing full pilot
 or a scientific effect estimate. Study A is not acquiring concurrently and is
 implementing the separately documented continuation audit. The total monetary
 ceiling remains $50, split $30/$20. No competition submission has occurred.
+
+## 2026-11-08 — Study B pilot passed; evaluation frozen before acquisition
+
+Study B completed its original pilot at 20:59 UTC: **51 HTTP attempts for 52
+scheduled roles**, 50 valid role responses, and 11/12 clean original contracts
+correct in every applicable condition. One malformed translator response and
+its blocked dependent review remain in the data, without repair or resampling.
+There were no technical retries, HTTP 429 responses, truncations or unknown
+charges. Recorded pilot cost is **$0.39923650**. The coordinator independently
+repeated the campaign audit, pilot gate and standalone evidence verification.
+
+No false assurance was found in this small development pilot; no positive
+counterexample is claimed. A zero paired bootstrap interval on an all-zero
+sample is not evidence of equivalence or a population effect of exactly zero.
+The analysis retains a bounded uncertainty interval and the fixed main design.
+
+The unchanged evaluation contains **100 original contracts / 260 scheduled
+roles**. Its prospective freeze was created at 21:03 UTC and independently
+checked against the actual passing pilot, the unchanged acquisition source,
+the 102-event financial prefix and the exact scheduled IDs. The freeze digest is
+`e5b6cc5c66c3698284e5af2145add1983a02b195067c23ef920c7a1c766dab7a`.
+This is a local prospective freeze, not a registry preregistration. No evaluation
+request has been made at this checkpoint; its corpus is not yet published.
+
+Study B released the shared provider route. Study A has started the independently
+reviewed continuation of **only 54 never-attempted pilot roles**, with zero new
+retries, unchanged scientific content and the original 98/108 validity threshold.
+Both failed historical runs and all conservative unknown-cost reservations are
+preserved. This is the [explicit operational amendment](docs/OPERATIONAL_AMENDMENTS.md),
+not an extra replacement pilot or an evaluation result.
+
+An authenticated read-only account reconciliation at 21:06 UTC confirmed actual
+combined expenditure of **$0.50042824**, leaving **$49.49957176**. Account expenditure
+is reported separately from conservative held reservations. Hard allocations
+remain $30/$20. Main acquisition requires a separate stage-specific approval;
+competition submission is not authorized.
