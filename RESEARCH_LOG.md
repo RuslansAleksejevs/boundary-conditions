@@ -97,3 +97,18 @@ never-attempted roles. It preserves the original attempt/money caps and gate.
 This development amendment precedes continuation data; it is not represented as
 an unchanged pilot protocol or evidence that recovery has succeeded. Study B
 has not yet made its first model request at this checkpoint.
+
+## 2026-11-08 — Paced Study B pilot started
+
+The coordinator independently repeated **171 tests** (39.727 seconds) and checked
+the exact source/configuration/manifest at Study B commit `83aa8ee313d4f054ac47af038a8b5c33a6a1e859`.
+The unchanged fresh dataset excludes 14 inspected engineering datasets, with no
+development/evaluation semantic or original-skeleton overlap. Source-bound
+approval at 20:35 UTC permits only the original 52-call pilot, not the evaluation.
+
+The first two requests returned HTTP 200 from the fixed Qwen/Alibaba route with
+complete SSE records and reported cost of $0.00979654 in total. Acquisition
+continues at the amended pace; this early checkpoint is not a passing full pilot
+or a scientific effect estimate. Study A is not acquiring concurrently and is
+implementing the separately documented continuation audit. The total monetary
+ceiling remains $50, split $30/$20. No competition submission has occurred.
