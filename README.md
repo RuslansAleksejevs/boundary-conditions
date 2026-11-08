@@ -5,8 +5,9 @@
 Two small, controlled studies of trust and meaning at agent boundaries.
 Built for the [Swarm Alignment Hackathon 2026](https://apartresearch.com/sprints/swarm-alignment-2026).
 
-> **Research status — 7 November 2026:** study designs prepared; two isolated
-> implementation workstreams have started. No model experiments or measured findings yet.
+> **Research status — 8 November 2026:** Study A's offline harness is implemented,
+> independently tested, and integrated. Study B is in final implementation validation.
+> No real-model experiments or empirical findings yet.
 
 ## Two boundaries
 
@@ -67,8 +68,11 @@ docs/
 RESEARCH_LOG.md        Dated milestones, including negative results
 ```
 
-Runnable code, exact environment instructions, and measured results will be added
-as they exist. There are no experiment commands or performance claims to reproduce yet.
+Study A's [runnable harness](studies/summary-laundering/README.md) and
+[engineering validation](studies/summary-laundering/VALIDATION.md) are available.
+Its 90 tests and deterministic CLI rehearsals validate software, not model behavior.
+Study B's implementation is being validated separately. Both real-model pilots
+still require an approved experimental interface and execution budget.
 
 ## Scope and safety
 
