@@ -199,3 +199,39 @@ effect estimate drawn from the partial batch. The frozen **100-original /
 260-role** evaluation is in progress, not complete. Study A makes no concurrent
 API requests and waits with its already frozen main plan. Reports and public
 data distinguish development-only snapshots from the eventual audited main run.
+
+## 2026-11-08 — Study B acquisition complete; Study A main started
+
+Study B's main process finished successfully at 23:45 UTC. The coordinator
+independently repeated the native campaign audit: **260 scheduled main roles,
+259 physical requests and 220 review outcomes** across 100 original contracts.
+There are 253 schema-valid roles, four preserved schema failures and three
+blocked dependent reviews. Two HTTP 429 responses were followed by the allowed
+identical-payload technical retries after at least 60 seconds; neither caused
+semantic repair or replacement sampling. The fixed acquisition finished without
+an early stop or a change to the source, prompts, scorer, route or sample.
+
+No false guarantee was confirmed in this bounded run. The full analysis,
+missingness-aware uncertainty, public replay bundle and standalone English
+report are being reviewed in Study B's separate pull request. This checkpoint
+does not establish universal safety, equivalence, or that a certificate's
+presentation has zero population effect.
+
+Known provider-reported main charges are **$1.99717180**. Study B's total known
+charges including its pilot are **$2.39640830**, while its conservative wallet
+retains **$1.22683392** for two receipts with unknown charges. An authenticated
+read-only account check at 23:51 UTC independently confirmed **$2.62712164 total
+actual expenditure** and **$47.37287836 remaining** across both studies. Account
+billing and conservative per-receipt reservations remain separate; no unknown
+charge was silently changed to zero.
+
+After Study B's actual process exit, the coordinator rechecked Study A's frozen
+source, configuration, passing composite pilot and original wallet. A fresh
+stage-specific approval and reviewed execution started the unchanged **60-input /
+540-role main evaluation**; its first request began at **23:53:27 UTC**. The
+initial two responses were HTTP 200 with valid schemas. No interim scientific
+contrasts are being used to tune the run. The fixed 20-second minimum request
+spacing, 27 remaining technical retries, $30 Study A allocation and $50 shared
+ceiling still apply. Study B makes no further model requests and prepares its
+report in parallel. Neither live-study pull request is merged at this checkpoint,
+and no competition submission has occurred.
