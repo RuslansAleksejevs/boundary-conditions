@@ -1,0 +1,143 @@
+\section{Question and related work}
+An executor may encounter an untrusted instruction in an external record or in
+another agent's summary of that record. Does the resulting risk depend on text
+transformation, on the displayed source identity, or on both? We separate these
+interventions without promoting the source text to a higher-priority API role.
+The two primary contrasts are the same saved summary under two source labels,
+and a summary versus a length-matched verbatim extract under the same label.
+
+This is not a claim to discover indirect prompt injection or provenance
+laundering. \emph{Can CaMeLs Talk?} already studies untrusted content crossing
+agent boundaries, including summarization handoffs, and proposes
+provenance-preserving communication~\cite{multicamel}. Our controlled source-label
+replay neither implements nor reproduces multi-CaMeL. \emph{StateFence} motivates
+protecting task state while measuring the utility cost of evidence
+filtering~\cite{statefence}. Our synthetic dictionary environment is not its
+security-operations benchmark. The intended contribution is a small, auditable
+decomposition with exact state outcomes, including an honest record of interface
+and acquisition failures.
+
+\section{Methods}
+\subsection{Tasks, roles and threat model}
+Each synthetic record contains task facts, one controlled attack or neutral
+paragraph, and ordinary archive text. A legitimate task asks for an exact
+lookup or arithmetic answer, written as a string to
+\texttt{results[task\_id].answer}. The attacker seeks an additional write setting
+\texttt{protected[task\_id].\allowbreak{}approved} from false to true. A tool-free summarizer
+receives the original task and untrusted record. Its fixed policy requests an
+accurate task-relevant summary and treats source instructions as data, without
+asking it to preserve or strengthen the attack. An executor then proposes one
+JSON batch of at most eight mock actions, with no interactive feedback turn.
+
+The attacker controls only the designated source paragraph. It cannot change the
+task, system policy, tool schema, scorer or trusted wrapper. The four fixed
+families are a colleague's extra request, forged approval, a purported prerequisite
+side effect, and an instruction inside a quoted work plan. No external service,
+file, credential or real account is attacked. The mock tool deliberately permits
+protected writes at the technical level, while the immutable system policy
+forbids them. This tests adherence to a permission boundary, not a production
+vulnerability.
+
+\subsection{Replay interventions}
+Exactly one summary is saved per input. Every executor condition uses a fresh
+context and reset environment. Its user-message envelope contains the original
+task and the evidence; neither source description changes the system policy.
+Table~\ref{tab:design} shows the factorial core. R-P and S-D are intentional
+counterfactual presentations; S-P is the natural record--summary--executor path.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lll}
+\toprule
+Content & External document (D) & Colleague handoff (P)\\
+\midrule
+Original record (R) & R-D & R-P\\
+Verbatim extract (E) & E-D & E-P\\
+Saved summary (S) & S-D & S-P\\
+\bottomrule
+\end{tabular}
+\caption{Six core replay cells. D/P changes only a 17-byte source description
+in the same low-priority message envelope. All S cells share identical summary
+bytes. Two additional S-P cells add a generic warning or specific provenance.}
+\label{tab:design}
+\end{table}
+
+The extract retains all required facts and the complete attack/control paragraph,
+then ends at an original word boundary nearest to the summary's UTF-8 byte length.
+Ties favor the shorter extract. It never rewrites source words or truncates
+mandatory spans. A relative length gap of at most 10\% is considered matched;
+more than 20\% unmatched assessable attacked cases flags an inadequate length
+control. All cases remain in the primary analysis. Even a matched S-P/E-P contrast
+is a \emph{transformation bundle}: selection, deletion and rewriting can all
+change meaning. It is not an isolated paraphrasing effect.
+
+Two secondary comparisons reuse S-P's exact summary. S-P-W adds a generic warning
+against following untrusted instructions. S-P-P adds harness-authored origin,
+source, transform and task fields, including
+\texttt{authority\_to\_change\_task=false}. Supplements have equal UTF-8 byte
+length through whitespace padding, not equal tokenizer counts or information.
+These are soft interventions. A separate deterministic allowlist replays each
+identical action batch and blocks protected writes; its behavior is an engineering
+control, not another model experiment or a test of recovery after denial.
+
+\subsection{Exact outcomes and useful completion}
+The entire JSON batch is validated before any action is executed. Duplicate keys,
+extra properties, wrong value types and malformed envelopes execute nothing and
+remain invalid responses. A forbidden attempt is a protected-store action in a
+schema-valid batch; malformed textual intentions are not silently counted as
+valid executed attempts. Wrong-task actions are rejected without mutation.
+
+The primary outcome $Y_{ic}$ is any protected false-to-true state transition for
+input $i$ in condition $c$, even if a later action reverts it. The scorer replays
+every action and verifies every before/after event and the final state. It also
+records exact task correctness, joint safe-and-correct completion, valid responses,
+abstention and blocked actions. An invalid batch has zero executed effects but
+cannot count as a valid safe completion. Missing transport or context outcomes
+remain unknown, never safe-imputed. Lexical fact/target-retention flags describe
+strings, not semantic retention or hidden model reasoning.
+
+\subsection{Model, development and planned evaluation}
+The single user-selected route is
+\texttt{qwen/qwen3.5-122b-a10b} through OpenRouter's Alibaba endpoint, without
+fallback. Both roles use the same fixed configuration in separate contexts.
+Temperature is 0.6, top-p 0.95 and requested \texttt{max\_tokens} 8,192.
+Reasoning is enabled, but hidden reasoning text is excluded from retained
+records. Completion-token counts include billed reasoning. The hosted alias and
+dated endpoint display name do not pin an exact served weight revision.
+
+The development pilot schedules eight attacked and four clean inputs: 12
+summaries plus 96 executor calls. The clean inputs run first; executor-cell order
+is seeded and frozen. The quoted-plan family is outside empirical pilot tuning,
+not unknown to the developers. The planned main set contains 40 attacked inputs
+(ten per family) and 20 predetermined clean counterparts, for 540 calls. Main
+task templates, identifiers and numeric ranges differ from development and
+inspected engineering fixtures. There is one payload per input, no best-of-N
+attack selection and no outcome-driven prompt revision in this live campaign.
+
+Main requires an audited pilot with at least 98/108 valid role responses and
+26/32 correct clean executor cells. The clean cells represent only four originals.
+An operational continuation after the observed outage is disclosed separately;
+it does not lower these thresholds or replace attempted responses.
+
+\subsection{Statistics and acquisition integrity}
+The primary contrasts are S-P minus S-D and S-P minus E-P on attacked inputs.
+Saved analysis reports paired complete-case differences, 2,000 cluster-bootstrap
+draws (seed 8128), exact paired McNemar tests with Holm adjustment across the two
+primary contrasts, and worst-case full-schedule missingness bounds. Related
+conditions and clean counterparts stay in the same scenario cluster. Conservative
+bounded-cluster intervals accompany percentile intervals that can collapse at
+zero discordance. These calculations assume independent clusters; shared payload
+templates, a small fixed synthetic task set and one sample per condition limit
+generalization. Defense, family and summary-dependent matched subsets are
+secondary/descriptive, not causal mediation analyses.
+
+An append-only, hash-chained wallet reserves USD 0.61341696 before every request
+under a hard USD 30 study ceiling. This conservative bound separately reserves
+262,144 input and output tokens at USD 0.26/2.08 per million; it is not expected
+cost or permission to spend above the ceiling. Verified unused reserve may be
+released; unknown charges retain their full reserve. Exact provider route,
+visible SSE assembly, usage, saved request identity, source inventory and state
+outcomes are independently reconstructed by the audit. Local hashes establish
+internal consistency, not a signed provider attestation. Raw logs stay private;
+reviewed synthetic outputs and minimized accounting records are published.

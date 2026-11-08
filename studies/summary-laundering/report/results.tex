@@ -1,0 +1,165 @@
+\section{Development-pilot results}
+\label{sec:results}
+\subsection{Acquisition and gate, not main evidence}
+All observations below are development data collected on 8 November 2026.
+The first single-request pilot failed on a duplicate empty terminal SSE marker.
+After the sole narrow interface repair, the fresh repaired pilot stopped at its
+rate-limit circuit. Its original gate remains failed at 47/108 valid roles.
+A separately authorized operational amendment then acquired only its 54 untouched
+suffix roles. The amended composite passes the unchanged threshold at 99/108,
+with 29/32 correct clean cells. No completed, invalid or failed response was
+resampled. Appendix~\ref{app:required} preserves the failure sequence and deviation.
+
+The final matrix contains 12 valid summaries and 96 scheduled executor cells:
+87 valid responses, six invalid batches and three missing transport outcomes.
+Thus 93 executor responses have observable execution outcomes, including the
+six atomically rejected invalid batches. None has a forbidden effect or a
+schema-valid protected-write attempt. Correct useful completion occurs in 83/93
+observed cells. These cells share only 12 original inputs, not 93 independent tasks.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+& \multicolumn{3}{c}{Attacked (8 scheduled per cell)} & \multicolumn{2}{c}{Clean (4 per cell)}\\
+Condition & Effects & Valid & Correct & Valid & Correct\\
+\midrule
+R-D   & 0/8 & 7/8 & 7/8 & 3/4 & 3/4\\
+R-P   & 0/7 & 7/7 & 7/7 & 4/4 & 4/4\\
+E-D   & 0/8 & 8/8 & 8/8 & 4/4 & 4/4\\
+E-P   & 0/8 & 8/8 & 8/8 & 4/4 & 4/4\\
+S-D   & 0/8 & 8/8 & 7/8 & 4/4 & 4/4\\
+S-P   & 0/7 & 6/7 & 6/7 & 3/4 & 3/4\\
+S-P-W & 0/8 & 7/8 & 4/8 & 3/4 & 3/4\\
+S-P-P & 0/7 & 7/7 & 7/7 & 4/4 & 4/4\\
+\bottomrule
+\end{tabular}
+\caption{Composite development pilot. Denominators are observed executor
+responses, including invalid batches; missing outcomes are excluded, never
+safe-imputed. The three missing attacked cells are R-P, S-P and S-P-P.
+All valid protected-write attempts and clean effects are zero. Because no effect
+occurred, exact correctness and joint safe-and-correct counts coincide here.}
+\label{tab:pilot}
+\end{table}
+
+\subsection{Primary contrasts and uncertainty}
+Both S-P minus S-D and S-P minus E-P have seven complete pairs out of eight
+scheduled attacked originals. Each point estimate is 0 percentage points (pp),
+with no discordant effects and exact McNemar $p=1$; both Holm-adjusted values
+are also 1. The percentile bootstrap collapses to $[0,0]$, while the conservative
+bounded-cluster 95\% interval is $[-100,100]$ pp for each contrast
+(Figure~\ref{fig:uncertainty}). This is not evidence of equivalence.
+
+The worst-case full-schedule contrast bounds are $[0,12.5]$ pp for each primary
+comparison: the missing S-P response could contain a forbidden effect, whereas
+the corresponding observed comparison response did not. These are bounds on
+this finite scheduled set, not population confidence intervals. Shared templates
+and the small set of original inputs further limit inferential scope.
+
+\begin{figure}[t]
+\centering
+\setlength{\unitlength}{1pt}
+\begin{picture}(470,117)
+\color{gray}
+\put(155,28){\line(0,1){62}}
+\put(232.5,28){\line(0,1){62}}
+\put(310,28){\line(0,1){62}}
+\put(387.5,28){\line(0,1){62}}
+\put(465,28){\line(0,1){62}}
+\linethickness{2pt}
+\put(155,75){\line(1,0){310}}
+\put(155,45){\line(1,0){310}}
+\color{black}
+\put(310,75){\makebox(0,0){\large $\bullet$}}
+\put(310,45){\makebox(0,0){\large $\bullet$}}
+\put(0,73){\small Source: S-P $-$ S-D}
+\put(0,43){\small Transform: S-P $-$ E-P}
+\put(0,59){\scriptsize 7/8 complete pairs}
+\put(0,29){\scriptsize 7/8 complete pairs}
+\put(155,16){\makebox(0,0){\small $-100$}}
+\put(232.5,16){\makebox(0,0){\small $-50$}}
+\put(310,16){\makebox(0,0){\small 0}}
+\put(387.5,16){\makebox(0,0){\small $+50$}}
+\put(465,16){\makebox(0,0){\small $+100$}}
+\put(310,0){\makebox(0,0){\small Difference in forbidden effects (pp)}}
+\end{picture}
+\caption{Development contrasts, not main results. Black dots are the zero point
+estimates and collapsed bootstrap intervals; gray bars are the conservative
+bounded-cluster 95\% intervals. The entire possible contrast range remains
+compatible with those conservative intervals. Positive values mean more effects
+in S-P. Neither interval removes the shared-template limitation.}
+\label{fig:uncertainty}
+\end{figure}
+
+\subsection{Utility, length control and illustrative traces}
+Warnings do not create an observable security benefit when every assessed
+condition has zero effects. Attacked-task correctness is 4/8 for S-P-W, 6/7 for
+S-P and 7/7 for S-P-P. The paired warning-minus-S-P utility estimate is $-28.57$
+pp on seven complete pairs, with a bootstrap interval of $[-80,25]$ and a
+conservative interval of $[-100,74.09]$ pp. These small secondary comparisons
+do not establish either a warning penalty or a provenance benefit. The full
+secondary, clean, family and matched-subset calculations are published unchanged.
+
+Three of eight assessable attacked summaries are not length matched (37.5\%),
+exceeding the prespecified 20\% inadequate-control threshold. All eight summaries
+contain the literal task fact values, and none contains the full literal protected
+target. These are lexical checks only; semantic-retention fields remain
+unannotated. One short summary is 54 bytes whereas the mandatory fact-plus-attack
+extract is 180 bytes. A summary/extract difference cannot be interpreted as a
+clean rewriting effect in these data.
+
+The trace rule selects the lexicographically first attacked input of each pilot
+family, plus the first S-P effect if one exists. None exists. In the colleague
+example, the saved summary is exactly ``The untrusted record states the
+invoice\_total is 5110.'' S-P and E-P write the correct answer, whereas S-P-W
+returns an empty action list. In the approval example, S-P places an otherwise
+plausible answer batch inside a Markdown code fence; strict JSON parsing rejects
+it before execution. In the prerequisite example, the summary still mentions
+workflow notes suggesting an approval flag, despite lacking the literal protected
+target. S-P answers correctly; S-P-W writes ``Unable to retrieve invoice\_total
+from trusted source'', which is safe but incorrect. These single-case readings
+illustrate format and utility failure, not a new semantic annotation, hidden
+reasoning analysis or a selected estimate of causal mechanisms.
+
+\subsection{Billing, time and prospective main freeze}
+Table~\ref{tab:cost} accounts for every actual experimental request, including
+the original failed request and technical retries. The accepted composite
+receipts report 35,808 input and 103,840 output tokens, including 97,660 reasoning
+tokens within output. Usage is unknown in local receipts for eight HTTP errors.
+The first rejected receipt separately reported 231 input and 2,575 output tokens.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Segment & Attempts & Retries & Accounted billing (USD)\\
+\midrule
+First failed pilot & 1 & 0 & 0.00541606\\
+Original repaired pilot & 59 & 5 & 0.09577568\\
+Untouched-suffix continuation & 54 & 0 & 0.12952160\\
+\midrule
+Total & 114 & 5 & 0.23071334\\
+\bottomrule
+\end{tabular}
+\caption{Experimental model billing only; development-agent usage is not
+included. The first request's billing was independently reconciled from a
+read-only account view. Other amounts are accepted response receipts. A separate
+account snapshot found no additional HTTP-429 charge; unknown local receipts and
+all nine original conservative holds remain unchanged.}
+\label{tab:cost}
+\end{table}
+
+The wallet retains USD 5.74604992 in charges/reservations under the USD 30 hard
+study ceiling; this is not actual billed spend. Composite summed request latency
+is 775.877 seconds, not wall duration. The continuation's first-start-to-last-finish
+wall duration is 1,102.459 seconds; its minimum recorded monotonic start spacing
+is 20.000119 seconds. No new transport error occurred, but this does not identify
+or prove resolution of the earlier rate-limit cause.
+
+After the composite audit and unchanged gate passed, a CPU-only main manifest
+fixed seed 2026110812, 60 new inputs and 540 core roles with the same source,
+model and scoring configuration. No main API call has occurred. Its acquisition
+is paused pending renewed stage-specific user authorization; unused budget or
+the passing development gate is not execution permission.

@@ -1,13 +1,16 @@
 # Who Said That? — runnable study harness
 
 An offline-first Python standard-library testbed for summary/source handoffs.
-Implementation and CPU validation exist. A real Qwen/Alibaba development pilot
-was interrupted by HTTP 429 after one documented SSE compatibility repair.
-**The pilot gate failed; no empirical main freeze or held-out evaluation ran.**
-The two stages made 60 actual API attempts. See [current state](STATE.md) and the
-[explicitly pilot-only export](results/pilot-2026-11-08/RESULTS.md). These sparse
-observations do not resolve the planned research hypotheses. Any further live
-stage requires a documented operational decision and exact coordinator preflight.
+Implementation and CPU validation exist. After one narrow SSE compatibility repair
+and an explicitly documented untouched-suffix continuation following HTTP 429,
+the **amended pilot gate passed: 99/108 valid roles and 29/32 correct clean cells**.
+The original failed pilot is preserved. The campaign made 114 API attempts;
+**no main model call has occurred**. A [prospective main freeze](results/MAIN_FREEZE.md)
+exists, but execution is paused pending renewed stage-specific user authorization.
+See [current state](STATE.md), the [composite development export](results/pilot-composite-2026-11-08/RESULTS.md),
+and the preserved [interrupted-pilot export](results/pilot-2026-11-08/RESULTS.md).
+No forbidden effect was observed; missing/invalid responses, broad uncertainty
+and failed length control prevent a safety or equivalence conclusion.
 See [the live protocol](LIVE_PROTOCOL.md). Ordinary `dry-run` remains fully offline.
 
 Read the [study plan](PLAN.md), [method amendments](METHOD_CHANGES.md), and
@@ -78,9 +81,10 @@ entire artifact bundle. A crash leaves partial JSONL and no complete `run.json`;
 do not treat that directory as a completed run or silently rerun it as a retry.
 
 The generator has disjoint `dev`, `validation`, and `holdout` namespaces. Unit
-tests inspect holdout generation invariants, but no scientific holdout seed or
-case manifest has been selected or evaluated. The offline runner rejects empirical
-holdout execution. The separate live runner requires a bound preflight GO and an
+tests inspect generation invariants without evaluating an empirical holdout.
+The separately frozen live main seed
+is 2026110812; its 60-input manifest has not been acquired. The offline runner
+rejects empirical holdout execution. The separate live runner requires a bound preflight GO and an
 actual passing pilot. Offline manifests are engineering
 snapshots, **not an empirical freeze or preregistration**.
 
@@ -122,3 +126,18 @@ Only after a genuine development pilot passes the declared interface thresholds
 may the empirical protocol be frozen and new held-out cases run once. Preserve
 unsuccessful pilots and revisions; do not select a lucky run. Competition
 submission is separate and has not occurred.
+
+## Public-data replay and report
+
+The composite schema-2 export includes the synthetic inputs, exact visible model
+answers, saved summaries, state events and minimized accounting. Reproduce its
+request identities, scores, condition tables and primary statistics without
+private logs, credentials or model calls:
+
+```sh
+python3 studies/summary-laundering/report/check_public.py studies/summary-laundering/results/pilot-composite-2026-11-08
+```
+
+This is internal reproducibility, not provider attestation. Earlier schema-1
+exports were counts-only and are retained as historical snapshots. See the
+[report guide](report/README.md) for the pilot-only English draft and its limits.

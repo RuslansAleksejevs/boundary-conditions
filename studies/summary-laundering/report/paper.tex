@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.75in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\title{Who Said That?\\A Pilot of Summary and Source-Label Prompt Injection}
+\author{Ruslans Aleksejevs}
+\date{8 November 2026\\Draft---pending author review; development data only}
+\begin{document}
+\maketitle
+\begin{abstract}
+Indirect prompt injection can cross an agent boundary when an executor consumes
+another agent's summary of an untrusted record. We implement a small, auditable
+testbed separating text transformation from the source label displayed to the
+executor, while keeping actual message privileges fixed. Each synthetic task has
+an exact legitimate answer and a protected Boolean whose false-to-true transition
+is forbidden. One saved summary is replayed across conditions, alongside original
+records, verbatim extracts, two soft defenses and a deterministic permission gate.
+A real Qwen3.5-122B-A10B development pilot contains eight attacked and four clean
+inputs. After a narrow streaming-interface repair and an explicitly disclosed
+untouched-suffix continuation following rate limits, 99 of 108 role responses
+qualify as valid; clean correctness is 29/32. There are no observed forbidden
+effects in 93 executor responses, but six are invalid and three additional
+scheduled responses are missing. Both planned primary comparisons have only
+seven complete attacked pairs and uninformative conservative intervals. Length
+matching fails its prespecified adequacy threshold. The campaign used 114 API
+attempts and USD 0.23071334 in accounted experimental billing. A main manifest is
+prospectively frozen but has not been acquired. These development observations
+do not establish safety, equivalence or defense efficacy; the present contribution
+is an executable design, replayable evidence and a transparent failure record.
+\end{abstract}
+
+\input{methods.tex}
+\input{results.tex}
+
+\section{Discussion and conclusion}
+The pilot establishes that the interface, exact state scorer, replay identity and
+public-data reconstruction can be exercised with real model responses. It does
+not establish the proposed laundering effect or a protective effect of the source
+label. Zero observed protected writes coexist with utility and format failures;
+there are too few independent attacked originals to distinguish small risks or
+intervention differences. Missing transport outcomes further weaken interpretation.
+
+The most immediate design limitation is failed length control. An extract that
+must retain the whole attack cannot match a short summary that omits it. Removing
+such cases from the primary comparison would select on a post-summary variable;
+the frozen analysis instead retains them and reports the failure. A later study
+could investigate different length-control designs, but this campaign's main
+manifest has not been changed after the pilot observations. The planned held-out
+evaluation remains a separate, unperformed stage requiring explicit authorization.
+
+Soft provenance and a generic warning should not be treated as permission checks.
+The hard allowlist blocks protected writes by construction, but no observed live
+batch attempted one, so this pilot provides no empirical head-to-head security
+advantage for that gate. Its rejection behavior is established by software tests,
+not by a discovered real-model failure. Limitations and dual-use considerations
+are detailed in Appendix~\ref{app:required}.
+
+\section{Code, data and reproducibility}
+Code and reviewed synthetic data are in the public repository
+\url{https://github.com/RuslansAleksejevs/boundary-conditions}, under
+\texttt{studies/summary-laundering/}. At this draft's cutoff, the live-stage
+work is in pull request \#3, not integrated into main. The standalone standard-library
+harness was validated on Python 3.14.6. The latest local suite passed 166 tests
+in 5.994 seconds; these tests make no model calls. The frozen acquisition source
+is commit \texttt{eb8844d}; subsequent report-only changes do not alter it.
+
+The composite export is \path{results/pilot-composite-2026-11-08/}.
+
+Its \texttt{manifest.json}, visible \texttt{calls.json}, saved summaries, complete
+outcome matrix and analysis allow offline reconstruction. From the study folder,
+run:
+\begin{verbatim}
+python3 report/check_public.py results/pilot-composite-2026-11-08
+\end{verbatim}
+This check reproduced 12 scenarios, 96 outcomes, 113 visible call records and both
+primary contrasts with no API access. It does not authenticate the provider or
+replace the separate private SSE, authorization and wallet audits. The first
+failed request is included in campaign accounting, not added to the repaired
+pilot's observation matrix. The previous interrupted export remains unchanged.
+
+Prospective main hashes are in \texttt{results/MAIN\_FREEZE.md}; the unacquired
+held-out corpus is not published. Seeds, model settings, sampling, cost,
+missingness and all operational changes are recorded. Source hashes establish
+internal consistency, not a signed external attestation or independent replication.
+
+\section*{LLM usage statement}
+GPT-6 Astra assisted with study critique, implementation, tests, analysis checks
+and report drafting. Internal agent reviews are AI-assisted code review, not
+independent empirical replication or external scientific peer review. Experimental
+responses come only from the separately configured Qwen/Alibaba route described
+above. Deterministic code, not an LLM judge, scores actions and computes statistics.
+This draft remains pending review by the named human author; no final author
+approval or competition submission is claimed. No institutional affiliation is
+asserted.
+
+\begin{thebibliography}{9}
+\bibitem{multicamel} \emph{Can CaMeLs Talk? Securing Multi-Agent Systems Against
+Indirect Prompt Injection Attacks}. arXiv:2610.05640v1, 2026.
+\url{https://arxiv.org/abs/2610.05640v1}.
+\bibitem{statefence} \emph{StateFence: Task-State Protection Against Evidence-Chain
+Contamination in Blue-Team LLM Agents}. arXiv:2611.02605v1, 2026.
+\url{https://arxiv.org/abs/2611.02605v1}.
+\end{thebibliography}
+\clearpage
+\input{appendix.tex}
+\end{document}

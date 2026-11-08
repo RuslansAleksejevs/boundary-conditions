@@ -260,3 +260,80 @@ two real-run audits still pass. Focused peer review found no new blocker in the
 initial continuation design; final aligned cooldown review is pending. No new
 API request was sent. The shared provider route is reserved for the other study
 until its checkpoint. Continuation and main each still require a separate GO.
+
+## 2026-11-08 UTC — continuation ready after independent checks
+
+Published commit `eb8844d` and froze the untouched-suffix continuation plan before
+any new request. Final focused peer review closed the aligned cooldown and
+composite-provenance changes without a new blocker. The coordinator independently
+passed 161 tests in 4.674 seconds, audited both original real runs, checked frozen
+scientific functions, the exact 54-role suffix, and the unchanged 123-event wallet
+prefix. Execution remains unapproved only while the other study uses the route;
+a separate exact plan-bound GO is still required. New API calls at this point: 0.
+
+## 2026-11-08 21:07 UTC — authorized continuation started
+
+The other study completed its pilot and released the provider route. A separate
+GO issued at 21:06:16 UTC bound the exact immutable continuation plan and source
+inventory at commit `eb8844d`. Started the one permitted 54-role continuation with
+the existing wallet, zero new retries and unchanged scientific source. This is
+an in-progress acquisition record, not a passing composite gate or main result.
+
+## 2026-11-08 21:35 UTC — amended pilot completed; main frozen but not acquired
+
+The authorized continuation exited successfully after exactly 54 new requests,
+all completed, with zero new retries or transport failures. Of those new roles,
+52 are valid. Its first request started at 21:08:04.652829 UTC and the last
+finished at 21:26:27.112278 UTC. The minimum audited monotonic start spacing was
+20.000119 seconds. The shared experimental route was explicitly released after
+the acquisition process exited, before further reporting work.
+
+The composite audit passes with 113 repaired-pilot attempts and 96 executor rows.
+The original parent object, 59 calls and 123-event financial prefix are exact.
+The original gate remains failed at 47/108; the explicitly amended composite
+passes the unchanged gate at 99/108, with 29/32 correct clean cells. Six invalid
+executor batches and three missing transport outcomes remain. There were no
+observed forbidden effects or valid protected-write attempts; this is small
+development evidence, not a held-out result or proof of safety.
+
+Continuation billing is USD 0.12952160. Total accounted experimental billing,
+including the separately reconciled first failed request, is USD 0.23071334
+across 114 attempts. The unchanged conservative wallet totals USD 5.74604992,
+with nine old unknown/rejected-receipt holds. Read-only account reconciliation
+agrees with the continuation increment; it does not release financial holds.
+
+After audit/gate PASS, the authorized CPU-only main freeze fixed the original
+seed 2026110812 and 40 attacked plus 20 clean inputs, 540 core requests, 27
+remaining technical retries and all unchanged scientific settings. The exact
+manifest hash is recorded in results/MAIN_FREEZE.md. Independent checks verified
+the manifest, actual composite binding and financial prefix. Main API execution
+is paused pending renewed stage-specific user authorization. No main API call,
+probe, new model selection, payload tuning or held-out corpus publication occurred.
+
+Reporting-only tests now pass 166/166 in 5.994 seconds; the frozen acquisition
+inventory is unchanged. A new schema-2 public export reproduces all 96 outcomes
+from 113 visible call records and both primary contrasts without private access.
+The original counts-only export remains unchanged. The composite has only seven
+complete primary pairs and inadequate length matching (3/8 unmatched); the
+pilot-only English draft reports those limitations rather than repairing the
+comparison after observing results. It remains pending author and code review.
+
+## 2026-11-08 UTC — pilot-only report and public review
+
+Prepared the standalone English development report, a 208-word abstract and the
+exact mandatory appendix heading, with no unconfirmed affiliation or final
+author approval. The cached-only Tectonic 0.16.9 build has eight pages: six main
+pages including references and two appendix pages. Fixed a missing cached circle
+font by using an existing math glyph and corrected a long command's line break;
+the reviewed build has no TeX warning. Visually inspected the title, complete
+condition table, paired-uncertainty figure and reproduction command.
+
+A peer read the entire manuscript, result text, methods, appendix, public checker
+and exporter; independently reran the public checker successfully; and found no
+blocking scientific or public-subset issue. This was focused read-only code and
+claim review, not a full private acquisition audit or external empirical review.
+The exact mandatory appendix heading was aligned following that review. A later
+full local suite passed 166/166 tests in 5.844 seconds. Publication scans found
+no personal paths, secret values, private coordination IDs, raw GO records or
+provider generation IDs in the new data bundle. Frozen acquisition source stayed
+unchanged; real API calls since the composite completion remain zero.

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="270" viewBox="0 0 900 270">
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="Arial, sans-serif" fill="#17223b">
+<text x="24" y="28" font-size="19">Development pilot only: paired forbidden-effect differences</text>
+<line x1="290.00" y1="48" x2="290.00" y2="184" stroke="#d1d5db"/>
+<text x="290.00" y="205" font-size="12" text-anchor="middle">-100</text>
+<line x1="430.00" y1="48" x2="430.00" y2="184" stroke="#d1d5db"/>
+<text x="430.00" y="205" font-size="12" text-anchor="middle">-50</text>
+<line x1="570.00" y1="48" x2="570.00" y2="184" stroke="#d1d5db"/>
+<text x="570.00" y="205" font-size="12" text-anchor="middle">+0</text>
+<line x1="710.00" y1="48" x2="710.00" y2="184" stroke="#d1d5db"/>
+<text x="710.00" y="205" font-size="12" text-anchor="middle">+50</text>
+<line x1="850.00" y1="48" x2="850.00" y2="184" stroke="#d1d5db"/>
+<text x="850.00" y="205" font-size="12" text-anchor="middle">+100</text>
+<text x="24" y="85" font-size="15">Source label: S-P − S-D</text>
+<text x="24" y="104" font-size="12">7/8 complete/scheduled pairs</text>
+<line x1="290.00" y1="87" x2="850.00" y2="87" stroke="#8ca6c4" stroke-width="5"/>
+<line x1="570.00" y1="80" x2="570.00" y2="80" stroke="#183e70" stroke-width="3"/>
+<circle cx="570.00" cy="80" r="5" fill="#183e70"/>
+<text x="24" y="159" font-size="15">Transformation: S-P − E-P</text>
+<text x="24" y="178" font-size="12">7/8 complete/scheduled pairs</text>
+<line x1="290.00" y1="161" x2="850.00" y2="161" stroke="#8ca6c4" stroke-width="5"/>
+<line x1="570.00" y1="154" x2="570.00" y2="154" stroke="#183e70" stroke-width="3"/>
+<circle cx="570.00" cy="154" r="5" fill="#183e70"/>
+<text x="570" y="228" text-anchor="middle" font-size="13">Difference in percentage points (positive = more forbidden effects in S-P)</text>
+<text x="24" y="254" font-size="12">Dark: 95% paired cluster bootstrap. Light: conservative bounded-cluster interval. Shared templates limit generalization.</text>
+</g></svg>

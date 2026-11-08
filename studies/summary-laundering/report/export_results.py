@@ -19,6 +19,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from sl.analysis import analyze
+from sl.continuation import effective_pilot_sources
 from sl.environment import strict_json
 from sl.protocol import canonical, digest
 
@@ -93,7 +94,7 @@ def paired_svg(primary, pilot_only=False):
     lines = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
              '<rect width="100%" height="100%" fill="white"/>',
              '<g font-family="Arial, sans-serif" fill="#17223b">',
-             '<text x="24" y="28" font-size="19">' + ("Interrupted pilot only: " if pilot_only else "") + 'paired forbidden-effect differences</text>']
+             '<text x="24" y="28" font-size="19">' + ("Development pilot only: " if pilot_only else "") + 'paired forbidden-effect differences</text>']
     for tick in (-100, -50, 0, 50, 100):
         lines += [f'<line x1="{x(tick):.2f}" y1="48" x2="{x(tick):.2f}" y2="184" stroke="#d1d5db"/>',
                   f'<text x="{x(tick):.2f}" y="205" font-size="12" text-anchor="middle">{tick:+d}</text>']
@@ -102,6 +103,8 @@ def paired_svg(primary, pilot_only=False):
         y = top + index * 74
         label = names[(row["a"], row["b"])]
         lines.append(f'<text x="24" y="{y+5}" font-size="15">{escape(label)}</text>')
+        if "complete_pairs" in row:
+            lines.append(f'<text x="24" y="{y+24}" font-size="12">{row["complete_pairs"]}/{row["scheduled_pairs"]} complete/scheduled pairs</text>')
         if row["difference_pp"] is None:
             lines.append(f'<text x="{x(0):.2f}" y="{y+5}" text-anchor="middle">No complete pairs</text>')
             continue
@@ -123,9 +126,12 @@ def fmt(value, digits=2):
 
 def markdown_results(report, campaign):
     pilot_only = campaign["acquisition_scope"] == "development_pilot_only"
-    lines = ["# " + ("Interrupted real pilot — no holdout" if pilot_only else "Real-model results"), "",
+    pilot_passed = pilot_only and report["pilot_gate"].get("passed") is True
+    title = ("Real pilot — gate " + ("passed" if pilot_passed else "failed") + "; main not included") if pilot_only else "Real-model results"
+    lines = ["# " + title, "",
              "One fixed hosted Qwen3.5-122B-A10B / Alibaba configuration. " +
-             ("The pilot gate failed; no main freeze or held-out acquisition occurred. The sparse observed cells do not resolve the research hypotheses."
+             (("The pilot gate passed. " if pilot_passed else "The pilot gate failed. ") +
+              "No main acquisition is included in this export. These observations are development data, not held-out evidence."
               if pilot_only else "Main observations are not pooled with development pilots."), "",
              "## " + ("Repair-pilot" if pilot_only else "Main") + " condition table", "",
              "Effects are actual protected false-to-true events; attempts are separate. "
@@ -191,7 +197,7 @@ def export(main_path, pilot_path, failed_path, reconciled, out):
         binding = main_m["pilot_binding"]
         if binding["manifest_hash"] != pilot_m["manifest_hash"] or binding["run_hash"] != digest(pilot_r):
             raise ValueError("main/pilot binding mismatch")
-        if main_m["code_hashes"] != pilot_m["code_hashes"] or main_m["config"] != pilot_m["config"]:
+        if main_m["code_hashes"] != effective_pilot_sources(pilot_m, pilot_r) or main_m["config"] != pilot_m["config"]:
             raise ValueError("main acquisition changed after its passing pilot")
         chain.append((pilot_r, main_r))
         stages.append(stage_cost(main_m, main_r, report))
@@ -207,9 +213,21 @@ def export(main_path, pilot_path, failed_path, reconciled, out):
                 "charged_or_reserved_usd": stages[-1]["cumulative_charged_or_reserved_usd"],
                 "exporter_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 "acquisition_scope": "development_pilot_only" if main_path is None else "held_out_main",
-                "evidence_label": "REAL_MODEL_OBSERVATIONS", "export_schema_version": 1}
+                "evidence_label": "REAL_MODEL_OBSERVATIONS", "export_schema_version": 2}
+    if "continuation" in pilot_r:
+        parent = pilot_r["continuation"]["parent_run"]
+        new_calls = pilot_r["calls"][len(parent["calls"]):]
+        campaign["pilot_operational_segments"] = {
+            "note": "The composite pilot is counted once above; these segment counts are not additional calls.",
+            "original_interrupted_attempts": len(parent["calls"]),
+            "continuation_new_attempts": len(new_calls),
+            "original_gate": pilot_r["continuation"]["plan"]["original_gate"],
+            "amended_composite_gate": pilot_report["pilot_gate"],
+            "continuation_plan_hash": pilot_r["continuation"]["plan"]["plan_hash"],
+            "original_run_hash": digest(parent),
+        }
     call_fields = ("call_id", "attempt", "status", "usage", "cost_usd", "model_version", "latency_seconds",
-                   "retryable", "request_hash", "wire_hash")
+                   "retryable", "request_hash", "wire_hash", "text")
     objects = {"manifest.json": main_m, "analysis.json": report, "campaign.json": campaign,
                "outcomes.json": main_r["rows"], "summaries.json": main_r["summaries"],
                "calls.json": [{k: c[k] for k in call_fields} for c in main_r["calls"]],

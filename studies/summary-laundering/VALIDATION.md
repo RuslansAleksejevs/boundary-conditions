@@ -1,8 +1,9 @@
 # Engineering validation
 
-This file records software tests only. No LLM results or scientific holdout have
-been produced. The latest live-contract suite is **133/133 PASS**; see the final
-section. The earlier offline milestone on 8 November 2026 UTC was **90 tests passed** with Python 3.14.6
+This file records software tests only, separately from the real development
+pilot described in STATE.md. No scientific main acquisition has occurred.
+The latest suite is **166/166 PASS**; see the final section. The earlier offline
+milestone on 8 November 2026 UTC was **90 tests passed** with Python 3.14.6
 (stdlib only; observed unittest wall time 1.238 seconds). Earlier 76-test and
 81-test milestones remain in HISTORY.md. The research protocol is not empirically
 frozen. Public code, including the test doubles, was written for this study.
@@ -198,3 +199,25 @@ actual stopped pilot confirms 54 remaining roles, maximum validity 101/108 and
 Independent peer review closed the initial continuation-integrity findings;
 the final aligned cooldown diff is undergoing focused review. A new exact GO is
 still required before any continuation data.
+
+## Reporting and public replay validation
+
+After the exact-source continuation completed, the command
+`python3 -m unittest discover -s studies/summary-laundering/tests -q` passed
+**166/166 tests in 5.994 seconds**. All tests remain HTTP-free. The acquisition
+source inventory remains the frozen `dbb21522554b9c96bed164d89230f6ecbb36b7d51b2861048f275a6461c424ca`.
+Reporting changes are outside that inventory. Focused reporting tests cover
+visible-response/state replay, immutable summary identity, population/cluster
+integrity, primary-statistic corruption, and truthful passing/failed pilot-only
+wording without inferring whether main exists elsewhere.
+
+Actual read-only public replay command:
+
+```sh
+python3 studies/summary-laundering/report/check_public.py studies/summary-laundering/results/pilot-composite-2026-11-08
+```
+
+Result: PASS, 12 scenarios, 96 outcomes, 113 visible call records and both
+primary contrasts reproduced; zero new API requests. This cannot authenticate
+provider acquisition, private authorization or the complete SSE/wallet record.
+The separate private audits of all three original/composite runs also pass.

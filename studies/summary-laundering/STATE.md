@@ -1,9 +1,54 @@
 # Study state
 
-As of 8 November 2026 UTC. Implementation evidence: local code and CPU tests.
-Research effects: UNKNOWN; the repaired real pilot was interrupted by HTTP 429.
+As of 8 November 2026, 21:35 UTC. Implementation evidence: local code and CPU
+tests. Empirical evidence: a completed, explicitly amended development pilot.
+No main model call has occurred. A prospective main manifest is frozen, but
+execution is paused pending renewed stage-specific user authorization.
 
-## Current continuation
+## Latest verified checkpoint
+
+- The original repaired pilot remains failed at 47/108 valid roles after 59
+  attempts. A separately authorized continuation sent only the 54 never-attempted
+  suffix roles, with zero new retries or transport failures. No prior outcome
+  was replaced. The composite passes the unchanged gate: **99/108 valid roles**,
+  **29/32 correct clean cells**, zero clean effects. Six invalid executor batches
+  and three missing transport outcomes remain in the 96-cell matrix.
+- All three original/composite audits pass. The immutable parent, its 59 calls,
+  and its 123-event wallet prefix are unchanged. The complete campaign has
+  **114 actual API attempts**, USD **0.23071334** accounted billing and a
+  conservative wallet charge/reservation of USD **5.74604992**. Nine original
+  unknown/rejected-receipt holds remain; account reconciliation does not rewrite
+  them. Continuation billing alone was USD **0.12952160**.
+- Development observations: zero executed forbidden effects or valid protected
+  write attempts in 93 observed executor cells; three other cells are missing.
+  Both primary contrasts have only 7/8 complete attacked pairs and a 0 pp point
+  estimate. Conservative intervals span the full -100 to +100 pp range. Three
+  of eight attacked summaries fail length matching, exceeding the declared
+  20% inadequate-control threshold. These are not held-out efficacy findings.
+- CPU-only main freeze: seed 2026110812, 40 attacked plus 20 clean inputs,
+  540 core calls, unchanged source/configuration/scoring and 27 permitted
+  technical retries. See [the prospective freeze record](results/MAIN_FREEZE.md).
+  No attempt to execute main or bypass the authorization pause has been made.
+- Latest local command: `python3 -m unittest discover -s studies/summary-laundering/tests -q`;
+  **166/166 PASS in 5.994 seconds**, no network. The schema-2 public replay also
+  passes: 12 scenarios, 96 outcomes, 113 visible call records and both primary
+  contrasts reproduced, without authenticating the external provider.
+- [Composite pilot export](results/pilot-composite-2026-11-08/RESULTS.md) is
+  separate from the preserved interrupted-pilot export. English paper preparation
+  is reporting-only; acquisition modules remain frozen at `eb8844d`.
+
+The pilot-only English draft is eight pages (six main including references, two
+appendix pages), with a 208-word abstract, AI-use disclosure and pending-author-review
+label. Tectonic 0.16.9 builds from cached resources only; reviewed layout has no
+TeX warning. Focused read-only peer review found no blocker and independently
+reproduced public replay; it did not authenticate private provider billing or
+repeat the full test suite. A later full local suite passed 166 tests in 5.844 seconds.
+
+Next: publish the reviewed owned paths to draft PR #3. Main requires genuinely
+new user confirmation, exact independent preflight
+and a free provider route. A previous GO or unused budget is not a workaround.
+
+## Historical acquisition sequence
 
 The offline implementation was integrated through PR #1. A new authorized stage
 is underway on `study/summary-laundering-live-v1`, based on main `afd055c`.
@@ -44,7 +89,7 @@ stream also passes; the original run remains failed and unchanged. The renewed
 exact-source GO was then issued for commit `40280f6`, and the one permitted
 fresh repair pilot was run. No acquisition process is currently running.
 
-## Current external blocker
+## Original interruption and operational amendment
 
 The repair pilot stopped after 59 API attempts (54 distinct logical requests,
 five identical technical retries): 51 completed responses and eight HTTP 429
@@ -73,19 +118,23 @@ in total, with no extra charge for the eight HTTP 429 errors in that snapshot.
 
 Reporting-only code and minimized pilot exports have been prepared outside the
 frozen acquisition inventory. The operational amendment and reporting suite pass
-**161/161 tests in 4.836 seconds**. The initial continuation design passed focused
-peer review; the final aligned HTTP 429 cooldown diff is being checked. No further
-API call is authorized until exact GO and exclusive provider-route availability.
+**161/161 tests in 4.836 seconds**. Final focused peer review found no new blocker;
+the coordinator independently passed all 161 tests in 4.674 seconds and verified
+both original runs, scientific-source preservation, the 54-role suffix and the
+unchanged wallet. Commit `eb8844d` and its immutable continuation plan are ready.
+A separate exact plan-bound GO was issued at 21:06:16 UTC after the other study's
+pilot completed and released the route. The 54-role continuation was then run
+under the frozen source inventory; its completed result is recorded in the latest
+checkpoint above. No main evaluation is authorized yet.
 
 Prepared code is published in [draft pull request #3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3),
 initial preparation commit `4030c75c16f88b4add9e652073e8ba0216344d34`.
 It is not integrated into main. The draft records implementation and subsequent
 live-stage progress, not completion of the empirical research goal.
 
-Next: finalize amendment validation/review and obtain a separate exact-source GO
-only when the shared provider route is free. Retain all failed records and holds.
-Prepare an honest report; do not call this completed scientific evaluation or
-interpret sparse pilot observations as a held-out result.
+The latest checkpoint supersedes the earlier prospective next steps. All failed
+records and holds remain preserved. Do not interpret development observations as
+held-out results or call an unmerged PR integrated.
 
 ## Previous offline milestone
 
