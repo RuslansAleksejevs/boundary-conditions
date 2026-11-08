@@ -22,8 +22,13 @@ or empirical approval. See LIVE_PROTOCOL.md and VALIDATION.md.
 Final model/sampling/pricing parameters and approved credential access remain
 pending. Actual model requests and experimental spend in this stage: **0**.
 
-Next: close transport/budget/freeze review, obtain the exact preflight GO and
-approved secret availability, then execute the actual bounded pilot and main
+Prepared code is published in [draft pull request #3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3),
+implementation commit `4030c75c16f88b4add9e652073e8ba0216344d34`.
+It is not integrated into main. The draft records an access-blocked preparatory
+milestone, not completion of the empirical research goal.
+
+Next: obtain the exact preflight GO and approved secret availability, then
+execute the actual bounded pilot and main
 evaluation if gates pass. Do not mistake these preparatory tests for completion
 of the newly authorized scientific stage.
 

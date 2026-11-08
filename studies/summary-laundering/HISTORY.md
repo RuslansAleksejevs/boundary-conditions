@@ -107,3 +107,14 @@ The read-only peer subsequently confirmed both current findings closed against
 the exact updated source hashes, without claiming to have rerun the test suite.
 No remaining blocker was found in those reviewed sections. This confirmation is
 not approval of provider pricing, credentials, or empirical acquisition.
+
+## 2026-11-08 UTC — live preparation published as a draft
+
+Fetched origin, reviewed all 14 staged paths and their content, and passed
+whitespace and private-path/credential-pattern checks. Committed the preparation
+as `4030c75c16f88b4add9e652073e8ba0216344d34`, pushed
+`study/summary-laundering-live-v1` without force, and opened
+[draft pull request #3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3).
+No other study, shared repository file or shared branch was modified. No merge
+was performed. The draft explicitly states that actual model acquisition and
+scientific results remain blocked on exact preflight and approved access.
