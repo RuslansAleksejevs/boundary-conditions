@@ -5,8 +5,10 @@ its unchanged interface gate. This record commits hashes of a private immutable
 manifest before any main model response. It is not a completed result, external
 preregistration, permission to spend, or proof that main will run.
 
-Execution is paused pending renewed, stage-specific user authorization through
-the normal reviewed interface. Do not reuse a previous GO as a workaround.
+Renewed stage-specific user authorization was received on 8 November 2026.
+Execution still requires a separate exact-source GO and exclusive provider-route
+handoff through the normal reviewed interface. No main call has occurred at this
+checkpoint. Do not reuse a previous GO as a workaround.
 
 | Frozen item | Value |
 | --- | --- |

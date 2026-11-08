@@ -6,7 +6,8 @@ and an explicitly documented untouched-suffix continuation following HTTP 429,
 the **amended pilot gate passed: 99/108 valid roles and 29/32 correct clean cells**.
 The original failed pilot is preserved. The campaign made 114 API attempts;
 **no main model call has occurred**. A [prospective main freeze](results/MAIN_FREEZE.md)
-exists, but execution is paused pending renewed stage-specific user authorization.
+exists. Renewed stage-specific user permission has been received, but execution
+still awaits a separate exact-source GO and exclusive provider-route handoff.
 See [current state](STATE.md), the [composite development export](results/pilot-composite-2026-11-08/RESULTS.md),
 and the preserved [interrupted-pilot export](results/pilot-2026-11-08/RESULTS.md).
 No forbidden effect was observed; missing/invalid responses, broad uncertainty

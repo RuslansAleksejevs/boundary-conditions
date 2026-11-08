@@ -337,3 +337,22 @@ full local suite passed 166/166 tests in 5.844 seconds. Publication scans found
 no personal paths, secret values, private coordination IDs, raw GO records or
 provider generation IDs in the new data bundle. Frozen acquisition source stayed
 unchanged; real API calls since the composite completion remain zero.
+
+## 2026-11-08 21:49 UTC — pilot report published; main authority renewed
+
+Committed and pushed the reviewed pilot-only report, eight-page PDF, schema-2
+public evidence and reporting tests as `58bc90085f8d02cf14ba1947236a4c478e2045a8`
+to the existing draft PR #3. Staged-path review covered only this study; fetch
+preceded publication, and no merge, rebase, force-push or shared-file edit occurred.
+The public main record contains hashes, not the held-out task corpus. PDF visible
+text and bundle privacy scans passed. The report remains pending human author
+review and is not integrated or submitted.
+
+Renewed direct user authorization was then reported for the original main API
+stage within the unchanged study/shared spending ceilings, including all pilots.
+This study remains stopped until the other study releases the route and a new
+exact-source GO is issued. No main API call or probe has been made. Updated only
+current authorization wording, not the prospective main, source inventory or data.
+The provider-reported 30-day logging/no-training/non-ZDR metadata was checked
+against the dated preflight source and public execution-budget record; no verified
+deletion guarantee is claimed. Experimental funding is contributor-provided.

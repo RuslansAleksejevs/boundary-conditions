@@ -1,9 +1,10 @@
 # Study state
 
-As of 8 November 2026, 21:35 UTC. Implementation evidence: local code and CPU
+As of 8 November 2026, 21:49 UTC. Implementation evidence: local code and CPU
 tests. Empirical evidence: a completed, explicitly amended development pilot.
 No main model call has occurred. A prospective main manifest is frozen, but
-execution is paused pending renewed stage-specific user authorization.
+renewed stage-specific user authorization has been received. Execution still
+awaits a separate exact-source GO and exclusive provider-route handoff.
 
 ## Latest verified checkpoint
 
@@ -44,9 +45,12 @@ TeX warning. Focused read-only peer review found no blocker and independently
 reproduced public replay; it did not authenticate private provider billing or
 repeat the full test suite. A later full local suite passed 166 tests in 5.844 seconds.
 
-Next: publish the reviewed owned paths to draft PR #3. Main requires genuinely
-new user confirmation, exact independent preflight
-and a free provider route. A previous GO or unused budget is not a workaround.
+Published the reviewed pilot report, PDF and public bundle in draft PR #3 at
+`58bc90085f8d02cf14ba1947236a4c478e2045a8`. It is not integrated into main.
+Next: wait for the other study to finish and for a separate exact-source main GO.
+Renewed user authorization covers the original 540-role stage within the unchanged
+USD 30 study/USD 50 shared limits. It does not permit concurrent acquisition,
+extra probes, altered tasks or reuse of an old stage GO. No main API call has occurred.
 
 ## Historical acquisition sequence
 
