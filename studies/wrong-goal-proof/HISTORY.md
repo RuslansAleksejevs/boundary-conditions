@@ -46,3 +46,27 @@ error rather than an unhandled exception. Normalized final newlines, reviewed
 the staged study-only paths, and scanned for personal paths, credentials and
 private coordination identifiers; no matches were found. No experimental model
 calls or spending occurred. The implementation is ready for synthetic rehearsals.
+
+## 2026-11-08 — Six audited synthetic rehearsals
+
+Implementation commit `c15e8401a9c41f4bf73deee3a02bdbf82394cc47`; Python 3.14.6;
+seed 6006. Saved perfect and local-only development/freeze/engineering-holdout
+chains, plus abstaining and malformed development runs. Total: 728 local adapter
+invocations and 616 reviewer outcomes across six runs, zero experimental model
+calls, zero new external experimental cost. The two failed pilots were retained;
+CLI freeze returned exit 2 and did not create their freeze files.
+
+On the 40 planted engineering originals, perfect/local-only doubles produced
+0/40 and 40/40 false SAFE in each of B/N/S, respectively. Both had natural utility
+40/40 and equivalent-control utility 20/20 in each arm. Both scope contrasts are
+zero by the scripted behavior, not empirical null results. Standalone evidence
+verification confirmed all 40 originals and 120 scripted false guarantees.
+
+Prepared reviewed aggregate JSON and a complete synthetic counterexample packet;
+run/profile hashes are recorded in results/RECORD.json. All actual counts, commands,
+uncertainty caveats, and limits are in VALIDATION.md. The engineering holdout is
+explicitly not an untouched or preregistered confirmatory LLM evaluation.
+
+All six saved runs were re-audited before publication. Recomputed analysis matched
+each public aggregate exactly; the exported packet matched the audited local run,
+and every file hash in results/RECORD.json matched. Repository diff checks passed.

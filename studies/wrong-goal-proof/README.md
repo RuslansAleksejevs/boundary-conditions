@@ -5,7 +5,8 @@ A finite, independently checked testbed for **certificate scope at an agent hand
 **Status: implemented; engineering tests only. No experimental LLM calls.**
 The experiment remains unrun. Test-double failure rates are deliberately scripted
 software checks, not estimates of any model's behavior. See [STATE](STATE.md),
-[the study plan](PLAN.md), and [design decisions](DESIGN.md).
+[the study plan](PLAN.md), [design decisions](DESIGN.md), and
+[actual engineering validation](VALIDATION.md).
 
 ## What the testbed checks
 

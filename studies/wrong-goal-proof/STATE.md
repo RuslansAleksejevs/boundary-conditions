@@ -15,7 +15,15 @@ classification: PROJECT_REPORTED. This is an engineering record, not model evide
   included. Offline replay does not attest external acquisition chronology.
 - Read-only peer review found no C/Q-vs-closed-truth blocker. Its request/response
   consistency recommendation is implemented and passes regression tests.
+- Six saved synthetic CLI runs passed audit: 728 local adapter invocations,
+  616 reviewer outcomes, no model calls. Two complete 260-invocation engineering
+  holdouts used perfect/local-only doubles. Abstain/malformed development runs
+  correctly failed the freeze gate and did not proceed to holdout.
+- Standalone evidence verification passed for all 40 planted originals and 120
+  scripted false SAFE answers. Scope contrasts are zero in both doubles by design;
+  no empirical claim follows. See VALIDATION.md and results/RECORD.json.
+- Implementation commit: `c15e8401a9c41f4bf73deee3a02bdbf82394cc47`.
 - Publication: implementation branch only; PR not yet opened, not integrated.
 
-Next: final tests, audited synthetic rehearsals, public documentation and fixtures,
-then review staged content, publish the study branch and open a pull request.
+Next: review the synthetic result files, publish the study branch and open a pull
+request. A real model pilot and confirmatory holdout remain separately blocked.
