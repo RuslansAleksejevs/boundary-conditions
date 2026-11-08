@@ -7,7 +7,8 @@ Built for the [Swarm Alignment Hackathon 2026](https://apartresearch.com/sprints
 
 > **Research status — 8 November 2026:** Both offline harnesses are implemented,
 > independently tested, and integrated through separate reviewed pull requests.
-> No real-model experiments or empirical findings yet.
+> Live acquisition is now authorized with a **$50 total API cap** and a fixed
+> Qwen/Alibaba route. Preflight is in progress; no real-model findings yet.
 
 ## Two boundaries
 
@@ -54,7 +55,8 @@ Primary track: **The Science of Agent Networks**. Also relevant to
 - Treat related work as prior art, not as results reproduced here.
 
 See the [shared protocol](docs/PROTOCOL.md), [related work](docs/RELATED_WORK.md),
-and [research log](RESEARCH_LOG.md).
+and [research log](RESEARCH_LOG.md). The [execution budget](docs/EXECUTION_BUDGET.md)
+records funding, model settings, spending stops, and data handling.
 
 ## Repository map
 
@@ -73,8 +75,9 @@ Runnable harnesses and engineering records are available for
 [Study B](studies/wrong-goal-proof/README.md). Their **90 + 105 tests** and
 deterministic CLI rehearsals validate software, not model behavior.
 The [next experiment plan](docs/NEXT_EXPERIMENTS.md) starts with bounded live
-pilots, then a frozen evaluation. An approved interface and execution budget
-are still prerequisites; neither pilot has run.
+pilots, then a frozen evaluation. The interface and spending allocation are
+approved; source-bound acquisition checks remain. Neither pilot has run as of
+the 8 November 2026, 19:48 UTC preflight snapshot.
 
 ## Scope and safety
 

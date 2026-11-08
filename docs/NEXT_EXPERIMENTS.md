@@ -7,6 +7,12 @@ auditable responses over additional framework development. Existing study plans,
 [Study B design](../studies/wrong-goal-proof/DESIGN.md) remain the methodological
 references. The operational constraints below narrow their development allowance.
 
+**Execution update, 8 November 2026:** the contributor authorized a $50 combined
+cap ($30/$20) and Qwen3.5-122B-A10B through fixed Alibaba routing on OpenRouter.
+The [execution budget](EXECUTION_BUDGET.md) fixes the sampling profile and records
+the prospective budget-admission amendment. These are now approved execution
+limits, not yet evidence that the planned calls have completed.
+
 ## Shared readiness gate
 
 Before acquisition, record an approved official API, exact model/version,

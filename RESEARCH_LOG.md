@@ -60,3 +60,22 @@ adds concrete access/budget and acquisition-integrity gates, and narrows the
 development allowance to avoid outcome-driven tuning. Live transport, fresh
 cases and prospective empirical freezes still need to be completed. No new
 model calls or competition submission occurred while preparing this plan.
+
+## 2026-11-08 — Live execution authorized; funding and model fixed
+
+The contributor authorized paid acquisition and publication of the funding
+record: **USD 50 total, allocated $30 to Study A and $20 to Study B**. A read-only
+account check at 19:48 UTC confirmed $50 available and no prior usage. The target
+is Qwen3.5-122B-A10B through OpenRouter with Alibaba fixed and fallbacks disabled.
+The [execution record](docs/EXECUTION_BUDGET.md) specifies settings, privacy
+conditions, and conservative per-request reservations.
+
+Before any inference, the coordinator approved a prospective budget-admission
+amendment: retain hard per-study stops and the original scheduled cases, but do
+not require the entire campaign's full-context worst case to fit upfront.
+Budget-stopped cases remain missing, not silently replaced or counted as safe.
+Pilot viability and cost must be reviewed before the frozen evaluation.
+
+The two existing workstreams are adapting and testing their live transports.
+**Experimental calls: 0 at this snapshot.** Engineering tests and funding are
+not model findings. No competition submission has been made by this project.
