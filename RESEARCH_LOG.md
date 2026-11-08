@@ -43,3 +43,20 @@ transformation bundle from a pure paraphrasing effect, and bytes from tokens.
 
 **Zero external experimental model calls.** No scientific pilot, empirical
 freeze, or held-out model evaluation has occurred. Study B's PR remains pending.
+
+## 2026-11-08 — Study B integrated; live stage planned
+
+[PR #2](https://github.com/RuslansAleksejevs/boundary-conditions/pull/2) was merged
+at `3905e6a18ef929cc02e09494978e78b301d4c442`, with the reviewed head
+`c5f0562f86d1c318d1c873939f27964c0a633610` unchanged. The coordinator independently
+passed all **105 tests** and repeated six synthetic CLI runs, including correct
+rejection of failed pilot profiles and standalone checking of 40 contracts /
+120 scripted false guarantees. Peer review left no blocking code findings.
+All 31 changed paths belonged to Study B. These are engineering results only.
+
+Both implementations are now in main. The [next-stage plan](docs/NEXT_EXPERIMENTS.md)
+keeps the 160-call combined live pilot and 800-call frozen evaluation core,
+adds concrete access/budget and acquisition-integrity gates, and narrows the
+development allowance to avoid outcome-driven tuning. Live transport, fresh
+cases and prospective empirical freezes still need to be completed. No new
+model calls or competition submission occurred while preparing this plan.

@@ -1,6 +1,9 @@
 # Shared research protocol
 
-**Status:** design draft, 7 November 2026. No experiments have run.
+**Status:** design draft from 7 November 2026; both offline harnesses integrated
+8 November. No real-model experiments have run. The prospective
+[next-stage plan](NEXT_EXPERIMENTS.md) defines the bounded acquisition sequence
+and narrows the development/retry allowance without changing the core sample sizes.
 The study-specific plans define their hypotheses and controls. This document
 sets the common standards for execution, records, and interpretation.
 
