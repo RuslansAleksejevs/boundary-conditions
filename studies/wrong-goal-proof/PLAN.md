@@ -2,7 +2,10 @@
 
 ## Certificate scope in agent teams
 
-**Status:** design draft, 7 November 2026. No implementation or results yet.
+**Status:** design drafted 7 November 2026; implementation added 8 November UTC.
+No experimental LLM calls or model findings. See [README](README.md),
+[implementation decisions](DESIGN.md), and [STATE](STATE.md). Engineering
+holdout/test-double rehearsals are not the confirmatory model evaluation.
 **Tracks:** The Science of Agent Networks; Multi-Agent Oversight and Control.
 
 ## Question
@@ -164,3 +167,20 @@ Deliverables: tested implementation, frozen contracts and manifest, reviewed
 certificates and traces, paired false-assurance/utility figure, checkable
 counterexamples if observed, and a standalone report. Lean, model training,
 longer chains, and an additional model are not required for the core study.
+
+## Implementation clarifications, before empirical acquisition
+
+The current self-contained stdlib runner has no network or provider client.
+It supports deterministic test doubles and prompt-bound offline transcript replay.
+The development gate counts the 12 clean original cases, requiring each case to
+be correct in all its scheduled conditions; it does not treat equivalent triples
+as independent tasks. Offline execution has zero retries and zero new model calls.
+Code/tests, prompts, generated contracts and adapter configuration are hashed.
+Full-schedule missingness bounds accompany complete-pair estimates.
+
+The generated engineering fixtures have been inspected for software validation.
+They must not be retroactively called an untouched empirical holdout or public
+preregistration. An authorized real-model pilot, fresh confirmatory cases with
+cross-bundle overlap checks, provider-specific cost/token controls, and a
+prospective experimental freeze remain future work. Details and claim boundaries
+are in [DESIGN.md](DESIGN.md); the original empirical schedule is unchanged.

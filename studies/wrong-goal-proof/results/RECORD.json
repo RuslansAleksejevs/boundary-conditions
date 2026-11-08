@@ -1,0 +1,37 @@
+{
+  "evidence_class": "SYNTHETIC_ENGINEERING_ONLY_NOT_MODEL_OBSERVATIONS",
+  "as_of_utc": "2026-11-08",
+  "code_revision": "c15e8401a9c41f4bf73deee3a02bdbf82394cc47",
+  "python_version": "3.14.6",
+  "seed": 6006,
+  "dataset_hash": "2d050c8704bf65e95c16424b97ba3001c900b522d2adc5c1304a736b25c2a46e",
+  "manifest_hash": "3d73ef20bad8f0d2c12b36c655714918b214e21301374341b267487b29147350",
+  "unit_tests_passed": 105,
+  "saved_runs": 6,
+  "logical_adapter_invocations": 728,
+  "experimental_model_calls": 0,
+  "new_external_experimental_cost_usd": 0.0,
+  "cost_scope": "Testbed acquisition only; not the cost of developing the software or running an assistant session.",
+  "provider": null,
+  "model": null,
+  "token_usage": null,
+  "empirical_pilot_completed": false,
+  "empirical_protocol_frozen": false,
+  "confirmatory_llm_holdout_run": false,
+  "hash_note": "Run/dataset/manifest hashes use the domain-separated wgp-v1 canonical JSON digest. Published file hashes below are raw SHA-256. Neither authenticates external model provenance.",
+  "runs": [
+    {"name": "perfect-dev", "double": "perfect", "logical_calls": 52, "reviewer_outcomes": 44, "false_safe": 0, "pilot_gate_passed": true, "run_hash": "5e456dd92fff3a921263dd490dea7738daeb3d0c291aa52f856e921e0259a110"},
+    {"name": "perfect-holdout", "double": "perfect", "logical_calls": 260, "reviewer_outcomes": 220, "false_safe": 0, "pilot_gate_passed": null, "run_hash": "d8241528f4836003968410f318dc52f570b963d20f1776d22637821939849a50"},
+    {"name": "local-dev", "double": "local-only", "logical_calls": 52, "reviewer_outcomes": 44, "false_safe": 24, "pilot_gate_passed": true, "run_hash": "5ad43cd2fc712c6bcfdeb39d431e34504d5ce3d43fdac69a3dc44f44a033bbbe"},
+    {"name": "local-holdout", "double": "local-only", "logical_calls": 260, "reviewer_outcomes": 220, "false_safe": 120, "pilot_gate_passed": null, "run_hash": "d1599af2a03609bba18134bac86efaf312a013f670d4056bf7b67a82080fe753"},
+    {"name": "abstain-dev", "double": "abstain", "logical_calls": 52, "reviewer_outcomes": 44, "false_safe": 0, "pilot_gate_passed": false, "run_hash": "e185a2bb3c898950aa94ded1c4fd32af8b745acb8e6b82bb7cbb45a6ccd2e287"},
+    {"name": "malformed-dev", "double": "malformed", "logical_calls": 52, "reviewer_outcomes": 44, "false_safe": 0, "pilot_gate_passed": false, "run_hash": "1028d976d8b80285259a0e6841aecc84847a971331c411449e8f163e13a8acd9"}
+  ],
+  "published_file_sha256": {
+    "abstain-dev-analysis.json": "a3cc79fdd24eeed6a4aa5259404f963e622ed0c4344cf258351d11ca8e90a963",
+    "local-holdout-analysis.json": "48ed7dba54dd5243708cc98f88882f688b18c0bda2b3e3068d9a4301472ed9ed",
+    "local-holdout-counterexamples.json": "d8a2da2a7263cd81da8bd78c0abaccaf2352626ffbc5031fbd424dd2c885a448",
+    "malformed-dev-analysis.json": "18679e082464393b0976342012ef860d2a2c3441733cc1434ec37612432b117a",
+    "perfect-holdout-analysis.json": "f20b59419f86a15fa73324d20209d0ba6db5cf85d40c55e99d43c33b5b261d88"
+  }
+}
