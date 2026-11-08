@@ -1,7 +1,7 @@
 # Engineering validation
 
 This file records software tests only. No LLM results or scientific holdout have
-been produced. The latest live-contract suite is **131/131 PASS**; see the final
+been produced. The latest live-contract suite is **133/133 PASS**; see the final
 section. The earlier offline milestone on 8 November 2026 UTC was **90 tests passed** with Python 3.14.6
 (stdlib only; observed unittest wall time 1.238 seconds). Earlier 76-test and
 81-test milestones remain in HISTORY.md. The research protocol is not empirically
@@ -136,3 +136,10 @@ Inspected live-interface fixture inputs cannot be acquired as fresh cases.
 
 These are interface tests, not proof that the actual provider works. The exact
 fresh pilot manifest and source-bound GO still precede all empirical acquisition.
+
+Final focused peer review requested two further fail-closed checks: release
+reservation only after the full billing envelope validates, and check the joint
+input-plus-output native-context bound. Both are implemented, with wrong-provider,
+malformed-finish and joint-cap regressions. The final command above passed
+**133/133 tests in 1.957 seconds**. A validly billed refusal or truncation retains
+its financial record without becoming a successful model outcome.

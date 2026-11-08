@@ -160,3 +160,17 @@ The prospective profile uses temperature 0.6, top-p 0.95, requested max_tokens
 8,192, reasoning enabled/excluded, 180-second timeout and explicit data retention
 allowance for synthetic inputs only. Exact code/config/manifest GO remains
 separate. Actual model calls and experimental cost at this milestone: zero.
+
+## 2026-11-08 UTC — final peer billing/context fixes before GO
+
+Focused peer review found that an invalid provider envelope could release a
+reservation before all route/identity/usage/finish checks had passed. Delayed
+financial settlement eligibility until full validation; malformed billing stays
+unknown and fully reserved. Added the joint input-plus-completion context check,
+not only separate input/output bounds. Validly billed truncations and refusals
+remain unsuccessful model outcomes without unnecessary financial uncertainty.
+
+Final suite: 133/133 PASS (1.957 seconds), with targeted regressions. The earlier
+unused source-bound GO was withdrawn before any inference, and the pilot plan
+will be regenerated under the corrected source hash. Configuration, sample seed,
+prompts, scorer and monetary cap are unchanged. Actual model calls remain zero.

@@ -212,6 +212,20 @@ class TransportTests(unittest.TestCase):
         result = inspect_response(response(provider="Another"), config())
         self.assertTrue(result["fatal"])
         self.assertEqual(result["status"], "provider_contract_error")
+        self.assertIsNone(result["charge_for_ledger"])
+        self.assertIsNone(result["cost_usd"])
+
+    def test_joint_native_context_bound(self):
+        record = response()
+        record["visible_response"]["usage"].update(prompt_tokens=262100, completion_tokens=100, total_tokens=262200)
+        result = inspect_response(record, config())
+        self.assertTrue(result["fatal"])
+        self.assertIsNone(result["charge_for_ledger"])
+
+    def test_malformed_finish_does_not_release_reservation(self):
+        result = inspect_response(response(finish="unknown"), config())
+        self.assertTrue(result["fatal"])
+        self.assertIsNone(result["charge_for_ledger"])
 
     def test_unknown_billing_not_zero(self):
         result = inspect_response(response(cost=None), config())

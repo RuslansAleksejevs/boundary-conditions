@@ -512,18 +512,14 @@ def inspect_response(acquisition, config):
         return result
     result["usage"] = {"input_tokens": prompt, "output_tokens": completion,
                        "reasoning_tokens": reasoning, "cached_input_tokens": cache}
+    cost = None
     if usage.get("cost") is not None:
         try:
             cost = money(usage["cost"])
         except ValueError:
             return result
-        result["cost_usd"] = float(cost)
-        # Cache discounts may reduce actual bills; retain the no-discount bound
-        # in the local wallet while reporting the actual provider cost separately.
-        calculated = (prompt * money(config["input_price_per_million"])
-                      + completion * money(config["output_price_per_million"])) / Decimal(1_000_000) + money(config["request_price_usd"])
-        result["charge_for_ledger"] = max(cost, calculated)
     if (prompt > config["context_tokens"] or completion > config["output_reservation_tokens"]
+            or prompt + completion > config["context_tokens"]
             or body.get("model") != config["model"] or body.get("provider") != config["response_provider"]
             or type(body.get("id")) is not str or not body["id"].strip()):
         return result
@@ -552,4 +548,12 @@ def inspect_response(acquisition, config):
         result["status"] = "completed"
     else:
         result.update(status="provider_contract_error", fatal=True)
+    if not result["fatal"] and cost is not None:
+        # Release unused reserve only after the complete billing envelope has
+        # passed route, identity, usage, cap, message and finish validation.
+        # Validly billed truncation/refusal is still not a successful model task.
+        result["cost_usd"] = float(cost)
+        calculated = (prompt * money(config["input_price_per_million"])
+                      + completion * money(config["output_price_per_million"])) / Decimal(1_000_000) + money(config["request_price_usd"])
+        result["charge_for_ledger"] = max(cost, calculated)
     return result

@@ -14,7 +14,7 @@ attachment attempt or model request has been made by this workstream.
 Implemented an initial official HTTPS adapter, durable conservative wallet,
 fresh-case generation, frozen schedule, distinct live audit and real pilot gate.
 The existing offline-only manifest checks remain intact. The current suite is
-**131/131 PASS** (1.960 seconds), entirely local and HTTP-free. Read-only review
+**133/133 PASS** (1.957 seconds), entirely local and HTTP-free. Read-only review
 identified two receipt-integrity gaps: trusting a logged retry flag and accepting
 duplicate/empty provider IDs. Both are fixed and regression-tested; the peer
 confirmed the fixes against exact file hashes. This is code review, not provider
@@ -29,7 +29,7 @@ source-bound GO and current peer confirmation are pending. Actual model requests
 and experimental spend in this stage remain **0**.
 
 Prepared code is published in [draft pull request #3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3),
-implementation commit `4030c75c16f88b4add9e652073e8ba0216344d34`.
+initial preparation commit `4030c75c16f88b4add9e652073e8ba0216344d34`.
 It is not integrated into main. The draft records an access-blocked preparatory
 milestone, not completion of the empirical research goal.
 
