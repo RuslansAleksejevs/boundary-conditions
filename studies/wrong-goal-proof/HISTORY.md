@@ -141,3 +141,25 @@ main evaluation, findings, or empirical PDF is claimed. These are external
 blockers, not a reason to invent another synthetic experiment. Public LIVE.md
 documents the intended authorized commands. Upstream was fetched before preparing
 publication; only this study's paths are being changed.
+
+## 2026-11-08 — Live preparation published as a draft, acquisition blocked
+
+Committed the reviewed implementation as
+`040b36dbd203e34c9f80180c266ea413e028b90c`, pushed
+`study/wrong-goal-proof-live-v1`, and opened draft
+https://github.com/RuslansAleksejevs/boundary-conditions/pull/4 into main.
+Only 17 owned study files changed. Staged path/content checks found no private
+paths, coordination identifiers or credentials. Ignored local bytecode is not
+part of the publication. No force-push, direct main push or self-merge occurred.
+
+Read-only peer review of the final source closed the union-of-all-pilots guard
+and first-pilot collision/repeat-path issue. Final executable validation remains
+146 passing tests in 20.539 seconds; this handoff changes documentation only.
+The repository-wide private tracker check also passed. Shared competition state
+and index updates remain the integration coordinator's responsibility.
+
+The draft is not an integrated result, and it does not claim a live experiment.
+Actual experimental requests and new external experimental cost remain zero.
+Approved credential availability and final source/configuration/manifest-bound
+coordinator preflight still block acquisition. No workaround or new batch was
+attempted while waiting for these external requirements.

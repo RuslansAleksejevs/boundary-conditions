@@ -28,9 +28,11 @@ classification: PROJECT_REPORTED. This is an engineering record, not model evide
 - Prior offline implementation: pull request
   https://github.com/RuslansAleksejevs/boundary-conditions/pull/2 was integrated
   upstream by the coordinator. The live additions are on the separate branch
-  `study/wrong-goal-proof-live-v1`, not yet integrated.
+  `study/wrong-goal-proof-live-v1`, published as draft
+  https://github.com/RuslansAleksejevs/boundary-conditions/pull/4, not yet integrated.
+  Live implementation commit: `040b36dbd203e34c9f80180c266ea413e028b90c`.
 
-Next: publish the reviewed live preparation for coordinator review, then resolve
+Next: coordinator review of the published live preparation, then resolve
 credential availability and the exact source-bound acquisition GO. No real model
 pilot, empirical freeze, main evaluation or empirical report/PDF exists yet.
 
