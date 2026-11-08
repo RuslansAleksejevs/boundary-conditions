@@ -148,3 +148,36 @@ combined expenditure of **$0.50042824**, leaving **$49.49957176**. Account expen
 is reported separately from conservative held reservations. Hard allocations
 remain $30/$20. Main acquisition requires a separate stage-specific approval;
 competition submission is not authorized.
+
+## 2026-11-08 — Study A amended pilot passed; both evaluations paused before dispatch
+
+The explicitly documented continuation completed all **54 never-attempted roles**
+with 54 HTTP 200 responses, 52 valid role responses, no new retries and no HTTP
+429 responses. Its cost was **$0.12952160**. The composite preserves the original
+59 attempts byte-for-byte and reconstructs the original 108-role schedule: it
+passes the unchanged gate at **99/108 valid roles and 29/32 correct clean cells**.
+Six invalid executor responses and three failed logical transports remain in the
+composite. The immutable interrupted record still has its failed 47/108 gate.
+The coordinator independently repeated all three original/repaired/composite
+audits and checked the exact preserved records, ledger prefix and 54-role suffix.
+
+Study A's prospective main freeze contains the original **60 inputs / 540
+scheduled roles**, with manifest digest
+`6553e7c06a6c160f0af883c9ca24eb61361a23101745e2636f344527360aefdf`.
+It binds the passing amended composite
+`42ded5120449f41dd98b3cb4dc7bae1bb45b06dd1512fe6e67409183c5443940`,
+unchanged scientific source and actual financial history. It is a prospective
+local freeze, not proof of a completed evaluation or a registry preregistration.
+
+Study B's main preflight passed, but its execution request was blocked at an
+authorization check **before any dispatch**. Both main acquisitions are paused
+pending explicit stage-level confirmation. No alternative route, replacement
+sample or model switch is being used to bypass that stop. Offline audits and
+clearly labeled pilot-report preparation continue; no held-out model responses
+have been acquired or claimed as results.
+
+A read-only account check at 21:29 UTC confirmed **$0.62994984 total actual spend**
+and **$49.37005016 remaining**, across 114 Study A and 51 Study B physical pilot
+attempts. Study A's larger conservative wallet total, $5.74604992, still includes
+nine historical unresolved-receipt reservations; it is not the account's actual
+bill. The $30/$20 hard allocations and $50 combined ceiling remain unchanged.
