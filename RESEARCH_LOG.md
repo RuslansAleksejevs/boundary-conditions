@@ -181,3 +181,21 @@ and **$49.37005016 remaining**, across 114 Study A and 51 Study B physical pilot
 attempts. Study A's larger conservative wallet total, $5.74604992, still includes
 nine historical unresolved-receipt reservations; it is not the account's actual
 bill. The $30/$20 hard allocations and $50 combined ceiling remain unchanged.
+
+## 2026-11-08 — Explicit main-stage confirmation; Study B evaluation started
+
+After the execution stop, the contributor explicitly confirmed both fixed main
+stages: Study B's 260 scheduled roles within its $20 total study allocation and
+Study A's 540 within $30, with the shared **$50 ceiling including the pilots**.
+The confirmation covered the existing credential, fixed Qwen/Alibaba route,
+synthetic inputs, provider-reported retention and bounded technical retries.
+One fresh review of the exact blocked execution command allowed it to run; the
+experiment, route, sample, scoring and financial limits did not change.
+
+Study B's main journal started at **21:51:10 UTC**. An early operational checkpoint
+contains three complete HTTP 200 responses from the approved model/provider,
+three valid schema responses and $0.02207062 recorded cost, with no scientific
+effect estimate drawn from the partial batch. The frozen **100-original /
+260-role** evaluation is in progress, not complete. Study A makes no concurrent
+API requests and waits with its already frozen main plan. Reports and public
+data distinguish development-only snapshots from the eventual audited main run.

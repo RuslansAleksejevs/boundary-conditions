@@ -5,12 +5,13 @@
 Two small, controlled studies of trust and meaning at agent boundaries.
 Built for the [Swarm Alignment Hackathon 2026](https://apartresearch.com/sprints/swarm-alignment-2026).
 
-> **Research status — 8 November 2026, 21:33 UTC:** Both offline harnesses are implemented,
+> **Research status — 8 November 2026, 21:52 UTC:** Both offline harnesses are implemented,
 > independently tested, and integrated through separate reviewed pull requests.
 > Both real-model pilots have passed their fixed quality gates under a **$50
 > total API cap** on Qwen/Alibaba, and both evaluation sets are frozen.
-> Held-out acquisition has **not started**: execution is paused at an authorization
-> check. Actual spend is **$0.63**; pilot observations are not final conclusions.
+> **Study B's held-out evaluation is running** after explicit stage-level approval;
+> Study A is waiting for the shared provider route. Spend before main acquisition
+> was **$0.63**. No completed held-out result or final conclusion is claimed yet.
 
 ## Two boundaries
 
