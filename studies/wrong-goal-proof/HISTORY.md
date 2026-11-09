@@ -702,3 +702,24 @@ All eight edited/new navigation documents have resolving relative file links;
 the relocated guides preserve their original bodies exactly. Historical plan
 scientific text and the full earlier history prefix remain unchanged. Publication
 will use a separate editorial PR; no self-merge or competition submission is made.
+
+## 2026-11-09 — Reader release published as separate PR #5
+
+Fetched origin before publication, reviewed the 19 staged paths and content,
+and committed only this study's editorial files as
+`de25ca8170915c345dbbd0387bf0ee857faa0b5a`
+(Add a standalone reader report and simplify study navigation). Staged whitespace,
+owned-scope and text privacy checks passed. The ordinary push created
+`study/wrong-goal-proof-reader-report`; no force-push or direct main push occurred.
+An exact-branch PR lookup returned no existing PR before creating the ready,
+non-draft [PR #5](https://github.com/RuslansAleksejevs/boundary-conditions/pull/5).
+It is open, not integrated, at the 2026-11-09T05:17:50Z publication checkpoint.
+
+The final six-page, 60,961-byte PDF and its hash above are unchanged. The final
+reader-binding rerun passed all 12 tests in 0.059 s and the no-network checker
+again preserved 91 old files, replayed both analyses and verified all six example
+conditions. The final terminology-only edits on pages one and four were visually
+checked. This is additional reporting verification, not new model evidence.
+The coordinator and peer received the PR, release commit, test results and final
+PDF hash. Integration and human author review remain pending; no self-merge,
+new inference or competition submission occurred.

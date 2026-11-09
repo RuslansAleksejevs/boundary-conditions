@@ -3,7 +3,7 @@
 ## Current editorial phase — 9 November 2026 UTC
 
 The completed empirical release was integrated through PR #4, merge
-`755e51475e343825c67e142cbbe34aff2f22f9b3`. A new reader-first report is prepared
+`755e51475e343825c67e142cbbe34aff2f22f9b3`. A new reader-first report is published
 on `study/wrong-goal-proof-reader-report`, based on main
 `7e2780c1357dcb0ce14b749caf222fd1080bad06`. It is an editorial release only:
 no new model calls, revised scoring, rewritten data or competition submission.
@@ -22,8 +22,12 @@ are in [reader release checks](reports/reader/CHECKS.md).
 The landing page and report guide now prioritize question, result, PDF, data and
 offline replay. Detailed earlier guide text is retained separately. Read-only
 integration and peer reviews found no blocker. The peer's C-versus-Q wording
-clarification was accepted without changing formulas or results. Publication of
-the separate editorial PR is next. Human author review remains pending.
+clarification was accepted without changing formulas or results. The separate
+editorial [PR #5](https://github.com/RuslansAleksejevs/boundary-conditions/pull/5)
+is open and ready for integration review, not yet merged as of
+2026-11-09T05:17:50Z. Release commit:
+`de25ca8170915c345dbbd0387bf0ee857faa0b5a`. The coordinator owns integration;
+human author review remains pending.
 
 The detailed acquisition checkpoints below are historical. Their earlier
 pending-merge statements describe those checkpoints, not current integration.
