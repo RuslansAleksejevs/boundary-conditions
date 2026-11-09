@@ -30,6 +30,12 @@ The editorial branch is `study/summary-laundering-reader-report`, based on main
 are separate from this checked release. No self-merge or contest submission is
 authorized or claimed.
 
+Publication checkpoint: the reader release is committed locally as
+`6644cf732194355423675921383bb37ee8ab7bce`. The public branch push was blocked
+before execution pending explicit confirmation of public publication. No reader
+PR was created and no retry or alternate publication route was attempted. The
+PDF and all local checks are complete; public delivery is the only blocker.
+
 ## Acquisition checkpoint (now integrated)
 
 As of 9 November 2026, final reporting review. The authorized main acquisition actually exited
