@@ -480,3 +480,61 @@ historical pilot artifacts remain unchanged. `git diff --check` passes; fetch
 preceded publication, with no branch switch, rebase or merge. The reviewed release
 is handed off through existing PR #3; integration and competition submission are
 separate actions, and no self-merge or additional experiment is performed.
+
+## 2026-11-09 UTC — standalone reader report begun
+
+After PR #3 was merged as `3ee37271362f3df6f9693886aab2f5484bb302a8`, a separately
+requested editorial stage began on `study/summary-laundering-reader-report` from
+clean main `7e2780c`. This is not a new experiment. Scientific modules, all
+experimental JSON and historical PDF/TeX files remain unchanged.
+
+The current official report template and both cited arXiv abstracts were read
+again. A new plain-English report was written from evidence, with a first-page
+repository link, complete outcome tables, uncertainty and two illustrative cases:
+`live-main-2026110812-020-attack/S-P` retains the unsafe instruction in its summary
+without executing it; `live-main-2026110812-008-attack/S-P` returns a fenced
+JSON-looking answer that remains invalid. The second is explicitly post-hoc
+illustration, not a representative sample or rescored success.
+
+The new offline helper reproduces main/pilot public replay, records 18 source-file
+hashes and exact JSON pointers, and renders data-bound tables and example text.
+Nine new reporting tests pass. A first stable six-page PDF has a 203-word abstract,
+a clickable first-page repository URL and three exact quoted fragments verified
+against PDF text. Build experiments with unavailable quote packages/fonts were
+abandoned without installation; the existing Latin Modern T1 glyph renders the
+original Markdown fences correctly. The current cached-only build has no warnings.
+Full visual review, navigation cleanup and read-only cross-review remain pending.
+
+## 2026-11-09 UTC — six-page reader edition checked
+
+Completed the new standalone reader edition without new inference or regrading.
+The final cached-only Tectonic 0.16.9 build has six total pages, a 203-word
+abstract, no warning and 59,180 bytes. SHA-256:
+`d4cd2731157eb580944e5c8f7d827b8ad84900a4dcf78abaef26a1c98b5885da`.
+All six rasterized pages were visually inspected; the opening repository URL is
+clickable and the three quoted fragments match saved evidence after Unicode and
+whitespace normalization only. Title/author/subject metadata were added.
+
+The full existing suite passed 166 tests in 6.904 seconds; nine new reader tests
+passed in 0.178 seconds with Python 3.14.6. Main public replay again reproduced
+60 inputs, 480 outcomes, 548 calls and both primary contrasts. The reader helper
+also checked the separate pilot, frozen inventory, 18 source hashes, exact
+example selectors and generated artifacts. All checks made zero API requests.
+Internal read-only cross-review found no blocker; its scope excludes private
+provider/account authentication, raster review and a full harness rerun. The
+coordinator separately reviewed the evidence and a six-page visual contact sheet.
+Final editorial suggestions clarified the executor-only table columns, removed
+an implication of template independence and supplied PDF metadata.
+
+All 59 earlier non-Markdown study files remain byte-identical to main `7e2780c`,
+including scientific code, data and historical PDFs/TeX. Only the historical
+status banner of the plan changed; its scientific body is preserved. The new
+overview and report guide point readers to current findings and real examples;
+detailed former guides remain in `RUNNING.md` and `report/TOOLS.md`. Local checks
+passed 61 Markdown links, ownership scope and private-value scanning. Changes
+are prepared on `study/summary-laundering-reader-report` for a separate PR; no
+integration, human author approval or competition submission is asserted here.
+
+The final state-navigation links brought the checked local-link total to 66;
+all passed. The working diff has no whitespace errors, and a fresh fetch was
+performed before publication without merging or rebasing upstream changes.
