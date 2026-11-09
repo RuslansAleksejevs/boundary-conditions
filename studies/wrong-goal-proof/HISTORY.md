@@ -723,3 +723,21 @@ checked. This is additional reporting verification, not new model evidence.
 The coordinator and peer received the PR, release commit, test results and final
 PDF hash. Integration and human author review remain pending; no self-merge,
 new inference or competition submission occurred.
+
+## 2026-11-09 UTC — final title, concise report and corrected track
+
+PR #5 was merged at 05:20:04 UTC into `675f06e`; the preceding pending-merge
+entry describes its earlier checkpoint. After author feedback, a new three-page
+LaTeX report was prepared under the selected title **A Certificate Is Not the
+Answer**, with the confirmed UC Berkeley affiliation. The author approved the
+final report and subsequently requested publication of the coherent final edition.
+
+The primary track is now **4: Multi-Agent Oversight and Control**, replacing the
+earlier broad Track 2 classification. This changes the PDF header, not the
+experiment or its interpretation. The [final PDF, source and checks](../../reports/README.md)
+are linked first; the six-page and earlier reports remain intact in the archive.
+
+Rerun checks passed: 171 study tests, 28 reporting tests and 12 reader-binding
+tests; native replay, all example states and preservation of 91 earlier files
+also passed. Shared final-release checks are recorded separately. No new model
+requests, changed data, rewritten old PDF or competition submission occurred.

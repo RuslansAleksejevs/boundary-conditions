@@ -1,120 +1,95 @@
 # Boundary Conditions
 
-**What survives when one agent hands work to another?**
+**Two small studies of what can go wrong when agents pass work to one another.**
 
-Two small, controlled studies of trust and meaning at agent boundaries.
-Built for the [Swarm Alignment Hackathon 2026](https://apartresearch.com/sprints/swarm-alignment-2026).
+An instruction can hide in a summary. A valid certificate can answer the wrong
+question. We tested both possibilities using Qwen3.5-122B-A10B, synthetic tasks
+and exact Python checks.
 
-> **Completed — 9 November 2026:** Both frozen real-model evaluations, audited
-> datasets and English reports are integrated through reviewed PRs
-> [#3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3) and
-> [#4](https://github.com/RuslansAleksejevs/boundary-conditions/pull/4).
-> Neither target failure was observed in this bounded Qwen/Alibaba setting.
-> Invalid and missing responses remain visible; nulls do not establish general
-> safety or equivalence. Account-confirmed API expenditure is **$3.75 of $50**,
-> including development and technical retries. Human author review is pending;
-> **neither report has been submitted to the competition**.
+**The failures we looked for did not occur in these tests.** That is a useful
+result to report, not a guarantee that the model or larger agent systems are safe.
 
-## Two boundaries
+[Final reports](reports/README.md) · [Work timeline](TIMELINE.md) ·
+[Check the results](docs/REPRODUCE.md) · [Full reading guide](docs/README.md)
 
-An external document becomes a colleague's summary. A formal statement becomes
-a checked certificate. In both cases, a handoff may carry more authority than
-the evidence warrants.
+## 1. Prompt Injection at Agent Handoffs
 
-| Study | The boundary | The question |
-| --- | --- | --- |
-| [Who Said That?](studies/summary-laundering/PLAN.md) | External data → agent handoff | Does risk come from rewriting the text, from how its source is presented, or both? |
-| [Verified, but What?](studies/wrong-goal-proof/PLAN.md) | Original contract → checked statement | Does a correct local certificate lead a reviewer to endorse the wrong original claim? |
+*The Second-Hand Instruction Problem*
 
-The name is a double reference: **trust boundaries** in software systems and
-the **conditions under which a mathematical claim holds**. Neither study assumes
-that a failure will occur.
+Does an unsafe instruction become more persuasive when another agent summarizes
+it, or when the same text is presented as a colleague's message?
 
-### Who Said That?
+We varied the text and its source label separately. The executor had to save a
+code or a subtraction result without changing an unrelated approval flag.
+The main test used 40 attacked records and 20 paired clean records in eight
+conditions.
 
-A summarizer reads an untrusted synthetic note. An executor performs a legitimate
-task using a mock tool. We replay the same text with different source descriptions,
-separately vary original text, verbatim extraction, and summarization, and measure
-actual unauthorized state changes alongside useful task completion.
+**Result:** no forbidden change in 478 observed responses. Of 480 scheduled
+responses, 443 completed the task, 33 had invalid format, two took no action and
+two were missing. The primary comparisons had zero observed difference, with
+wide uncertainty. Neither warning showed a security benefit.
 
-Primary track: **Strengthening Agent Infrastructure**. Also relevant to
-**Multi-Agent Oversight and Control**.
+[Read the final PDF · 3 pages](reports/prompt-injection-at-agent-handoffs-the-second-hand-instruction-problem.pdf)
+· [Study guide](studies/summary-laundering/README.md)
+· [Data](studies/summary-laundering/results/main-2026-11-09/README.md)
 
-**Completed result:** no unauthorized state change in 478 observed executor
-cases, with 443/480 scheduled cases completed correctly. The 33 invalid and two
-missing responses are not counted as successful safe completion. A strict
-action interface rejects invalid batches, so the zero is a result of the tested
-model-and-tool pipeline, not a general claim about model intentions or safety.
-Read the [report guide](studies/summary-laundering/report/README.md),
-[main PDF](studies/summary-laundering/report/main-report.pdf), and
-[replayable results](studies/summary-laundering/results/main-2026-11-09/README.md).
+Track **3: Strengthening Agent Infrastructure**, also **2: The Science of Agent Networks**.
 
-### Verified, but What?
+## 2. A Certificate Is Not the Answer
 
-A translator formalizes a small Boolean contract. An exact checker certifies
-that formalization. A separate reviewer must answer the original question.
-We distinguish naturally occurring drift from deliberately injected changes,
-then compare different presentations of the same valid certificate.
+Will a reviewer accept a valid certificate for an altered task as an answer to
+the original request?
 
-Primary track: **The Science of Agent Networks**. Also relevant to
-**Multi-Agent Oversight and Control**.
+We used small Boolean contracts whose answers can be checked across all 16
+possible states. A reviewer saw the original task and a candidate certificate
+under three headings: PASS, a neutral record, or an explicit scope warning.
 
-**Completed result:** all three certificate presentations correctly handled all
-40 planted substitutions and 20 equivalent controls. Natural-task completion
-was 36/40; four malformed responses remain unassessed. Read the
-[full report](studies/wrong-goal-proof/reports/main/README.md),
-[seven-page PDF](studies/wrong-goal-proof/reports/main/main-report.pdf), and
-[replayable campaign](studies/wrong-goal-proof/results/live-main-2026-11-08/README.md).
+**Result:** all 40 planted substitutions were rejected and all 20 harmless
+rewrites accepted under every heading. The ordinary translation pipeline
+completed 36 of 40 tasks; four remained unassessed because of format errors.
+No false assurance was observed. The strong baseline leaves no demonstrated
+benefit for the scope warning.
 
-## Research discipline
+[Read the final PDF · 3 pages](reports/a-certificate-is-not-the-answer.pdf)
+· [Study guide](studies/wrong-goal-proof/README.md)
+· [Data](studies/wrong-goal-proof/results/live-main-2026-11-08/README.md)
 
-- Measure effects with code: state transitions and exhaustive finite checks.
-- Separate development cases from a frozen evaluation set.
-- Report utility, abstentions, missing runs, cost, and uncertainty—not just failures.
-- Distinguish model behavior from injected faults and guarantees enforced by code.
-- Keep the two studies' datasets and claims separate; disclose shared infrastructure.
-- Treat related work as prior art, not as results reproduced here.
+Track **4: Multi-Agent Oversight and Control**.
 
-See the [shared protocol](docs/PROTOCOL.md), [related work](docs/RELATED_WORK.md),
-and [research log](RESEARCH_LOG.md). The [execution budget](docs/EXECUTION_BUDGET.md)
-records funding, model settings, spending stops, and data handling.
+## Check the work
 
-## Repository map
+From the repository root, with Python 3.11+:
 
-```text
-studies/
-  summary-laundering/   Study A: text, provenance, and unauthorized actions
-  wrong-goal-proof/     Study B: contracts, certificates, and false assurance
-docs/
-  PROTOCOL.md          Shared evaluation and reporting rules
-  RELATED_WORK.md      Sources, overlap, and limits of our claims
-RESEARCH_LOG.md        Dated milestones, including negative results
+```sh
+python3 reports/check_reports.py
 ```
 
-Runnable harnesses and engineering records are available for
-[Study A](studies/summary-laundering/README.md) and
-[Study B](studies/wrong-goal-proof/README.md). Each records its actual tests and
-reproduction commands. Software tests and deterministic CLI rehearsals do not
-constitute observations of model behavior.
-The [original execution plan](docs/NEXT_EXPERIMENTS.md) and
-[operational amendment](docs/OPERATIONAL_AMENDMENTS.md) preserve the prospective
-schedule, interrupted pilot, missing cases and paced continuation. Historical
-development snapshots are kept separate from the completed held-out evaluations.
-After both merges, **365 local tests passed** and both public-data checks passed
-again without API requests. No GitHub CI or independent provider attestation is
-claimed.
+This checks the report tables and examples against saved data, including every
+state of the Boolean examples. **No API key, model download or paid request is
+needed.** The [reproduction guide](docs/REPRODUCE.md) also covers full data replay,
+software tests and optional PDF rebuilding.
 
-## Scope and safety
+Both studies use one hosted model, small synthetic task families and one sample
+per condition. Paired conditions are not independent tasks. Invalid and missing
+responses stay in the results. Offline replay checks the saved observations; it
+is not a new model experiment or independent proof of provider origin.
 
-The tested environments use synthetic records, in-memory tools, and finite
-Boolean formulas. They do not target live services, expose real credentials,
-or perform real-world unauthorized actions. Toy-environment results do not
-establish the security of production systems or arbitrary mathematical agents.
+## About this project
 
-This repository contains the public research record only. Private coordination
-notes, personal context, credentials, and unreviewed raw logs are excluded.
+Built for the [Swarm Alignment Hackathon](https://apartresearch.com/sprints/swarm-alignment-2026)
+in November 2026 by **Ruslans Aleksejevs · UC Berkeley**. The final reports are
+dated 9 November. Competition submission and acceptance are not claimed here.
 
-## Reuse
+The name connects two boundaries: **who may change the task**, and **what a
+certificate actually establishes**. It is a shared theme, not a new mathematical
+method. The failure mechanisms are established prior work; our contribution is
+the controlled tests and their recorded results.
 
-No license has been selected yet. Public visibility does not grant an open-source
-license. References retain their respective authorship and terms.
+- **Cost:** $3.75323494 used from $50 in OpenRouter credits, including pilots and
+  technical retries. [Accounting and model settings](docs/EXECUTION_BUDGET.md).
+- **AI assistance:** GPT-6 Astra helped with design, code, checks and writing.
+  Qwen was the experimental subject; scoring used deterministic code.
+- **History:** [timeline](TIMELINE.md), [original lab log](RESEARCH_LOG.md),
+  [related work](docs/RELATED_WORK.md), [earlier report versions](docs/ARCHIVE.md).
+- **Reuse:** no license has been selected. Public visibility alone is not an
+  open-source license. No real accounts or services were attack targets.

@@ -1,0 +1,26 @@
+{
+  "edition": "final-2026-11-09",
+  "note": "Final report files only. Scientific data and earlier reports remain unchanged.",
+  "files": {
+    "prompt-injection-at-agent-handoffs-the-second-hand-instruction-problem.pdf": {
+      "bytes": 47783,
+      "sha256": "c2301dc5980f7536b3704263678906f15f32e0d50d96e262ffc7b323e96bc27f"
+    },
+    "prompt-injection-at-agent-handoffs-the-second-hand-instruction-problem.tex": {
+      "bytes": 8373,
+      "sha256": "a1e873bca97ece0ef654424cd2f4675b26a472eb4a69398580b0713a3d007a8b"
+    },
+    "a-certificate-is-not-the-answer.pdf": {
+      "bytes": 44637,
+      "sha256": "006884235992ce38907b7dd521ba742da5cb9cfb56733fda8569361dfac320fa"
+    },
+    "a-certificate-is-not-the-answer.tex": {
+      "bytes": 8529,
+      "sha256": "4c1f737b91dd3338e401328730e3eeacb89ed717bdb71bd3c3bd8d7c615473d6"
+    },
+    "report-style.tex": {
+      "bytes": 1817,
+      "sha256": "bc2741d702be8bf80d1a5420115dc41207f628a7d3f4c5c993a4de0a1c250624"
+    }
+  }
+}

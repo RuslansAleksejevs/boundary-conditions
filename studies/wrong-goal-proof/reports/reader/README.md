@@ -1,5 +1,9 @@
 # Verified, but What? — reader edition
 
+**Archived six-page edition.** The current paper is
+[A Certificate Is Not the Answer](../../../../reports/a-certificate-is-not-the-answer.pdf).
+The build record below describes this earlier edition; its PDF and evidence are unchanged.
+
 **[Download the standalone PDF](verified-but-what.pdf)** ·
 [LaTeX source](verified-but-what.tex) · [Checked values and source map](report-data.json)
 

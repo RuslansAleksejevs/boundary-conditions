@@ -1,5 +1,18 @@
 # Live execution: model, funding, and limits
 
+## In brief
+
+We put **$50** into OpenRouter and used **$3.75**, including development runs,
+failed requests and technical retries. The final account check left **$46.25**.
+Both experiments used one fixed Qwen3.5-122B-A10B / Alibaba route; no model was
+switched after seeing the results. Research-assistant subscription use is separate.
+
+The exact [final accounting](#final-account-reconciliation) is below. Large
+“reserved” figures in the technical records are cautious allowances for unknown
+individual charges, not another bill. The remaining balance is not a target to spend.
+
+## Original funding and execution record
+
 Prospective snapshot: **8 November 2026, 19:48 UTC**, before experimental inference.
 The original funding and protocol below are preserved. Both studies subsequently
 completed; the [final reconciliation](#final-account-reconciliation) separates

@@ -1,8 +1,10 @@
-# Verified, but What?
+# A Certificate Is Not the Answer
+
+**Track 4: Multi-Agent Oversight and Control.**
 
 A correct certificate can prove the wrong task. Can a model reviewer tell the difference?
 
-[Read the new report](reports/reader/verified-but-what.pdf) ·
+[Read the final three-page report](../../reports/a-certificate-is-not-the-answer.pdf) ·
 [Explore the data](results/live-main-2026-11-08/README.md) ·
 [Check the examples offline](reports/reader/README.md)
 
@@ -45,13 +47,13 @@ make both examples inspectable.
 
 ## Read, inspect, reproduce
 
-- **[Reader report](reports/reader/verified-but-what.pdf):** a fresh, standalone
-  explanation with result tables, real examples and explicit limits. Pending
-  human author review; not submitted to the competition.
+- **[Final report](../../reports/a-certificate-is-not-the-answer.pdf):** a standalone
+  explanation with result tables, real examples and explicit limits. Author-approved;
+  competition submission and acceptance are not claimed.
 - **[Public campaign](results/live-main-2026-11-08/README.md):** frozen inputs,
   prompts, visible answers, certificates and analyses. Development and main
   results remain separate.
-- **[Report guide](reports/README.md):** the new edition and unchanged historical
+- **[Report guide](reports/README.md):** the final edition and unchanged historical
   pilot/main PDFs, with build and audit instructions.
 - **[Engineering guide](ENGINEERING_GUIDE.md):** language, adapters, software
   rehearsals and commands. Test doubles are never model observations.

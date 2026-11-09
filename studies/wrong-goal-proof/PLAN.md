@@ -11,7 +11,9 @@ at drafting, not work still awaiting execution.
 No experimental LLM calls or model findings. See [README](README.md),
 [implementation decisions](DESIGN.md), and [STATE](STATE.md). Engineering
 holdout/test-double rehearsals are not the confirmatory model evaluation.
-**Tracks:** The Science of Agent Networks; Multi-Agent Oversight and Control.
+**Historical track choices:** The Science of Agent Networks; Multi-Agent Oversight and Control.
+The final edition uses Track 4, matching its focus on reviewer oversight of
+planted errors. See the [current study guide](README.md); the design below is unchanged.
 
 ## Question
 
