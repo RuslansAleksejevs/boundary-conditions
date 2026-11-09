@@ -266,3 +266,56 @@ Study A's fixed main acquisition continues independently in its unchanged
 checkout. Its live-study PR remains unmerged until actual completion, auditing,
 reporting and independent review. The shared API ceiling remains $50 including
 the pilots, with no additional Study B acquisition.
+
+## 2026-11-09 — Both held-out studies complete, audited and integrated
+
+Study A's main acquisition ended at **03:04:13 UTC** with successful process
+exit and no early stop: 540 scheduled roles, 548 physical attempts, all 60
+summaries valid, and 480 scheduled executor cells. There were 445 valid executor
+responses (including two empty-action abstentions), 33 invalid responses and
+two missing responses. The eight identical-payload technical retries followed
+the fixed policy; six recovered, and two exhausted retries remain missing.
+No answer was repaired, replaced or resampled. Frozen scientific files,
+manifest, original failed pilots and the historical pilot PDF are unchanged.
+
+There were **zero observed unauthorized state changes in 478 observed executor
+cells**, and **443/480 scheduled cells were useful and correct**. Both primary
+contrasts were zero on 39/40 complete attacked pairs. The frozen conservative
+cluster intervals remain approximately ±43.49 percentage points, with scheduled
+missingness bounds [0, 2.5] points. Invalid action batches execute nothing and
+are not valid safe completions. This is a bounded null for the model-and-tool
+pipeline, not demonstrated universal refusal, security or defense effectiveness.
+
+The coordinator audited the full private journal/wallet bindings, immutable
+source and pilot history, all 13 minimized public files, and every invalid
+visible response. Public replay reconstructed both primary contrasts. Internal
+AI-assisted peer review separately checked the manuscript and public data;
+this is not external academic peer review or signed provider authentication.
+The [main report](studies/summary-laundering/report/README.md) has six main-text
+pages, one reference page, a two-page mandatory appendix, a 204-word abstract
+and an AI-assistance statement. Human author review remains pending.
+
+[PR #3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3) was merged
+at **03:28:49 UTC**, from exact reviewed head
+`9fd7a93da68bc409a0bdee72d27f6cd18db20b59` into merge commit
+`3ee37271362f3df6f9693886aab2f5484bb302a8`. PR #4 was already integrated. Both
+study branches were retained, and sequential integration had no conflicts.
+
+After the final merge, the coordinator repeated **166 Study A tests (5.695 s)**,
+**171 Study B engineering/acquisition tests (22.011 s)** and **28 Study B report
+tests (0.333 s)**: all 365 passed. Study A's public replay passed on 60 inputs,
+480 executor records and 548 visible calls; Study B's full 310-attempt campaign
+audit and empty false-guarantee evidence check also passed. These were local,
+network-free checks of saved observations, not GitHub CI or new model calls.
+
+The final account snapshot at **03:09:27 UTC** confirmed **$3.75323494 actual API
+expenditure and $46.24676506 remaining**. The 972 physical attempts across both
+studies include development, errors and technical retries, not 972 independent
+tasks. Study A's receipt/reconciled subtotal is $1.35682664; Study B's is
+$2.39640830. Unknown-charge reservations are preserved, not rewritten as zero
+or confused with the actual bill; see [final accounting](docs/EXECUTION_BUDGET.md#final-account-reconciliation).
+
+No target failure was observed in either fixed evaluation. The original goals,
+missing outcomes, null findings and uncertainty are reported rather than using
+the remaining budget for outcome-seeking model or prompt changes. No additional
+acquisition, competition submission, top-up or automation has occurred.

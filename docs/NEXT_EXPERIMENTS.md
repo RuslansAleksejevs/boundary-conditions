@@ -1,6 +1,14 @@
-# Next: bounded real-model experiments
+# Bounded real-model experiments: original execution plan
 
-8 November 2026. **Prospective execution plan; no model observations yet.**
+8 November 2026. **Historical prospective plan, written before model observations.**
+
+**Completion note, 9 November 2026:** both frozen evaluations and reports are
+complete and integrated. See the [results overview](../README.md),
+[dated research log](../RESEARCH_LOG.md), and
+[final account reconciliation](EXECUTION_BUDGET.md#final-account-reconciliation).
+The original plan and dated amendments below remain historical records; they
+do not request another acquisition or authorize spending the remaining balance.
+
 Both offline implementations are integrated. This stage prioritizes actual,
 auditable responses over additional framework development. Existing study plans,
 [Study A amendments](../studies/summary-laundering/METHOD_CHANGES.md), and

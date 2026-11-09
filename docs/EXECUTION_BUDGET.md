@@ -1,7 +1,9 @@
 # Live execution: model, funding, and limits
 
-Snapshot: **8 November 2026, 19:48 UTC**, before experimental inference.
-This records authorization and a prospective protocol, not experimental results.
+Prospective snapshot: **8 November 2026, 19:48 UTC**, before experimental inference.
+The original funding and protocol below are preserved. Both studies subsequently
+completed; the [final reconciliation](#final-account-reconciliation) separates
+actual expenditure from the original limits and conservative reservations.
 
 **Later development update:** the [operational amendment](OPERATIONAL_AMENDMENTS.md)
 records the first real API expenditure, a provider-throttling stop, serialized
@@ -25,7 +27,42 @@ Maximum attempts include at most one genuinely necessary interface-correction
 pilot (108/52 additional calls) and 32/15 identical technical retries. These are
 ceilings, not targets or permission to tune attacks after seeing outcomes.
 Research-assistant subscription use is separate from this experimental API budget.
-Actual calls and costs will be reported from audited acquisition ledgers.
+Actual calls and costs are reported below from audited acquisition ledgers and
+the separate final account check.
+
+## Final account reconciliation
+
+After both main processes exited successfully, an authenticated read-only
+OpenRouter account check at **9 November 2026, 03:09:27 UTC** confirmed
+**$3.75323494 used and $46.24676506 remaining** from the original $50 balance.
+This aggregate exactly matches known receipts plus Study A's separately
+reconciled first interface-failure request:
+
+| Study | All physical attempts | Main receipt subtotal (USD) | All-stage receipt/reconciled subtotal (USD) | Hard cap (USD) |
+| --- | ---: | ---: | ---: | ---: |
+| A: summary laundering | 662 | 1.12611330 | 1.35682664 | 30 |
+| B: certificate scope | 310 | 1.99717180 | 2.39640830 | 20 |
+| **Combined** | **972** | **3.12328510** | **3.75323494** | **50** |
+
+The all-stage columns include development, preserved failed attempts and bounded
+technical retries. Physical requests are not independent scientific samples.
+The account check measures the combined bill; per-study subtotals come from
+receipts and the separately reconciled initial request, not separate accounts.
+
+Unknown individual receipt charges were **not** changed to zero. Study A retains
+19 full holds (including the separately reconciled first request), and Study B
+retains two. Their conservative wallet commitments are $13.00633282 and
+$3.62324222, respectively, with no in-flight reservation. These bookkeeping
+bounds are not additional expenditure. Agreement of the account aggregate does
+not authenticate every receipt or justify rewriting the original ledgers.
+
+No new model calls, model switch, top-up, or automatic spending of the remaining
+balance follows from completion. Research-assistant subscription costs were not
+measured and are not included in this experimental API total. The reviewed
+[Study A record](../studies/summary-laundering/results/main-2026-11-09/README.md)
+and [Study B report](../studies/wrong-goal-proof/reports/main/README.md) preserve
+stage-level accounting and limitations. Credentials, identifiers and raw account
+responses remain private.
 
 ## Fixed experimental target
 

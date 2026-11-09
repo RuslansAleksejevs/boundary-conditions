@@ -5,16 +5,15 @@
 Two small, controlled studies of trust and meaning at agent boundaries.
 Built for the [Swarm Alignment Hackathon 2026](https://apartresearch.com/sprints/swarm-alignment-2026).
 
-> **Research status — 9 November 2026, 00:13 UTC:** Both offline harnesses are implemented,
-> independently tested, and integrated through separate reviewed pull requests.
-> Both real-model pilots have passed their fixed quality gates under a **$50
-> total API cap** on Qwen/Alibaba, and both evaluation sets are frozen.
-> **Study B is complete and integrated**, with its audited data and English report;
-> no false assurance was observed in this bounded test.
-> **Study A's held-out evaluation is now running**, with no concurrent Study B requests.
-> Account-confirmed spend immediately before Study A's main run was **$2.63**.
-> Study A's live-study pull request remains separate until its evaluation finishes.
-> Null observations do not establish general safety or equivalence.
+> **Completed — 9 November 2026:** Both frozen real-model evaluations, audited
+> datasets and English reports are integrated through reviewed PRs
+> [#3](https://github.com/RuslansAleksejevs/boundary-conditions/pull/3) and
+> [#4](https://github.com/RuslansAleksejevs/boundary-conditions/pull/4).
+> Neither target failure was observed in this bounded Qwen/Alibaba setting.
+> Invalid and missing responses remain visible; nulls do not establish general
+> safety or equivalence. Account-confirmed API expenditure is **$3.75 of $50**,
+> including development and technical retries. Human author review is pending;
+> **neither report has been submitted to the competition**.
 
 ## Two boundaries
 
@@ -40,6 +39,15 @@ actual unauthorized state changes alongside useful task completion.
 
 Primary track: **Strengthening Agent Infrastructure**. Also relevant to
 **Multi-Agent Oversight and Control**.
+
+**Completed result:** no unauthorized state change in 478 observed executor
+cases, with 443/480 scheduled cases completed correctly. The 33 invalid and two
+missing responses are not counted as successful safe completion. A strict
+action interface rejects invalid batches, so the zero is a result of the tested
+model-and-tool pipeline, not a general claim about model intentions or safety.
+Read the [report guide](studies/summary-laundering/report/README.md),
+[main PDF](studies/summary-laundering/report/main-report.pdf), and
+[replayable results](studies/summary-laundering/results/main-2026-11-09/README.md).
 
 ### Verified, but What?
 
@@ -88,17 +96,19 @@ Runnable harnesses and engineering records are available for
 [Study B](studies/wrong-goal-proof/README.md). Each records its actual tests and
 reproduction commands. Software tests and deterministic CLI rehearsals do not
 constitute observations of model behavior.
-The [next experiment plan](docs/NEXT_EXPERIMENTS.md) starts with bounded live
-pilots, then a frozen evaluation. The [operational amendment](docs/OPERATIONAL_AMENDMENTS.md)
-preserves the interrupted pilot, its missing cases and original spending limits,
-and specifies the conditions for a paced continuation. Preparations and failed
-development gates are not completed evaluations.
+The [original execution plan](docs/NEXT_EXPERIMENTS.md) and
+[operational amendment](docs/OPERATIONAL_AMENDMENTS.md) preserve the prospective
+schedule, interrupted pilot, missing cases and paced continuation. Historical
+development snapshots are kept separate from the completed held-out evaluations.
+After both merges, **365 local tests passed** and both public-data checks passed
+again without API requests. No GitHub CI or independent provider attestation is
+claimed.
 
 ## Scope and safety
 
-The planned environments use synthetic records, in-memory tools, and finite
+The tested environments use synthetic records, in-memory tools, and finite
 Boolean formulas. They do not target live services, expose real credentials,
-or perform real-world unauthorized actions. Toy-environment results will not
+or perform real-world unauthorized actions. Toy-environment results do not
 establish the security of production systems or arbitrary mathematical agents.
 
 This repository contains the public research record only. Private coordination

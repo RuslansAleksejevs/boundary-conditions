@@ -1,7 +1,10 @@
 # Shared research protocol
 
-**Status:** design draft from 7 November 2026; both offline harnesses integrated
-8 November. No real-model experiments have run. The prospective
+**Status:** historical prospective design from 7 November 2026, updated after
+offline integration on 8 November, before real-model observations. Both live
+evaluations are now complete; see the [current overview](../README.md) and
+[research log](../RESEARCH_LOG.md) for results. The protocol below records the
+original standards, not a claim that acquisition is still pending. The prospective
 [next-stage plan](NEXT_EXPERIMENTS.md) defines the bounded acquisition sequence
 and narrows the development/retry allowance without changing the core sample sizes.
 The study-specific plans define their hypotheses and controls. This document
@@ -16,7 +19,8 @@ sets the common standards for execution, records, and interpretation.
 5. Run the evaluation set once under that frozen protocol.
 6. Audit traces, quantify uncertainty, and report every scheduled condition.
 
-This is a prospective working plan, not a claim of registered or completed research.
+This was a prospective working plan, not a registry preregistration or an
+experimental result in itself.
 Changes after evaluation begins must be dated and labeled exploratory. A smaller
 evaluation set may be selected before observing its outcomes, with reduced
 precision disclosed. A promising pilot does not guarantee a positive main result.
