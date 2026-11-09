@@ -15,10 +15,13 @@ from .prompts import prompt_spec, review_request, translation_request
 STUDY_ROOT = Path(__file__).resolve().parent.parent
 
 
-def read_json(path):
-    text = Path(path).read_text(encoding="utf-8")
+def read_json(path, max_bytes=30_000_000):
+    path = Path(path)
+    if path.stat().st_size > max_bytes:
+        raise SchemaError("local JSON record exceeds its bounded file size")
+    text = path.read_text(encoding="utf-8")
     # Same strict decoder; local bundles are larger than a single model response.
-    return strict_json(text, max_bytes=30_000_000)
+    return strict_json(text, max_bytes=max_bytes)
 
 
 def write_new(path, value):
@@ -32,7 +35,8 @@ def write_new(path, value):
 
 def code_hashes():
     paths = sorted(STUDY_ROOT.glob("wgp/*.py")) + sorted(STUDY_ROOT.glob("tests/*.py"))
-    paths += [STUDY_ROOT / "run.py"]
+    paths += sorted(STUDY_ROOT.glob("tests/fixtures/*.json"))
+    paths += [STUDY_ROOT / "run.py"] + sorted(STUDY_ROOT.glob("run_live.py"))
     return {str(path.relative_to(STUDY_ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
             for path in paths}
 

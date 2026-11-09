@@ -1,0 +1,18 @@
+{
+  "calls": 52,
+  "confirmed_false_guarantees": 0,
+  "ledger": {
+    "attempts": 51,
+    "committed_usd": "0.39923650",
+    "pricing_overrun": false,
+    "retries": 0,
+    "settled_conservative_usd": "0.39923650",
+    "unknown_charges": 0
+  },
+  "mode": "live_model_acquisition",
+  "new_model_calls": 51,
+  "outcomes": 44,
+  "physical_attempts": 51,
+  "provenance_authenticated": false,
+  "valid": true
+}

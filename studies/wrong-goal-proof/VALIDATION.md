@@ -140,12 +140,114 @@ reports are [perfect holdout](results/perfect-holdout-analysis.json),
 [abstaining development](results/abstain-dev-analysis.json), and
 [malformed development](results/malformed-dev-analysis.json).
 
-## Remaining blockers and non-claims
+## Separately authorized live preparation
 
-No approved experimental model interface/budget was established, and no live
-transport was added. A new API purchase, paid batch, provider switch, or access
-through an internal assistant daemon is not part of this implementation.
-Real model inference, pricing/token enforcement, a prospective empirical freeze,
-fresh confirmatory cases, empirical figures and a standalone competition report
-remain future work. The implementation can be reviewed and merged independently
-of that authorization. A pull request is not a merged result or contest submission.
+The earlier results above remain synthetic and unchanged. A subsequent explicitly
+authorized stage added the separate acquisition path documented in [LIVE.md](LIVE.md).
+The final command below passed **146 tests in 20.539 seconds**, Python 3.14.6:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=studies/wrong-goal-proof python3 -m unittest discover -s studies/wrong-goal-proof/tests -q
+```
+
+This is 105 prior tests plus 41 live-interface tests: exact cross-bundle exclusions,
+actual-candidate leakage across both permitted pilots, persistent unknown-charge
+reservations, restart/global-retry limits, locks and torn journals, no redirect or
+fallback, output-reservation margin, provider/usage/schema errors, receipt/order/
+wallet tampering, duplicate IDs, fixture exclusion, actual pilot binding and
+credential-free preflight. Transport fixtures are in-process test doubles; they
+contact no model. `git diff --check` and `run_live.py --help` also passed.
+
+Read-only peer review confirmed the final budget/HTTP/gating changes and identified
+two corrected defects: Decimal reservation handling and preservation of first-
+pilot candidate exclusions through an allowed interface-repair pilot. Review is
+not API access verification or an empirical result. The deterministic math engines
+were not changed.
+
+## Earlier preparation snapshot (superseded by the real pilot below)
+
+The subsequent Qwen/Alibaba compatibility preflight passed **159 tests in 23.014
+seconds**, using the same command and Python version above. Thirteen additional
+tests cover streaming completion/billing, hidden-reasoning removal, wall deadline,
+identity and context consistency, and the prospective hard-wallet admission rule.
+This includes the final interim-usage-before-finish regression found in coordinator
+review. Read-only peer review of the final critical source found no new blocker;
+it is distinct from this study's actual test execution.
+
+This study has an authorized USD20 allocation and approved credential access.
+The selected Qwen/Alibaba settings, tariff, retention policy and double-full-context
+reservation are documented in LIVE.md. Exact source/configuration/manifest GO is
+the remaining pre-inference step at this snapshot. No model request, new external experimental spending, real pilot, empirical
+freeze or main evaluation has occurred. No actual-result figure or standalone
+empirical report/PDF is therefore claimed. A new API purchase, alternate account,
+or internal provider-daemon workaround is outside this implementation.
+
+Prepared infrastructure can be reviewed independently of those blockers. A draft
+pull request is not integration or a competition submission. The old engineering
+bundles remain tests and cannot be relabeled as a confirmatory model evaluation.
+
+Final pre-inference terminal-footer compatibility validation: **163 tests passed
+in 35.580 seconds**, Python 3.14.6, unchanged full-suite command. Four more tests
+cover the observed empty terminal usage footer and rejection of inconsistent,
+nonfinal, unbilled, extra-content and hidden-continuation repeats. The observed
+fixture is explicitly attributed to the companion study and is not one of this
+study's model results. A preceding test run was invalidated by a concurrent source
+inventory edit; the final successful run used unchanged source.
+
+After the prospective pre-inference pacing amendment, the complete unchanged-
+source suite passed **171 tests in 28.092 seconds**. Seven virtual-clock tests
+check attempt-start spacing, response-relative 429 waits, HTTP-date rounding,
+invalid/missing/long Retry-After, new-stage spacing and safe error diagnostics.
+One further SSE regression checks raw error-body removal. No test uses a network
+credential, actual model response acquisition or real cooldown wait.
+
+## Actual development pilot and public reporting — 8 November 2026
+
+The first real pilot used 51 HTTP 200 requests for 52 scheduled roles. Full private
+campaign audit, fixed gate and live evidence verification passed: 50/52 valid
+roles, 11/12 clean originals correct, zero actual false guarantees, zero retries
+or unknown charges, and USD 0.39923650 known/settled cost. One malformed JSON
+translation and its blocked dependent review remain unchanged. The source-bound
+main freeze was saved at 21:03:14.925378Z. Main preflight passed but execution
+permission was denied before launch; main has made zero calls.
+
+The unchanged acquisition suite passed **171 tests in 21.834 s**, Python 3.14.6.
+The presentation/export suite passed **18 tests in 0.284 s**: four figure tests,
+five complete-export privacy tests, four pilot-view boundary tests and five
+saved-pilot replay/mutation tests. None makes a new model request. Commands:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=studies/wrong-goal-proof python3 -m unittest discover -s studies/wrong-goal-proof/tests -q
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s studies/wrong-goal-proof/reports -p 'test_*.py' -q
+PYTHONDONTWRITEBYTECODE=1 python3 studies/wrong-goal-proof/reports/pilot_release.py verify --view studies/wrong-goal-proof/results/live-pilot-2026-11-08
+```
+
+The public development-only view check passed with 20 originals, 52 roles,
+44 reviewer outcomes and zero false guarantees. It repeats unchanged mathematical
+scoring, aggregate analysis and physical-receipt usage, and verifies the exact
+public inventory. It explicitly does not reproduce complete acquisition or
+dev/holdout separation without the withheld full corpus. The first export-check
+attempt found a presentation-code mismatch between scheduled-role accounting and
+physical-attempt accounting; the verifier was corrected, not the saved responses
+or source analysis. The existing immutable export then passed. Mutation tests
+reject altered responses/statistics even after file hashes are updated.
+
+All 51 visible response texts were manually inspected for publication. No private
+host path, credential, coordination identifier or hidden reasoning text was found.
+The invalid translation is published verbatim. Full held-out tasks, raw event
+journals and account responses are excluded. The exact purpose-written scientific
+pilot authorization reference was compared to the private original and separately
+approved for publication; this does not authorize publishing private coordination
+messages, execution-review text or later authorization records.
+
+The English pilot-only PDF uses the official template's structure and mandatory
+ethics appendix, names the human author with review pending, and discloses AI
+assistance. It is built with cached Tectonic 0.16.9:
+
+```sh
+tectonic --only-cached --untrusted studies/wrong-goal-proof/reports/pilot/report.tex
+```
+
+Main findings and a full-campaign export remain unavailable. The acquired pilot
+source inventory remains
+`87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e`.

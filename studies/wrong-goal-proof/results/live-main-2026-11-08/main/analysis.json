@@ -1,0 +1,1493 @@
+{
+  "acquisition_audit": {
+    "calls": 260,
+    "confirmed_false_guarantees": 0,
+    "ledger": {
+      "attempts": 310,
+      "committed_usd": "3.62324222",
+      "pricing_overrun": false,
+      "retries": 2,
+      "settled_conservative_usd": "2.39640830",
+      "unknown_charges": 2
+    },
+    "mode": "live_model_acquisition",
+    "new_model_calls": 259,
+    "outcomes": 220,
+    "physical_attempts": 259,
+    "provenance_authenticated": false,
+    "valid": true
+  },
+  "adapter_invocations": 257,
+  "call_statuses": {
+    "blocked_translation": 3,
+    "completed": 253,
+    "schema_error": 4
+  },
+  "configuration": {
+    "budget_admission": "per_request_full_context_hard_cap",
+    "context_token_bound": 262144,
+    "data_collection": "allow",
+    "input_usd_per_million": "0.26",
+    "max_request_bytes": 24000,
+    "max_tokens": 8192,
+    "model": "qwen/qwen3.5-122b-a10b",
+    "output_reservation_tokens": 262144,
+    "output_usd_per_million": "2.08",
+    "price_as_of": "2026-11-08",
+    "price_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints",
+    "provider_response_name": "Alibaba",
+    "provider_slug": "alibaba",
+    "quota_usd": "20",
+    "reasoning_enabled": true,
+    "request_usd": "0",
+    "stream": true,
+    "temperature": 0.6,
+    "timeout_seconds": 180,
+    "top_p": 0.95,
+    "version": 2,
+    "version_pin_status": "OpenRouter model_id and Alibaba route pinned; endpoint metadata name Alibaba | qwen/qwen3.5-122b-a10b-20260224. Immutable provider weight revision and quantization are not independently attested. Both input and billed output reserve the full advertised 262144-token total context, including reasoning; native requested max_tokens may bound only the visible answer. Provider metadata permits logging for 30 days, does not claim ZDR, and reports no training use. Synthetic study payloads only."
+  },
+  "dataset_hash": "d933a93993f05df6fdca3df487f5e909cd528fb8752989566a656db4edac281a",
+  "equivalent_false_rejections": {
+    "B": {
+      "denominator": 20,
+      "estimate": 0.0,
+      "numerator": 0,
+      "wilson95": [
+        0.0,
+        0.16112515805281938
+      ]
+    },
+    "N": {
+      "denominator": 20,
+      "estimate": 0.0,
+      "numerator": 0,
+      "wilson95": [
+        0.0,
+        0.16112515805281938
+      ]
+    },
+    "S": {
+      "denominator": 20,
+      "estimate": 0.0,
+      "numerator": 0,
+      "wilson95": [
+        0.0,
+        0.16112515805281938
+      ]
+    }
+  },
+  "equivalent_utility_S_minus_B": {
+    "bootstrap95": [
+      0.0,
+      0.0
+    ],
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 606,
+    "bounded_iid_hoeffding95": [
+      -0.6073614619083052,
+      0.6073614619083052
+    ],
+    "complete_pairs": 20,
+    "contrast": "S-B",
+    "difference": 0.0,
+    "discordance": {
+      "B=1,S=1": 20
+    },
+    "excluded_unassessed_pairs": 0,
+    "metric": "correct",
+    "note": "Contract-level paired resampling; template dependence limits inference. Degenerate bootstrap intervals do not establish absence of an effect.",
+    "scheduled_difference_bounds": [
+      0.0,
+      0.0
+    ],
+    "scheduled_pairs": 20,
+    "sum_differences": 0
+  },
+  "fault_families_descriptive": {
+    "and_to_or": {
+      "B": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      },
+      "N": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      },
+      "S": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      }
+    },
+    "drop_conjunct": {
+      "B": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      },
+      "N": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      },
+      "S": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      }
+    },
+    "restrict_C": {
+      "B": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      },
+      "N": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      },
+      "S": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      }
+    },
+    "reverse_implication": {
+      "B": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      },
+      "N": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      },
+      "S": {
+        "abstentions": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "assessed": 10,
+        "correct_completion": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 10,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "scheduled": 10,
+        "statuses": {
+          "completed": 10
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 10,
+          "estimate": 1.0,
+          "numerator": 10,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.2588655508930523
+      }
+    }
+  },
+  "groups": {
+    "equivalent": {
+      "B": {
+        "abstentions": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "assessed": 20,
+        "correct_completion": {
+          "denominator": 20,
+          "estimate": 1.0,
+          "numerator": 20,
+          "wilson95": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "scheduled": 20,
+        "statuses": {
+          "completed": 20
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "zero_failure_one_sided95_upper": 0.13910834066826516
+      },
+      "N": {
+        "abstentions": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "assessed": 20,
+        "correct_completion": {
+          "denominator": 20,
+          "estimate": 1.0,
+          "numerator": 20,
+          "wilson95": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "scheduled": 20,
+        "statuses": {
+          "completed": 20
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "zero_failure_one_sided95_upper": 0.13910834066826516
+      },
+      "S": {
+        "abstentions": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "assessed": 20,
+        "correct_completion": {
+          "denominator": 20,
+          "estimate": 1.0,
+          "numerator": 20,
+          "wilson95": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 20,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.16112515805281938
+          ]
+        },
+        "scheduled": 20,
+        "statuses": {
+          "completed": 20
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "zero_failure_one_sided95_upper": 0.13910834066826516
+      }
+    },
+    "fault": {
+      "B": {
+        "abstentions": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "assessed": 40,
+        "correct_completion": {
+          "denominator": 40,
+          "estimate": 1.0,
+          "numerator": 40,
+          "wilson95": [
+            0.9123783988027135,
+            1.0
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "scheduled": 40,
+        "statuses": {
+          "completed": 40
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 40,
+          "estimate": 1.0,
+          "numerator": 40,
+          "wilson95": [
+            0.9123783988027135,
+            1.0
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.0721575245055146
+      },
+      "N": {
+        "abstentions": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "assessed": 40,
+        "correct_completion": {
+          "denominator": 40,
+          "estimate": 1.0,
+          "numerator": 40,
+          "wilson95": [
+            0.9123783988027135,
+            1.0
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "scheduled": 40,
+        "statuses": {
+          "completed": 40
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 40,
+          "estimate": 1.0,
+          "numerator": 40,
+          "wilson95": [
+            0.9123783988027135,
+            1.0
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.0721575245055146
+      },
+      "S": {
+        "abstentions": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "assessed": 40,
+        "correct_completion": {
+          "denominator": 40,
+          "estimate": 1.0,
+          "numerator": 40,
+          "wilson95": [
+            0.9123783988027135,
+            1.0
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 0,
+          "estimate": null,
+          "numerator": 0,
+          "wilson95": null
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.0
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "scheduled": 40,
+        "statuses": {
+          "completed": 40
+        },
+        "unassessed": 0,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 40,
+          "estimate": 1.0,
+          "numerator": 40,
+          "wilson95": [
+            0.9123783988027135,
+            1.0
+          ]
+        },
+        "zero_failure_one_sided95_upper": 0.0721575245055146
+      }
+    },
+    "natural": {
+      "B": {
+        "abstentions": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.08762160119728664
+          ]
+        },
+        "assessed": 36,
+        "correct_completion": {
+          "denominator": 40,
+          "estimate": 0.9,
+          "numerator": 36,
+          "wilson95": [
+            0.7694822477247771,
+            0.9604204713173936
+          ]
+        },
+        "error_among_accepted": {
+          "denominator": 36,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.09641862859446367
+          ]
+        },
+        "false_safe_among_SAFE": {
+          "denominator": 16,
+          "estimate": 0.0,
+          "numerator": 0,
+          "wilson95": [
+            0.0,
+            0.1936076805344365
+          ]
+        },
+        "full_sample_false_safe_bounds": [
+          0.0,
+          0.1
+        ],
+        "observed_false_safe_all_scheduled": {
+          "denominator": 40,
+          "estimate": 0.0,
+          "note": "lower bound, not an imputed safe rate",
+          "numerator": 0,
+          "wilson95": null
+        },
+        "scheduled": 40,
+        "statuses": {
+          "blocked_translation": 3,
+          "completed": 36,
+          "schema_error": 1
+        },
+        "unassessed": 4,
+        "valid_UNSAFE_witnesses": {
+          "denominator": 20,
+          "estimate": 1.0,
+          "numerator": 20,
+          "wilson95": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "zero_failure_one_sided95_upper": null
+      }
+    }
+  },
+  "interpretation": "Actual acquired model answers under the frozen finite-contract protocol; receipt hashes are integrity checks, not cryptographic provider authentication.",
+  "latency_note": "Observed client-side HTTP latency including each technical attempt.",
+  "local_adapter_latency_seconds": 6206.894631628413,
+  "manifest_hash": "30146d523418e4f3aab5155eeea41a310864c7dfb793ef57eed523b2444e8bf8",
+  "mode": "live_model_acquisition",
+  "natural_drift_among_valid_translations": {
+    "denominator": 37,
+    "estimate": 0.0,
+    "numerator": 0,
+    "wilson95": [
+      0.0,
+      0.09405782583720251
+    ]
+  },
+  "natural_fidelity_counts": {
+    "C_equal": {
+      "assessed": 37,
+      "changed": 0
+    },
+    "Q_equal": {
+      "assessed": 37,
+      "changed": 0
+    },
+    "closed_truth_equal": {
+      "assessed": 37,
+      "changed": 0
+    }
+  },
+  "natural_unassessed_translations": 3,
+  "new_model_calls": 259,
+  "oracle_ceiling_and_textual_baseline": {
+    "equivalent": {
+      "assessed_cases": 20,
+      "certificates_bound_to_original": 20,
+      "correct_original_verdicts": 20,
+      "privileged_engineering_control_not_model_evidence": true,
+      "scheduled_cases": 20,
+      "textual_identity_acceptances": 0
+    },
+    "fault": {
+      "assessed_cases": 40,
+      "certificates_bound_to_original": 0,
+      "correct_original_verdicts": 40,
+      "privileged_engineering_control_not_model_evidence": true,
+      "scheduled_cases": 40,
+      "textual_identity_acceptances": 0
+    },
+    "natural": {
+      "assessed_cases": 37,
+      "certificates_bound_to_original": 37,
+      "correct_original_verdicts": 37,
+      "privileged_engineering_control_not_model_evidence": true,
+      "scheduled_cases": 40,
+      "textual_identity_acceptances": 32
+    }
+  },
+  "output_usage_above_requested_cap": 2,
+  "physical_attempts": 259,
+  "primary_fault_S_minus_B": {
+    "bootstrap95": [
+      0.0,
+      0.0
+    ],
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 606,
+    "bounded_iid_hoeffding95": [
+      -0.4294694083467376,
+      0.4294694083467376
+    ],
+    "complete_pairs": 40,
+    "contrast": "S-B",
+    "difference": 0.0,
+    "discordance": {
+      "B=0,S=0": 40
+    },
+    "excluded_unassessed_pairs": 0,
+    "metric": "false_safe",
+    "note": "Contract-level paired resampling; template dependence limits inference. Degenerate bootstrap intervals do not establish absence of an effect.",
+    "scheduled_difference_bounds": [
+      0.0,
+      0.0
+    ],
+    "scheduled_pairs": 40,
+    "sum_differences": 0
+  },
+  "provider_refusals": 0,
+  "scheduled_calls": 260,
+  "secondary_fault_N_minus_B": {
+    "bootstrap95": [
+      0.0,
+      0.0
+    ],
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 606,
+    "bounded_iid_hoeffding95": [
+      -0.4294694083467376,
+      0.4294694083467376
+    ],
+    "complete_pairs": 40,
+    "contrast": "N-B",
+    "difference": 0.0,
+    "discordance": {
+      "B=0,N=0": 40
+    },
+    "excluded_unassessed_pairs": 0,
+    "metric": "false_safe",
+    "note": "Contract-level paired resampling; template dependence limits inference. Degenerate bootstrap intervals do not establish absence of an effect.",
+    "scheduled_difference_bounds": [
+      0.0,
+      0.0
+    ],
+    "scheduled_pairs": 40,
+    "sum_differences": 0
+  },
+  "source_run_hash": "81af66525adfb197fb3c48911fb07c05c3668fa8f7c75987a6143aac54a636de",
+  "split": "holdout",
+  "truncated_responses": 0,
+  "usage": {
+    "cached_input_tokens": {
+      "known_attempts": 257,
+      "known_sum": 0,
+      "physical_attempts": 259,
+      "total": null
+    },
+    "cost_usd": {
+      "known_attempts": 257,
+      "known_sum": 1.9971718,
+      "physical_attempts": 259,
+      "total": null
+    },
+    "input_tokens": {
+      "known_attempts": 257,
+      "known_sum": 210478,
+      "physical_attempts": 259,
+      "total": null
+    },
+    "output_tokens": {
+      "known_attempts": 257,
+      "known_sum": 933869,
+      "physical_attempts": 259,
+      "total": null
+    },
+    "reasoning_tokens": {
+      "known_attempts": 257,
+      "known_sum": 921437,
+      "physical_attempts": 259,
+      "total": null
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "claim_limit": "Hashes and replay validate local consistency and mathematics, not cryptographic provider origin or public preregistration.",
+  "exported_at": "2026-11-08T23:48:27.921398+00:00",
+  "files": {
+    "budget.jsonl": {
+      "bytes": 329320,
+      "sha256": "cc28bca8e7d62f7c4c4dd104f47d0606149e683ac537220a914b670d580b5b11"
+    },
+    "campaign-audit.json": {
+      "bytes": 1112,
+      "canonical_digest": "d6499d4d1af8536737a743f94db5d045428e50d5de598b9db42f7902d3d48781",
+      "sha256": "c8914ef2d0fdc4fb12066720e70ad07670cc1cd3c86d6b67ab7e2c6f05769605"
+    },
+    "dataset.json": {
+      "bytes": 1064813,
+      "canonical_digest": "d933a93993f05df6fdca3df487f5e909cd528fb8752989566a656db4edac281a",
+      "sha256": "7e6198820a093212aadc4220e3b26df1296b3cd597f38268fb1d4ff6426dc456"
+    },
+    "freeze.json": {
+      "bytes": 4864,
+      "canonical_digest": "e5b6cc5c66c3698284e5af2145add1983a02b195067c23ef920c7a1c766dab7a",
+      "sha256": "2cf48bcca900c502136ef5816afaeea88b891b39634cd681b06eecbc74694242"
+    },
+    "main/analysis.json": {
+      "bytes": 36833,
+      "canonical_digest": "339c33146b2f00258770586ab0c6f98d23bfb0e748155e7e219ad85d45e0dc37",
+      "sha256": "52f964273094f75d7ad230ad90643f96f45f304a823ca4eb8afcae9f8d647f9f"
+    },
+    "main/audit.json": {
+      "bytes": 411,
+      "canonical_digest": "e02e895166480bb3a340c801dd04a226ffc4115f83ce6fcb7ee1b61f46823578",
+      "sha256": "0493aab4c519854f1d1b37e06d5213afc82e1e5373464ae01e2890fdb6da98c2"
+    },
+    "main/evidence.json": {
+      "bytes": 1718,
+      "canonical_digest": "861ba44aec6c043f20638304a2ade0f771dde2b5c03586db9b83fdffd5cb6081",
+      "sha256": "ac30f912da33a1a140e019f366cf2a798ef5e0365c19951b14fb420fef7aeaf8"
+    },
+    "main/run.json": {
+      "bytes": 6855135,
+      "canonical_digest": "81af66525adfb197fb3c48911fb07c05c3668fa8f7c75987a6143aac54a636de",
+      "sha256": "290184eb23a45c6c13de8d9a82f26c6c7818c51eec1e5779fa8e104027271c56"
+    },
+    "manifest.json": {
+      "bytes": 18168,
+      "canonical_digest": "30146d523418e4f3aab5155eeea41a310864c7dfb793ef57eed523b2444e8bf8",
+      "sha256": "77b64a08eb18015c69406753b42a22c6f39cdc6af853def60239ce8da12f2de6"
+    },
+    "pilot-v1/analysis.json": {
+      "bytes": 36244,
+      "canonical_digest": "8498323186176194352cb15ecdade968326455ffd7421aca1fda9776fa26fbb4",
+      "sha256": "76c1c644e58baa90eca48944f50cdf35d8a6baefd7a755f0232da384251fe2b0"
+    },
+    "pilot-v1/audit.json": {
+      "bytes": 406,
+      "canonical_digest": "a3256cade873d074b331c959fb17eebcc86a01449f4737d873b6a817c275d6ce",
+      "sha256": "b155aacb90958a73064c344a2af146f9f075448b1aac896beec89561a9d6b580"
+    },
+    "pilot-v1/evidence.json": {
+      "bytes": 1718,
+      "canonical_digest": "e54d0f2d398567032dafb11a8694cb64b0db72a282e35ab343838dc657657ef3",
+      "sha256": "7813a84940a0f2fe66e73a079cd3a527e6857ed10d0976d87f033f60a35a9a5a"
+    },
+    "pilot-v1/gate.json": {
+      "bytes": 1255,
+      "canonical_digest": "a01072c8b454dcd6a3b7d301a20056a3d84933d88b883ec4365b0e6b91efcc2e",
+      "sha256": "82d33e590675a0392c83c859e4677824f2fdf8f013a1f5ed4c093369c7655c70"
+    },
+    "pilot-v1/run.json": {
+      "bytes": 1327547,
+      "canonical_digest": "f696c9be737a22278b76b7f1bfa91527b1e8a23226ea5914e93e70b4111fb2c1",
+      "sha256": "5182ddf2ba55cee7e1e81a38a7587d7b0f9349c966c65eaee614af59c1c5c871"
+    }
+  },
+  "kind": "actual_visible_synthetic_task_campaign",
+  "new_calls_sent_by_export": 0,
+  "new_model_calls_in_original_acquisition": 310,
+  "privacy_review": "Known host-path, credential-prefix, coordination-ID and authorization-header scans passed; manual content review still required.",
+  "private_account_records_exported": false,
+  "provenance_authenticated": false,
+  "provider_acquisition_ids": "Original opaque technical generation IDs retained for receipt consistency; not credentials.",
+  "provider_hidden_reasoning_fields_removed": true,
+  "raw_event_journals_exported": false,
+  "source_and_export_audit_equal": true,
+  "version": 1
+}

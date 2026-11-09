@@ -1,0 +1,44 @@
+{
+  "provenance": "Final two sanitized SSE events observed by the companion summary-laundering study on 2026-11-08, before any wrong-goal-proof inference. Generation ID redacted; no reasoning text. This is observed interface evidence, not a wrong-goal-proof model result. Choice sanitization flags from that study were omitted; original visible terminal fields and billing are preserved.",
+  "events": [
+    {
+      "id": "redacted-companion-pilot-id",
+      "model": "qwen/qwen3.5-122b-a10b",
+      "provider": "Alibaba",
+      "created": 1794168715,
+      "usage": null,
+      "choices": [{
+        "index": 0,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "delta": {"role": "assistant", "content": "", "refusal": null}
+      }]
+    },
+    {
+      "id": "redacted-companion-pilot-id",
+      "model": "qwen/qwen3.5-122b-a10b",
+      "provider": "Alibaba",
+      "created": 1794168715,
+      "usage": {
+        "completion_tokens": 2575,
+        "completion_tokens_details": {"audio_tokens": 0, "image_tokens": 0, "reasoning_tokens": 2531},
+        "cost": 0.00541606,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.005356,
+          "upstream_inference_cost": 0.00541606,
+          "upstream_inference_prompt_cost": 0.00006006
+        },
+        "is_byok": false,
+        "prompt_tokens": 231,
+        "prompt_tokens_details": {"audio_tokens": 0, "cache_write_tokens": 0, "cached_tokens": 0, "video_tokens": 0},
+        "total_tokens": 2806
+      },
+      "choices": [{
+        "index": 0,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "delta": {"role": "assistant", "content": "", "refusal": null}
+      }]
+    }
+  ]
+}

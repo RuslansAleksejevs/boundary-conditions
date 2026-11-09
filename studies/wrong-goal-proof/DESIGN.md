@@ -84,7 +84,8 @@ study must use freshly selected cases and seeds, check overlap with development
 and released engineering fixtures, record that exclusion policy, and freeze before
 model outcomes are observed. Re-labeling this rehearsal as a registered study is
 not allowed. The current generator enforces the within-bundle development/holdout
-checks; cross-bundle exclusion for that future empirical study is still required.
+checks. The separate live preparation now also enforces cross-bundle exclusions;
+the exact inspected recipes and remaining scope limits are documented in LIVE.md.
 
 ## Pipeline, freeze, and limits
 
@@ -106,9 +107,10 @@ The plan allows at most one interface revision before an empirical freeze.
 Software development before any model acquisition is not an empirical revision.
 The offline runner uses zero retries, concurrency one, zero new model calls,
 and a zero external spending cap. This is within, but deliberately smaller than,
-the prospective plan's technical-retry allowance. It does not yet implement
-provider token limits or live monetary accounting. A future authorized transport
-must add those before use rather than treating unknown pricing as free.
+the prospective plan's technical-retry allowance. The separate live runner now
+implements provider token limits, durable conservative monetary accounting and
+its own acquisition auditor; this does not change offline modes or turn a
+transport fixture into an observed model result. See LIVE.md before acquisition.
 
 Outputs are exclusive-create, with flushed event journals. The auditor reconstructs
 prompts, parses the raw responses again, independently validates certificates and

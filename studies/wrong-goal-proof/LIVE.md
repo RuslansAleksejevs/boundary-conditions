@@ -1,0 +1,241 @@
+# Prospective live acquisition
+
+Status, 8 November 2026: **real pilot completed; frozen main in progress**. The original
+Qwen/Alibaba pilot used 51 requests for 52 roles, with 50 valid responses and
+11/12 clean originals correct; known cost USD 0.39923650. Both fixed gates passed.
+The empirical freeze exists. Initial main execution was denied before dispatch;
+renewed stage-specific authorization and a fresh successful review subsequently
+allowed the unchanged acquisition to start at 21:51:10Z. No complete main result
+or submission is claimed. No held-out task records are public during acquisition.
+The [pilot-only PDF and evidence view](reports/pilot/README.md) preserve the null
+fault result and one malformed translation with its blocked review. Earlier
+transport fixtures remain software tests, not empirical observations.
+
+## Scope and stop rules
+
+The scientific design in [DESIGN.md](DESIGN.md) is unchanged. Natural drift and
+planted faults remain separate. Every reviewer sees the original task. B/N/S
+share the same candidate and complete certificate; only the heading differs.
+No extra model, hidden original, or no-certificate arm is introduced.
+
+| Stage | Cases | Scheduled role calls |
+| --- | ---: | ---: |
+| Pilot | 8 natural +8 planted +4 equivalent | 52 |
+| Main | 40 natural +40 planted +20 equivalent | 260 |
+| Optional genuine transport-correction pilot | Same pilot, preserved first run | At most 52 |
+
+There are at most 15 extra technical attempts over the entire campaign, including
+restarts and the optional second pilot: **379 total attempts and USD20 maximum**.
+One logical request may have only one identical retry, only after timeout or
+HTTP 429/502/503/504. Refusal, truncation, schema error, wrong answer, and zero
+effect are outcomes, never retry triggers. Three consecutive failed logical
+transports stop the campaign for diagnosis. Authorization, pricing, routing and
+integrity errors stop immediately. Unknown charges are not recorded as zero.
+
+The first two clean natural tasks double as the connection check; there is no
+extra smoke batch. The pilot gate still requires at least 47/52 schema-valid
+responses and 10/12 clean original cases solved in all scheduled conditions.
+Fault detection or a positive S−B effect is not a gate. A null result is retained.
+
+The correction command is deliberately narrower than general prompt tuning: it
+can bind new transport implementation code after a failed real pilot, preserving
+tasks, prompts, model, sampling and economic configuration. A fresh stage-specific
+GO must approve the new source hash. The first pilot remains in the shared wallet.
+Prompt/model changes require a separately reviewed protocol, not this command.
+
+## Exclusions and prospective freeze
+
+Production preparation includes the exact datasets generated from seeds 6006,
+6007 and 6100–6109, plus the two inspected transport-test recipes at seed
+2026110806 (one excluding seeds 6006/6007; one excluding all 12 older bundles).
+The inventory contains each source dataset hash, seed, C/Q truth-vector pairs,
+and atom-erased original AST skeletons. Its own hash is recorded in the manifest.
+Additional inspected bundles must be passed with `--exclude-dataset` before use.
+The production acquisition driver checks that all 14 known sources are present.
+
+Both new splits exclude those pairs and skeletons; main also excludes the new
+pilot's original/candidate pairs and original skeletons. Equivalent variants of
+one case remain intentionally paired. Common primitives and mutation templates
+are not excluded, and no new-family or unrestricted mathematical generalization
+is claimed. Bounded proposal exhaustion stops generation instead of relaxing the
+filter. Unit tests use fixed recipes, not the eventual empirical seed.
+
+The pilot gate additionally checks the union of C/Q functions of the **actual**
+translator outputs from **all preserved pilots**, including a failed first pilot,
+against every future main original/candidate. A collision stops freeze and cannot
+justify an interface-repair repeat;
+the implementation does not automatically resample a more convenient main set
+after model answers have been observed.
+
+The manifest freezes source and test file hashes, Python version, exact prompts,
+model/provider/settings, dataset, exclusions, role/condition order and budget
+caps before acquisition. The GO binds the manifest, configuration, source hashes
+and permitted stages. Main additionally rereads and audits the actual pilot,
+recomputes its gate and run hash, and checks the unchanged shared-wallet prefix.
+Changing the code after preparation invalidates acquisition until reviewed again.
+Local timestamps and hashes are not a public preregistration or signed attestation.
+
+## HTTP contract and financial bound
+
+Only the official OpenRouter chat-completions endpoint is supported, with
+`qwen/qwen3.5-122b-a10b`, an explicit Alibaba-only route, no fallback, and
+`require_parameters=true`. Redirects are forbidden. There are no provider-daemon
+calls, hidden SDK retries, tools, web plugins, alternate keys or account fallbacks.
+The only credential lookup is `OPENROUTER_API_KEY` in the explicitly authorized
+`acquire` command. No credential is read by prepare, preflight, audit or import.
+
+The exact version-2 JSON configuration has these required fields. The selected
+Qwen/Alibaba tariff and operational policy were checked before inference; unit
+fixture prices remain explicitly fictional and are not an acquisition profile:
+
+| Fields | Meaning |
+| --- | --- |
+| `version`, `model`, `provider_slug`, `provider_response_name` | Version 2; fixed Qwen/Alibaba route and required response identity |
+| `temperature`, `top_p`, `reasoning_enabled`, `stream`, `max_tokens` | Explicit sampling, enabled reasoning, SSE and requested answer cap |
+| `context_token_bound`, `output_reservation_tokens` | Verified provider context and separately agreed billable-output ceiling |
+| `max_request_bytes`, `timeout_seconds` | Request-size and at-most-180-second HTTP wall deadline |
+| `input_usd_per_million`, `output_usd_per_million`, `request_usd` | Decimal price ceilings; no guessed free requests |
+| `price_source`, `price_as_of`, `quota_usd` | Dated official tariff source; study quota exactly 20 |
+| `data_collection`, `version_pin_status` | Explicit allow/deny policy; disclose any mutable model-alias limitation |
+| `budget_admission` | Explicit per-request full-context reservation and hard-wallet stop; no guaranteed campaign completion |
+
+For each physical attempt, the wallet reserves
+
+`(context_token_bound * input_price + output_reservation_tokens * output_price) / 1_000_000 + request_price`.
+
+This uses the full confirmed context, not an estimated local tokenizer ratio.
+The final profile reserves 262,144 input and 262,144 output tokens at USD0.26/2.08
+per million, with zero per-request fee: **USD0.61341696 per attempt**. This is
+deliberately doubly conservative. The stated native total context includes input
+and output, including reasoning; violations stop acquisition. Native Alibaba
+`max_tokens` may exclude reasoning, so 8,192 requested tokens are not treated as
+a proven total output bound. The earlier 16,384 reservation proposal was rejected
+before inference. Output above the requested answer cap is reported separately;
+output or total context above the confirmed reservation assumption is fatal.
+
+**Prospective admission amendment, before any model observations:** the entire
+379-attempt worst-case reservation (USD232.48502784) need not fit upfront. Every
+individual dispatch must still fit the unchanged persistent USD20 wallet.
+Full campaign completion is not guaranteed. The fixed schedule is retained and
+budget-stopped outcomes remain unassessed, with missingness bounds; no adaptive
+sample shrink or outcome tuning. Pilot-based mean, observed-maximum and full-
+context cost projections are recorded before main. Projections are not guarantees.
+
+The exclusive campaign lock spans reservation, dispatch and settlement. Every
+reservation is hash-chained, appended and fsynced before HTTP. An abandoned or
+unknown-charge reservation remains fully committed after restart. Known provider
+cost is retained, including a pricing overrun; a recorded overrun prevents further
+requests. Confirmed settlement is the maximum of provider-reported cost and the
+no-cache usage-based price bound, recorded separately from reported API cost.
+Only a complete valid billing envelope can release unused reservation; malformed,
+partial or cost-missing responses retain the full unknown-charge reserve.
+The ledger enforces per-stage logical caps and global retry/attempt caps.
+There is no implicit resume, new wallet per stage or automatic budget release.
+
+## Reproducible commands
+
+Run from the repository root. Choose a private, non-versioned campaign directory.
+The example paths below are placeholders for approved configuration/GO files;
+do not put credentials in either file. Set `WGP_FRESH_SEED` to the prospectively
+chosen uint32 seed, not an engineering seed. An approved secret attachment is
+provided by the execution environment only when running acquisition.
+
+```sh
+python3 studies/wrong-goal-proof/run_live.py --help
+python3 studies/wrong-goal-proof/run_live.py prepare --campaign .context/wgp-live/campaign --configuration .context/wgp-live/configuration.json --seed "$WGP_FRESH_SEED"
+python3 studies/wrong-goal-proof/run_live.py preflight --campaign .context/wgp-live/campaign --go .context/wgp-live/go.json --stage pilot-v1
+python3 studies/wrong-goal-proof/run_live.py acquire --campaign .context/wgp-live/campaign --go .context/wgp-live/go.json --stage pilot-v1
+python3 studies/wrong-goal-proof/run_live.py pilot-gate --campaign .context/wgp-live/campaign --stage pilot-v1
+python3 studies/wrong-goal-proof/run_live.py freeze --campaign .context/wgp-live/campaign
+python3 studies/wrong-goal-proof/run_live.py acquire --campaign .context/wgp-live/campaign --go .context/wgp-live/go.json --stage main
+python3 studies/wrong-goal-proof/run_live.py audit-campaign --campaign .context/wgp-live/campaign
+python3 studies/wrong-goal-proof/run_live.py analyze --campaign .context/wgp-live/campaign --stage main --out .context/wgp-live/main-analysis.json
+python3 studies/wrong-goal-proof/run_live.py export-evidence --campaign .context/wgp-live/campaign --stage main --out .context/wgp-live/counterexamples.json
+python3 studies/wrong-goal-proof/run_live.py verify-evidence --evidence .context/wgp-live/counterexamples.json
+```
+
+The GO schema is `version`, `decision`, `study`, `configuration_hash`,
+`code_hashes_hash`, `manifest_hash`, `allowed_stages`, `approved_at`,
+`authorization_reference`, and `quota_usd`. It is an explicit coordinator record,
+not something acquisition creates or self-approves. A source hash is not a
+cryptographic identity check on the author of that record.
+
+`preflight` is a CPU-only source/manifest/GO check, not a balance, credential or
+provider capability test. Acquisition repeats all checks and also enforces the
+full inspected-source inventory, pilot/freeze relationship and persistent wallet.
+No API call is needed merely to prepare, review or audit this implementation.
+
+## Records, evidence and failure handling
+
+Each stage preserves a flushed/fsynced intent/receipt/call/outcome journal. Visible
+answers, request IDs, HTTP status, locally measured latency, token usage and cost
+are retained. Reasoning-text fields are discarded; reasoning-token counts remain.
+The HTTP client redacts its credential if a provider unexpectedly echoes it.
+Only selected nonsecret response headers are retained. Private raw records are
+not committed; public result/evidence files require a separate sanitization review.
+
+Completed stage audit reconstructs every request, recomputes retry eligibility,
+binds reservations and settlements to each physical receipt, rejects duplicate
+provider IDs, reparses visible answers, and rechecks certificates/counterexamples.
+Campaign audit checks previous-stage prefixes and current wallet equality. A torn
+or incomplete stage fails closed; journals and unreleased reservations remain for
+manual diagnosis. Do not delete them, start another campaign, or silently rerun.
+
+Live false-guarantee packets contain the actual visible answer and acquisition
+ID, exact original/candidate/certificate, and a counterexample verified by both
+evaluators. Request payloads are reconstructed from those mathematical objects.
+The standalone verifier establishes mathematical and record consistency, **not**
+cryptographic provider origin. Empty packets are valid when no false guarantee
+was observed, but the full analysis must still report utility and missingness.
+
+Analysis preserves paired contract-level contrasts, uncertainty, abstentions and
+all scheduled denominators. Cost/token accounting sums every physical attempt,
+including failed/retried attempts; unknown totals stay null. The first false
+guarantee in the frozen order is the primary example, if one exists. A zero count
+must be reported with its upper bound and narrow scope, not as model safety.
+
+SSE requires a terminal finish, final usage at or after that finish, `[DONE]`,
+consistent model/provider/request identity and one assistant choice. Raw wire
+bytes are capped at 8 MB per attempt and hashed; only sanitized parsed events are
+retained. `reasoning`, `reasoning_details` and native `reasoning_content` are
+discarded before logging. A POSIX wall timer bounds the whole HTTP operation;
+the exclusive wallet lock remains held through dispatch and settlement. Neither
+an incomplete stream nor a hidden-reasoning field becomes an accepted answer.
+
+The selected route explicitly allows provider data collection: published metadata
+permits logging for 30 days and reports no training use; it does not promise ZDR.
+Only synthetic finite-contract tasks are sent. Sampling is temperature 0.6,
+top-p 0.95, enabled reasoning with reasoning text excluded; JSON-only task prompts
+are unchanged and no `response_format` is requested. The model alias is not a
+cryptographically pinned weight revision, and provider quantization is unknown.
+
+Official interface references read during preparation:
+[API overview](https://openrouter.ai/docs/api/reference/overview),
+[provider selection](https://openrouter.ai/docs/guides/routing/provider-selection),
+[exact model/provider quote](https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints),
+[native thinking requirements](https://www.alibabacloud.com/help/en/model-studio/deep-thinking),
+[native answer/thinking token semantics](https://www.alibabacloud.com/help/en/model-studio/qwen-api-via-openai-chat-completions).
+Shared funding, context assumptions and the prospective amendment are recorded
+in [the execution budget](https://github.com/RuslansAleksejevs/boundary-conditions/blob/main/docs/EXECUTION_BUDGET.md).
+
+## Prospective pacing amendment — 8 November 2026 UTC
+
+Before this study's first request, the companion study encountered provider HTTP
+429 responses. Account funding was not exhausted; the precise rate-limit source
+was not established. The coordinator prospectively approved transport pacing:
+at least 20 seconds between HTTP attempt starts, measured with a monotonic clock;
+after a 429, at least 60 seconds from response completion, respecting any longer
+valid Retry-After up to 300 seconds. A longer valid value stops acquisition,
+rather than being truncated. Missing/invalid values use 60 seconds. Sleep chunks
+are at most 30 seconds. A new stage also waits conservatively before its first
+attempt. No additional requests, repeats, model changes or gate changes result.
+
+The manifest explicitly binds this pacing policy. Receipt auditing checks the
+observed wall-timestamp spacing and 429 cooldown, independently of the runtime's
+monotonic scheduler. HTTP dates are normalized upward to delay seconds; only
+those safe seconds are logged, not arbitrary headers. Non-200 and SSE error
+records keep only numeric/allowlisted code, limit_source and reason fields, never
+raw error bodies. The original single identical technical retry, global retry
+ceiling, unknown-charge reservations and three-failed-logical-call circuit remain.
+The shared route is serialized across studies during this pilot; main requires
+a separate coordinator GO after the pilot's gates and cost projection.

@@ -89,14 +89,21 @@ def expected_calls(cases):
     return sum(2 if c["group"] == "natural" else 3 for c in cases)
 
 
-def run_pipeline(dataset, split, adapter, manifest_hash, emit=None):
+def collect_records(dataset, split, adapter, manifest_hash, emit=None,
+                    call_function=call_once, case_order=None, condition_order=None):
+    """Shared mathematical execution only; each acquisition mode must audit itself."""
     audit_dataset(dataset)
     cases = dataset["splits"][split]
+    if case_order is not None:
+        by_id = {case["id"]: case for case in cases}
+        if len(case_order) != len(cases) or set(case_order) != set(by_id):
+            raise SchemaError("invalid frozen case order")
+        cases = [by_id[case_id] for case_id in case_order]
     started = time.perf_counter()
     run = {"version": 1, "split": split, "dataset_hash": digest(dataset),
            "manifest_hash": manifest_hash, "adapter": adapter.configuration,
            "started_at": timestamp(), "scheduled_calls": expected_calls(cases),
-           "new_model_calls": 0, "calls": [], "outcomes": []}
+           "calls": [], "outcomes": []}
     emit = emit or (lambda event: None)
     emit({"event": "run_start", "metadata": {k: v for k, v in run.items()
                                                if k not in ("calls", "outcomes")}})
@@ -114,7 +121,7 @@ def run_pipeline(dataset, split, adapter, manifest_hash, emit=None):
         variables = case["original"]["variables"]
         translation_status = None
         if case["group"] == "natural":
-            translation = call_once(adapter, translation_request(case), variables)
+            translation = call_function(adapter, translation_request(case), variables)
             append_call(translation)
             translation_status = translation["status"]
             if translation_status != "completed":
@@ -129,17 +136,30 @@ def run_pipeline(dataset, split, adapter, manifest_hash, emit=None):
             candidate, certificate = case["candidate"], case["certificate"]
             conditions = ["B", "N", "S"]
             rng.shuffle(conditions)
+            if condition_order is not None:
+                conditions = condition_order[case["id"]]
+                if sorted(conditions) != ["B", "N", "S"]:
+                    raise SchemaError("invalid frozen condition order")
         if not verify(candidate, certificate)["valid"]:
             raise AssertionError("local certificate failed independent verification")
         # The same serialized candidate/certificate is reused in all three arms.
         for condition in conditions:
             req = review_request(case, candidate, certificate, condition)
-            record = call_once(adapter, req, variables)
+            record = call_function(adapter, req, variables)
             append_call(record)
             append_outcome(score(case, condition, candidate, certificate, record, translation_status))
     run["finished_at"] = timestamp()
     run["elapsed_seconds"] = time.perf_counter() - started
+    return run
+
+
+def run_pipeline(dataset, split, adapter, manifest_hash, emit=None):
+    if adapter.configuration.get("kind") not in ("synthetic_test_double", "offline_transcript_replay"):
+        raise SchemaError("offline runner rejects live adapters")
+    run = collect_records(dataset, split, adapter, manifest_hash, emit)
+    run["new_model_calls"] = 0
     audit_run(dataset, run)
+    emit = emit or (lambda event: None)
     emit({"event": "run_end", "run_hash": digest(run), "finished_at": run["finished_at"]})
     return run
 
@@ -155,6 +175,11 @@ def audit_run(dataset, run):
         raise SchemaError("invalid offline run metadata")
     if run["dataset_hash"] != digest(dataset) or run["split"] not in dataset["splits"]:
         raise SchemaError("run/dataset binding mismatch")
+    return audit_content(dataset, run)
+
+
+def audit_content(dataset, run, live=False):
+    """Recompute all mathematics. Live provenance/billing requires a separate audit."""
     cases = dataset["splits"][run["split"]]
     if run["scheduled_calls"] != expected_calls(cases) or len(run["calls"]) != expected_calls(cases):
         raise SchemaError("missing scheduled call records")
@@ -168,15 +193,20 @@ def audit_run(dataset, run):
         records[req["id"]] = record
         if record["usage"] is not None:
             validate_usage(record["usage"])
-        if record["status"] not in ("completed", "schema_error", "missing",
-                                     "transport_error", "blocked_translation"):
+        statuses = ("completed", "schema_error", "missing", "transport_error", "blocked_translation")
+        if live:
+            statuses += ("truncated", "refused", "integrity_error", "budget_blocked", "not_attempted")
+        if record["status"] not in statuses:
             raise SchemaError("unknown call status")
+        skipped = ("blocked_translation", "budget_blocked", "not_attempted") if live else ("blocked_translation",)
         if (type(record["adapter_invoked"]) is not bool
-                or record["adapter_invoked"] != (record["status"] != "blocked_translation")
+                or record["adapter_invoked"] != (record["status"] not in skipped)
                 or type(record["latency_seconds"]) not in (int, float)
                 or not math.isfinite(record["latency_seconds"]) or record["latency_seconds"] < 0):
             raise SchemaError("invalid invocation/latency record")
-        if record["status"] in ("missing", "transport_error", "blocked_translation"):
+        unavailable = (("missing", "blocked_translation", "budget_blocked", "not_attempted") if live
+                       else ("missing", "transport_error", "blocked_translation"))
+        if record["status"] in unavailable:
             if record["response_text"] is not None or record["usage"] is not None:
                 raise SchemaError("unavailable response carries response/usage data")
         if record["status"] == "completed":
@@ -252,6 +282,11 @@ def _audit_parse(record, parser, variables):
 
 def pilot_gate(dataset, run):
     audit_run(dataset, run)
+    return pilot_statistics(run, "synthetic gate rehearsal" if run["adapter"]["kind"] ==
+                            "synthetic_test_double" else "offline recorded-response pilot gate")
+
+
+def pilot_statistics(run, interpretation):
     if run["split"] != "dev":
         raise SchemaError("pilot gate requires development data")
     valid = sum(call["status"] == "completed" for call in run["calls"])
@@ -263,5 +298,4 @@ def pilot_gate(dataset, run):
     return {"valid_responses": valid, "scheduled_responses": run["scheduled_calls"],
             "clean_cases_correct_in_all_conditions": correct, "clean_cases": len(clean),
             "passed": valid / run["scheduled_calls"] >= 0.90 and correct / len(clean) >= 0.80,
-            "interpretation": "synthetic gate rehearsal" if run["adapter"]["kind"] ==
-            "synthetic_test_double" else "offline recorded-response pilot gate"}
+            "interpretation": interpretation}

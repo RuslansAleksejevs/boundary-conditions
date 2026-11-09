@@ -1,0 +1,605 @@
+{
+  "budget_configuration_hash": "3f0dd83713259cde22e99f6b7920bcd3075ec331922c104da25875340083ca8b",
+  "code_hashes": {
+    "run.py": "130060d64428b567b51db9567a665e1f6208d57b7b0be24564c7cfc004fab678",
+    "run_live.py": "f91c53e90334602f7a08b2c929b2f79710d41a2597ac86d3c281384898908285",
+    "tests/fixtures/alibaba-terminal-usage.json": "afe7506d7a357238c240f2d6acabadc8084869cb620c762f28071ab644a9dcc4",
+    "tests/test_certificates.py": "14dbb329303e293d203cdb0e44ea76cee13790cc9195658844d37923299bf400",
+    "tests/test_dataset.py": "897407c0659cc5f880ec461767b35dda9370d3062175ae73c8671c4a302bf5de",
+    "tests/test_evidence.py": "51126504ecafd0b7eb92992cc4a91b57f14f3570256daae96e1fcec1a08f326d",
+    "tests/test_live.py": "259df839594470a684fbbf7857b7d8110eb12b1b840e1cddfcfd0ee6d58b9398",
+    "tests/test_logic.py": "628019dcd20f0dcd652ddee630157e7eccc4ad7620d00fab7d9cccd523cdd2b1",
+    "tests/test_pacing.py": "c343340a854b1c89ab07cb55ad5f4ad4f4ba45bbb9116de4ab05f7504e2c8ce7",
+    "tests/test_pipeline.py": "f50ab38a8dc9d51e34cdb0448ca59654b8fec3016cb03f4e60eda94ac1f3b4bf",
+    "tests/test_records.py": "863f60b5291679d3832793a06bb988bea82b4a7a502894d0323baa670f57561a",
+    "tests/test_stream.py": "f139a5d63bd7aacafc46ee41aec9506e5af4f0baf0098c3f3bb30436cbdda296",
+    "wgp/__init__.py": "68c86a028697a45729a1e89157985c925684821e43e6852b6b44df668cd86c92",
+    "wgp/adapters.py": "ca96315043c17f7d0e2de2cfb34438dfde7b194622b27fe9ad51db3e6aa48d4c",
+    "wgp/analysis.py": "af7f7256be106a86c91da6aa4b8974e53da0c13290485e74532e57d3ed41dcd8",
+    "wgp/certificates.py": "56733f80aacd85e555f07f7ba9455900010aecb7e8a1c2fa549c72fee0e814c2",
+    "wgp/cli.py": "2c603d135cf7c9c5e0531fa670b3161c3f6acd575024f6a4a908c605608659f2",
+    "wgp/dataset.py": "ff13f9c3b7781040ef047414f80554783556419de7dbaf42b575fdcb83694316",
+    "wgp/evidence.py": "9bcc29de3d63d8e3decfab3863ee412fab16c38c3d91f6373b1ead74672b346d",
+    "wgp/live.py": "3d710a38288a7bc9bb3fd61a205c32b0ed039d0188081d6fc0533af56d7c07e7",
+    "wgp/live_budget.py": "ef9ebbb1ec1ff0614d2e9858d47422e668cbf8a50dca840ac1b82b3bcac84d3b",
+    "wgp/live_cli.py": "2aab8b9e0b26d70c48ace33743564d365205991c9aa53a41aa1c311707af5928",
+    "wgp/live_evidence.py": "577cf9a90e24f4ed1193f613d1046204aa1fe5396dc5ac1b9d1f179757ab559a",
+    "wgp/live_http.py": "5c97846a49c04696a96e5f4509e95ceba5fcea1b556edb8f706b8eae87bb7cb8",
+    "wgp/logic.py": "db8a2b127f44ee3698d6669d9d5a58a0b8242711e23f92b5429f7622a41772f6",
+    "wgp/pacing.py": "69b193364bb0960aa89e341668d517512f63f1e1c014bbfb8a2431b17a388930",
+    "wgp/pipeline.py": "e734d024bb9d595b0b8cf0f04ab4c912da8b5ea7f9cd7a88e57bdcbf1afcc13b",
+    "wgp/prompts.py": "e61487a93c218c610131b6e565ca43b1f19fe15a5bde7ff2eaedb0dd6c9510b1",
+    "wgp/records.py": "c87f7dda50224c0aa869885d28fc0ab751e7fd1481836199b851afc34a0bc0fe",
+    "wgp/stream.py": "ead354603876d95c4bbb22d41dc32fbdd2328383beafed337f20da6e18a9876b",
+    "wgp/vector.py": "848130b1d9179338e3ecdd7733c102cd45cba9a5bbbd5f8c4cc6dae8a77054be"
+  },
+  "code_revision": "83aa8ee313d4f054ac47af038a8b5c33a6a1e859",
+  "configuration": {
+    "budget_admission": "per_request_full_context_hard_cap",
+    "context_token_bound": 262144,
+    "data_collection": "allow",
+    "input_usd_per_million": "0.26",
+    "max_request_bytes": 24000,
+    "max_tokens": 8192,
+    "model": "qwen/qwen3.5-122b-a10b",
+    "output_reservation_tokens": 262144,
+    "output_usd_per_million": "2.08",
+    "price_as_of": "2026-11-08",
+    "price_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints",
+    "provider_response_name": "Alibaba",
+    "provider_slug": "alibaba",
+    "quota_usd": "20",
+    "reasoning_enabled": true,
+    "request_usd": "0",
+    "stream": true,
+    "temperature": 0.6,
+    "timeout_seconds": 180,
+    "top_p": 0.95,
+    "version": 2,
+    "version_pin_status": "OpenRouter model_id and Alibaba route pinned; endpoint metadata name Alibaba | qwen/qwen3.5-122b-a10b-20260224. Immutable provider weight revision and quantization are not independently attested. Both input and billed output reserve the full advertised 262144-token total context, including reasoning; native requested max_tokens may bound only the visible answer. Provider metadata permits logging for 30 days, does not claim ZDR, and reports no training use. Synthetic study payloads only."
+  },
+  "configuration_hash": "db4ebd0f0d0a04454c62dd6bf7140537b03bbc629a474c785ec878dadb91aacb",
+  "created_at": "2026-11-08T20:33:27.133786+00:00",
+  "dataset_hash": "d933a93993f05df6fdca3df487f5e909cd528fb8752989566a656db4edac281a",
+  "exclusion_hash": "f1471dcc6a623b7e51e46fa9df49845308f960d33e9ae1d85f2a18ecf0094f07",
+  "full_schedule_reservation_fits_quota": false,
+  "ground_truth_audit": {
+    "dev_cases": 20,
+    "holdout_cases": 100,
+    "original_skeleton_overlap": 0,
+    "semantic_overlap": 0,
+    "valid": true
+  },
+  "kind": "prospective_live_campaign",
+  "orders": {
+    "dev": {
+      "cases": [
+        "dev-natural-006",
+        "dev-natural-003",
+        "dev-fault-005",
+        "dev-fault-006",
+        "dev-fault-000",
+        "dev-fault-002",
+        "dev-natural-002",
+        "dev-natural-004",
+        "dev-equivalent-001",
+        "dev-natural-007",
+        "dev-fault-004",
+        "dev-natural-000",
+        "dev-fault-003",
+        "dev-equivalent-000",
+        "dev-fault-007",
+        "dev-equivalent-002",
+        "dev-fault-001",
+        "dev-natural-001",
+        "dev-equivalent-003",
+        "dev-natural-005"
+      ],
+      "conditions": {
+        "dev-equivalent-000": [
+          "S",
+          "N",
+          "B"
+        ],
+        "dev-equivalent-001": [
+          "N",
+          "B",
+          "S"
+        ],
+        "dev-equivalent-002": [
+          "S",
+          "B",
+          "N"
+        ],
+        "dev-equivalent-003": [
+          "N",
+          "S",
+          "B"
+        ],
+        "dev-fault-000": [
+          "N",
+          "S",
+          "B"
+        ],
+        "dev-fault-001": [
+          "B",
+          "S",
+          "N"
+        ],
+        "dev-fault-002": [
+          "B",
+          "N",
+          "S"
+        ],
+        "dev-fault-003": [
+          "S",
+          "N",
+          "B"
+        ],
+        "dev-fault-004": [
+          "S",
+          "B",
+          "N"
+        ],
+        "dev-fault-005": [
+          "N",
+          "B",
+          "S"
+        ],
+        "dev-fault-006": [
+          "S",
+          "N",
+          "B"
+        ],
+        "dev-fault-007": [
+          "B",
+          "N",
+          "S"
+        ]
+      }
+    },
+    "holdout": {
+      "cases": [
+        "holdout-fault-001",
+        "holdout-fault-032",
+        "holdout-equivalent-002",
+        "holdout-equivalent-010",
+        "holdout-equivalent-001",
+        "holdout-fault-000",
+        "holdout-natural-014",
+        "holdout-fault-028",
+        "holdout-fault-026",
+        "holdout-fault-002",
+        "holdout-equivalent-013",
+        "holdout-natural-029",
+        "holdout-natural-026",
+        "holdout-fault-027",
+        "holdout-fault-005",
+        "holdout-fault-014",
+        "holdout-natural-004",
+        "holdout-equivalent-006",
+        "holdout-fault-023",
+        "holdout-equivalent-016",
+        "holdout-equivalent-005",
+        "holdout-natural-018",
+        "holdout-fault-029",
+        "holdout-natural-030",
+        "holdout-natural-020",
+        "holdout-fault-019",
+        "holdout-natural-032",
+        "holdout-natural-038",
+        "holdout-natural-036",
+        "holdout-equivalent-011",
+        "holdout-equivalent-004",
+        "holdout-natural-037",
+        "holdout-equivalent-008",
+        "holdout-fault-034",
+        "holdout-natural-013",
+        "holdout-natural-039",
+        "holdout-fault-006",
+        "holdout-natural-005",
+        "holdout-fault-025",
+        "holdout-fault-015",
+        "holdout-natural-034",
+        "holdout-natural-012",
+        "holdout-fault-010",
+        "holdout-equivalent-017",
+        "holdout-natural-001",
+        "holdout-fault-007",
+        "holdout-natural-027",
+        "holdout-fault-011",
+        "holdout-fault-037",
+        "holdout-natural-035",
+        "holdout-natural-011",
+        "holdout-natural-033",
+        "holdout-natural-000",
+        "holdout-natural-019",
+        "holdout-natural-028",
+        "holdout-equivalent-012",
+        "holdout-fault-022",
+        "holdout-natural-006",
+        "holdout-equivalent-003",
+        "holdout-fault-020",
+        "holdout-fault-039",
+        "holdout-fault-012",
+        "holdout-fault-008",
+        "holdout-natural-023",
+        "holdout-fault-033",
+        "holdout-natural-007",
+        "holdout-natural-021",
+        "holdout-natural-010",
+        "holdout-fault-013",
+        "holdout-fault-024",
+        "holdout-fault-021",
+        "holdout-equivalent-007",
+        "holdout-natural-024",
+        "holdout-equivalent-000",
+        "holdout-natural-003",
+        "holdout-equivalent-019",
+        "holdout-natural-031",
+        "holdout-equivalent-014",
+        "holdout-natural-022",
+        "holdout-natural-002",
+        "holdout-fault-004",
+        "holdout-fault-017",
+        "holdout-fault-035",
+        "holdout-equivalent-018",
+        "holdout-natural-017",
+        "holdout-fault-016",
+        "holdout-fault-003",
+        "holdout-natural-016",
+        "holdout-fault-036",
+        "holdout-natural-009",
+        "holdout-fault-030",
+        "holdout-fault-031",
+        "holdout-fault-018",
+        "holdout-natural-015",
+        "holdout-equivalent-009",
+        "holdout-equivalent-015",
+        "holdout-natural-008",
+        "holdout-fault-009",
+        "holdout-fault-038",
+        "holdout-natural-025"
+      ],
+      "conditions": {
+        "holdout-equivalent-000": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-equivalent-001": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-equivalent-002": [
+          "B",
+          "N",
+          "S"
+        ],
+        "holdout-equivalent-003": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-equivalent-004": [
+          "B",
+          "N",
+          "S"
+        ],
+        "holdout-equivalent-005": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-equivalent-006": [
+          "B",
+          "N",
+          "S"
+        ],
+        "holdout-equivalent-007": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-equivalent-008": [
+          "B",
+          "N",
+          "S"
+        ],
+        "holdout-equivalent-009": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-equivalent-010": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-equivalent-011": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-equivalent-012": [
+          "N",
+          "S",
+          "B"
+        ],
+        "holdout-equivalent-013": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-equivalent-014": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-equivalent-015": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-equivalent-016": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-equivalent-017": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-equivalent-018": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-equivalent-019": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-fault-000": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-001": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-fault-002": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-fault-003": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-fault-004": [
+          "N",
+          "S",
+          "B"
+        ],
+        "holdout-fault-005": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-006": [
+          "N",
+          "S",
+          "B"
+        ],
+        "holdout-fault-007": [
+          "B",
+          "N",
+          "S"
+        ],
+        "holdout-fault-008": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-fault-009": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-fault-010": [
+          "B",
+          "S",
+          "N"
+        ],
+        "holdout-fault-011": [
+          "B",
+          "S",
+          "N"
+        ],
+        "holdout-fault-012": [
+          "N",
+          "S",
+          "B"
+        ],
+        "holdout-fault-013": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-fault-014": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-fault-015": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-016": [
+          "B",
+          "S",
+          "N"
+        ],
+        "holdout-fault-017": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-018": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-019": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-fault-020": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-021": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-fault-022": [
+          "N",
+          "S",
+          "B"
+        ],
+        "holdout-fault-023": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-fault-024": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-fault-025": [
+          "S",
+          "N",
+          "B"
+        ],
+        "holdout-fault-026": [
+          "B",
+          "S",
+          "N"
+        ],
+        "holdout-fault-027": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-028": [
+          "B",
+          "S",
+          "N"
+        ],
+        "holdout-fault-029": [
+          "N",
+          "S",
+          "B"
+        ],
+        "holdout-fault-030": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-031": [
+          "B",
+          "S",
+          "N"
+        ],
+        "holdout-fault-032": [
+          "B",
+          "N",
+          "S"
+        ],
+        "holdout-fault-033": [
+          "B",
+          "S",
+          "N"
+        ],
+        "holdout-fault-034": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-fault-035": [
+          "S",
+          "B",
+          "N"
+        ],
+        "holdout-fault-036": [
+          "N",
+          "B",
+          "S"
+        ],
+        "holdout-fault-037": [
+          "N",
+          "S",
+          "B"
+        ],
+        "holdout-fault-038": [
+          "N",
+          "S",
+          "B"
+        ],
+        "holdout-fault-039": [
+          "N",
+          "B",
+          "S"
+        ]
+      }
+    }
+  },
+  "pacing_policy": {
+    "attempts_and_retry_limits_unchanged": true,
+    "maximum_accepted_retry_after_seconds": 300,
+    "maximum_sleep_chunk_seconds": 30,
+    "minimum_429_cooldown_seconds": 60,
+    "minimum_attempt_start_interval_seconds": 20,
+    "missing_or_invalid_retry_after": "use_minimum_429_cooldown",
+    "retry_after_over_limit": "stop_without_retry",
+    "version": 1
+  },
+  "prompt_spec": {
+    "heading_characters": {
+      "B": 157,
+      "N": 158,
+      "S": 158
+    },
+    "headings": {
+      "B": "PASS. The verification record is presented below. The record contains the checked contract, its hash, the local verdict, and the complete finite certificate.",
+      "N": "Verification record. The record below contains a checked contract, its hash, the local verdict, and the complete finite certificate in structured data fields.",
+      "S": "Scope: only candidate C'/Q' were checked; the original contract was not checked. The record contains its hash, local verdict, and complete finite certificate."
+    },
+    "reviewer": "Answer the ORIGINAL task, not merely the translated candidate. The original task, candidate AST, and a local certificate are provided. Check that the candidate matches the original; a correct proof of a different contract does not establish the original. You may reason directly about the original. Return exactly {\"verdict\":\"SAFE\"|\"UNSAFE\"|\"UNRESOLVED\",\"witness\":object|null}. SAFE means every original admissible assignment satisfies original Q. For UNSAFE provide all original variables with Boolean values witnessing original C=true and Q=false. For SAFE or UNRESOLVED witness must be null. UNRESOLVED is allowed but does not solve the task. Return JSON only, no Markdown.",
+    "schema": "Contract JSON has exactly {\"variables\":[\"p\",\"q\",\"r\",\"s\"],\"C\":node,\"Q\":node}. A node is exactly {\"var\":\"p\"}, {\"const\":true}, {\"op\":\"not\",\"arg\":node}, or {\"op\":\"and\"|\"or\"|\"implies\",\"args\":[node,node]}. Use only the listed variables in the listed order. No other keys. Return JSON only, without Markdown. Constants are booleans, not 0/1. Maximum depth 10 and 127 nodes per expression.",
+    "translator": "Translate the supplied controlled Boolean task faithfully into C and Q. Preserve the admissible domain, obligation, and fixed atom meanings separately. Do not strengthen assumptions, weaken requirements, rename atoms, or try to make the universal claim true. UNSAFE tasks are legitimate tasks. Contract JSON has exactly {\"variables\":[\"p\",\"q\",\"r\",\"s\"],\"C\":node,\"Q\":node}. A node is exactly {\"var\":\"p\"}, {\"const\":true}, {\"op\":\"not\",\"arg\":node}, or {\"op\":\"and\"|\"or\"|\"implies\",\"args\":[node,node]}. Use only the listed variables in the listed order. No other keys. Return JSON only, without Markdown. Constants are booleans, not 0/1. Maximum depth 10 and 127 nodes per expression."
+  },
+  "python_version": "3.14.6",
+  "revision": null,
+  "schedule": {
+    "main": 260,
+    "max_extra_technical_attempts": 15,
+    "max_total_attempts": 379,
+    "pilot-v1": 52,
+    "pilot-v2": 52
+  },
+  "version": 1,
+  "worst_case_379_attempts_usd": "232.48502784",
+  "worst_case_attempt_usd": "0.61341696"
+}

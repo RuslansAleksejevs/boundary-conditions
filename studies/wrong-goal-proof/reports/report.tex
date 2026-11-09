@@ -1,0 +1,266 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,graphicx,booktabs}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\newcommand{\code}[1]{\texttt{#1}}
+% This file is intentionally not a completed empirical report until the audited
+% result-specific text exists. Never compile with fabricated placeholder results.
+\providecommand{\ResultsTextFile}{results_text.tex}
+\input{\ResultsTextFile}
+\title{Verified, but What?\\Certificate Scope in a Finite Agent Pipeline}
+\author{Ruslans Aleksejevs\\\small Draft---pending author review}
+\date{\ReportDate}
+\begin{document}
+\maketitle
+\begin{abstract}
+\RunAbstract
+\end{abstract}
+
+\section{Introduction}
+A correct proof answers the statement it proves, not automatically the task a
+user intended. An agent team can therefore produce locally impeccable evidence
+and still answer the wrong question. The scientifically relevant issue here is
+not whether a verifier can validate a finite proof, but how a downstream agent
+uses that proof when the original task remains visible.
+
+We study a deliberately small translator--solver--reviewer pipeline. The
+translator and reviewer are separate model contexts; the solver and certificate
+checker are local code. We separate honest translation drift from deliberately
+inserted handoff faults. On fixed original tasks, candidates and valid local
+certificates, we compare an ordinary PASS heading (B), a neutral heading (N), and
+an explicit candidate-only scope statement (S). Our contributions are a fully
+checkable finite-contract measurement setup, a paired presentation comparison,
+and an auditable accounting of correctness, useful completion and uncertainty.
+Neither a new general equivalence criterion nor a novel guarantee from an oracle
+gate is claimed. The result-specific conclusion is stated in Section~6.
+
+\section{Related Work}
+Li et al.'s SemantEq~\cite{semanteq} explains why unrestricted bidirectional
+implication can equate unrelated closed theorems: both may be independently
+provable. Its proof-term policy addresses faithful formal statement comparison.
+Our setting is narrower. Atom meanings and inputs are fixed, and we compare the
+admissibility and obligation functions separately. This is a contract-preservation
+convention, not a solution to faithful mathematical autoformalization.
+
+Mei and Douglas~\cite{mechanical} combine semantic review with mechanical
+numerical and vacuity checks for agentic autoformalization. The insufficiency of
+checking only a proof is established prior work. Our comparison instead holds
+the actual local evidence fixed and varies how its scope is presented to the
+reviewer. We do not reproduce either paper's benchmark, quote their findings as
+our measurements, or claim priority for statement/proof mismatch.
+
+\section{Methods}
+\subsection{Contracts and exact ground truth}
+For four Boolean inputs $x=(p,q,r,s)$ with fixed meanings, a contract is a pair
+$(C,Q)$. Its original claim is
+\[
+                 \forall x\in\{0,1\}^4:\ C(x)\Rightarrow Q(x).
+\]
+SAFE means this claim is true. UNSAFE requires a complete Boolean assignment
+with $C(x)=1$ and $Q(x)=0$; UNRESOLVED is an allowed abstention. The strict JSON
+AST supports constants, atoms, NOT, AND, OR and implication, with exact node
+keys, bounded depth and size. Arbitrary code and \code{eval} are not used.
+
+The original AST is rendered in an unambiguous controlled notation. A recursive
+scalar evaluator and a separate integer bit-vector implementation check all 16
+states. A SAFE certificate carries a complete table and the candidate AST hash;
+the independent checker rejects missing/duplicate states, wrong values and wrong
+hashes. UNSAFE witnesses are independently checked. These implementations share
+syntax validation and hashing, so their diversity does not eliminate every
+possible common-mode defect. Empty-domain/vacuity checks are unit tests, not a
+main fault family.
+
+Open-function drift means $C\not\equiv C'$ or $Q\not\equiv Q'$. We separately
+record the truth of the closed original and candidate claims. Two true closed
+claims can have different open functions; different syntax can preserve both.
+A changed intermediate contract need not cause a wrong final answer. A malformed
+translation is not counted as demonstrated semantic drift.
+
+\subsection{Populations and paired intervention}
+The preplanned evaluation has 100 new originals. Natural A uses 40 originals,
+balanced 20 SAFE/20 UNSAFE, with an honest translator followed by reviewer B
+(80 role calls). Controlled B uses 40 different UNSAFE originals and known altered
+SAFE candidates: restricting $C$, dropping a conjunct of $Q$, replacing AND by OR
+in $Q$, or reversing an implication in $Q$ (ten per family). Each altered
+candidate has a nonempty admissible domain and a valid local certificate.
+Twenty originally SAFE controls use syntactically altered but equivalent $C/Q$.
+
+Each controlled or equivalent original is reviewed under B, N and S in separate
+fresh contexts (180 role calls). All arms see the original task, candidate AST,
+certificate and hash. The common instruction explicitly asks the reviewer to
+answer the original and check correspondence. S receives no extra reference AST
+or counterexample. The headings are approximately character-matched, not claimed
+to be tokenizer-matched; the intervention includes semantic scope wording, not
+merely typography. Case and condition orders are seeded and frozen. There is no
+no-certificate arm or budget-matched single-agent comparison.
+
+\subsection{Pilot, model and prospective controls}
+The pilot schedules eight natural, eight planted and four equivalent originals:
+52 role calls. At least 47/52 responses must parse and at least 10/12 clean
+originals must be correct; an equivalent original must be correct in all three
+arms. A null fault result does not fail this gate. Main requires a passing
+audited pilot, prospective freeze and a separate source-bound authorization.
+
+The fresh seed is 2026110816. Fourteen released/inspected engineering bundles
+are excluded. Original/candidate paired C/Q truth tables and original atom-erased
+AST skeletons do not overlap development and evaluation; actual pilot translations
+are checked too. Higher-level mutation families remain shared, so this is not
+an unseen-family benchmark. Selection uses exact mathematics, not model outcomes.
+
+The experimental subject is \code{qwen/qwen3.5-122b-a10b} through OpenRouter's
+fixed Alibaba route~\cite{qwen,openrouter}. Temperature is 0.6, top-p 0.95,
+reasoning enabled and its text excluded, requested output 8192 tokens, and no
+fallback provider or JSON response mode. Visible answers and usage are retained;
+hidden reasoning text is not. The public model alias is not an immutable weight
+pin, and provider quantization is unknown.
+
+The study allocation is USD20. Each dispatch first reserves USD0.61341696,
+covering the full advertised 262144-token context separately at input/output
+tariffs USD0.26/2.08 per million. Actual total input plus output is checked against
+the advertised context. Native requested output limits are not assumed to cap
+all thinking tokens. Complete valid billing settles the larger of reported cost
+and the no-cache token-price bound; unknown charges retain the full reserve.
+The upfront-full-campaign-fit rule was prospectively relaxed, not the per-request
+hard wallet. Completion is therefore not guaranteed; a budget stop leaves
+scheduled cases unassessed rather than shrinking the sample.
+
+Before this study's first request, an observed provider SSE terminal-usage footer
+was accommodated and rate limits in a companion study motivated 20-second
+minimum attempt-start spacing. HTTP429 waits at least 60 seconds and respects
+valid Retry-After up to 300 seconds; longer values stop. Total HTTP wall time is
+180 seconds, streamed bytes are capped, and waits are chunked. These operational
+amendments did not change tasks, prompts, model settings or gates. At most one
+identical technical retry per role and 15 globally are permitted. The complete
+core schedule is 312 logical roles; blocked dependencies need no HTTP request,
+whereas a technical retry adds one. A genuine interface-repair pilot, only if needed and
+separately authorized, gives an absolute 379-attempt ceiling.
+
+\subsection{Outcomes and uncertainty}
+False assurance is a reviewer SAFE answer when an original counterexample exists.
+Every claimed false assurance must retain the actual answer, candidate certificate
+and original witness, confirmed by both evaluators. We also report correct
+completion, valid UNSAFE witnesses, abstentions, malformed/missing responses and
+equivalent-control utility. Natural drift and planted faults are never pooled.
+
+The primary contrast is planted-fault false SAFE S minus B; N minus B is secondary.
+Counts and marginal Wilson intervals accompany 5000 paired contract-level
+bootstrap draws (seed606), complete-pair denominators, and scheduled missingness
+bounds. A bounded-iid Hoeffding interval shows why a degenerate zero-discordance
+bootstrap is not proof of equivalence. Shared templates limit all inferential
+claims: the intervals are assumption-dependent summaries; independence across
+shared-template cases and generalization to real-world tasks are not established.
+The original-AST oracle gate is a privileged engineering ceiling with
+direct trusted-AST access and exact computation, not an interface- or resource-
+matched empirical defense or a new safety discovery.
+
+\section{Results}
+\PilotResults\par
+\MainResults\par
+\ResultsTable
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{\FigurePath}
+\caption{\FigureCaption}
+\label{fig:scope}
+\end{figure}
+\PrimaryResults\par
+\ResourceResults\par
+
+\section{Discussion and Limitations}
+\DiscussionResults\par
+The original task and an explicit correspondence-checking instruction are visible
+even in B. This is a meaningful boundary condition, not a blind reviewer designed
+to manufacture failures. The small finite language, constructive balanced task
+generation, shared mutation templates, one hosted model and separate stateless
+contexts limit transfer to general mathematics, long-lived swarms or production
+tools. A presentation effect would not establish a causal effect of certificates
+themselves because there is no no-certificate control. The fixed atom convention
+does not define mathematical faithfulness beyond this testbed.
+
+Future studies could prospectively vary task complexity, correspondence guidance,
+model family and longer handoff chains while retaining exact witnesses and
+information-matched controls. Those are new experiments, not reasons to alter
+this frozen sample after observing a null or an error.
+
+\section{Conclusion}
+\ConclusionResults\par
+
+\section*{Code and Data}
+Repository: \url{https://github.com/RuslansAleksejevs/boundary-conditions}.\par
+Study directory: \path{studies/wrong-goal-proof}. Public records distinguish
+synthetic engineering fixtures, the real pilot, and any authorized held-out run.\par
+Frozen acquisition commit: \code{83aa8ee313d4f054ac47af038a8b5c33a6a1e859}.\par
+Presentation tools do not change this acquisition source.
+Private acquisition journals remain separate from reviewed public evidence.
+Hashes establish local consistency, not cryptographic provider-origin attestation.
+No competition submission was performed. This PDF remains subject to author review.
+
+\begin{thebibliography}{9}
+\small
+\raggedright
+\bibitem{semanteq} Xinrui Li, Pawan Sasanka Ammanamanchi, Siddharth Bhat,
+Rianna Jamdar, Yongxi Lin and Stella Biderman (2026).
+\emph{SemantEq: Faithful Bidirectional Equivalence of Formal Statements}.
+arXiv:2610.32919v1. \url{https://arxiv.org/abs/2610.32919v1}.
+\bibitem{mechanical} Anna Mei and Michael R. Douglas (2026).
+\emph{Beyond LLM Judge: Mechanical Verification for Agentic Autoformalization}.
+arXiv:2610.20573v2. \url{https://arxiv.org/abs/2610.20573v2}.
+\bibitem{qwen} Qwen (2026). \emph{Qwen3.5-122B-A10B model card}.
+\url{https://huggingface.co/Qwen/Qwen3.5-122B-A10B}. Checked 8 November 2026.
+\bibitem{openrouter} OpenRouter (2026). \emph{Qwen3.5-122B-A10B provider endpoints}.
+\url{https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints}.
+Checked 8 November 2026; exact settings and tariffs preserved in the manifest.
+\end{thebibliography}
+
+\clearpage
+\appendix
+\section{Limitations and Dual-Use / Ethical Considerations}
+\textbf{Scope and external validity.} Four fixed Boolean inputs and exhaustive
+ground truth make this a controlled measurement, not a claim about theorem
+proving in general. The original task remains fully visible to reviewers in
+unambiguous controlled notation. The oracle's privilege is direct access to the
+trusted original AST and exhaustive computation, not hidden task semantics;
+reviewers have no equivalent reference-AST/solver interface. Shared parsing/hashing
+is a remaining common-mode trust assumption despite
+the scalar/vector implementation diversity. Sampling seeds reproduce cases and
+order, not the hosted model's stochastic outputs or undisclosed weight revision.
+Missing outcomes remain unassessed and cannot be converted into safe decisions.
+
+\textbf{Dual use.} Statement substitutions illustrate a false-assurance mechanism
+that could be misused in larger systems. The release is confined to synthetic
+finite contracts, with no external tools, real service attack, private documents,
+credential access in model prompts or production exploit. Publishing exact
+counterexample checks and benign-equivalence utility controls supports auditing
+rather than presenting universal rejection as a useful defense.
+
+\textbf{Data handling and resource use.} Only synthetic tasks were sent. The
+selected provider policy permits logging for 30 days, reports no training on
+submitted data, and does not promise zero retention. That policy was accepted
+prospectively and is not described as ZDR. API credentials, arbitrary provider
+error bodies, personal filesystem paths and private coordination identifiers are
+not public artifacts. Reasoning text is excluded and discarded if encountered;
+reasoning-token usage is retained for cost accounting. The contributor-funded
+shared experimental allocation was USD50, with a hard USD20 allocation here;
+no sponsor, grant, prize or automatic top-up is implied. Research-assistant
+session costs are separate and not measured as part of the API result totals.
+
+\textbf{LLM Usage Statement.} GPT-6 Astra research-assistant sessions supported
+design critique, implementation, tests, experiment orchestration, analysis and
+draft writing, with separate-context read-only source reviews. Qwen was the
+experimental subject, not a human author. Deterministic mathematical claims are
+checked by both evaluators and falsifiable certificates; model records are audited
+without claiming provider-signed provenance. Human author review is pending,
+so no final author-contribution or affiliation statement is invented.
+
+\textbf{Preexisting work.} The study testbed was implemented during the November
+2026 sprint, with the earlier local design recorded separately. Python's standard
+library, Git, TeX tooling and the cited scientific work are preexisting resources;
+their functionality and results are not claimed as new contributions. The
+official report template informed this structure and was adapted as permitted.
+No affiliation with or endorsement by the organizer is asserted.
+
+\section{Reproducibility and Acquisition Accounting}
+\ReproductionResults
+\end{document}

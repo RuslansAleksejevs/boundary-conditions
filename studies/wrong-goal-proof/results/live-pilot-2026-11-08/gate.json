@@ -1,0 +1,30 @@
+{
+  "actual_pilot_holdout_separation": {
+    "distinct_observed_candidate_functions": 19,
+    "observed_candidate_function_hash": "ce427f4077f47ca6854a4bd17f684961ac8774dc216844cb6676656e4142d6f0",
+    "overlapping_functions": 0,
+    "preserved_pilots_checked": 1,
+    "valid": true
+  },
+  "clean_cases": 12,
+  "clean_cases_correct_in_all_conditions": 11,
+  "interpretation": "prospective live-model pilot",
+  "main_budget_projection": {
+    "already_charged_or_reserved_usd": "0.39923650",
+    "full_context_worst_case_campaign_usd": "169.08890050",
+    "maximum_remaining_main_attempts": 275,
+    "mean_with_unknown_costs_at_full_reserve_usd": "0.007828166666666666666666666667",
+    "next_full_reservation_fits_quota": true,
+    "observed_max_with_unknown_costs_at_full_reserve_usd": "0.01347736",
+    "pilot_physical_attempts": 51,
+    "planned_main_logical_calls": 260,
+    "policy": "No adaptive sample shrink; a hard-wallet stop leaves scheduled outcomes unassessed.",
+    "projected_campaign_mean_usd": "2.551982333333333333333333333",
+    "projected_campaign_observed_max_usd": "4.10551050",
+    "projection_is_a_guaranteed_bound": false,
+    "unknown_pilot_costs": 0
+  },
+  "passed": true,
+  "scheduled_responses": 52,
+  "valid_responses": 50
+}

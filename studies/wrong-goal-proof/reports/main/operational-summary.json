@@ -1,0 +1,239 @@
+{
+  "campaign_reported_api_cost_usd": {
+    "known_attempts": 308,
+    "known_sum": "2.39640830",
+    "physical_attempts": 310,
+    "total": null,
+    "unknown_attempts": 2
+  },
+  "full_campaign_audit_valid": true,
+  "kind": "audited_campaign_operational_summary",
+  "new_model_calls": 0,
+  "notes": [
+    "Reported API costs and conservative ledger settlements are distinct quantities.",
+    "Unknown charges retain full reservations; neither unknown charges nor token usage are imputed zero.",
+    "Stage wallets exclude earlier stages; cumulative wallets include them.",
+    "Completed native audits require every reservation to have a settlement; unsettled reserves must therefore be zero here.",
+    "Attempt-start and retry gaps are differences of recorded UTC timestamps; HTTP latency and stage elapsed time are client monotonic-clock durations.",
+    "Timing and identical-request checks describe recorded receipts, not provider-signed attestations.",
+    "HTTP status alone does not identify the cause of a provider error.",
+    "Private account reconciliation and research-assistant session costs are outside this summary."
+  ],
+  "provenance_authenticated": false,
+  "source_inventory_matches": true,
+  "stages": {
+    "main": {
+      "cumulative_wallet_through_stage": {
+        "attempts": 310,
+        "committed_usd": "3.62324222",
+        "pricing_overrun": false,
+        "retries": 2,
+        "settled_conservative_usd": "2.39640830",
+        "unknown_charges": 2
+      },
+      "elapsed_seconds": 6829.286532999948,
+      "finished_at": "2026-11-08T23:44:59.374908+00:00",
+      "halt_reason": null,
+      "http_statuses": {
+        "200": 257,
+        "429": 2
+      },
+      "latency_max_seconds": 67.66392333386466,
+      "latency_mean_seconds": 23.96484413756144,
+      "latency_sum_seconds": 6206.894631628413,
+      "logical_role_statuses": {
+        "blocked_translation": 3,
+        "completed": 253,
+        "schema_error": 4
+      },
+      "minimum_attempt_start_spacing_seconds": 20.000076,
+      "physical_attempts": 259,
+      "reported_api_cost_usd": {
+        "known_attempts": 257,
+        "known_sum": "1.99717180",
+        "physical_attempts": 259,
+        "total": null,
+        "unknown_attempts": 2
+      },
+      "retry_pairs": [
+        {
+          "delay_after_prior_finish_seconds": 60.00494,
+          "identical_payload": true,
+          "logical_id": "holdout-equivalent-003:reviewer:B",
+          "prior_attempt_id": "attempt-0200",
+          "prior_http_status": 429,
+          "retry_attempt_id": "attempt-0201",
+          "retry_http_status": 200
+        },
+        {
+          "delay_after_prior_finish_seconds": 60.004454,
+          "identical_payload": true,
+          "logical_id": "holdout-fault-020:reviewer:N",
+          "prior_attempt_id": "attempt-0203",
+          "prior_http_status": 429,
+          "retry_attempt_id": "attempt-0204",
+          "retry_http_status": 200
+        }
+      ],
+      "scheduled_roles": 260,
+      "schema_failures": [
+        {
+          "error": "Expecting ',' delimiter: line 1 column 439 (char 438)",
+          "role": "translator",
+          "role_id": "holdout-natural-004:translator:-",
+          "visible_characters": 438
+        },
+        {
+          "error": "Expecting value: line 1 column 1 (char 0)",
+          "role": "reviewer",
+          "role_id": "holdout-natural-038:reviewer:B",
+          "visible_characters": 45
+        },
+        {
+          "error": "Expecting ',' delimiter: line 1 column 183 (char 182)",
+          "role": "translator",
+          "role_id": "holdout-natural-006:translator:-",
+          "visible_characters": 358
+        },
+        {
+          "error": "Expecting ',' delimiter: line 1 column 400 (char 399)",
+          "role": "translator",
+          "role_id": "holdout-natural-010:translator:-",
+          "visible_characters": 401
+        }
+      ],
+      "source_run_hash": "81af66525adfb197fb3c48911fb07c05c3668fa8f7c75987a6143aac54a636de",
+      "stage": "main",
+      "stage_wallet": {
+        "committed_usd": "3.22400572",
+        "settled_conservative_usd": "1.99717180",
+        "unknown_charges": 2,
+        "unknown_holds_usd": "1.22683392",
+        "unknown_settled_attempts": 2,
+        "unknown_settled_holds_usd": "1.22683392",
+        "unsettled_reservations": 0,
+        "unsettled_reserve_usd": "0"
+      },
+      "started_at": "2026-11-08T21:51:10.093347+00:00",
+      "technical_retries": 2,
+      "usage": {
+        "cached_input_tokens": {
+          "known_attempts": 257,
+          "known_sum": 0,
+          "physical_attempts": 259,
+          "total": null,
+          "unknown_attempts": 2
+        },
+        "input_tokens": {
+          "known_attempts": 257,
+          "known_sum": 210478,
+          "physical_attempts": 259,
+          "total": null,
+          "unknown_attempts": 2
+        },
+        "output_tokens": {
+          "known_attempts": 257,
+          "known_sum": 933869,
+          "physical_attempts": 259,
+          "total": null,
+          "unknown_attempts": 2
+        },
+        "reasoning_tokens": {
+          "known_attempts": 257,
+          "known_sum": 921437,
+          "physical_attempts": 259,
+          "total": null,
+          "unknown_attempts": 2
+        }
+      }
+    },
+    "pilot-v1": {
+      "cumulative_wallet_through_stage": {
+        "attempts": 51,
+        "committed_usd": "0.39923650",
+        "pricing_overrun": false,
+        "retries": 0,
+        "settled_conservative_usd": "0.39923650",
+        "unknown_charges": 0
+      },
+      "elapsed_seconds": 1369.8752686250955,
+      "finished_at": "2026-11-08T20:59:48.911404+00:00",
+      "halt_reason": null,
+      "http_statuses": {
+        "200": 51
+      },
+      "latency_max_seconds": 46.977148208301514,
+      "latency_mean_seconds": 25.824627802405946,
+      "latency_sum_seconds": 1317.0560179227032,
+      "logical_role_statuses": {
+        "blocked_translation": 1,
+        "completed": 50,
+        "schema_error": 1
+      },
+      "minimum_attempt_start_spacing_seconds": 20.000618,
+      "physical_attempts": 51,
+      "reported_api_cost_usd": {
+        "known_attempts": 51,
+        "known_sum": "0.39923650",
+        "physical_attempts": 51,
+        "total": "0.39923650",
+        "unknown_attempts": 0
+      },
+      "retry_pairs": [],
+      "scheduled_roles": 52,
+      "schema_failures": [
+        {
+          "error": "Expecting ',' delimiter: line 1 column 365 (char 364)",
+          "role": "translator",
+          "role_id": "dev-natural-000:translator:-",
+          "visible_characters": 366
+        }
+      ],
+      "source_run_hash": "f696c9be737a22278b76b7f1bfa91527b1e8a23226ea5914e93e70b4111fb2c1",
+      "stage": "pilot-v1",
+      "stage_wallet": {
+        "committed_usd": "0.39923650",
+        "settled_conservative_usd": "0.39923650",
+        "unknown_charges": 0,
+        "unknown_holds_usd": "0",
+        "unknown_settled_attempts": 0,
+        "unknown_settled_holds_usd": "0",
+        "unsettled_reservations": 0,
+        "unsettled_reserve_usd": "0"
+      },
+      "started_at": "2026-11-08T20:36:59.031008+00:00",
+      "technical_retries": 0,
+      "usage": {
+        "cached_input_tokens": {
+          "known_attempts": 51,
+          "known_sum": 0,
+          "physical_attempts": 51,
+          "total": 0,
+          "unknown_attempts": 0
+        },
+        "input_tokens": {
+          "known_attempts": 51,
+          "known_sum": 42437,
+          "physical_attempts": 51,
+          "total": 42437,
+          "unknown_attempts": 0
+        },
+        "output_tokens": {
+          "known_attempts": 51,
+          "known_sum": 186636,
+          "physical_attempts": 51,
+          "total": 186636,
+          "unknown_attempts": 0
+        },
+        "reasoning_tokens": {
+          "known_attempts": 51,
+          "known_sum": 184388,
+          "physical_attempts": 51,
+          "total": 184388,
+          "unknown_attempts": 0
+        }
+      }
+    }
+  },
+  "version": 1
+}

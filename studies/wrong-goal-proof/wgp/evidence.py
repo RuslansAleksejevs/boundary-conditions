@@ -14,6 +14,15 @@ from .vector import witness_valid
 
 def export_evidence(dataset, run):
     audit_run(dataset, run)
+    packet = {"version": 1, "mode": run["adapter"]["kind"],
+              "source_run_hash": digest(run), "dataset_hash": digest(dataset),
+              "cases": mathematical_cases(dataset, run)}
+    verify_evidence(packet)
+    return packet
+
+
+def mathematical_cases(dataset, run):
+    """Extract only mathematics; caller must separately audit acquisition mode."""
     originals = {c["id"]: c["original"] for c in dataset["splits"][run["split"]]}
     cases = {}
     for outcome in run["outcomes"]:
@@ -26,11 +35,7 @@ def export_evidence(dataset, run):
             "certificate": outcome["certificate"],
             "evidence": outcome["false_assurance_evidence"], "answers": {}})
         case["answers"][outcome["condition"]] = outcome["answer"]
-    packet = {"version": 1, "mode": run["adapter"]["kind"],
-              "source_run_hash": digest(run), "dataset_hash": digest(dataset),
-              "cases": list(cases.values())}
-    verify_evidence(packet)
-    return packet
+    return list(cases.values())
 
 
 def verify_evidence(packet):
@@ -39,8 +44,15 @@ def verify_evidence(packet):
             or packet["mode"] not in ("synthetic_test_double", "offline_transcript_replay")
             or type(packet["cases"]) is not list):
         raise SchemaError("invalid evidence envelope")
+    result = verify_mathematical_cases(packet["cases"])
+    return {**result, "mode": packet["mode"]}
+
+
+def verify_mathematical_cases(cases):
+    if type(cases) is not list:
+        raise SchemaError("mathematical cases must be a list")
     seen, guarantees = set(), 0
-    for case in packet["cases"]:
+    for case in cases:
         keys(case, ("case_id", "group", "family", "original", "candidate", "certificate", "evidence", "answers"))
         if type(case["case_id"]) is not str or case["case_id"] in seen:
             raise SchemaError("duplicate evidence case")
@@ -68,6 +80,6 @@ def verify_evidence(packet):
             if parsed["verdict"] != "SAFE":
                 raise SchemaError("not a SAFE guarantee")
             guarantees += 1
-    return {"valid": True, "mode": packet["mode"], "cases": len(seen),
+    return {"valid": True, "cases": len(seen),
             "independently_confirmed_false_guarantees": guarantees,
             "provenance_authenticated": False}
