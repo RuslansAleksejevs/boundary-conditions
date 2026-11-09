@@ -1,5 +1,35 @@
 # Study state
 
+## Current editorial phase — 9 November 2026 UTC
+
+The completed empirical release was integrated through PR #4, merge
+`755e51475e343825c67e142cbbe34aff2f22f9b3`. A new reader-first report is prepared
+on `study/wrong-goal-proof-reader-report`, based on main
+`7e2780c1357dcb0ce14b749caf222fd1080bad06`. It is an editorial release only:
+no new model calls, revised scoring, rewritten data or competition submission.
+The new location is `reports/reader/verified-but-what.pdf`; the earlier pilot
+and main PDFs/TeX, frozen source and data remain byte-for-byte preserved.
+
+The six-page reader PDF has a 209-word abstract, a clickable page-one repository
+link, explicit result/uncertainty tables and two actual source-bound examples.
+SHA256: `c8bf9d451609a49e2f1a159a24a9d4a9adf58d57b4eeb6f616c259932c7e9d78`.
+Cached Tectonic 0.16.9 built it without warnings; every page was visually checked.
+The 171 scientific, 28 existing reporting and 12 new reader-binding tests passed.
+Both native analyses and the campaign/evidence checks passed without new model
+requests; all 91 protected old files are unchanged. Full commands and results
+are in [reader release checks](reports/reader/CHECKS.md).
+
+The landing page and report guide now prioritize question, result, PDF, data and
+offline replay. Detailed earlier guide text is retained separately. Read-only
+integration and peer reviews found no blocker. The peer's C-versus-Q wording
+clarification was accepted without changing formulas or results. Publication of
+the separate editorial PR is next. Human author review remains pending.
+
+The detailed acquisition checkpoints below are historical. Their earlier
+pending-merge statements describe those checkpoints, not current integration.
+
+## Completed empirical record and historical checkpoints
+
 As of 2026-11-09 UTC. Source: implementation and local test commands;
 classification: PROJECT_REPORTED. Engineering fixtures and actual model
 observations are explicitly separated below.

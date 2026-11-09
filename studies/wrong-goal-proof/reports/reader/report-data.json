@@ -1,0 +1,941 @@
+{
+  "examples": [
+    {
+      "all_states": [
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": false,
+          "state": {
+            "p": false,
+            "q": false,
+            "r": false,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": false,
+            "r": false,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": true,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": false,
+            "r": true,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": false,
+            "r": true,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": false,
+          "state": {
+            "p": false,
+            "q": true,
+            "r": false,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": true,
+            "r": false,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": true,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": true,
+            "r": true,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": true,
+            "r": true,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": false,
+            "r": false,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": false,
+            "r": false,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": false,
+            "r": true,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": false,
+            "r": true,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": true,
+            "r": false,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": true,
+            "r": false,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": true,
+            "r": true,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": true,
+            "r": true,
+            "s": true
+          }
+        }
+      ],
+      "answers": {
+        "B": {
+          "answer": {
+            "verdict": "UNSAFE",
+            "witness": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          "response_text": "{\"verdict\":\"UNSAFE\",\"witness\":{\"p\":false,\"q\":false,\"r\":false,\"s\":false}}"
+        },
+        "N": {
+          "answer": {
+            "verdict": "UNSAFE",
+            "witness": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          "response_text": "{\"verdict\":\"UNSAFE\",\"witness\":{\"p\":false,\"q\":false,\"r\":false,\"s\":false}}"
+        },
+        "S": {
+          "answer": {
+            "verdict": "UNSAFE",
+            "witness": {
+              "p": false,
+              "q": false,
+              "r": false,
+              "s": false
+            }
+          },
+          "response_text": "{\"verdict\":\"UNSAFE\",\"witness\":{\"p\":false,\"q\":false,\"r\":false,\"s\":false}}"
+        }
+      },
+      "candidate": {
+        "C": {
+          "arg": {
+            "var": "r"
+          },
+          "op": "not"
+        },
+        "Q": {
+          "args": [
+            {
+              "args": [
+                {
+                  "var": "s"
+                },
+                {
+                  "var": "p"
+                }
+              ],
+              "op": "or"
+            },
+            {
+              "arg": {
+                "var": "r"
+              },
+              "op": "not"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "candidate_admissible": 8,
+      "candidate_failure_states": 0,
+      "case_id": "holdout-fault-019",
+      "certificate_hash": "6e253bb21ee4ee50c51a9a423bdd952e3646e3b5f13b1d32b52749cadf65e374",
+      "certificate_rows": 16,
+      "family": "reverse_implication",
+      "fidelity": {
+        "C_equal": true,
+        "Q_equal": false,
+        "closed_truth_equal": false,
+        "open_functions_equal": false
+      },
+      "original": {
+        "C": {
+          "arg": {
+            "var": "r"
+          },
+          "op": "not"
+        },
+        "Q": {
+          "args": [
+            {
+              "arg": {
+                "var": "r"
+              },
+              "op": "not"
+            },
+            {
+              "args": [
+                {
+                  "var": "s"
+                },
+                {
+                  "var": "p"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "implies"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "original_admissible": 8,
+      "original_failure_states": 2,
+      "shown_condition": "B",
+      "source_map": {
+        "dataset.json": {
+          "candidate": "/splits/holdout/25/candidate",
+          "case": "/splits/holdout/25",
+          "certificate": "/splits/holdout/25/certificate",
+          "original": "/splits/holdout/25/original"
+        },
+        "main/run.json": {
+          "B": {
+            "call": "/calls/70",
+            "outcome": "/outcomes/63",
+            "response_text": "/calls/70/response_text"
+          },
+          "N": {
+            "call": "/calls/69",
+            "outcome": "/outcomes/62",
+            "response_text": "/calls/69/response_text"
+          },
+          "S": {
+            "call": "/calls/68",
+            "outcome": "/outcomes/61",
+            "response_text": "/calls/68/response_text"
+          }
+        }
+      }
+    },
+    {
+      "all_states": [
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": false,
+          "state": {
+            "p": false,
+            "q": false,
+            "r": false,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": true,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": false,
+            "r": false,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": false,
+          "state": {
+            "p": false,
+            "q": false,
+            "r": true,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": true,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": false,
+            "r": true,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": true,
+            "r": false,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": true,
+            "r": false,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": true,
+            "r": true,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": false,
+            "q": true,
+            "r": true,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": false,
+          "original_C": false,
+          "original_Q": false,
+          "state": {
+            "p": true,
+            "q": false,
+            "r": false,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": true,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": false,
+            "r": false,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": true,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": false,
+            "r": true,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": false,
+          "candidate_Q": true,
+          "original_C": false,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": false,
+            "r": true,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": true,
+            "r": false,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": true,
+            "r": false,
+            "s": true
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": true,
+            "r": true,
+            "s": false
+          }
+        },
+        {
+          "candidate_C": true,
+          "candidate_Q": true,
+          "original_C": true,
+          "original_Q": true,
+          "state": {
+            "p": true,
+            "q": true,
+            "r": true,
+            "s": true
+          }
+        }
+      ],
+      "answers": {
+        "B": {
+          "answer": {
+            "verdict": "SAFE",
+            "witness": null
+          },
+          "response_text": "{\"verdict\":\"SAFE\",\"witness\":null}"
+        },
+        "N": {
+          "answer": {
+            "verdict": "SAFE",
+            "witness": null
+          },
+          "response_text": "{\"verdict\":\"SAFE\",\"witness\":null}"
+        },
+        "S": {
+          "answer": {
+            "verdict": "SAFE",
+            "witness": null
+          },
+          "response_text": "{\"verdict\":\"SAFE\",\"witness\":null}"
+        }
+      },
+      "candidate": {
+        "C": {
+          "args": [
+            {
+              "var": "q"
+            },
+            {
+              "var": "q"
+            }
+          ],
+          "op": "and"
+        },
+        "Q": {
+          "args": [
+            {
+              "var": "q"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "r"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "s"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "or"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "candidate_admissible": 8,
+      "candidate_failure_states": 0,
+      "case_id": "holdout-equivalent-019",
+      "certificate_hash": "16ec6c077c16b2b5e3b0503156fab1d799775382b7e253b0d13d6bfc9524e6d8",
+      "certificate_rows": 16,
+      "family": "redundancy",
+      "fidelity": {
+        "C_equal": true,
+        "Q_equal": true,
+        "closed_truth_equal": true,
+        "open_functions_equal": true
+      },
+      "original": {
+        "C": {
+          "var": "q"
+        },
+        "Q": {
+          "args": [
+            {
+              "var": "q"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "p"
+                    },
+                    {
+                      "var": "r"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "args": [
+                    {
+                      "var": "s"
+                    },
+                    {
+                      "var": "q"
+                    }
+                  ],
+                  "op": "or"
+                }
+              ],
+              "op": "or"
+            }
+          ],
+          "op": "or"
+        },
+        "variables": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ]
+      },
+      "original_admissible": 8,
+      "original_failure_states": 0,
+      "shown_condition": "B",
+      "source_map": {
+        "dataset.json": {
+          "candidate": "/splits/holdout/75/candidate",
+          "case": "/splits/holdout/75",
+          "certificate": "/splits/holdout/75/certificate",
+          "original": "/splits/holdout/75/original"
+        },
+        "main/run.json": {
+          "B": {
+            "call": "/calls/195",
+            "outcome": "/outcomes/164",
+            "response_text": "/calls/195/response_text"
+          },
+          "N": {
+            "call": "/calls/196",
+            "outcome": "/outcomes/165",
+            "response_text": "/calls/196/response_text"
+          },
+          "S": {
+            "call": "/calls/194",
+            "outcome": "/outcomes/163",
+            "response_text": "/calls/194/response_text"
+          }
+        }
+      }
+    }
+  ],
+  "frozen_source_commit": "83aa8ee313d4f054ac47af038a8b5c33a6a1e859",
+  "kind": "derived_reader_report_checks_not_new_experiment",
+  "known_campaign_cost_usd": "2.39640830",
+  "main_outcomes": [
+    {
+      "abstentions": 0,
+      "arm": "B",
+      "assessed": 36,
+      "blocked_reviews": 3,
+      "correct": 36,
+      "false_safe": 0,
+      "invalid_reviews": 1,
+      "other_missing": 0,
+      "population": "Natural",
+      "scheduled": 40
+    },
+    {
+      "abstentions": 0,
+      "arm": "B",
+      "assessed": 40,
+      "blocked_reviews": 0,
+      "correct": 40,
+      "false_safe": 0,
+      "invalid_reviews": 0,
+      "other_missing": 0,
+      "population": "Planted",
+      "scheduled": 40
+    },
+    {
+      "abstentions": 0,
+      "arm": "N",
+      "assessed": 40,
+      "blocked_reviews": 0,
+      "correct": 40,
+      "false_safe": 0,
+      "invalid_reviews": 0,
+      "other_missing": 0,
+      "population": "Planted",
+      "scheduled": 40
+    },
+    {
+      "abstentions": 0,
+      "arm": "S",
+      "assessed": 40,
+      "blocked_reviews": 0,
+      "correct": 40,
+      "false_safe": 0,
+      "invalid_reviews": 0,
+      "other_missing": 0,
+      "population": "Planted",
+      "scheduled": 40
+    },
+    {
+      "abstentions": 0,
+      "arm": "B",
+      "assessed": 20,
+      "blocked_reviews": 0,
+      "correct": 20,
+      "false_safe": 0,
+      "invalid_reviews": 0,
+      "other_missing": 0,
+      "population": "Equivalent",
+      "scheduled": 20
+    },
+    {
+      "abstentions": 0,
+      "arm": "N",
+      "assessed": 20,
+      "blocked_reviews": 0,
+      "correct": 20,
+      "false_safe": 0,
+      "invalid_reviews": 0,
+      "other_missing": 0,
+      "population": "Equivalent",
+      "scheduled": 20
+    },
+    {
+      "abstentions": 0,
+      "arm": "S",
+      "assessed": 20,
+      "blocked_reviews": 0,
+      "correct": 20,
+      "false_safe": 0,
+      "invalid_reviews": 0,
+      "other_missing": 0,
+      "population": "Equivalent",
+      "scheduled": 20
+    }
+  ],
+  "natural_drift": {
+    "denominator": 37,
+    "estimate": 0.0,
+    "numerator": 0,
+    "wilson95": [
+      0.0,
+      0.09405782583720251
+    ]
+  },
+  "natural_missingness_bounds": [
+    0.0,
+    0.1
+  ],
+  "new_api_requests": 0,
+  "operational_summary_sha256": "096cb31c0084b91149fe838b491fbe7643ff7428304ec9cfa06ee39a9dec1bbc",
+  "paired": {
+    "equivalent_utility_S_minus_B": {
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "bootstrap_samples": 5000,
+      "bootstrap_seed": 606,
+      "bounded_iid_hoeffding95": [
+        -0.6073614619083052,
+        0.6073614619083052
+      ],
+      "complete_pairs": 20,
+      "contrast": "S-B",
+      "difference": 0.0,
+      "discordance": {
+        "B=1,S=1": 20
+      },
+      "excluded_unassessed_pairs": 0,
+      "metric": "correct",
+      "note": "Contract-level paired resampling; template dependence limits inference. Degenerate bootstrap intervals do not establish absence of an effect.",
+      "scheduled_difference_bounds": [
+        0.0,
+        0.0
+      ],
+      "scheduled_pairs": 20,
+      "sum_differences": 0
+    },
+    "primary_fault_S_minus_B": {
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "bootstrap_samples": 5000,
+      "bootstrap_seed": 606,
+      "bounded_iid_hoeffding95": [
+        -0.4294694083467376,
+        0.4294694083467376
+      ],
+      "complete_pairs": 40,
+      "contrast": "S-B",
+      "difference": 0.0,
+      "discordance": {
+        "B=0,S=0": 40
+      },
+      "excluded_unassessed_pairs": 0,
+      "metric": "false_safe",
+      "note": "Contract-level paired resampling; template dependence limits inference. Degenerate bootstrap intervals do not establish absence of an effect.",
+      "scheduled_difference_bounds": [
+        0.0,
+        0.0
+      ],
+      "scheduled_pairs": 40,
+      "sum_differences": 0
+    },
+    "secondary_fault_N_minus_B": {
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "bootstrap_samples": 5000,
+      "bootstrap_seed": 606,
+      "bounded_iid_hoeffding95": [
+        -0.4294694083467376,
+        0.4294694083467376
+      ],
+      "complete_pairs": 40,
+      "contrast": "N-B",
+      "difference": 0.0,
+      "discordance": {
+        "B=0,N=0": 40
+      },
+      "excluded_unassessed_pairs": 0,
+      "metric": "false_safe",
+      "note": "Contract-level paired resampling; template dependence limits inference. Degenerate bootstrap intervals do not establish absence of an effect.",
+      "scheduled_difference_bounds": [
+        0.0,
+        0.0
+      ],
+      "scheduled_pairs": 40,
+      "sum_differences": 0
+    }
+  },
+  "selection": "Post-hoc clarity selection: the shortest combined rendered formulas in each of the planted and equivalent groups; B is shown. Not a frequency sample.",
+  "source_file_sha256": {
+    "budget.jsonl": "cc28bca8e7d62f7c4c4dd104f47d0606149e683ac537220a914b670d580b5b11",
+    "dataset.json": "7e6198820a093212aadc4220e3b26df1296b3cd597f38268fb1d4ff6426dc456",
+    "freeze.json": "2cf48bcca900c502136ef5816afaeea88b891b39634cd681b06eecbc74694242",
+    "main/analysis.json": "52f964273094f75d7ad230ad90643f96f45f304a823ca4eb8afcae9f8d647f9f",
+    "main/evidence.json": "ac30f912da33a1a140e019f366cf2a798ef5e0365c19951b14fb420fef7aeaf8",
+    "main/run.json": "290184eb23a45c6c13de8d9a82f26c6c7818c51eec1e5779fa8e104027271c56",
+    "manifest.json": "77b64a08eb18015c69406753b42a22c6f39cdc6af853def60239ce8da12f2de6",
+    "pilot-v1/analysis.json": "76c1c644e58baa90eca48944f50cdf35d8a6baefd7a755f0232da384251fe2b0",
+    "pilot-v1/evidence.json": "7813a84940a0f2fe66e73a079cd3a527e6857ed10d0976d87f033f60a35a9a5a",
+    "pilot-v1/run.json": "5182ddf2ba55cee7e1e81a38a7587d7b0f9349c966c65eaee614af59c1c5c871"
+  },
+  "stages": [
+    {
+      "blocked_roles": 1,
+      "equivalent": 4,
+      "invalid_roles": 1,
+      "known_cost_attempts": 51,
+      "natural": 8,
+      "originals": 20,
+      "physical_attempts": 51,
+      "planted": 8,
+      "scheduled_roles": 52,
+      "stage": "Pilot",
+      "unknown_cost_attempts": 0,
+      "valid_roles": 50
+    },
+    {
+      "blocked_roles": 3,
+      "equivalent": 20,
+      "invalid_roles": 4,
+      "known_cost_attempts": 257,
+      "natural": 40,
+      "originals": 100,
+      "physical_attempts": 259,
+      "planted": 40,
+      "scheduled_roles": 260,
+      "stage": "Held-out main",
+      "unknown_cost_attempts": 2,
+      "valid_roles": 253
+    }
+  ],
+  "unknown_holds_usd": "1.22683392",
+  "wallet_commitment_usd": "3.62324222"
+}

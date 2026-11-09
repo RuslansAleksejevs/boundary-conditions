@@ -1,0 +1,350 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,booktabs,xcolor,microtype}
+\definecolor{ink}{HTML}{183348}
+\definecolor{accent}{HTML}{176C70}
+\definecolor{quiet}{HTML}{546471}
+\definecolor{wash}{HTML}{F2F7F7}
+\usepackage[colorlinks=true,urlcolor=accent,linkcolor=accent,citecolor=accent]{hyperref}
+\hypersetup{pdftitle={Verified, but What?},pdfauthor={Ruslans Aleksejevs},
+  pdfsubject={Certificate scope in a finite agent pipeline; completed evaluation}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.18}
+\raggedbottom
+\makeatletter
+\let\tableinput\@@input
+\makeatother
+\newcommand{\tablecaption}[1]{\refstepcounter{table}\par{\small\textbf{Table \thetable.} #1}\par}
+\newcommand{\figurecaption}[1]{\refstepcounter{figure}\par{\small\textbf{Figure \thefigure.} #1}\par}
+\newcommand{\stagebox}[2]{\fcolorbox{accent}{wash}{\parbox[c][0.64in][c]{0.25\linewidth}{\centering\textbf{#1}\\[4pt]#2}}}
+
+\begin{document}
+{\color{ink}\fontsize{29}{34}\selectfont\textbf{Verified, but What?}\par}
+\vspace{3pt}
+{\large A correct certificate is not the same as a correct answer\par}
+\vspace{7pt}
+\url{https://github.com/RuslansAleksejevs/boundary-conditions}\par
+Ruslans Aleksejevs\hfill 9 November 2026\par
+{\small\color{quiet}Research report \textperiodcentered\ pending human review\par}
+
+\begin{abstract}
+A proof can be correct even when it proves the wrong statement. We test whether
+a model reviewer mistakes a valid certificate for an altered task as evidence
+about the original. Our small, fully checkable environment uses four Boolean
+inputs: every answer can be tested against all 16 possible states. We separate
+ordinary model translation from deliberately planted changes, then show the same
+candidate and certificate with a PASS heading, a neutral heading or an explicit
+candidate-only scope warning. The original task and an instruction to check the
+match remain visible in every condition. After a development pilot, the frozen
+Qwen3.5-122B-A10B evaluation covered 100 new original contracts. Each presentation
+correctly rejected all 40 planted substitutions and accepted all 20 equivalent
+rewrites. Both paired false-SAFE differences were zero; conservative intervals
+still span about minus to plus 43 percentage points. In the natural pipeline,
+37 valid translations preserved the contract, while three malformed translations
+and one malformed review reduced useful completion to 36/40. Two recorded
+examples make the distinction concrete: a reversed implication was rejected,
+and a redundant condition was accepted. The contribution is an auditable
+measurement setup and a bounded negative result, not a new theory of mathematical
+equivalence, a demonstrated benefit from scope labels or a general safety guarantee.
+\end{abstract}
+
+\section{Which question did the proof answer?}
+Imagine a team that turns a request into a formal statement, checks that statement,
+and reports back. Its checker may work perfectly while the statement quietly
+changes. A reviewer must therefore ask two questions: \emph{is this evidence valid?}
+and \emph{does it answer the original request?}
+
+We isolate that handoff. Our contribution is a finite testbed with checkable
+certificates, a paired comparison of three presentations of identical evidence,
+and a complete record of failures as well as useful answers. The tested model did
+\emph{not} make the proposed false-assurance error. That result matters as a clear
+boundary condition: the original was short, unambiguous and always available.
+
+\section{Closest related work}
+SemantEq~\cite{semanteq} shows why proving two statements true does not establish
+that one faithfully translates the other. Mei and Douglas~\cite{mechanical} add
+numerical and vacuity checks to semantic review of formalizations. The gap between
+a valid proof and a faithful statement is therefore established prior work.
+Our narrower question concerns a downstream reviewer's use of fixed local evidence.
+We do not reproduce those benchmarks or offer a general equivalence criterion.
+
+\clearpage
+\section{How the test works}
+Each task fixes four true/false inputs, $p,q,r,s$, and two rules. $C$ says which
+states are allowed; $Q$ says what must hold in those states. The question is
+\[
+  \text{Does every allowed state satisfy the requirement?}\qquad
+  \forall x:\ C(x)\Rightarrow Q(x).
+\]
+A \texttt{SAFE} answer means yes. A correct \texttt{UNSAFE} answer supplies an
+allowed state that violates $Q$. \texttt{UNRESOLVED} is permitted, but is not a
+completed task. These labels describe the finite claim, not real-world safety.
+We count a false assurance when the reviewer says SAFE and an exact counterexample
+refutes the original.
+
+\begin{center}
+\stagebox{Translate}{Model proposes\\candidate $C',Q'$}
+\quad$\longrightarrow$\quad
+\stagebox{Check}{Code verifies\\the candidate}
+\quad$\longrightarrow$\quad
+\stagebox{Review}{Model answers\\the original $C,Q$}
+\end{center}
+\figurecaption{The natural pipeline. Translation and review use separate model
+contexts. The reviewer also receives the original task directly. In the planted
+and equivalent tests, a fixed candidate replaces the translation step.}
+
+A strict Boolean syntax supports NOT, AND, OR, implication and constants. Local
+code checks all 16 states. A SAFE certificate lists each state once, its values
+of $C'$ and $Q'$, and a hash of the candidate. A second evaluator uses bit vectors
+to check the scalar solver's work; missing rows, duplicates, wrong hashes and
+false witnesses fail. No generated code is executed.
+
+\subsection*{Natural changes versus inserted changes}
+The main set contains 40 natural tasks, balanced 20 SAFE and 20 UNSAFE. The model
+is asked to translate faithfully; nothing is inserted. We compare $C$ with $C'$
+and $Q$ with $Q'$ on every state, separately from the truth of the final claim.
+Different wording can preserve both rules; a format error establishes neither
+preservation nor drift.
+
+The other 60 originals have fixed candidates. Forty UNSAFE originals receive
+planted changes with valid SAFE certificates: restrict the allowed states, drop
+a requirement, replace AND by OR, or reverse an implication (ten each). These are
+\emph{injected test faults}, not observed translator mistakes or successful attacks.
+Twenty SAFE originals receive equivalent rewrites. Every candidate's allowed
+domain is nonempty; empty-domain proofs are tested separately in software.
+
+Each fixed case is reviewed three times: \textbf{B}, a PASS heading; \textbf{N}, a
+neutral heading; \textbf{S}, explicit candidate-only scope. The evidence is identical.
+All three receive the original and the instruction to check correspondence. S has
+no hidden reference answer. Heading lengths are approximately character-matched,
+not token-matched; scope wording changes meaning as well as presentation.
+
+\begin{center}\small
+\begin{tabular}{lrrrr}\toprule
+Stage & Originals N/P/E & Valid roles & Invalid/blocked & Requests\\\midrule
+\tableinput{stage-rows.tex}
+\bottomrule\end{tabular}
+\end{center}
+\tablecaption{Development and held-out acquisition, kept separate. N/P/E means
+natural/planted/equivalent. A role is a planned translation or review; a request
+is one physical attempt. Invalid translations block dependent reviews.}
+
+\clearpage
+\section{What happened}
+The pilot passed the fixed interface and clean-task gates: 50/52 valid roles and
+11/12 clean originals correct, against thresholds of 47 and 10. Natural completion
+was 7/8; each presentation solved 8/8 planted and 4/4 equivalent cases. Its one
+malformed translation was preserved. No repeat pilot or outcome-driven prompt
+change was used. The main set was frozen before its first response.
+
+Both roles used Qwen3.5-122B-A10B through OpenRouter's fixed Alibaba route:
+temperature 0.6, top-p 0.95, reasoning enabled, requested output limit 8,192 tokens,
+and one sample per condition. This hosted alias does not pin immutable weights.
+Main originals and candidates were checked for development overlap in their
+Boolean functions and original formula structures; mutation families remain shared.
+
+\begin{center}
+\begin{tabular}{lrrrr}\toprule
+Main condition & Correct/scheduled & False SAFE/assessed & Invalid & Blocked\\\midrule
+\tableinput{outcome-rows.tex}
+\bottomrule\end{tabular}
+\end{center}
+\tablecaption{Held-out reviewer outcomes. Invalid and blocked columns count reviews,
+not translations. All three presentations use the same 40 planted and 20 equivalent
+originals: the repeated answers are not independent tasks.}
+
+All 120 planted reviews returned valid original counterexamples. All 60 equivalent
+reviews returned correct SAFE answers. Natural translation changed neither rule
+in 37/37 valid outputs; five changed syntax only. Three malformed translations
+blocked their reviews. One further review returned JSON inside Markdown fences,
+which the strict interface rejected. Nothing was repaired or retried for content.
+Thus natural completion was \textbf{36/40}, not 40/40. All 20 natural UNSAFE
+witnesses were valid. There were no abstentions or final transport-missing reviews.
+
+\begin{center}\small
+\begin{tabular}{lrrr}\toprule
+False-SAFE difference & Complete pairs & Estimate (pp) & Conservative 95\% interval (pp)\\\midrule
+\tableinput{contrast-rows.tex}
+\bottomrule\end{tabular}
+\end{center}
+\tablecaption{Primary and secondary paired comparisons on planted faults.
+Positive values mean more false assurances than PASS. Intervals assume independent
+originals; shared templates limit that assumption and transfer to other tasks.}
+
+Both 5,000-draw paired bootstrap intervals are $[0,0]$: every observed difference
+is zero. That collapse is \emph{not} equivalence evidence. The unchanged conservative
+intervals in Table 3 retain the considerable uncertainty. Each arm's marginal
+Wilson interval is $[0,8.76\%]$. Natural false SAFE is 0/36 assessed; the frozen
+generic missingness bound remains $[0,10\%]$, not a claim that missing answers were
+correct. All four unassessed originals were SAFE, but the saved bound was not
+tightened after seeing that fact.
+
+\clearpage
+\section{Two actual handoffs, read closely}
+These examples were selected \emph{after} the run for clarity: the shortest combined
+original/candidate formulas in each of the planted and equivalent groups. We show
+the ordinary PASS condition B, not a specially advantaged reviewer. The examples
+illustrate the records; their selection is not evidence about frequency.
+
+\subsection*{1. Reversing an arrow changes the task}
+\texttt{holdout-fault-019}, condition B. Here $\neg$ means NOT, $\lor$ means OR,
+and $\Rightarrow$ means ``if \ldots\ then.'' The formulas below preserve the saved
+structure, with mathematical symbols replacing the JSON operators.
+\begin{center}
+\begin{tabular}{lll}\toprule
+ & Allowed states & Required property\\\midrule
+Original & $C=\neg r$ & $Q=(\neg r)\Rightarrow(s\lor p)$\\
+Candidate & $C'=\neg r$ & $Q'=(s\lor p)\Rightarrow(\neg r)$\\\bottomrule
+\end{tabular}
+\end{center}
+\tablecaption{The planted change reverses the implication in $Q$; it does not
+change the allowed-state rule $C$. Both displayed formulas are checked against
+the exact saved structures.}
+When $r$ is false, the original still requires $p$ or $s$. The reversed implication
+no longer requires either: its conclusion, $\neg r$, already holds in every allowed
+state. The candidate's certificate really is valid. It covers all 16 states;
+eight are allowed and none violates $Q'$. The original has two violating states.
+
+The model's actual answer, quoted exactly, is:
+{\small
+\begin{verbatim}
+{"verdict":"UNSAFE","witness":{"p":false,"q":false,"r":false,"s":false}}
+\end{verbatim}
+}
+At this state, $C=1$ and $Q=0$, while $C'=1$ and $Q'=1$. A valid candidate proof
+and a valid original counterexample coexist. The reviewer answered the original
+correctly despite the PASS heading. N and S returned the same witness. This is
+\emph{not} an example of deceiving Qwen.
+
+\subsection*{2. Saying the same thing twice is harmless}
+\texttt{holdout-equivalent-019}, condition B. The allowed-state rule changes from
+$C=q$ to $C'=q\land q$. The requirement is unchanged:
+\[
+                       Q=Q'=q\lor\bigl((p\land r)\lor(s\lor q)\bigr).
+\]
+Repeating the same allowed-state condition changes no allowed states. Both contracts allow
+eight states and have no counterexample. The candidate again has a valid 16-row
+certificate. Its syntax and hash differ from the original, but $C=C'$ and $Q=Q'$
+on all 16 states. The actual B answer is:
+{\small
+\begin{verbatim}
+{"verdict":"SAFE","witness":null}
+\end{verbatim}
+}
+N and S also answered SAFE. Rejecting every changed formula would lose this useful
+answer; a literal syntax match would reject all 20 equivalent controls.
+
+{\small\color{quiet}\textbf{Check the examples.} The reader-report folder contains
+\texttt{report-data.json}: exact source-file hashes, JSON pointers, responses and
+all 16 states per example. Its offline checker compares the displayed formulas
+with both frozen evaluators and rechecks the actual witnesses and certificates.}
+
+\clearpage
+\section{What the null does---and does not---tell us}
+Under these explicit conditions, the reviewer distinguished a checked candidate
+from a correct answer to the original. Scope wording showed no observed advantage.
+The evidence does not show that wording never matters. Forty shared-template
+faults, one model route and one sample per condition leave wide uncertainty.
+
+The baseline was not blind. It saw the original task and was told that a proof
+of a different contract does not establish that task. A harder, less explicit
+interface might behave differently, but hiding the original after seeing this
+null would answer a different question. There is also no no-certificate arm or
+budget-matched single-agent comparison: we cannot estimate the effect of having
+a certificate at all, or whether a team is better than a single agent.
+
+Two distinctions matter for future evaluations. First, preserving $C$ and $Q$ is
+different from merely preserving the truth of their final claim. Two unrelated
+claims can both be true. Our fixed-variable comparison is a convention for these
+finite contracts, not a definition of faithful mathematics. Second, an invalid
+format is different from a false assurance. The four natural failures lowered
+utility, but supplied no validly assessed evidence of semantic drift or a wrong
+original-task verdict.
+
+The exact oracle accepted all 20 equivalent controls and refused to bind the
+40 altered certificates to their originals. It has direct access to trusted
+structured formulas and exhaustive computation. That is an engineering ceiling,
+not a new defense discovery or a resource-matched model comparison. The original
+task's meaning was not hidden from the model.
+
+\section{Conclusion}
+This study produced a checkable negative result. Every planted fault was handled
+correctly under every presentation, and every equivalent control remained useful.
+The natural pipeline completed 36/40 tasks, with no drift among 37 valid
+translations. A future study could vary complexity, guidance, models or chain
+length under a new prospective protocol. No extra experiment was added here to
+turn the null into a positive result.
+
+\section*{Code and data: start here}
+The repository link on page 1 leads to the complete synthetic dataset, visible
+answers, certificates, frozen analysis and historical reports. This new report
+does not replace the earlier pilot or main snapshots. The acquisition source is
+pinned at \texttt{83aa8ee}; prompts, cases and outcome definitions are unchanged.
+
+From the repository root, without credentials or network:
+{\small
+\begin{verbatim}
+python3 studies/wrong-goal-proof/reports/reader/check_report.py
+\end{verbatim}
+}
+This replays the public campaign and checks the examples, generated tables and
+preserved files. The report guide supplies the full audit and test commands.
+Local hashes establish consistency, not signed provider provenance or independent
+empirical replication. This remains a draft pending human review; no competition
+submission or institutional affiliation is claimed.
+
+\clearpage
+\begin{thebibliography}{9}
+\small
+\bibitem{semanteq} Xinrui Li, Pawan Sasanka Ammanamanchi, Siddharth Bhat,
+Rianna Jamdar, Yongxi Lin and Stella Biderman (2026).
+\emph{SemantEq: Faithful Bidirectional Equivalence of Formal Statements}.
+arXiv:2610.32919v1. \url{https://arxiv.org/abs/2610.32919v1}.
+\bibitem{mechanical} Anna Mei and Michael R. Douglas (2026).
+\emph{Beyond LLM Judge: Mechanical Verification for Agentic Autoformalization}.
+arXiv:2610.20573v2. \url{https://arxiv.org/abs/2610.20573v2}.
+\end{thebibliography}
+
+\appendix
+\section{Limitations and Dual-Use / Ethical Considerations}
+\textbf{Scope.} Four Boolean inputs, fixed meanings, shared generation templates
+and single samples are deliberately narrow. Seeds reproduce tasks and order,
+not stochastic model outputs or undisclosed weight revisions. The two evaluators
+share syntax validation and hashing, so a bug could still affect both.
+The five thousand paired resamples use seed 606; independent-case assumptions
+are not established by a synthetic generator. No presentation equivalence,
+general safety, hidden reasoning mechanism or benefit from labels is demonstrated.
+
+\textbf{Resources and preserved failures.} Development used 51 requests and
+USD0.39923650 in known reported cost. Main used 259 attempts: 257 HTTP200 and
+two HTTP429, with known cost USD1.99717180 for 257 attempts. Both permitted,
+identical technical retries succeeded; format failures were not repaired.
+The study's known total is USD2.39640830 across 308/310 attempts. Two unknown
+charges retain full holds of USD1.22683392. The resulting USD3.62324222 wallet
+commitment is below the USD20 allocation, but is not a final bill. Unknown is
+not zero. Two main responses reported output beyond the requested 8,192-token
+limit; both ended normally and fit the prospectively reserved context bound.
+Detailed timing and accounting remain in the historical main report.
+
+\textbf{Data and dual use.} All tasks are synthetic. No real service is attacked
+and no external tool action is taken. Statement substitutions could inform
+misleading proof workflows; publishing exact checks and useful-equivalence
+controls supports auditing without claiming production protection. Only synthetic
+prompts were sent. The selected provider's terms, checked 8 November 2026,
+permit logging for 30 days and report no training use, not zero retention.
+Hidden reasoning text, credentials and private coordination records are excluded.
+The USD20 study ceiling was contributor-funded; no sponsor, grant or automatic
+top-up is implied. Research-assistant session costs are separate and unmeasured.
+
+\subsection*{LLM Usage Statement}
+GPT-6 Astra assisted with design critique, implementation, checks, orchestration,
+analysis and drafting. Qwen was the experimental subject. Mathematical claims
+are checked by code; AI-assisted source review is not external scientific peer
+review. Human author review remains pending. No affiliation or final author
+approval is invented. Python, Git, TeX and the cited research are preexisting
+resources. The current official report template informed this adapted structure.
+\end{document}

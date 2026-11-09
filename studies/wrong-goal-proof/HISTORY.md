@@ -633,3 +633,72 @@ Frozen acquisition inventory remains87e58d63f04fad074d3793527964d6431521067d399f
 The shared project check passed11 contests/16 TickTick links; shared tracking
 and merge remain the coordinator's responsibility. No additional API request
 was made during publication.
+
+## 2026-11-09 — New standalone reader edition; unchanged scientific evidence
+
+After the completed empirical PR #4 was merged as
+`755e51475e343825c67e142cbbe34aff2f22f9b3`, a separately authorized editorial phase
+started from clean main `7e2780c1357dcb0ce14b749caf222fd1080bad06` on
+`study/wrong-goal-proof-reader-report`. No prior commit was rewritten and no
+new model request, secret access, purchase or competition submission occurred.
+
+Wrote a fresh standalone English report in `reports/reader/`, rather than
+overwriting the historical pilot or main manuscripts. The six-page PDF includes
+references and the mandatory ethics/limitations appendix, a 209-word abstract,
+clickable repository URL before the abstract, separate pilot/main accounting,
+all seven main condition rows and both paired contrasts with wide intervals.
+The visible-original baseline, null findings, four natural format-related
+failures, two unknown-cost attempts and study-only budget remain explicit.
+It claims neither general safety, presentation equivalence, label benefit nor
+a new mathematical equivalence criterion. Human author review is still pending.
+
+Two actual records were selected after the run for clarity: the unique shortest
+combined rendered formulas among planted and equivalent cases. The report shows
+ordinary PASS condition B for `holdout-fault-019` and `holdout-equivalent-019`.
+The reversed-implication example has a valid candidate SAFE certificate but an
+original counterexample at all-false inputs; the model correctly returned UNSAFE.
+The redundant-condition example preserves both open functions and was correctly
+answered SAFE. Exact JSON pointers, source-file hashes, quotes and all 16 states
+are in `report-data.json`. A separate literal interpretation and both frozen
+evaluators agree on every state; all six recorded example conditions are bound
+to their actual original task, candidate, certificate and visible answer.
+
+Actual Python 3.14.6 checks: 171 frozen scientific/acquisition tests PASS in
+21.510 s, 28 existing reporting/accounting tests PASS in 0.300 s, and 12 new
+reader-binding tests PASS in 0.062 s. The full public campaign audit and both
+empty false-guarantee evidence checks passed. The reader checker repeated both
+saved analyses and protected 91 old files byte for byte, including all old
+PDFs/TeX, data and scientific source. These checks sent zero new model requests;
+310 requests in audit output refer only to historical acquisition.
+
+Cached Tectonic 0.16.9 produced a warning-free 60,988-byte PDF, SHA256
+`44c513f94263a077c1a2865ab82bd1ad2d52c395d3cd52cde42a40ac532108c9`.
+All six pages were rendered and visually inspected; updated pages were checked
+again. Repository annotations, abstract length, standalone scope and extracted
+text privacy checks passed. The current official template was read fully and
+both cited papers' exact version, author metadata and abstracts were rechecked.
+
+Reorganized only owned study navigation. Earlier detailed guide text is retained
+in `ENGINEERING_GUIDE.md` and `reports/TOOLS.md`; historical plan prose is labeled
+as historical, not rewritten, and this history remains append-only. Read-only
+integration review independently confirmed examples, PDF, checker and 12 tests
+without a blocker. Peer source review and a separate editorial PR remain pending
+at this checkpoint; no self-merge or direct main push occurred.
+
+## 2026-11-09 — Reader peer review closed; terminology clarified
+
+Read-only peer review independently reran the source-bound checker, inspected the
+full manuscript/helper and exact saved examples, and found no blocking issue.
+Its small terminology suggestion was accepted: the equivalent example repeats
+an allowed-state condition C, rather than changing the required property Q.
+The abstract now says "redundant condition"; formulas, data, numerical results,
+selection rule and generated tables are unchanged.
+
+The rebuilt final reader PDF remains six pages with a 209-word abstract and
+zero TeX warnings. It is 60,961 bytes, SHA256
+`c8bf9d451609a49e2f1a159a24a9d4a9adf58d57b4eeb6f616c259932c7e9d78`.
+The earlier draft hash above remains a dated checkpoint, not the current PDF.
+All eight edited/new navigation documents have resolving relative file links;
+the relocated guides preserve their original bodies exactly. Historical plan
+scientific text and the full earlier history prefix remain unchanged. Publication
+will use a separate editorial PR; no self-merge or competition submission is made.
