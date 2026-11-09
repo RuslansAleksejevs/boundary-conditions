@@ -36,6 +36,7 @@ for example, 7 November at 23:26 PST is 8 November at 07:26 UTC.
 | **9 Nov, after 08:08** | Finalized both PDFs after author review, removed draft labels and checked the compiled pages. | Local final files were ready for the author's own submission; no receipt was claimed. Earlier PDFs were preserved. |
 | **9 Nov, before 09:15** | Audited GitHub against the local final files and reassessed track fit. | Code and experimental results were public, but final PDFs and shared navigation were not. Recommended primary Track 3 (also 2) for handoffs, Track 4 for certificate oversight. |
 | **9 Nov, from 09:15** | Author approved the track correction and a coherent public final release. | Corrected the certificate PDF to Track 4; assembled final PDFs/LaTeX, simplified navigation, the full timeline and an explicit archive. Validation and integration are recorded in the [release checks](reports/CHECKS.md). No new model experiment. |
+| **9 Nov, 09:32** | Integrated the final report and documentation release. | [PR #6](https://github.com/RuslansAleksejevs/boundary-conditions/pull/6) merged without conflicts. Both final PDFs, LaTeX sources, checks, timeline and archive are public on `main`; 394 local tests passed. |
 
 The main runs were sequential. Writing and review overlapped with acquisition,
 but neither completed answer nor held-out case was replaced to obtain a preferred

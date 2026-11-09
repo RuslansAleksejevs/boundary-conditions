@@ -380,3 +380,10 @@ distinguish these offline checks from new empirical observations.
 No experimental code, prompt, scorer, dataset, saved answer, old PDF or scientific
 conclusion changed. No new model calls, purchase or competition submission was
 made. Actual API spend remains $3.75323494 at the last reconciled snapshot.
+
+Integration completed at **09:32:11 UTC** through
+[PR #6](https://github.com/RuslansAleksejevs/boundary-conditions/pull/6): reviewed
+head `6069c92`, merge `9d2b971`. The previously blocked archival branch received
+fresh publication approval and was pushed successfully before this release.
+No conflict, force-push or branch deletion occurred. Both final PDFs and their
+sources are now public on `main`; the documentation update records this outcome.

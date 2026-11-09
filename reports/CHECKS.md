@@ -70,3 +70,12 @@ The original reader branch is preserved in the release ancestry, not presented
 as the latest paper. No branch history was rewritten. Public integration is a
 separate step recorded in the repository's PR history. **New model calls: 0.**
 The last verified API spend remains $3.75323494, not the $50 authorized ceiling.
+
+## Public integration
+
+[PR #6](https://github.com/RuslansAleksejevs/boundary-conditions/pull/6) merged
+at **2026-11-09 09:32:11 UTC**, from reviewed head
+`6069c925ab28241fcc62a44f15940dd1eaf70908` into merge commit
+`9d2b97127b19259cd414688794946513cb35e8f9`. GitHub reported no conflicts.
+No branch was deleted, force-pushed or rebased. The remaining study branches are
+historical snapshots; `main` contains the final edition.
