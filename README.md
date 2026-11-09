@@ -5,16 +5,16 @@
 Two small, controlled studies of trust and meaning at agent boundaries.
 Built for the [Swarm Alignment Hackathon 2026](https://apartresearch.com/sprints/swarm-alignment-2026).
 
-> **Research status — 8 November 2026, 23:54 UTC:** Both offline harnesses are implemented,
+> **Research status — 9 November 2026, 00:13 UTC:** Both offline harnesses are implemented,
 > independently tested, and integrated through separate reviewed pull requests.
 > Both real-model pilots have passed their fixed quality gates under a **$50
 > total API cap** on Qwen/Alibaba, and both evaluation sets are frozen.
-> **Study B's held-out acquisition is complete and its data audit passes**;
-> no false assurance was observed in this bounded test. Its full report is under review.
+> **Study B is complete and integrated**, with its audited data and English report;
+> no false assurance was observed in this bounded test.
 > **Study A's held-out evaluation is now running**, with no concurrent Study B requests.
 > Account-confirmed spend immediately before Study A's main run was **$2.63**.
-> The live-study pull requests are not yet integrated; null observations do not
-> establish general safety or equivalence.
+> Study A's live-study pull request remains separate until its evaluation finishes.
+> Null observations do not establish general safety or equivalence.
 
 ## Two boundaries
 
@@ -51,6 +51,13 @@ then compare different presentations of the same valid certificate.
 Primary track: **The Science of Agent Networks**. Also relevant to
 **Multi-Agent Oversight and Control**.
 
+**Completed result:** all three certificate presentations correctly handled all
+40 planted substitutions and 20 equivalent controls. Natural-task completion
+was 36/40; four malformed responses remain unassessed. Read the
+[full report](studies/wrong-goal-proof/reports/main/README.md),
+[seven-page PDF](studies/wrong-goal-proof/reports/main/main-report.pdf), and
+[replayable campaign](studies/wrong-goal-proof/results/live-main-2026-11-08/README.md).
+
 ## Research discipline
 
 - Measure effects with code: state transitions and exhaustive finite checks.
@@ -78,8 +85,9 @@ RESEARCH_LOG.md        Dated milestones, including negative results
 
 Runnable harnesses and engineering records are available for
 [Study A](studies/summary-laundering/README.md) and
-[Study B](studies/wrong-goal-proof/README.md). Their **90 + 105 tests** and
-deterministic CLI rehearsals validate software, not model behavior.
+[Study B](studies/wrong-goal-proof/README.md). Each records its actual tests and
+reproduction commands. Software tests and deterministic CLI rehearsals do not
+constitute observations of model behavior.
 The [next experiment plan](docs/NEXT_EXPERIMENTS.md) starts with bounded live
 pilots, then a frozen evaluation. The [operational amendment](docs/OPERATIONAL_AMENDMENTS.md)
 preserves the interrupted pilot, its missing cases and original spending limits,

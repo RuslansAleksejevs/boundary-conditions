@@ -235,3 +235,34 @@ spacing, 27 remaining technical retries, $30 Study A allocation and $50 shared
 ceiling still apply. Study B makes no further model requests and prepares its
 report in parallel. Neither live-study pull request is merged at this checkpoint,
 and no competition submission has occurred.
+
+## 2026-11-09 — Study B report and complete campaign integrated
+
+[PR #4](https://github.com/RuslansAleksejevs/boundary-conditions/pull/4) was merged
+at **00:11:27 UTC**, from reviewed head `732cc7f204b688ee97b3427d43d635146f5a9317`
+into merge commit `755e51475e343825c67e142cbbe34aff2f22f9b3`. The change is confined
+to Study B. Its source-bound acquisition, preserved pilot, complete main data,
+reproduction commands and [standalone report](studies/wrong-goal-proof/reports/main/README.md)
+are now in `main`. The historical pilot PDF remains byte-identical to its earlier
+published snapshot; its README identifies the exact historical source revision.
+
+Independent coordinator and peer reviews found no blocking claim, denominator,
+provenance or publication-boundary issue. The coordinator rechecked all 14 public
+data-file hashes, source bindings, exact public/private core records and reviewed
+scientific approval objects, and read the full manuscript and rendered results.
+No private execution-permission records, account payloads or raw event journals
+are included. The seven-page PDF has a 211-word abstract, the required ethics and
+limitations appendix, and an AI-assistance statement; human author review remains
+pending. No competition submission has occurred.
+
+After the merge, the complete campaign audit passed again. Study A's existing
+integrated engineering suite passed **90 tests in 2.169 s**; Study B passed
+**171 acquisition/engineering tests in 45.051 s** and **28 reporting tests in
+0.668 s**. These are locally executed checks, not GitHub CI: the pull request had
+no reported remote checks. They validate software and saved observations, not
+additional model experiments.
+
+Study A's fixed main acquisition continues independently in its unchanged
+checkout. Its live-study PR remains unmerged until actual completion, auditing,
+reporting and independent review. The shared API ceiling remains $50 including
+the pilots, with no additional Study B acquisition.
