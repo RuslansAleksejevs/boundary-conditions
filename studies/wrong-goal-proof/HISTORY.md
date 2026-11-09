@@ -613,3 +613,23 @@ acquisition inventory87e58d63f04fad074d3793527964d6431521067d399f205616307f55825
 Existing draft PR#4 remains the publication route; no self-merge or competition
 submission was performed. Complete no-network reproduction commands are in
 `reports/main/README.md` and `results/live-main-2026-11-08/README.md`.
+
+## 2026-11-09 — Completed-main release published in the existing PR
+
+Fetched origin, reviewed the staged scope/content and privacy markers, verified
+append-only history and the unchanged historical pilot PDF, and committed only
+31 owned study files as `7c7c7ecdc422bb384cf588adc587971e1af46f6c`
+(Report the frozen held-out evaluation and complete audited campaign). The
+normal fast-forward push to `study/wrong-goal-proof-live-v1` succeeded; live
+PR#4 reports that exact release commit and remains open. No force-push, direct
+main update, self-merge or competition submission occurred.
+
+The final seven-page main PDF has89617 bytes and SHA256
+`6138a80c1aad371d8e7669a0202757e98b9084c344cfca8af1640e82578b0b8d`.
+PDF text privacy, required appendices, all14 exported-file hashes and exact
+approved GO equality passed. All29 staged text files passed the private-marker
+scan; the two additional staged files are the reviewed PDF report and figure.
+Frozen acquisition inventory remains87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e.
+The shared project check passed11 contests/16 TickTick links; shared tracking
+and merge remain the coordinator's responsibility. No additional API request
+was made during publication.

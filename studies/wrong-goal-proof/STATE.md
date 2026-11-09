@@ -51,8 +51,9 @@ observations are explicitly separated below.
   https://github.com/RuslansAleksejevs/boundary-conditions/pull/4, not yet integrated.
   Frozen acquisition commit: `83aa8ee313d4f054ac47af038a8b5c33a6a1e859`.
 
-Next: finish reviewed publication through existing draft PR #4, then await
-coordinator integration and human author review. No more model acquisition or
+Main release commit `7c7c7ecdc422bb384cf588adc587971e1af46f6c` was pushed to
+existing draft PR #4 on 9 November 2026 UTC. It is not yet integrated.
+Next: coordinator integration and human author review. No more model acquisition or
 competition submission is authorized. The full private and exported native
 campaign audits, empty false-guarantee evidence check, journal bindings and exact
 approved scientific GO comparison all passed. The public complete campaign is
