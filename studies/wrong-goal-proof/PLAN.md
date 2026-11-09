@@ -2,7 +2,12 @@
 
 ## Certificate scope in agent teams
 
-**Status:** design drafted 7 November 2026; implementation added 8 November UTC.
+This is the **historical prospective plan**, preserved after the completed
+evaluation. For current results, read the [reader report](reports/reader/README.md)
+or [study overview](README.md). Future-tense statements below describe the plan
+at drafting, not work still awaiting execution.
+
+**Historical status at drafting:** design drafted 7 November 2026; implementation added 8 November UTC.
 No experimental LLM calls or model findings. See [README](README.md),
 [implementation decisions](DESIGN.md), and [STATE](STATE.md). Engineering
 holdout/test-double rehearsals are not the confirmatory model evaluation.
