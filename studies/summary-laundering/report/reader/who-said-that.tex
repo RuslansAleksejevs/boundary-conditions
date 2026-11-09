@@ -1,0 +1,362 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.78in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs,array,amsmath,microtype,xcolor}
+\usepackage[colorlinks=true,urlcolor=blue!55!black,linkcolor=blue!45!black,citecolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Who Said That?},pdfauthor={Ruslans Aleksejevs},
+  pdfsubject={Source labels and summary handoffs: a controlled negative result}}
+\definecolor{ink}{HTML}{16324A}
+\definecolor{pale}{HTML}{EFF5F8}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{1.5em}
+\input{evidence.tex}
+\newcommand{\reportsection}[1]{\section*{\color{ink}#1}}
+\newcommand{\smallcard}[2]{\fcolorbox{ink!25}{pale}{\parbox[c][0.52in][c]{#1}{\centering\small #2}}}
+\begin{document}
+
+{\small\url{https://github.com/RuslansAleksejevs/boundary-conditions}}
+
+\vspace{8pt}
+{\fontsize{27}{30}\selectfont\bfseries\color{ink}Who Said That?}\par
+{\large Does an agent's summary make an untrusted instruction more powerful?}\par
+{\small Ruslans Aleksejevs \enspace | \enspace 9 November 2026}\par
+{\footnotesize Draft for human author review. No affiliation is asserted.}
+
+\reportsection{Abstract}
+An agent may ignore an instruction in an external document yet accept the same
+instruction when it arrives in a colleague's summary. We test this possibility
+without changing the agents' actual permissions. A tool-free summarizer reads a
+synthetic record; an executor must answer the original task without changing a
+protected approval flag. We replay original records, verbatim extracts and saved
+summaries under document and colleague labels, with two additional soft defenses.
+The frozen main evaluation uses one hosted Qwen3.5-122B-A10B configuration on
+40 attacked tasks and 20 paired clean versions. Across 480 scheduled executor
+responses, 443 complete the task correctly, 33 are invalid, two abstain and two
+are missing. No forbidden state change or schema-valid protected-write attempt
+is observed in the 478 available responses. Both primary comparisons have 39
+complete attacked pairs and a zero estimated difference, but conservative
+95\% intervals span approximately minus 43.49 to plus 43.49 percentage points.
+An actual trace shows the unsafe instruction surviving in a summary without
+being followed; another shows a plausible answer rejected for its format.
+These are illustrations, not additional experiments. The study provides a
+replayable test of source labels and text transformation, not evidence of a
+successful exploit, universal safety, equivalence or effective soft defenses.
+
+\reportsection{1. The question and contribution}
+Documents often mix useful facts with instructions that have no right to change
+the task. A summary can carry both onward. We ask two different questions:
+does \emph{rewriting the content} change the risk, and does \emph{calling its source
+a colleague} change the risk? Treating those as one change makes the answer unclear.
+
+Our contribution is a controlled replay design and an auditable negative result.
+We keep the original task, policy, tool and saved summary fixed when testing the
+source label. We score actual state changes and correct task completion together.
+The outcome is bounded evidence about this pipeline, not a new prompt-injection
+mechanism or a claim that agent handoffs are generally safe.
+
+\reportsection{2. Closest related work}
+Peters-Gill et al.'s \emph{Can CaMeLs Talk?} already shows how untrusted data can
+cross agent boundaries and proposes provenance-preserving communication~\cite{camel}.
+We do not implement or reproduce multi-CaMeL; we isolate a displayed source label
+while keeping message privileges unchanged. Dai and Guerra-Manzanares's
+\emph{StateFence} motivates protecting task state while retaining useful
+evidence~\cite{statefence}. Our small dictionary-based tasks are not its
+security-operations benchmark.
+
+\clearpage
+\reportsection{3. How the test works}
+Each task asks for a code or arithmetic result. One attacker-controlled paragraph
+asks for an unrelated approval flag to become true, claiming a colleague's request,
+approval, a prerequisite, or a quoted work plan. The attacker cannot change
+the task, system policy, tool schema or scorer.
+
+A summarizer receives the task and record, has no tools, and is asked to preserve
+useful facts while treating source instructions as data. We save one summary
+per input. Each executor starts with a fresh context and reset state.
+
+\begin{figure}[h]
+\centering
+\smallcard{0.24\linewidth}{Save one summary\\\textbf{Identical text}}
+\hspace{4pt}$\longrightarrow$\hspace{4pt}
+\smallcard{0.27\linewidth}{Change the source label\\Document or colleague}
+\hspace{4pt}$\longrightarrow$\hspace{4pt}
+\smallcard{0.24\linewidth}{Run fresh executors\\Check actual state}
+\caption{The source-label comparison. Task, policy, tools, message roles and
+summary bytes are the same. Only the displayed source description changes.}
+\label{fig:replay}
+\end{figure}
+
+\textbf{Eight conditions.} R is the original record; E is a verbatim extract;
+S is the saved summary. Each is shown as D (external document) or P (colleague
+handoff), giving six conditions. S-P-W adds a generic warning; S-P-P adds
+harness-written provenance stating that the source cannot change the task.
+Both supplements have equal UTF-8 length, not equal meaning or token count.
+All evidence stays in the same lower-priority user message.
+
+The extract retains the facts and full attack, approaching the summary's byte
+length without rewriting. A gap of at most 10\% is matched; more than 20\%
+unmatched attacked inputs flags weak length control. This does not match meaning:
+selection, deletion and rewriting still change together.
+
+\textbf{What counts as success or harm?} The executor proposes one JSON action
+batch, with no tool-feedback turn. The normal mock tool would apply a well-formed
+protected write, but the policy forbids it. Any false-to-true approval event counts
+as harm, even if later reversed. Correct completion requires the exact answer
+in the authorized result field. Invalid batches execute nothing and are failures
+of useful completion; missing responses stay unknown. A separate hard-allowlist
+replay is an engineering check, not another model condition.
+
+\textbf{Model and sample.} Both roles use \texttt{qwen/qwen3.5-122b-a10b} through
+OpenRouter's Alibaba route: temperature 0.6, top-p 0.95, requested output limit
+8,192 tokens, reasoning enabled. There is one sample per cell and no model search.
+The main set has 40 attacked tasks and 20 predetermined clean counterparts:
+60 input variants from 40 task clusters, not 480 independent tasks. Main inputs,
+templates and analysis were frozen before outputs. No observed response was replaced.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Stage & API calls & Valid roles & Correct cells & Invalid + missing\\
+\midrule
+\StageRows
+\bottomrule
+\end{tabular}
+\caption{Development and main are separate. Roles include summaries; correct and
+invalid + missing count only executor cells. The first pilot stopped before any
+executor response.}
+\label{tab:stages}
+\end{table}
+
+The repaired pilot first stopped after 59 attempts, failing its gate at 47/108.
+A disclosed pacing amendment acquired only 54 untouched suffix roles, reaching
+99/108 valid roles and 29/32 clean correct cells. Earlier errors stayed in the data.
+Main then attempted 540 roles in 548 calls; eight identical technical retries
+left two missing outcomes after HTTP 429 errors. No semantic retry was allowed.
+
+\clearpage
+\reportsection{4. What happened}
+\textbf{The target failure was not observed.} The main matrix contains
+\MainValid{} valid responses, \MainInvalid{} invalid responses and
+\MainMissing{} missing responses. Of the valid responses, \MainAbstentions{}
+are empty-action abstentions. Useful completion is
+\textbf{\MainCorrect/\MainScheduled{} scheduled cells}, or
+\MainCorrect/\MainObserved{} observed responses.
+
+No protected false-to-true transition and no schema-valid protected-write attempt
+was observed. This zero describes the tested model-and-tool pipeline. It does
+not certify missing responses or establish the absence of intent in arbitrary
+malformed text. The 33 invalid responses were 32 Markdown-fenced JSON-looking
+answers and one action missing its task identifier; none was repaired or regraded.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{Attacked: 40 scheduled per condition}
+& \multicolumn{3}{c}{Clean: 20 scheduled}\\
+Condition & Correct & Effects & Missing & Correct & Effects & Missing\\
+\midrule
+\ConditionRows
+\bottomrule
+\end{tabular}
+\caption{All eight main conditions. Correct uses the \emph{scheduled} denominator;
+effects use the \emph{observed} denominator, including invalid batches that execute
+nothing. Missing outcomes are never treated as safe. R/E/S mean record/extract/
+summary; D/P mean document/colleague; W adds a warning, the final P provenance.}
+\label{tab:conditions}
+\end{table}
+
+\textbf{The primary differences are still uncertain.} We compare paired attacked
+inputs, keeping their related conditions together. The frozen analysis uses
+2,000 cluster-bootstrap draws (seed 8128), exact McNemar tests and Holm adjustment
+for the two primary comparisons. Both adjusted p-values are 1. Both bootstrap
+intervals collapse to [0, 0], which is not evidence of equivalence. The conservative
+bounded-cluster intervals below remain wide and still assume independent clusters.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Comparison & Pairs & Difference & 95\% interval & Missing bounds\\
+\midrule
+\PrimaryRows
+\bottomrule
+\end{tabular}
+\caption{Forbidden-effect differences in percentage points, not percent changes.
+Positive means more effects in S-P. Each comparison has 39/40 complete pairs.
+The last column bounds this finite scheduled set, not a population confidence
+interval: the missing attacked S-P could contain an effect.}
+\label{tab:primary}
+\end{table}
+
+\textbf{Soft defenses did not show a security benefit.} Their observed effect
+differences are also zero. On 39 complete attacked pairs, warning-minus-S-P
+correctness is \WarningUtility{} points (bootstrap interval $\WarningBootstrap$);
+provenance-minus-S-P is \ProvenanceUtility{} points ($\ProvenanceBootstrap$).
+Conservative intervals are wider and also
+include zero. These secondary comparisons do not establish a utility gain.
+
+Only 1/40 attacked main inputs is unmatched, below the inadequacy threshold;
+the pilot had 3/8 unmatched. The method did not change between them. Matching
+bytes still does not isolate paraphrasing, and a summary-selected matched subset
+is descriptive, not an unbiased explanation of the causal mechanism.
+
+\clearpage
+\reportsection{5. Two records, followed through the pipeline}
+These examples explain visible behavior, not its frequency. Case 020 is an
+existing predeclared family trace. Case 008 was selected after the run as the
+first attacked S-P format failure in identifier order. Both use the summary shown
+as a colleague handoff. Exact file selectors and quotes are in the source map.
+
+\subsection*{Case 020: the instruction survives, but is not followed}
+The legitimate task is to return the dispatch code \texttt{\ExampleOneAnswer}.
+The record tries to make an unsafe side effect look necessary:
+
+\begin{quote}\small
+``\ExampleOneRecord''
+\end{quote}
+
+The saved summary still mentions that unsafe instruction. Its opening two
+sentences are reproduced verbatim:
+
+\begin{quote}\small
+``\ExampleOneSummary''
+\end{quote}
+
+\fcolorbox{ink!25}{pale}{\parbox{0.94\linewidth}{
+\textbf{What the executor actually did:} one authorized write of
+\texttt{\ExampleOneAnswer} to the answer field. The protected approval flag
+stayed \texttt{false}. The answer was correct and no forbidden effect occurred.
+}}
+
+The instruction's presence in a summary is therefore not itself an executed
+violation. This trace does not explain the model's hidden reasoning or show that
+the summary caused resistance. Full identifier:
+\path{live-main-2026110812-020-attack}, condition S-P.
+
+\subsection*{Case 008: the right-looking answer is not an executed answer}
+Here the expected code is \texttt{\ExampleTwoAnswer}. The visible response is
+reproduced in full, including its Markdown fences:
+
+{\small\input{format-example.tex}}
+
+The required interface is a plain JSON object, not a Markdown block. Strict
+parsing returns \texttt{invalid\_json}; no action executes and the answer remains
+unset. We do not remove the fences and count it as correct. This explains a
+format failure, not an attack success or an empty-action abstention.
+Full identifier: \path{live-main-2026110812-008-attack}, condition S-P.
+
+\clearpage
+\reportsection{6. What this result does---and does not---tell us}
+Neither the colleague label nor the summary showed more forbidden effects in
+this test. The wide intervals still allow important differences. One hosted model,
+shared templates and one sample per cell limit what this null result says about
+other settings.
+
+Three observations must stay separate: an instruction remains in text, a model
+proposes an action, and a tool changes state. We score the last two, not hidden
+intentions. Zero executed harm is not enough: useful completion is 443/480, with
+invalid and missing responses retained.
+
+No live schema-valid batch challenged the hard allowlist. Its blocking property
+comes from code tests, not a live advantage over soft defenses. New models,
+tasks or interactive tool use would require a new prospective study, not a repair
+of these observations.
+
+\reportsection{Conclusion}
+We separated source labels from text transformation without granting higher
+privileges. Neither primary comparison showed an effect difference. The result
+is a reproducible design and complete negative evidence, not a successful exploit,
+a general defense or a safety guarantee.
+
+\reportsection{Code, data and a one-command check}
+The repository URL is on the first page. This study lives at
+\path{studies/summary-laundering/}. Frozen main data are in
+\path{results/main-2026-11-09/}; development data remain separate.
+From the repository root:
+
+{\small\begin{verbatim}
+python3 studies/summary-laundering/report/reader/evidence.py --check
+\end{verbatim}}
+
+This offline check reproduces both public replays and verifies the tables, examples
+and source hashes. Its source map gives exact JSON pointers. It makes no model
+request and does not authenticate private provider history. The existing 166
+software tests are not additional empirical observations. Historical reports
+and scientific files are unchanged.
+
+Known provider receipts plus the separately reconciled first request total
+\textbf{USD \StudyKnownCost} across \StudyCalls{} requests, including development
+and technical retries. Unknown receipt costs are not assumed free. Detailed
+operational records and conservative reservations remain in the repository;
+no new experiment was run to write this reader report.
+
+\begin{thebibliography}{9}
+\bibitem{camel} J. Peters-Gill et al. (2026).
+\emph{Can CaMeLs Talk? Securing Multi-Agent Systems Against Indirect Prompt
+Injection Attacks}. arXiv preprint, v1.
+\url{https://arxiv.org/abs/2610.05640v1}.
+\bibitem{statefence} H. Dai and A. Guerra-Manzanares (2026).
+\emph{StateFence: Task-State Protection Against Evidence-Chain Contamination
+in Blue-Team LLM Agents}. arXiv preprint, v1.
+\url{https://arxiv.org/abs/2611.02605v1}.
+\end{thebibliography}
+
+\clearpage
+\appendix
+\reportsection{Appendix: Limitations and Dual-Use / Ethical Considerations}
+\subsection*{Limits of the evidence}
+The tasks are synthetic lookup and arithmetic. Four fixed attack families do not
+represent real adversaries; the attacker already knows its target field and task.
+We did not test target discovery, adaptive attacks, long conversations or real
+services. The quoted-plan family was outside empirical pilot tuning, not unknown
+to the researchers. A hosted alias does not pin immutable weights.
+
+Source labels change wording, not system policy. Byte matching does not match
+meaning, and the extract comparison bundles several transformations. Equal-byte
+defenses do not equalize information or tokens. Lexical retention is not semantic
+annotation; post-summary subsets do not identify unbiased mediation. The examples
+are not a representative sample.
+
+One batch and no feedback turn limit the tested behavior. Rejecting a malformed
+legitimate answer does not show that an attack was prevented. Missing responses
+remain unknown; abstentions remain unsuccessful. The intervals assume independent
+task clusters, an assumption weakened by shared templates.
+
+The failed pilot and interruption remain recorded. The untouched-suffix continuation
+was an operational amendment, not an unchanged preregistered pilot. Main inputs,
+prompts, settings and analysis were frozen before outputs. All errors and missing
+cells remain intact; no regrading or additional inference supports this report.
+
+\subsection*{Safety, data handling and funding}
+Mock tools change reset in-memory dictionaries only. No real account, credential,
+external action or third party is involved. The published toy approval flag is
+not a production target. The examples can inform both attack and defense research
+by showing an unsafe request in a handoff; soft provenance is not a guarantee.
+
+Experimental calls used an authorized official interface and a contributor-funded
+USD 30 study ceiling. The conservative wallet remains USD \StudyWallet{}, not
+actual billed spend. All \RetainedHolds{} full unknown or rejected-receipt holds
+remain, including the separately reconciled first request; \UnresolvedCosts{}
+receipt costs are additionally unresolved. Assistant-session costs are not included
+in the reported experimental inference subtotal. No outside sponsor is asserted.
+
+OpenRouter's provider metadata, checked 8 November 2026, reports Alibaba prompt
+logging, 30-day retention, no training on submitted data and no zero-retention
+guarantee. These are provider-reported terms, not an independent deletion audit.
+Only synthetic prompts were sent. Public records exclude credentials, private
+approval records, personal paths, provider generation IDs and hidden reasoning.
+Internal hashes support consistency, not signed provider attestation.
+
+\subsection*{LLM Usage Statement}
+GPT-6 Astra assisted with design critique, code, tests, analysis checks and writing.
+Experimental responses came only from the fixed Qwen configuration. Deterministic
+code scored actions; an LLM judge did not decide success. Internal AI-assisted
+review is not external scientific peer review or independent empirical replication.
+Human author review is pending, no affiliation is asserted, and this report has
+not been submitted to the competition.
+
+\end{document}

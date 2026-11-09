@@ -1,5 +1,43 @@
 # Study state
 
+## Reader report — checked release, 9 November 2026
+
+The completed main acquisition and historical report are integrated through PR #3
+(merge `3ee37271362f3df6f9693886aab2f5484bb302a8`). The new task is editorial only:
+a standalone, plain-English reader report, clearer study navigation and exact
+example checks. No new inference, data revision or regrading is authorized.
+
+The [reader PDF](report/reader/who-said-that.pdf) is six total pages, including
+references and the mandatory appendix, with a 203-word abstract, a first-page
+clickable repository URL, complete main tables and two source-bound examples.
+Its SHA-256 is `d4cd2731157eb580944e5c8f7d827b8ad84900a4dcf78abaef26a1c98b5885da`
+(59,180 bytes). The cached-only Tectonic 0.16.9 build has no warning. Every page
+was visually checked. Human author review is still pending.
+
+Release checks: **166/166 harness tests** in 6.904 seconds, **9/9 reader tests**
+in 0.178 seconds, main/pilot public replays, 18 evidence hashes, exact example
+pointers and three quotations in the PDF all pass. Read-only internal peer
+review is clear within its documented scope. All 59 pre-existing non-Markdown
+study files are byte-identical to the baseline; history is append-only and the
+scientific plan body is unchanged. No new API request was made. See the
+[validation record](report/reader/CHECKS.md) for commands and limitations.
+
+The study [overview](README.md) now starts with the question and findings;
+technical commands remain in [RUNNING.md](RUNNING.md). The [report guide](report/README.md)
+distinguishes this new edition from the unchanged historical main and pilot PDFs.
+The editorial branch is `study/summary-laundering-reader-report`, based on main
+`7e2780c`. Delivery is through a separate PR; coordinator review and integration
+are separate from this checked release. No self-merge or contest submission is
+authorized or claimed.
+
+Publication checkpoint: the reader release is committed locally as
+`6644cf732194355423675921383bb37ee8ab7bce`. The public branch push was blocked
+before execution pending explicit confirmation of public publication. No reader
+PR was created and no retry or alternate publication route was attempted. The
+PDF and all local checks are complete; public delivery is the only blocker.
+
+## Acquisition checkpoint (now integrated)
+
 As of 9 November 2026, final reporting review. The authorized main acquisition actually exited
 with code 0 and passed native audit. No acquisition is running and no further
 model request is authorized. Full analysis began only after actual exit.
@@ -42,10 +80,11 @@ model request is authorized. Full analysis began only after actual exit.
   two appendix), a 204-word abstract and no TeX warning. Historical pilot PDF,
   source includes, data exports, failed runs and wallet records are unchanged.
 
-This revision is the reviewed main release for PR #3 on
-`study/summary-laundering-live-v1`. Next: the coordinator reviews the published
-exact head and handles integration separately; no additional model run is needed.
-No merge, competition submission or human author approval is claimed.
+This acquisition release was reviewed through PR #3 on
+`study/summary-laundering-live-v1` and is now integrated as recorded above.
+Its experimental results have not changed during the reader-report stage.
+No additional model run, competition submission or human author approval is
+implied by repository integration.
 
 ## Historical in-progress checkpoint (superseded)
 

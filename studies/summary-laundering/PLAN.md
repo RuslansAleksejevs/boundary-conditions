@@ -2,9 +2,12 @@
 
 ## Separating summary rewriting from agent authority
 
-**Status:** implemented harness and interrupted real development pilot,
-8 November 2026 UTC. Main evaluation is not frozen or run; the hypotheses remain
-unresolved. See [the operational amendment](OPERATIONAL_AMENDMENT.md).
+**Historical plan:** this text records the design and interrupted development
+checkpoint of 8 November 2026, before main acquisition. Its prospective status
+statements below are not current. The completed main result and new explanation
+are in the [reader report](report/reader/README.md) and
+[main evidence](results/main-2026-11-09/README.md). The scientific plan below is
+preserved; see the dated [operational amendment](OPERATIONAL_AMENDMENT.md).
 **Tracks:** Strengthening Agent Infrastructure; Multi-Agent Oversight and Control.
 
 See [runnable commands](README.md), [method amendments](METHOD_CHANGES.md),
