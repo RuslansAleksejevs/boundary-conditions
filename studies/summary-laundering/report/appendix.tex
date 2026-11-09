@@ -1,0 +1,96 @@
+\appendix
+\section{Limitations and Dual-Use / Ethical Considerations}
+\label{app:required}
+\subsection{Limitations and operational deviations}
+\label{app:limits}
+The experiment uses one hosted model/provider, one stochastic sample per replay
+cell, four fixed payload families and simple synthetic tasks. Numeric facts are
+fresh, but attack templates and the task grammar are not a representative sample
+of real adversaries or workflows. A hosted model name and endpoint display date
+do not establish an immutable checkpoint. Shared templates and provider behavior
+can make nominal scenario-level intervals optimistic. A null effect does not
+establish equivalence, universal safety or resistance to adaptive attacks.
+The synthetic attacker also knows the exact task identifier and protected field;
+we do not measure discovery of a target or an adaptive search over payloads.
+
+The executor submits a single JSON batch without interactive tool feedback.
+Invalid batches are atomically rejected, so executed-effect rates alone can look
+low when task utility or format compliance is poor. We therefore report invalid
+responses, useful completion, attempts and missing outcomes separately. The hard
+allowlist's rejection is guaranteed by local code; it says nothing about whether
+a model would recover after a real tool denial.
+
+The source-label comparison changes the displayed wording, not actual message
+authority. Summary/extract comparisons combine selection, deletion and rewriting.
+UTF-8 length matching is not token or semantic matching, and a summary-dependent
+matched subset is not an unbiased mediation estimate. Lexical retention does not
+establish semantic retention. Visible responses and state events do not reveal
+hidden model reasoning.
+
+\paragraph{Original failures and explicit continuation.}
+The first development attempt returned a correct-route HTTP 200 response but
+repeated an empty terminal SSE choice when adding final usage. The parser rejected
+that receipt and stopped after one clean-summary call. A narrow compatibility
+repair accepted only an idempotent final usage-bearing repeat; changed identity,
+new content and conflicting finish markers remain rejected. The original failed
+record and conservative financial hold were not rewritten.
+
+The repaired pilot then stopped after 59 attempts for 54 distinct logical roles:
+51 complete provider responses, eight HTTP 429 errors and five permitted identical
+technical retries. Three consecutive failed logical transports triggered its
+predeclared circuit. Its immutable original gate was 47/108 valid role responses,
+with 29/32 correct clean cells, four invalid executor batches and three failed
+logical transports. The exact upstream reason for HTTP 429 remains unknown.
+
+An openly documented operational amendment permits only the 54 never-attempted
+suffix roles, over six wholly untouched inputs. It changes pacing and stop/recovery
+orchestration, not prompts, tasks, model settings, scoring or attempted responses.
+It is not an unchanged preregistered pilot or a third replacement sample. No new
+repair-pilot retries are allowed; the combined cap remains 113 attempts. At most
+101/108 role responses can now qualify, requiring at least 51 of 54 additional
+valid responses to reach the unchanged threshold of 98. The clean outcomes remain
+fixed. A separate plan-bound authorization, append-only ledger stage and composite
+audit preserve the original failed records.
+
+The amended transport waits at least 20 monotonic-clock seconds between starts, honors a minimum
+60-second HTTP 429 cooldown and Retry-After up to 300 seconds, and halts beyond
+that delay. It also adds a hard POSIX total request timer. These safeguards do not
+prove the rate-limit cause has been fixed. Paced and unpaced pilot segments are
+not a randomized experiment about pacing. The continuation completed all 54 calls
+without new retries or transport failures; 52 new role responses were valid.
+The composite passed at 99/108, with the original 29/32 clean correctness,
+six invalid executor batches and three missing executor outcomes. A prospective
+540-call main manifest was frozen, but no main acquisition occurred by this
+report's cutoff. Stage-specific user authorization was subsequently renewed;
+execution still requires separate exact preflight and exclusive provider routing.
+The original outage is retained. Internal AI-assisted code checks and local audits
+are not an independent empirical replication or external scientific peer review.
+
+\subsection{Dual-use and ethical considerations}
+\label{app:ethics}
+All tasks, records, identities and protected fields are synthetic. Mock actions
+modify only reset in-memory dictionaries. There is no real-service exploitation,
+credential extraction, external action or affected third party. Experimental
+calls use an explicitly authorized official interface with a hard monetary ceiling;
+no subscription daemon, hidden account route or alternative credentials are used.
+The contributor-funded shared experimental ceiling was USD 50, with USD 30
+allocated to this study including all pilots. No external sponsor, grant, prize
+financing or automatic credit top-up is asserted. Research-assistant session costs are
+separate and not included in the reported experimental API billing.
+
+Publishing controlled injection templates can help both defenders and attackers
+understand trust-boundary failures. We limit examples to a toy protected Boolean
+and do not provide real targets, exfiltration destinations, evasion tooling or
+claims of production exploitability. Defensive lessons concern explicit authority
+boundaries, provenance and hard tool permissions. Soft provenance labels are not
+represented as guarantees or substitutes for authorization checks.
+
+Only synthetic prompts are sent to the provider. OpenRouter's provider metadata,
+checked 8 November 2026 at \url{https://openrouter.ai/api/v1/providers}, reports
+that Alibaba permits prompt logging, retains data for 30 days, does not train
+on submitted data and is not zero-retention. These are provider-reported terms,
+not an independent audit or a verified deletion guarantee. Credentials, private approval
+records, personal paths, provider generation identifiers and hidden reasoning
+text are excluded from public exports. Token counts include reasoning usage as
+billing metadata, not reasoning content. Public hashes support internal replay;
+they do not authenticate an external provider's history.

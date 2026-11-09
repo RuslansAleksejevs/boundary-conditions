@@ -156,7 +156,13 @@ class Runner:
         rows, summaries = [], []
         rng = random.Random(self.manifest["seed"])
         scenarios = [Scenario(**s) for s in self.manifest["scenarios"]]
-        rng.shuffle(scenarios)
+        schedule = self.manifest.get("schedule")
+        if schedule is None:
+            rng.shuffle(scenarios)
+        else:
+            by_id = {s.scenario_id: s for s in scenarios}
+            scenarios = [by_id[item["scenario_id"]] for item in schedule]
+        condition_order = {} if schedule is None else {item["scenario_id"]: item["conditions"] for item in schedule}
         for scenario in scenarios:
             response, status, request_hash = self.call(summary_request(scenario), scenario.scenario_id + "/summary")
             if response is not None and not response.text.strip():
@@ -179,8 +185,9 @@ class Runner:
                 # R remains measurable. E depends on summary length; S is absent.
                 texts, match = {"R": scenario.raw}, None
             self.emit(summary)
-            conditions = list(CONDITIONS)
-            rng.shuffle(conditions)
+            conditions = list(CONDITIONS) if schedule is None else condition_order[scenario.scenario_id]
+            if schedule is None:
+                rng.shuffle(conditions)
             for condition in conditions:
                 row = _missing(scenario, condition, "summary_unavailable")
                 row["summary_hash"] = summary["summary_hash"]

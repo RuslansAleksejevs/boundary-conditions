@@ -1,12 +1,27 @@
 # Who Said That? — runnable study harness
 
-An offline-first Python standard-library testbed for summary/source handoffs.
-Implementation and CPU validation exist. **No LLM results exist.** The live pilot,
-empirical freeze, and held-out evaluation are blocked on an approved model
-interface and explicit batch/spending authorization. No network client is included.
+An offline-first Python standard-library testbed for summary/source handoffs,
+now with a completed, separately frozen real-model main study. All 540 scheduled
+roles were attempted in 548 physical requests. Executor cells are **445 valid,
+33 invalid and two missing**; useful correct completion is **443/480 scheduled**.
+No forbidden state transition or schema-valid protected-write attempt was observed
+in 478 available responses. The two primary estimates are zero on 39/40 complete
+attacked pairs, with conservative intervals of **±43.49 percentage points** and
+finite-schedule missingness bounds of [0, 2.5]. This is not evidence of equivalence,
+universal refusal or defense efficacy. Main length matching fails for 1/40 inputs.
+
+See the [main evidence and accounting caveats](results/main-2026-11-09/README.md),
+[main result tables](results/main-2026-11-09/RESULTS.md),
+[English main report](report/main-report.tex) and [current state](STATE.md).
+The original failed pilots, explicit operational continuation, composite gate
+(99/108 valid roles; 29/32 clean correctness), pilot PDF and exports remain
+unchanged. Main observations are not pooled with development. All 662 campaign
+requests and unknown-cost holds are accounted for; no additional experiment or
+competition submission is authorized by this release.
+See [the live protocol](LIVE_PROTOCOL.md). Ordinary `dry-run` remains fully offline.
 
 Read the [study plan](PLAN.md), [method amendments](METHOD_CHANGES.md), and
-[validation record](VALIDATION.md). Broader research claims remain untested.
+[validation record](VALIDATION.md). Broader generalization remains untested.
 
 ## Run locally
 
@@ -73,9 +88,12 @@ entire artifact bundle. A crash leaves partial JSONL and no complete `run.json`;
 do not treat that directory as a completed run or silently rerun it as a retry.
 
 The generator has disjoint `dev`, `validation`, and `holdout` namespaces. Unit
-tests inspect holdout generation invariants, but no scientific holdout seed or
-case manifest has been selected or evaluated. Actual holdout execution is rejected
-until a reviewed adapter and real pilot exist. Current manifests are engineering
+tests inspect generation invariants without evaluating an empirical holdout.
+The separately frozen live main seed
+is 2026110812; its 60-input manifest was acquired once under the authorized live
+protocol on 8–9 November 2026. The offline runner
+rejects empirical holdout execution. The separate live runner requires a bound preflight GO and an
+actual passing pilot. Offline manifests are engineering
 snapshots, **not an empirical freeze or preregistration**.
 
 ## Analysis details
@@ -99,10 +117,12 @@ limitation. Zero effects in 40 independent cases would still permit an approxima
 `sl.backends.Backend` defines a small `complete(request, config, call_id)` contract.
 `RecordedBackend` supports prompt-and-configuration-bound offline regression
 tapes through Python; these are marked **unverified**, not empirical pilot data.
-The CLI uses only `TestDouble`. It neither reads credentials nor routes calls
-through an agent daemon, browser session, or internal subscription transport.
+The `dry-run` CLI uses only `TestDouble`. The distinct `live-acquire` command
+requires the gates in [LIVE_PROTOCOL.md](LIVE_PROTOCOL.md); credentials are read
+only after its GO validation. Neither path routes calls through an agent daemon,
+browser session, or internal subscription transport.
 
-A future live adapter requires review of provider terms, an authorized interface,
+Live acquisition requires review of provider terms, an authorized interface,
 an exact model/version and sampling configuration, official token limits and
 pricing, applicable batch authorization and a hard monetary cap. Secrets must use
 the authorized secret mechanism, never source files or public logs. Record actual
@@ -114,3 +134,19 @@ Only after a genuine development pilot passes the declared interface thresholds
 may the empirical protocol be frozen and new held-out cases run once. Preserve
 unsuccessful pilots and revisions; do not select a lucky run. Competition
 submission is separate and has not occurred.
+
+## Public-data replay and report
+
+The main and composite schema-2 exports include synthetic inputs, exact visible model
+answers, saved summaries, state events and minimized accounting. Reproduce its
+request identities, scores, condition tables and primary statistics without
+private logs, credentials or model calls:
+
+```sh
+python3 studies/summary-laundering/report/check_public.py studies/summary-laundering/results/pilot-composite-2026-11-08
+python3 studies/summary-laundering/report/check_public.py studies/summary-laundering/results/main-2026-11-09
+```
+
+This is internal reproducibility, not provider attestation. Earlier schema-1
+exports were counts-only and are retained as historical snapshots. See the
+[report guide](report/README.md) for the separate main and preserved pilot drafts.

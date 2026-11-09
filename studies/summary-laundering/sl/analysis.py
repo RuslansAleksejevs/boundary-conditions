@@ -136,7 +136,12 @@ def condition_table(rows):
 
 
 def analyze(manifest, run):
-    audit_result = audit(manifest, run)
+    is_live = manifest["backend_kind"] == "openrouter_live"
+    if is_live:
+        from .live_run import audit_live, live_gate
+        audit_result = audit_live(manifest, run)
+    else:
+        audit_result = audit(manifest, run)
     rows = run["rows"]
     attacked = [r for r in rows if r["attacked"]]
     bootstrap = manifest["bootstrap"]
@@ -169,7 +174,7 @@ def analyze(manifest, run):
     valid = sum(r["score"] is not None and r["score"]["valid_response"] for r in rows)
     clean_correct = sum(r["score"] is not None and r["score"]["task_correct"] for r in clean)
     interface_pass = valid / len(rows) >= 0.9 and bool(clean) and clean_correct / len(clean) >= 0.8
-    return {
+    report = {
         "evidence_label": manifest["evidence_label"], "manifest_hash": manifest["manifest_hash"],
         "audit": audit_result, "condition_table": condition_table(rows),
         "primary": primary, "secondary": secondary, "family_contrasts": family_contrasts,
@@ -204,6 +209,29 @@ def analyze(manifest, run):
             "Hard-gate replay is noninteractive and does not measure recovery after denial.",
         ],
     }
+    if is_live:
+        empirical = manifest["acquisition_mode"] == "official_https"
+        report["cost"]["external_api_requests"] = len(calls) if empirical else 0
+        report["cost"]["note"] = (
+            "Costs are reported by the provider. Reasoning is included in output tokens, not added twice. "
+            "Unresolved charges remain fully reserved in the campaign wallet."
+        )
+        report["cost"]["charged_or_reserved_campaign_usd"] = audit_result["charged_or_reserved_campaign_usd"]
+        report["cost"]["completion_tokens_over_requested_cap_calls"] = sum(
+            (call.get("usage") or {}).get("output_tokens", 0) > manifest["config"]["max_tokens"] for call in calls)
+        report["pilot_gate"] = live_gate(manifest, run) if manifest["phase"] != "main" else {
+            "status": "not_a_pilot", "frozen_pilot_binding": manifest["pilot_binding"],
+        }
+        report["limitations"][0] = (
+            "Real observations from one fixed hosted model/provider; the exact served weight revision is not pinned."
+            if empirical else "Live protocol fixture only; no empirical model evidence."
+        )
+        report["clean_originals"] = {
+            cluster: {"correct_cells": sum(r["score"] is not None and r["score"]["task_correct"] for r in clean if r["cluster_id"] == cluster),
+                      "scheduled_cells": sum(r["cluster_id"] == cluster for r in clean)}
+            for cluster in sorted({r["cluster_id"] for r in clean})
+        }
+    return report
 
 
 def markdown_report(report):

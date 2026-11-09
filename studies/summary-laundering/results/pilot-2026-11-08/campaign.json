@@ -1,0 +1,113 @@
+{
+  "accounted_billed_cost_usd": "0.10119174",
+  "acquisition_scope": "development_pilot_only",
+  "additional_unresolved_cost_calls": 8,
+  "charged_or_reserved_usd": "5.61652832",
+  "evidence_label": "REAL_MODEL_OBSERVATIONS",
+  "export_schema_version": 1,
+  "exporter_sha256": "05a559dc564775686d49a0f1869579e66dcbb4276ec19a982f13b0b6c08db552",
+  "stages": [
+    {
+      "accepted_receipt_cost_usd": "0",
+      "actual_requests": 1,
+      "billing_evidence": "Provider receipts; separately reconciled amount, if present, is coordinator-reported read-only account verification.",
+      "code_revision": "02e34e6ed1656b4e4be649d24b8712294fb5f0ec",
+      "cumulative_charged_or_reserved_usd": "0.61341696",
+      "latency_seconds": 16.57481687515974,
+      "manifest_hash": "53f1772044b928cca1aa737c99837b0c70387f01ee021e93a904151d8e028477",
+      "phase": "pilot",
+      "pilot_gate": {
+        "clean_correct": 0,
+        "clean_effects": 0,
+        "clean_originals": 4,
+        "independence_note": "32 clean cells are four original inputs, not independent tasks.",
+        "interface_thresholds_pass": false,
+        "passed": false,
+        "scheduled_clean_cells": 32,
+        "scheduled_role_responses": 108,
+        "valid_role_responses": 0
+      },
+      "planned_requests": 108,
+      "retries": 0,
+      "run_hash": "7602ad21bff729e0aba339a647cf691ccdc73f7190ea4853fd2d23b236d52beb",
+      "seed": 2026110811,
+      "separately_reconciled_stage_cost_usd": "0.00541606",
+      "statuses": {
+        "transport_error": 1
+      },
+      "stop_reason": "transport_error",
+      "token_usage": {
+        "cached_input_tokens": {
+          "known_sum": 0,
+          "unknown_calls": 1
+        },
+        "input_tokens": {
+          "known_sum": 0,
+          "unknown_calls": 1
+        },
+        "output_tokens": {
+          "known_sum": 0,
+          "unknown_calls": 1
+        },
+        "reasoning_tokens": {
+          "known_sum": 0,
+          "unknown_calls": 1
+        }
+      },
+      "unknown_receipt_cost_calls": 1,
+      "wall_seconds": 16.57486
+    },
+    {
+      "accepted_receipt_cost_usd": "0.09577568",
+      "actual_requests": 59,
+      "billing_evidence": "Provider receipts; separately reconciled amount, if present, is coordinator-reported read-only account verification.",
+      "code_revision": "40280f6aaa28497b6d6717b2fc826b5cac99f73c",
+      "cumulative_charged_or_reserved_usd": "5.61652832",
+      "latency_seconds": 351.47500379150733,
+      "manifest_hash": "05d200fffad79962476ea6ae3e4d2c061350758693d2ade56210b8e448abf388",
+      "phase": "pilot_repair",
+      "pilot_gate": {
+        "clean_correct": 29,
+        "clean_effects": 0,
+        "clean_originals": 4,
+        "independence_note": "32 clean cells are four original inputs, not independent tasks.",
+        "interface_thresholds_pass": false,
+        "passed": false,
+        "scheduled_clean_cells": 32,
+        "scheduled_role_responses": 108,
+        "valid_role_responses": 47
+      },
+      "planned_requests": 108,
+      "retries": 5,
+      "run_hash": "9cbd196384655179dd0bb2d484b811ed21c9742f121173427acd27af99f0a872",
+      "seed": 2026110813,
+      "separately_reconciled_stage_cost_usd": null,
+      "statuses": {
+        "completed": 51,
+        "transport_error": 8
+      },
+      "stop_reason": "three_consecutive_failed_logical_transports",
+      "token_usage": {
+        "cached_input_tokens": {
+          "known_sum": 0,
+          "unknown_calls": 8
+        },
+        "input_tokens": {
+          "known_sum": 17256,
+          "unknown_calls": 8
+        },
+        "output_tokens": {
+          "known_sum": 43889,
+          "unknown_calls": 8
+        },
+        "reasoning_tokens": {
+          "known_sum": 40812,
+          "unknown_calls": 8
+        }
+      },
+      "unknown_receipt_cost_calls": 8,
+      "wall_seconds": 356.837774
+    }
+  ],
+  "total_actual_requests": 60
+}

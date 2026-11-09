@@ -538,7 +538,7 @@ class PipelineTests(unittest.TestCase):
     def test_cli_access_is_explicit(self):
         script = Path(__file__).resolve().parents[1] / "run.py"
         result = subprocess.run([sys.executable, str(script), "access"], capture_output=True, text=True, check=True)
-        self.assertFalse(json.loads(result.stdout)["live_backend_available"])
+        self.assertTrue(json.loads(result.stdout)["acquisition_requires_coordinator_go"])
 
 
 class AnalysisTests(unittest.TestCase):

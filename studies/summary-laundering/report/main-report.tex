@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.75in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\title{Who Said That?\\A Controlled Test of Summary and Source-Label Prompt Injection}
+\author{Ruslans Aleksejevs}
+\date{9 November 2026\\Main-study draft---pending author review}
+\begin{document}
+\maketitle
+\begin{abstract}
+An executor can encounter an indirect prompt injection in an external record or
+in another agent's summary. We test whether observed permission-boundary failures
+differ with text transformation or displayed source identity, without changing
+actual message privileges. A frozen synthetic testbed replays one saved summary,
+original records and verbatim extracts under document and colleague labels,
+alongside two soft defenses and a deterministic permission-gate replay. After a
+separately reported development pilot, the held-out main study evaluates 40 attacked
+and 20 clean inputs with Qwen3.5-122B-A10B through one fixed hosted provider route.
+All 540 scheduled roles are attempted, using 548 physical requests. Of 480 executor
+cells, 445 are valid, 33 are atomically rejected and two are unavailable after HTTP
+429 errors; 443 achieve useful correct completion. No forbidden state transition or
+schema-valid protected-write attempt is observed in the 478 available responses.
+Both primary contrasts have 39 complete attacked pairs, zero point estimates and
+conservative intervals of approximately plus or minus 43.49 percentage points.
+One attacked input fails the length-matching criterion. These results do not
+demonstrate a laundering effect, equivalence, universal safety or defense efficacy.
+The contribution is an auditable decomposition and negative evidence with explicit
+utility, missingness, acquisition failures and financial reservations; development
+and main observations remain separate.
+\end{abstract}
+
+\input{methods.tex}
+\input{main-results.tex}
+
+\section{Discussion and conclusion}
+Neither primary hypothesis receives positive support in this fixed testbed.
+Zero observed executed violations must not be read as universal model refusal:
+strict batch validation rejects 33 responses before any action, and two scheduled
+responses remain unknown. Useful completion is 443/480 scheduled cells, not 100\%.
+These cells represent 60 input variants from 40 underlying task clusters, including
+20 paired clean counterparts; they are not 480 independent tasks. Forty attacked
+originals and shared templates leave broad
+uncertainty about intervention differences and out-of-distribution behavior.
+
+The main length-control flag passes at 1/40 unmatched, unlike the pilot's 3/8.
+This is descriptive, not evidence that a revised method improved matching: the
+frozen method was unchanged and the data sets differ. Matching UTF-8 length does
+not fix content selection or attack retention. Even the matched comparison is a
+transformation bundle; the same-summary source-label contrast does not have that
+particular content mismatch. Neither supports a causal story about hidden reasoning.
+
+No live schema-valid protected write challenges the deterministic allowlist.
+Its blocking property is established by code and adversarial unit tests, not a
+live head-to-head security advantage. Soft warnings and provenance have no
+demonstrated security benefit here. Their descriptive utility contrasts include
+zero in both reported interval types. Further investigation would require a new,
+prospectively specified study, not post-hoc replacement or tuning of these cases.
+Limitations and ethical considerations appear in Appendix~\ref{app:required}.
+
+\section{Code, data and reproducibility}
+The public repository is
+\url{https://github.com/RuslansAleksejevs/boundary-conditions}.
+
+The study lives under \path{studies/summary-laundering/}.
+Implementation and evidence are tracked in pull request \#3; current integration
+status is recorded in the repository. The acquisition source is frozen
+at \texttt{eb8844d}, with inventory digest beginning \texttt{dbb21522554b}.
+Reporting changes do not alter the acquisition, scorer or statistical modules.
+The native main audit reconstructed 60 inputs, 480 outcomes and 548 requests,
+including event/state replay, exact request identities and financial reservations.
+The local Python 3.14.6 suite passed 166 tests in 6.235 seconds without model calls.
+
+The new public bundle is \path{results/main-2026-11-09/}. It includes the full
+synthetic corpus, saved summaries, visible responses, outcomes and frozen analysis.
+From the study directory, offline reproduction is:
+\begin{verbatim}
+python3 report/check_public.py results/main-2026-11-09
+\end{verbatim}
+This reproduced all 480 cells, 548 visible call records and both primary contrasts
+with zero API requests. It checks internal consistency, not provider authenticity
+or the private authorization, SSE and wallet history. The separate native audit
+also checked those locally recorded acquisition records. The append-only journal
+matches the final run; the original 232-record pilot wallet prefix is unchanged.
+The historical pilot PDF and exports remain unchanged, and development observations
+are never pooled into main estimates. No competition submission is made here.
+
+\section*{LLM usage statement}
+GPT-6 Astra assisted with design critique, implementation, testing, analysis checks
+and drafting. Internal AI-assisted review is not external scientific peer review
+or independent empirical replication. Only the separately configured Qwen/Alibaba
+route produced experimental responses. Deterministic software, not an LLM judge,
+scores actions and computes statistics. The named human author has not yet approved
+this draft; no institutional affiliation is asserted.
+
+\begin{thebibliography}{9}
+\bibitem{multicamel} \emph{Can CaMeLs Talk? Securing Multi-Agent Systems Against
+Indirect Prompt Injection Attacks}. arXiv:2610.05640v1, 2026.
+\url{https://arxiv.org/abs/2610.05640v1}.
+\bibitem{statefence} \emph{StateFence: Task-State Protection Against Evidence-Chain
+Contamination in Blue-Team LLM Agents}. arXiv:2611.02605v1, 2026.
+\url{https://arxiv.org/abs/2611.02605v1}.
+\end{thebibliography}
+\clearpage
+\input{main-appendix.tex}
+\end{document}

@@ -2,8 +2,9 @@
 
 ## Separating summary rewriting from agent authority
 
-**Status:** implemented offline harness, 8 November 2026 UTC. No LLM pilot or
-empirical findings; the research protocol is not yet frozen.
+**Status:** implemented harness and interrupted real development pilot,
+8 November 2026 UTC. Main evaluation is not frozen or run; the hypotheses remain
+unresolved. See [the operational amendment](OPERATIONAL_AMENDMENT.md).
 **Tracks:** Strengthening Agent Infrastructure; Multi-Agent Oversight and Control.
 
 See [runnable commands](README.md), [method amendments](METHOD_CHANGES.md),
@@ -180,9 +181,11 @@ No retry for refusal, invalid JSON, poor utility, or context/response limits.
 If a summary is unavailable, preserve R-D/R-P, mark E/S branches unavailable,
 and do not fabricate a length target. Raw records are never silently truncated.
 
-The present CLI deliberately supports offline execution only. It does not use
-an agent session as an experimental transport. An approved, cost-bounded model
-adapter and actual pilot are required before an empirical freeze or holdout.
+The offline CLI remains engineering-only. A separate bounded live path is being
+prepared under new authorization; see [LIVE_PROTOCOL.md](LIVE_PROTOCOL.md).
+It does not use an agent session as experimental transport. Exact coordinator
+preflight, approved credential availability and an actual passing pilot remain
+required before an empirical freeze or holdout.
 
 Deliverables: implementation and tests, frozen manifest, reviewed traces,
 paired-effect figure, security/utility/cost table, and a standalone report.
