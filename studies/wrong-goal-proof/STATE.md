@@ -1,5 +1,18 @@
 # Study state
 
+## Current edition — 9 November 2026
+
+The final paper is **A Certificate Is Not the Answer**. The
+[three-page PDF, LaTeX and validation](../../reports/README.md) supersede the
+six-page reader edition as the recommended starting point. The author approved
+the final title, UC Berkeley affiliation and publication. Primary Track 4 replaces
+the earlier Track 2 classification; this is an editorial correction, not a new design.
+
+PR #5 was merged on 9 November at 05:20:04 UTC. Its pending-merge statements below
+are historical. No new model calls or revised outcomes accompany the final paper.
+Competition submission and acceptance remain unconfirmed. See the
+[release checks](../../reports/CHECKS.md); earlier PDFs and scientific files are preserved.
+
 ## Current editorial phase — 9 November 2026 UTC
 
 The completed empirical release was integrated through PR #4, merge

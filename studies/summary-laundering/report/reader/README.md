@@ -1,5 +1,9 @@
 # Who Said That? — reader edition
 
+**Archived six-page edition.** The current paper is
+[Prompt Injection at Agent Handoffs: The Second-Hand Instruction Problem](../../../../reports/prompt-injection-at-agent-handoffs-the-second-hand-instruction-problem.pdf).
+The build record below describes this earlier edition; its PDF and evidence are unchanged.
+
 **[Download the six-page PDF](who-said-that.pdf)** · [LaTeX](who-said-that.tex) ·
 [Exact values and source map](source-map.json)
 

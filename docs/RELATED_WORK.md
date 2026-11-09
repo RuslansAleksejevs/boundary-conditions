@@ -1,5 +1,9 @@
 # Related work and claim boundaries
 
+This is the reading that shaped the original designs. The completed reports
+are linked from the [overview](../README.md); the prospective wording below
+records what we thought our contribution could be before running the studies.
+
 Reviewed 7 November 2026. This is a focused reading list, not a systematic review.
 The reported findings belong to their authors; we have not reproduced them.
 No priority or novelty claim is established by this list.

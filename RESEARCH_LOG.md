@@ -1,5 +1,13 @@
 # Research log
 
+This is the detailed, original lab record. For a short account of what happened
+and when, read the [timeline](TIMELINE.md). For the current reports and results,
+start with the [overview](README.md).
+
+Each entry describes its own checkpoint. Earlier statements such as “no model
+experiments yet” are kept as history, not as the current status. Original entries
+are not rewritten when later results arrive.
+
 ## 2026-11-07 — Repository foundation
 
 - Established two separate study plans: summary laundering and certificate scope.
@@ -319,3 +327,56 @@ No target failure was observed in either fixed evaluation. The original goals,
 missing outcomes, null findings and uncertainty are reported rather than using
 the remaining budget for outcome-seeking model or prompt changes. No additional
 acquisition, competition submission, top-up or automation has occurred.
+
+## 2026-11-09 — Reader editions prepared; certificate edition integrated
+
+Two new standalone reader reports were written from the unchanged evidence, each
+six pages including references and the mandatory appendix. Each opens with the
+repository link and includes result tables, two source-bound examples, uncertainty
+and an LLM-use disclosure. Old PDFs, data and scientific source remain unchanged.
+The new repository overview, UTC timeline, reading guide and offline reproduction
+guide were prepared alongside the reports. Human author review remains pending.
+
+The certificate reader edition was integrated through
+[PR #5](https://github.com/RuslansAleksejevs/boundary-conditions/pull/5) at
+05:20:04 UTC, from exact reviewed head `e6f18584` into `675f06e`.
+The summary reader edition is complete locally, but its public branch publication
+is paused pending explicit confirmation. No alternative publication route was
+attempted. At this checkpoint, the shared documentation is also still local;
+this entry does not claim that the whole editorial release is published.
+
+Final local checks passed 166 existing summary tests plus nine reader tests,
+and 171 certificate tests plus 28 existing report tests and 12 reader tests:
+386 checks in total. Both source-bound report checks and saved-data replays
+passed without model requests. Every PDF page was visually reviewed, with changed
+pages checked again. Internal AI-assisted review is not external peer review.
+No new experiment, API expenditure, purchase or competition submission occurred.
+
+## 2026-11-09 — Final three-page reports and a coherent public edition
+
+After author feedback that the six-page reports were too dense, both were
+rewritten in LaTeX as three-page papers. The author selected **Prompt Injection
+at Agent Handoffs: The Second-Hand Instruction Problem** and **A Certificate Is
+Not the Answer**, confirmed UC Berkeley, reviewed the shorter versions and
+requested finalization. The final files are in [reports](reports/README.md).
+
+A later track review matched handoffs to primary Track 3 (also Track 2) and
+certificate review to Track 4. The author approved applying these recommendations
+and updating the public repository. Only the certificate PDF's track line changed
+in this release; the previously approved handoff PDF is byte-for-byte unchanged.
+
+The repository now starts with each question, test and result. The timeline
+includes pilots, the interrupted run and continuation, both frozen evaluations,
+cost reconciliation and successive report revisions. An explicit archive keeps
+older titles and reports accessible without calling them current. The earlier
+local handoff reader branch is preserved in the release ancestry; the renewed
+publication approval supersedes its earlier pause, subject to publication review.
+
+All **394 local tests** passed: 166 + 9 for handoffs, 171 + 28 + 12 for
+certificates, and 8 final-report checks. Data replay, exact examples, final PDFs,
+local links and preservation checks passed. [Commands and results](reports/CHECKS.md)
+distinguish these offline checks from new empirical observations.
+
+No experimental code, prompt, scorer, dataset, saved answer, old PDF or scientific
+conclusion changed. No new model calls, purchase or competition submission was
+made. Actual API spend remains $3.75323494 at the last reconciled snapshot.

@@ -8,7 +8,9 @@ statements below are not current. The completed main result and new explanation
 are in the [reader report](report/reader/README.md) and
 [main evidence](results/main-2026-11-09/README.md). The scientific plan below is
 preserved; see the dated [operational amendment](OPERATIONAL_AMENDMENT.md).
-**Tracks:** Strengthening Agent Infrastructure; Multi-Agent Oversight and Control.
+**Historical track choices:** Strengthening Agent Infrastructure; Multi-Agent Oversight and Control.
+The final edition uses primary Track 3 and additional Track 2; see the
+[current study guide](README.md). This classification update does not alter the design below.
 
 See [runnable commands](README.md), [method amendments](METHOD_CHANGES.md),
 [validation](VALIDATION.md), and [current state](STATE.md). Amendments below

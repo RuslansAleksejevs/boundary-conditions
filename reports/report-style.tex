@@ -1,0 +1,48 @@
+% Shared typography only. Each manuscript is an independent report.
+\usepackage[letterpaper,margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+% Use the already cached monospaced master at the body size.
+\makeatletter
+\input{t1lmtt.fd}
+\DeclareFontShape{T1}{lmtt}{m}{n}{<-> ec-lmtt10}{}
+\makeatother
+\usepackage{amsmath,amssymb,booktabs,array,xcolor,microtype}
+\definecolor{ink}{HTML}{183348}
+\definecolor{accent}{HTML}{176C70}
+\definecolor{quiet}{HTML}{56636C}
+\usepackage[colorlinks=true,urlcolor=accent,linkcolor=accent,citecolor=accent]{hyperref}
+\urlstyle{same}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.15}
+\raggedbottom
+\emergencystretch=1em
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}
+  {-2.0ex plus -.5ex minus -.2ex}{.7ex plus .2ex}
+  {\normalfont\sffamily\fontsize{13}{16}\selectfont\bfseries\color{ink}}}
+\makeatother
+\newcommand{\reporttitle}[2]{%
+  {\sffamily\bfseries\color{ink}\fontsize{26}{30}\selectfont #1\par}
+  \if\relax\detokenize{#2}\relax\else
+    {\sffamily\fontsize{15}{18}\selectfont #2\par}
+  \fi
+  \vspace{3pt}
+  {\small\url{https://github.com/RuslansAleksejevs/boundary-conditions}\par}
+  Ruslans Aleksejevs\hfill 9 November 2026\par
+  {\small UC Berkeley\par}
+}
+\newcommand{\trackline}[1]{%
+  {\small\color{quiet}Swarm Alignment Hackathon\enspace\textperiodcentered\enspace #1\par}
+  \vspace{2pt}
+}
+\renewenvironment{abstract}{%
+  \par{\sffamily\bfseries\color{ink}Abstract}\par\vspace{-2pt}
+}{\par}
+\newcommand{\tablecaption}[1]{%
+  \refstepcounter{table}\par{\small\textbf{Table \thetable.} #1}\par\vspace{2pt}}
+\newcommand{\lead}[1]{{\sffamily\bfseries\color{ink}#1}}
+\newcommand{\smalllabel}[1]{{\small\color{quiet}#1}}
+\AtBeginDocument{\fontsize{11.5}{14}\selectfont}

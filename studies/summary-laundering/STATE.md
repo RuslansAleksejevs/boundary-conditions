@@ -1,5 +1,19 @@
 # Study state
 
+## Current edition — 9 November 2026
+
+The final paper is **Prompt Injection at Agent Handoffs: The Second-Hand
+Instruction Problem**. The [three-page PDF, LaTeX and validation](../../reports/README.md)
+supersede the six-page reader edition as the recommended starting point.
+The author approved the final title, UC Berkeley affiliation and publication.
+Primary Track 3; additional fit Track 2. No new model calls or changed results.
+
+The previously local reader branch is retained in the final release history.
+Earlier publication pauses and pending-author-review statements below describe
+their dated checkpoints, not the current authorization. Competition submission
+and acceptance remain unconfirmed. The [release record](../../reports/CHECKS.md)
+records checks and integration; all earlier scientific files and PDFs are preserved.
+
 ## Reader report — checked release, 9 November 2026
 
 The completed main acquisition and historical report are integrated through PR #3

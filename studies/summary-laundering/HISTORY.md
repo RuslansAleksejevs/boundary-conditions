@@ -547,3 +547,19 @@ blocked before execution pending explicit confirmation of publication. No PR
 was created, no retry or alternate publication route was attempted, and nothing
 was merged. This is a delivery blocker, not an experimental or validation
 failure. All local artifacts and the six-page PDF remain available for review.
+
+## 2026-11-09 UTC — approved final edition and repository integration work
+
+The author selected **Prompt Injection at Agent Handoffs: The Second-Hand
+Instruction Problem**, confirmed UC Berkeley and approved the final three-page
+report. Its PDF and LaTeX are in the root [final report package](../../reports/README.md).
+Primary Track 3 and additional Track 2 now describe the work; earlier track
+choices remain labelled historical in the plan. No scientific design changed.
+
+Following a repository audit, the author explicitly requested public finalization.
+The previous six-page reader branch is preserved in the release ancestry as an
+archived edition. The study landing page now points to the final PDF. All 166
+study tests and 9 reader-binding tests passed again; saved evidence and the old
+reports are unchanged. Shared checks and publication are recorded in the
+[final release record](../../reports/CHECKS.md). New model requests: zero.
+Competition submission and acceptance remain unconfirmed.

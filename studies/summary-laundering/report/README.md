@@ -1,17 +1,16 @@
 # Reports: where to start
 
-Read **[Who Said That?](reader/who-said-that.pdf)**, the six-page reader edition.
-It explains the question, the completed held-out study, the wide uncertainty,
-two actual model responses and the main limitations in plain English. Its
-appendix and references are included in the six pages. The repository link is
-clickable at the start, before the abstract.
+Read the final **[Prompt Injection at Agent Handoffs: The Second-Hand Instruction
+Problem](../../../reports/prompt-injection-at-agent-handoffs-the-second-hand-instruction-problem.pdf)**.
+It has three total pages, including its appendix and references. Its
+[LaTeX, hashes and checks](../../../reports/README.md) are in the final report
+package. The author approved it; submission and acceptance are not claimed.
 
-This is a new presentation of preserved evidence, not a new experiment or a
-contest submission. Human author review and submission approval remain pending.
+The versions below are historical presentations of the same preserved evidence.
 
 | Report | What it covers | Status |
 | --- | --- | --- |
-| [Reader edition](reader/who-said-that.pdf) · [source](reader/who-said-that.tex) | Completed main study, pilot history, failures, uncertainty, real examples and study-only accounting | New six-page standalone report |
+| [Reader edition](reader/who-said-that.pdf) · [source](reader/who-said-that.tex) | Completed main study, pilot history, failures, uncertainty, real examples and study-only accounting | Archived six-page edition, earlier title |
 | [Earlier main report](main-report.pdf) · [source](main-report.tex) | Detailed main-study presentation at its original cutoff | Preserved nine-page historical draft |
 | [Development report](paper.pdf) · [source](paper.tex) | Development pilot only; its “main not yet acquired” wording is historical | Preserved eight-page historical draft |
 

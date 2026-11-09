@@ -1,8 +1,13 @@
-# Who Said That?
+# Prompt Injection at Agent Handoffs
+
+*The Second-Hand Instruction Problem*
+
+Primary **Track 3: Strengthening Agent Infrastructure**; also fits
+**Track 2: The Science of Agent Networks**.
 
 **Does an agent's summary make an untrusted instruction more powerful?**
 
-[Read the six-page report](report/reader/who-said-that.pdf) ·
+[Read the final three-page report](../../reports/prompt-injection-at-agent-handoffs-the-second-hand-instruction-problem.pdf) ·
 [Explore the measured results](results/main-2026-11-09/RESULTS.md) ·
 [Check the examples](report/reader/README.md)
 
@@ -77,7 +82,7 @@ the machinery; they are not observations of model behavior.
 
 | If you want… | Start here |
 | --- | --- |
-| The readable standalone explanation | [Six-page PDF](report/reader/who-said-that.pdf) |
+| The current standalone explanation | [Final three-page PDF](../../reports/prompt-injection-at-agent-handoffs-the-second-hand-instruction-problem.pdf) · [LaTeX and checks](../../reports/README.md) |
 | Exact examples, source map and PDF checks | [Reader-report guide](report/reader/README.md) |
 | Every main condition, uncertainty and missing outcome | [Main data and caveats](results/main-2026-11-09/README.md) |
 | Commands, dry runs and interface details | [Running the harness](RUNNING.md) |
@@ -90,6 +95,6 @@ Development and main are kept separate. All failed/invalid/missing responses and
 financial holds remain recorded. Known receipts plus the separately reconciled
 first request total **$1.35682664** across 662 experimental requests; the
 conservative wallet is **$13.00633282**, not billed spend. Unknown costs are not
-assumed free. The reader edition changes presentation only: historical PDFs,
-data and scientific code are unchanged. Human author review is pending; nothing
-has been submitted to the competition.
+assumed free. The final edition changes presentation only: historical PDFs,
+data and scientific code are unchanged. The author approved the final title,
+affiliation and report. Competition submission and acceptance are not claimed.
