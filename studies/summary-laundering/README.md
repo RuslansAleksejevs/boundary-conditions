@@ -1,21 +1,27 @@
 # Who Said That? — runnable study harness
 
-An offline-first Python standard-library testbed for summary/source handoffs.
-Implementation and CPU validation exist. After one narrow SSE compatibility repair
-and an explicitly documented untouched-suffix continuation following HTTP 429,
-the **amended pilot gate passed: 99/108 valid roles and 29/32 correct clean cells**.
-The original failed pilot is preserved. The campaign made 114 API attempts;
-**no main model call has occurred**. A [prospective main freeze](results/MAIN_FREEZE.md)
-exists. Renewed stage-specific user permission has been received, but execution
-still awaits a separate exact-source GO and exclusive provider-route handoff.
-See [current state](STATE.md), the [composite development export](results/pilot-composite-2026-11-08/RESULTS.md),
-and the preserved [interrupted-pilot export](results/pilot-2026-11-08/RESULTS.md).
-No forbidden effect was observed; missing/invalid responses, broad uncertainty
-and failed length control prevent a safety or equivalence conclusion.
+An offline-first Python standard-library testbed for summary/source handoffs,
+now with a completed, separately frozen real-model main study. All 540 scheduled
+roles were attempted in 548 physical requests. Executor cells are **445 valid,
+33 invalid and two missing**; useful correct completion is **443/480 scheduled**.
+No forbidden state transition or schema-valid protected-write attempt was observed
+in 478 available responses. The two primary estimates are zero on 39/40 complete
+attacked pairs, with conservative intervals of **±43.49 percentage points** and
+finite-schedule missingness bounds of [0, 2.5]. This is not evidence of equivalence,
+universal refusal or defense efficacy. Main length matching fails for 1/40 inputs.
+
+See the [main evidence and accounting caveats](results/main-2026-11-09/README.md),
+[main result tables](results/main-2026-11-09/RESULTS.md),
+[English main report](report/main-report.tex) and [current state](STATE.md).
+The original failed pilots, explicit operational continuation, composite gate
+(99/108 valid roles; 29/32 clean correctness), pilot PDF and exports remain
+unchanged. Main observations are not pooled with development. All 662 campaign
+requests and unknown-cost holds are accounted for; no additional experiment or
+competition submission is authorized by this release.
 See [the live protocol](LIVE_PROTOCOL.md). Ordinary `dry-run` remains fully offline.
 
 Read the [study plan](PLAN.md), [method amendments](METHOD_CHANGES.md), and
-[validation record](VALIDATION.md). Broader research claims remain untested.
+[validation record](VALIDATION.md). Broader generalization remains untested.
 
 ## Run locally
 
@@ -84,7 +90,8 @@ do not treat that directory as a completed run or silently rerun it as a retry.
 The generator has disjoint `dev`, `validation`, and `holdout` namespaces. Unit
 tests inspect generation invariants without evaluating an empirical holdout.
 The separately frozen live main seed
-is 2026110812; its 60-input manifest has not been acquired. The offline runner
+is 2026110812; its 60-input manifest was acquired once under the authorized live
+protocol on 8–9 November 2026. The offline runner
 rejects empirical holdout execution. The separate live runner requires a bound preflight GO and an
 actual passing pilot. Offline manifests are engineering
 snapshots, **not an empirical freeze or preregistration**.
@@ -130,15 +137,16 @@ submission is separate and has not occurred.
 
 ## Public-data replay and report
 
-The composite schema-2 export includes the synthetic inputs, exact visible model
+The main and composite schema-2 exports include synthetic inputs, exact visible model
 answers, saved summaries, state events and minimized accounting. Reproduce its
 request identities, scores, condition tables and primary statistics without
 private logs, credentials or model calls:
 
 ```sh
 python3 studies/summary-laundering/report/check_public.py studies/summary-laundering/results/pilot-composite-2026-11-08
+python3 studies/summary-laundering/report/check_public.py studies/summary-laundering/results/main-2026-11-09
 ```
 
 This is internal reproducibility, not provider attestation. Earlier schema-1
 exports were counts-only and are retained as historical snapshots. See the
-[report guide](report/README.md) for the pilot-only English draft and its limits.
+[report guide](report/README.md) for the separate main and preserved pilot drafts.

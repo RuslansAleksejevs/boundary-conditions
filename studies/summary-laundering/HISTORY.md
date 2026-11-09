@@ -356,3 +356,127 @@ current authorization wording, not the prospective main, source inventory or dat
 The provider-reported 30-day logging/no-training/non-ZDR metadata was checked
 against the dated preflight source and public execution-budget record; no verified
 deletion guarantee is claimed. Experimental funding is contributor-provided.
+
+## 2026-11-08 23:54 UTC — separately authorized main acquisition started
+
+After the other study's process actually exited and released the route, the
+coordinator rechecked the actual direct user authorization, frozen source,
+main/pilot bindings, wallet and available funding. A new private exact-source GO
+and reviewed execution approved the original main command without changing any
+scientific setting. The parent chat owns the sole acquisition process.
+
+Main's first request started at 23:53:27.348046 UTC. The first sparse read-only
+checkpoint found two completed HTTP-200 responses and two valid roles, no retries,
+and USD 0.00499174 in accepted main receipts. The wallet audit passed with one
+normal in-flight reserve. No main effect contrast was inspected. The complete
+run file did not yet exist. This entry records an actual start, not completion,
+success of a hypothesis, or permission to rerun failed/invalid responses.
+
+## 2026-11-09 00:12 UTC — first main transport retry retained and verified
+
+A sparse read-only checkpoint found 53 physical attempts for 52 logical roles:
+52 HTTP-200 responses and one HTTP 429. The failed receipt finished at
+00:06:03.621503 UTC; its same-role retry had identical request and wire hashes,
+started after 60.005856 monotonic seconds, and completed with HTTP 200. The exact
+upstream cause is unknown. No new retry rule, schema rescue or semantic repair
+was introduced. Four invalid executor batches remain unchanged model outcomes.
+
+Accepted main receipt cost was USD 0.10657998; the failed attempt retained its
+full unknown-charge reserve. The wallet snapshot was USD 7.07946382 including
+one normal in-flight reserve, with its original 232-event pilot prefix unchanged.
+Scientific source remained frozen and no interim effect contrast was inspected.
+
+## 2026-11-09 03:16 UTC — completed main, native audit and separate draft
+
+The sole authorized main process actually exited with code 0 after its last
+receipt at 03:04:13.578361 UTC. All 540 roles were attempted in 548 physical
+requests: 538 HTTP 200, ten HTTP 429 and eight identical technical retries.
+Six retries recovered and two exhausted the one-retry cap; cooldowns stayed at
+least 60 seconds. No manual restart, semantic repair, main protocol change or
+replacement of an attempted response occurred. Frozen source inventory remains
+`dbb21522554b9c96bed164d89230f6ecbb36b7d51b2861048f275a6461c424ca`.
+
+Full native audit passed for 60 inputs, 480 executor rows and 548 requests.
+The final run digest is `a5401cd600308f8dc10d632c0044c0bb1fc569bd3269324e68f64006d9d27c61`.
+Journal/run and wallet/run comparisons pass; the original 232-record financial
+prefix and exact passing-pilot binding are unchanged. The extra journal check
+initially stripped a `record_type` field from calls/summaries unnecessarily;
+direct comparison confirmed those records are exact, while only outcome journal
+records need that documented metadata field removed. No acquired record changed.
+
+Main outcomes: 60 valid summaries, 445 valid executor batches, 33 invalid batches
+(32 fenced JSON-looking answers; one missing `task_id`), two missing transport
+outcomes and two valid empty-action abstentions. Useful correctness is 443/480
+scheduled cells (443/478 observed). No observed forbidden state event or
+schema-valid protected-write attempt occurred. Both primary contrasts use 39/40
+complete attacked pairs: 0 pp, bootstrap [0, 0], conservative ±43.4941 pp,
+finite-schedule bounds [0, 2.5] pp, Holm p=1. Length matching fails for 1/40 cases.
+These results do not demonstrate an effect, equivalence, universal refusal or
+defense efficacy. All main observations remain separate from development.
+
+Main accepted receipts total USD 1.12611330. Across 662 actual campaign requests,
+known accepted receipts plus the separately reconciled first pilot total
+USD 1.35682664. Nineteen full holds remain, including the first separately
+reconciled rejection; 18 receipt costs are additionally unresolved locally.
+Accepted settlements USD 1.35141058 plus holds USD 11.65492224 equal the
+USD 13.00633282 wallet. No reserve was released. A 03:04:57 UTC account snapshot
+was USD 0.00117286 below the receipt-derived expectation; a coordinator-verified
+03:09:27 UTC aggregate then agreed. No provider-internal cause or free-error
+assumption is inferred, and original receipt/ledger records are unchanged.
+
+Local `python3 -m unittest discover -s studies/summary-laundering/tests -q`
+passed 166 tests in 6.235 seconds. Public `report/check_public.py` reproduced
+60 scenarios, 480 outcomes, 548 visible calls and both primary contrasts with
+zero new API calls. Independent read-only review also reproduced all secondary,
+family and matched-subset statistics, selected traces and frozen source hashes.
+Private acquisition authenticity, account payloads and full tests are outside
+that peer review; the coordinator separately repeated native/public audits and
+the full 166-test suite. No blocker has been found in the data review.
+
+Prepared a separate English main report and new minimized evidence directory,
+leaving the historical pilot PDF, TeX includes and exports unchanged. The main
+abstract has 203 words; cached-only Tectonic 0.16.9 builds a nine-page PDF with
+six text pages, one bibliography page and two mandatory appendix pages. Two
+layout overflows were corrected; the build has no warnings and selected result
+and reproduction pages were visually checked. The first sandboxed TeX attempt
+failed before compiling; a reviewed cached-only local build succeeded without
+resource downloads or model calls. Final manuscript/privacy review and PR #3
+publication remain the next steps; no merge or submission is claimed.
+
+## 2026-11-09 UTC — manuscript precision review
+
+Read-only reviewers confirmed the primary/secondary numbers, family and matched
+subsets, all selected traces, source inventory and the distinction between 19
+retained holds and 18 additionally unresolved costs. Three wording suggestions
+were adopted only in new main-report files: describe HTTP 429 errors without
+inferring their upstream cause; characterize the fail-closed pipeline without
+claiming that invalid batches causally prevented attacks; and identify the 60
+input variants as 40 underlying task clusters. Integration status is delegated
+to the repository rather than frozen as a prospective assertion in the PDF.
+No statistical, acquisition or historical pilot file changed.
+
+The revised main abstract has 204 words. The final cached-only build has no TeX
+warnings, nine pages and 72,787 bytes; SHA-256 is
+`1e73de8ac9b0cd882d83ef13694e896d22913cd9a096350f43fb68919addcb45`.
+The pilot PDF retains SHA-256
+`594743ca9e438864990bdf50c38c0e69b389ad3e9f387ff1df719413d9890da9`.
+
+## 2026-11-09 UTC — final reporting review and publication checks
+
+Final read-only peer review is clear: all manuscript/PDF text, pagination,
+privacy patterns, unchanged analysis/campaign/manifest hashes and public replay
+were checked. Its scope excludes private provider/account authentication, the
+full unit suite and a new raster inspection. The coordinator separately checked
+private native records and public equality, read the full manuscript and visually
+inspected the result page. This workstream visually checked the main table,
+uncertainty plot and reproduction page. These are code/report checks, not external
+scientific review or independent empirical replication.
+
+The final full local suite passed **166/166 in 5.348 seconds**; public replay
+again passed 60/480/548 and both primary contrasts with zero API calls. Privacy
+scan covered 20 text files and PDF visible text, found no private markers, and
+verified the exact whitelist for all 548 public call records. Frozen source and
+historical pilot artifacts remain unchanged. `git diff --check` passes; fetch
+preceded publication, with no branch switch, rebase or merge. The reviewed release
+is handed off through existing PR #3; integration and competition submission are
+separate actions, and no self-merge or additional experiment is performed.

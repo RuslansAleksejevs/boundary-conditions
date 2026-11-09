@@ -1,12 +1,80 @@
 # Study state
 
-As of 8 November 2026, 21:49 UTC. Implementation evidence: local code and CPU
-tests. Empirical evidence: a completed, explicitly amended development pilot.
-No main model call has occurred. A prospective main manifest is frozen, but
-renewed stage-specific user authorization has been received. Execution still
-awaits a separate exact-source GO and exclusive provider-route handoff.
+As of 9 November 2026, final reporting review. The authorized main acquisition actually exited
+with code 0 and passed native audit. No acquisition is running and no further
+model request is authorized. Full analysis began only after actual exit.
 
-## Latest verified checkpoint
+## Current verified main result
+
+- Unchanged frozen source `eb8844d`, inventory `dbb21522554b…`, seed 2026110812.
+  All 540 scheduled roles attempted in 548 physical requests: 538 HTTP 200,
+  ten HTTP 429 and eight identical technical retries. No semantic repair,
+  response replacement, main-stage amendment or post-outcome tuning.
+- Main: 60 valid summaries, 445 valid + 33 invalid + two missing executor cells.
+  Useful correctness **443/480 scheduled** (443/478 observed), including two
+  empty-action abstentions. The invalid batches are 32 fenced JSON-looking
+  responses and one missing `task_id`; none was repaired or regraded.
+- Zero observed forbidden transitions or schema-valid protected-write attempts
+  in 478 available responses. Both primary contrasts have 39/40 complete attacked
+  pairs, 0 pp, bootstrap [0, 0], conservative ±43.4941 pp, scheduled bounds
+  [0, 2.5] pp and Holm p=1. No effect, equivalence or safety claim is supported.
+  Length control: one of 40 unmatched, below the predeclared inadequacy threshold.
+- Native audit and public replay PASS: 60 inputs / 480 outcomes / 548 calls /
+  two primary contrasts. Journal/run equality, wallet/run equality, all request
+  identities and cooldowns, exact pilot binding and original 232-record prefix
+  PASS. All 662 campaign attempts settled; no in-flight reserve.
+- Main accepted receipts USD 1.12611330. Campaign known receipt plus separately
+  reconciled first-request subtotal USD 1.35682664. Nineteen full holds remain
+  (USD 11.65492224), of which 18 receipt costs are additionally unresolved.
+  Accepted settlements plus all holds equal the USD 13.00633282 wallet. A dated
+  account aggregate agreed at 03:09:27 UTC; this does not prove each unknown
+  receipt was free or release its hold. Earlier account discrepancy preserved.
+- Local suite: **166/166 PASS**, final run 5.348 seconds (earlier 6.235 seconds),
+  Python 3.14.6, zero API calls.
+  The coordinator independently repeated 166 tests and native/public audits.
+  Read-only peer review independently reproduced all primary/secondary/family
+  and matched calculations, visible traces and source hashes without a blocker.
+  Final full-manuscript/PDF-text/privacy review is also clear; the peer did not
+  claim a new empirical replication, private account audit or raster review.
+- [Main evidence](results/main-2026-11-09/README.md) and a separate
+  [English report](report/main-report.tex) / `main-report.pdf` are prepared.
+  The cached-only Tectonic 0.16.9 build has nine pages (six text, one bibliography,
+  two appendix), a 204-word abstract and no TeX warning. Historical pilot PDF,
+  source includes, data exports, failed runs and wallet records are unchanged.
+
+This revision is the reviewed main release for PR #3 on
+`study/summary-laundering-live-v1`. Next: the coordinator reviews the published
+exact head and handles integration separately; no additional model run is needed.
+No merge, competition submission or human author approval is claimed.
+
+## Historical in-progress checkpoint (superseded)
+
+The following historical snapshots are retained for provenance. Their prospective
+next steps and authorization statements are superseded by the current result.
+
+## Main acquisition in progress
+
+The other study actually exited and released the provider route. A new exact-source
+GO and fresh reviewed execution were then approved in the authorizing coordinator
+chat. Main's first request started at **23:53:27.348046 UTC**. The first read-only
+checkpoint found two completed HTTP-200 responses, two valid roles, zero retries
+and USD 0.00499174 in accepted main receipts. The wallet contained one normal
+in-flight reserve; its audit passed. This is progress, not a completed main result.
+
+The coordinator owns the sole acquisition process. This workstream reads only
+sparse progress/accounting metadata until actual process exit, then performs the
+full audit, frozen analysis, public export and report update. No duplicate API
+execution, outcome-driven tuning, source change or additional experiment occurs.
+
+At 00:11:46 UTC, 52 logical roles had 53 physical attempts: 52 HTTP 200 and one
+HTTP 429. The frozen-policy retry was byte/hash-identical, began 60.005856
+monotonic seconds after failure, and succeeded. There were 48 valid roles and
+four invalid executor batches; invalid model responses were not retried.
+Accepted main receipts totaled USD 0.10657998, with the new unknown-charge hold
+retained in full. The USD 7.07946382 wallet snapshot included one normal in-flight
+reserve and the unchanged original prefix. These are acquisition metadata only.
+
+## Historical development checkpoint
 
 - The original repaired pilot remains failed at 47/108 valid roles after 59
   attempts. A separately authorized continuation sent only the 54 never-attempted
@@ -29,7 +97,8 @@ awaits a separate exact-source GO and exclusive provider-route handoff.
 - CPU-only main freeze: seed 2026110812, 40 attacked plus 20 clean inputs,
   540 core calls, unchanged source/configuration/scoring and 27 permitted
   technical retries. See [the prospective freeze record](results/MAIN_FREEZE.md).
-  No attempt to execute main or bypass the authorization pause has been made.
+  The later main start followed renewed authorization and the separate reviewed
+  handoff; no alternate route or duplicate execution was used.
 - Latest local command: `python3 -m unittest discover -s studies/summary-laundering/tests -q`;
   **166/166 PASS in 5.994 seconds**, no network. The schema-2 public replay also
   passes: 12 scenarios, 96 outcomes, 113 visible call records and both primary
@@ -47,10 +116,10 @@ repeat the full test suite. A later full local suite passed 166 tests in 5.844 s
 
 Published the reviewed pilot report, PDF and public bundle in draft PR #3 at
 `58bc90085f8d02cf14ba1947236a4c478e2045a8`. It is not integrated into main.
-Next: wait for the other study to finish and for a separate exact-source main GO.
-Renewed user authorization covers the original 540-role stage within the unchanged
-USD 30 study/USD 50 shared limits. It does not permit concurrent acquisition,
-extra probes, altered tasks or reuse of an old stage GO. No main API call has occurred.
+Next: await actual main exit, audit the complete records, then report all outcomes
+without changing frozen comparisons. User authorization covers the original
+540-role stage within the unchanged USD 30 study/USD 50 shared limits. It does
+not permit concurrent acquisition, extra probes, altered tasks or a second sample.
 
 ## Historical acquisition sequence
 

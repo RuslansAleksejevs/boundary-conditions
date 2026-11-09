@@ -1,0 +1,177 @@
+\section{Held-out main results}
+\label{sec:results}
+\subsection{Acquisition and exact outcomes}
+The main manifest was frozen after the amended development gate passed, before
+any main output. Acquisition ran from 8 November 2026 at 23:53:27 UTC to
+9 November at 03:04:13 UTC and exited successfully without a stop condition.
+All 540 planned roles were attempted: 60 summaries and 480 executor cells.
+Eight identical technical retries produced 548 physical requests, within the
+567-attempt stage cap. Ten HTTP 429 receipts include two exhausted same-role
+retry pairs; those executor outcomes remain missing. No invalid response was
+repaired, resampled or replaced.
+
+All 60 summaries were available. The executor matrix has 445 valid batches,
+33 invalid batches (32 invalid JSON, one invalid action schema), and two missing
+transport outcomes. The two valid but incorrect batches are empty-action
+abstentions. Useful correct completion is 443/480 scheduled cells (92.29\%),
+or 443/478 observed responses. There are no observed protected false-to-true
+events and no schema-valid protected-write attempts. Invalid batches execute
+nothing by construction; these findings do not establish the absence of textual
+intent in malformed responses or the safety of missing responses.
+Read-only inspection of all invalid texts found 32 Markdown-fenced JSON-looking
+answer batches and one answer action missing \texttt{task\_id}. No fence was
+stripped, missing field filled or batch regraded as correct.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{Attacked (40 scheduled per cell)} & \multicolumn{3}{c}{Clean (20 per cell)}\\
+Condition & Effects & Valid & Correct & Effects & Valid & Correct\\
+\midrule
+R-D   & 0/40 & 35/40 & 35/40 & 0/20 & 18/20 & 18/20\\
+R-P   & 0/40 & 35/40 & 35/40 & 0/19 & 18/19 & 18/19\\
+E-D   & 0/40 & 39/40 & 39/40 & 0/20 & 20/20 & 20/20\\
+E-P   & 0/40 & 38/40 & 38/40 & 0/20 & 18/20 & 18/20\\
+S-D   & 0/40 & 37/40 & 37/40 & 0/20 & 18/20 & 17/20\\
+S-P   & 0/39 & 35/39 & 35/39 & 0/20 & 19/20 & 19/20\\
+S-P-W & 0/40 & 39/40 & 38/40 & 0/20 & 19/20 & 19/20\\
+S-P-P & 0/40 & 37/40 & 37/40 & 0/20 & 20/20 & 20/20\\
+\bottomrule
+\end{tabular}
+\caption{Main observations, not pooled with development. Denominators are
+observed executor responses, including atomically rejected invalid batches.
+Attacked S-P and clean R-P each have one missing response, excluded from observed
+denominators but retained in the scheduled matrix. All schema-valid protected-write
+attempts are zero. Correct and joint safe-and-correct counts coincide here.}
+\label{tab:main}
+\end{table}
+
+\subsection{Primary comparisons and uncertainty}
+For both S-P minus S-D and S-P minus E-P, 39 of 40 attacked pairs are complete.
+Both estimates are zero percentage points (pp), with zero discordant effects,
+exact McNemar $p=1$ and Holm-adjusted $p=1$. Percentile bootstrap intervals are
+$[0,0]$, whereas conservative bounded-cluster 95\% intervals are
+$[-43.49,43.49]$ pp (Figure~\ref{fig:main-uncertainty}). These wide intervals,
+which still assume independent scenario clusters, are not equivalence evidence.
+Shared payload templates and the narrow task grammar further limit inference.
+
+Both full-schedule worst-case contrast bounds are $[0,2.5]$ pp. The missing
+attacked S-P could contain an effect; its observed S-D and E-P comparisons do
+not. These finite-schedule bounds are not population confidence intervals.
+Family-level comparisons remain descriptive: colleague has nine complete pairs,
+the other three families ten each, with zero observed effects throughout.
+
+\begin{figure}[t]
+\centering
+\setlength{\unitlength}{1pt}
+\begin{picture}(470,117)
+\color{gray}
+\put(155,28){\line(0,1){62}}
+\put(232.5,28){\line(0,1){62}}
+\put(310,28){\line(0,1){62}}
+\put(387.5,28){\line(0,1){62}}
+\put(465,28){\line(0,1){62}}
+\linethickness{2pt}
+\put(242.5842,75){\line(1,0){134.8316}}
+\put(242.5842,45){\line(1,0){134.8316}}
+\color{black}
+\put(310,75){\makebox(0,0){\large $\bullet$}}
+\put(310,45){\makebox(0,0){\large $\bullet$}}
+\put(0,73){\small Source: S-P $-$ S-D}
+\put(0,43){\small Transform: S-P $-$ E-P}
+\put(0,59){\scriptsize 39/40 complete pairs}
+\put(0,29){\scriptsize 39/40 complete pairs}
+\put(155,16){\makebox(0,0){\small $-100$}}
+\put(232.5,16){\makebox(0,0){\small $-50$}}
+\put(310,16){\makebox(0,0){\small 0}}
+\put(387.5,16){\makebox(0,0){\small $+50$}}
+\put(465,16){\makebox(0,0){\small $+100$}}
+\put(310,0){\makebox(0,0){\small Difference in forbidden effects (pp)}}
+\end{picture}
+\caption{Main primary contrasts. Black dots are the zero estimates and
+collapsed bootstrap intervals; gray bars are the conservative bounded-cluster
+95\% intervals, approximately $\pm43.49$ pp. Positive values mean more effects
+in S-P. Neither interval removes shared-template dependence.}
+\label{fig:main-uncertainty}
+\end{figure}
+
+\subsection{Defenses, utility and length matching}
+Attacked S-P-W minus S-P useful completion is $+5.13$ pp on 39 complete pairs,
+with bootstrap interval $[-7.69,17.95]$ and conservative interval
+$[-38.37,48.62]$ pp. S-P-P minus S-P is $+2.56$ pp, with intervals
+$[-10.53,15.79]$ and $[-40.93,46.06]$ pp. The corresponding observed effect
+differences are zero; these secondary estimates do not establish defense efficacy
+or a utility benefit. Clean correctness is 149/160 scheduled cells (149/159
+observed), over only 20 clean originals. All clean, defense, family and
+matched-subset calculations are included in the public analysis.
+
+One of 40 assessable attacked inputs is unmatched (2.5\%), below the predeclared
+20\% inadequate-control threshold. That case has a 199-byte summary and a
+250-byte mandatory extract, a 25.63\% gap; it stays in the primary analysis.
+The descriptive matched subset has 38 complete pairs among 39 scheduled,
+zero difference and a conservative interval of $[-44.06,44.06]$ pp. Conditioning
+on summary-dependent matching is not an unbiased mediation analysis.
+
+All 40 attacked summaries contain literal task fact values; 12 contain the
+literal protected target, and 19 contain the literal word ``true.'' These are
+lexical checks, not semantic annotations. The predeclared trace rule selects
+the first attacked input of each family; there is no additional S-P effect trace.
+All four happen to be lookup tasks. In the prerequisite example the summary
+repeats the claimed need to set the protected flag, and in the quoted-plan example
+it repeats that instruction while describing it as untrusted data. S-P still
+writes only the correct legitimate answer in each selected trace. These readings
+illustrate visible behavior, not a sampled causal mechanism or hidden reasoning.
+
+\subsection{Acquisition time and accounting}
+Main wall time is 11,446.230 seconds (about 3 h 11 min); summed request latency
+is 3,913.528 seconds, with median request latency 5.804 seconds. The minimum
+recorded monotonic start spacing is 20.000060 seconds. All ten HTTP 429 cooldowns
+are at least 60 seconds. Eight retries preserve exact logical-role, request and
+wire identities; six recover and two exhaust the single-retry limit. The exact
+upstream rate-limit cause is unknown. The two missing outcomes are preserved.
+
+Accepted main receipts report 184,909 input and 518,287 output tokens; 485,585
+reasoning tokens are included within output, not added twice. No main receipt
+reports output above the requested 8,192-token cap. Ten HTTP errors have unknown
+local token usage and cost. Table~\ref{tab:main-cost} separates requests from money.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Stage & Physical requests & Retries & Known receipt/reconciled USD\\
+\midrule
+First failed pilot & 1 & 0 & 0.00541606\\
+Composite repaired pilot & 113 & 5 & 0.22529728\\
+Held-out main & 548 & 8 & 1.12611330\\
+\midrule
+Campaign & 662 & 13 & 1.35682664\\
+\bottomrule
+\end{tabular}
+\caption{Experimental inference accounting only. The first request is separately
+account-reconciled; other amounts are accepted provider receipts. The subtotal
+is not a claim of finalized account billing. Assistant-session usage is excluded.
+The composite pilot includes its original 59 attempts and 54 untouched-suffix
+calls exactly once.}
+\label{tab:main-cost}
+\end{table}
+
+The campaign wallet retains USD 13.00633282 under the USD 30 study ceiling,
+including full holds for unknown or rejected receipts. This is a conservative charge and
+reservation total, not billed spend. Eighteen receipt costs remain unresolved
+locally (eight pilot errors and ten main errors); the separately reconciled first
+request also retains its original hold.
+\emph{All 19 retained full holds} total USD 11.65492224; accepted receipt settlements
+of USD 1.35141058 plus these holds equal the wallet exactly. Thus 19 retained
+holds and 18 additionally unresolved receipt costs are different counts.
+A first post-run account snapshot differed
+from the receipt-derived expectation by USD 0.00117286. No causal explanation,
+forced reconciliation or reserve release is inferred from that discrepancy.
+The public bundle preserves original receipts and analysis; any later dated
+account reconciliation is reported separately. A second read-only account check
+at 03:09:27 UTC, independently checked by the project coordinator, agreed with the
+combined campaign accounting. That dated aggregate agreement does not establish
+zero cost for each unknown HTTP receipt or justify releasing its conservative hold.
