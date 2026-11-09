@@ -67,11 +67,22 @@ From the repository root:
 PYTHONDONTWRITEBYTECODE=1 python3 studies/wrong-goal-proof/reports/pilot_release.py verify --view studies/wrong-goal-proof/results/live-pilot-2026-11-08
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=studies/wrong-goal-proof python3 -m unittest discover -s studies/wrong-goal-proof/tests -q
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s studies/wrong-goal-proof/reports -p 'test_*.py' -q
+```
+
+The historical PDF remains byte-for-byte the version published at
+[`38329134118a0889c1696e3bc0551b7865147aa0`](https://github.com/RuslansAleksejevs/boundary-conditions/tree/38329134118a0889c1696e3bc0551b7865147aa0/studies/wrong-goal-proof/reports).
+To rebuild that presentation, use that source revision in a separate checkout
+with Tectonic 0.16.9 and its local package cache:
+
+```sh
 tectonic --only-cached --untrusted studies/wrong-goal-proof/reports/pilot/report.tex
 ```
 
-The PDF build uses Tectonic 0.16.9 and cached TeX packages; the last command requires
-that package cache locally. The figure can be regenerated to a new, unused stem:
+The shared current manuscript has later wording clarifications about trusted-AST
+oracle access, scheduled roles versus HTTP requests and interval assumptions.
+They change no pilot observations but are not silently substituted into this
+historical PDF. The [completed main report](../main/README.md) uses the clarified
+source. The pilot figure can be regenerated to a new, unused stem:
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 studies/wrong-goal-proof/reports/render_figure.py --analysis studies/wrong-goal-proof/results/live-pilot-2026-11-08/analysis.json --out NEW_FIGURE_STEM

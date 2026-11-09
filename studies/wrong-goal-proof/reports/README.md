@@ -35,6 +35,22 @@ records stay private. A manual content review is still required before Git push.
 PYTHONDONTWRITEBYTECODE=1 python3 studies/wrong-goal-proof/reports/export_campaign.py --campaign PRIVATE_COMPLETED_CAMPAIGN --out NEW_PUBLIC_RESULT_DIRECTORY
 ```
 
+`acquisition_summary.py` also requires an ended main, unchanged source inventory
+and passing complete campaign audit. It derives decimal reported-cost subtotals,
+unknown-cost/token denominators, separate stage/cumulative wallet commitments,
+actual pacing and exact-payload retry pairs. It does not contact the API, repair
+records, replace scoring or publish private account reconciliation.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 studies/wrong-goal-proof/reports/acquisition_summary.py --campaign COMPLETED_CAMPAIGN --out NEW_OPERATIONAL_SUMMARY.json
+```
+
+Eight additional no-network accounting tests use explicitly invented arithmetic
+and timing fixtures; two more replay the already-published pilot metadata. None
+are new model observations. UTC receipt gaps and monotonic HTTP/elapsed durations
+are distinguished. A completed native audit requires zero unsettled reservations;
+unknown settled costs nevertheless retain their full holds.
+
 The five additional publication-boundary tests do not generate new task cases or
 contact a provider. They check rejection of unfinished main acquisition and
 fictional secret/path/identifier examples, not actual sensitive values.
@@ -55,6 +71,9 @@ Four envelope-boundary tests and five saved-pilot replay/mutation tests cover th
 additional publication path. They make no new model calls or observations.
 The official report template and source-reading scope are in [SOURCES.md](SOURCES.md).
 The [development-only manuscript](pilot/README.md) records the 21:50 UTC pilot
-cutoff and remains pending human author review. Current acquisition status is in
-[STATE.md](../STATE.md); no completed held-out report or competition submission is
-claimed by this historical manuscript.
+cutoff and remains pending human author review. Its original PDF is preserved;
+source-version instructions accompany that historical checkpoint.
+The [completed held-out manuscript](main/README.md) and
+[complete public campaign](../results/live-main-2026-11-08/README.md) now report
+the finished evaluation. Current status is in [STATE.md](../STATE.md).
+Neither manuscript has been submitted to the competition.

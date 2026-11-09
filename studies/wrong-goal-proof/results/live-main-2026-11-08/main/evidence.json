@@ -1,0 +1,33 @@
+{
+  "cases": [],
+  "configuration": {
+    "budget_admission": "per_request_full_context_hard_cap",
+    "context_token_bound": 262144,
+    "data_collection": "allow",
+    "input_usd_per_million": "0.26",
+    "max_request_bytes": 24000,
+    "max_tokens": 8192,
+    "model": "qwen/qwen3.5-122b-a10b",
+    "output_reservation_tokens": 262144,
+    "output_usd_per_million": "2.08",
+    "price_as_of": "2026-11-08",
+    "price_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints",
+    "provider_response_name": "Alibaba",
+    "provider_slug": "alibaba",
+    "quota_usd": "20",
+    "reasoning_enabled": true,
+    "request_usd": "0",
+    "stream": true,
+    "temperature": 0.6,
+    "timeout_seconds": 180,
+    "top_p": 0.95,
+    "version": 2,
+    "version_pin_status": "OpenRouter model_id and Alibaba route pinned; endpoint metadata name Alibaba | qwen/qwen3.5-122b-a10b-20260224. Immutable provider weight revision and quantization are not independently attested. Both input and billed output reserve the full advertised 262144-token total context, including reasoning; native requested max_tokens may bound only the visible answer. Provider metadata permits logging for 30 days, does not claim ZDR, and reports no training use. Synthetic study payloads only."
+  },
+  "dataset_hash": "d933a93993f05df6fdca3df487f5e909cd528fb8752989566a656db4edac281a",
+  "manifest_hash": "30146d523418e4f3aab5155eeea41a310864c7dfb793ef57eed523b2444e8bf8",
+  "mode": "live_model_acquisition",
+  "provenance_note": "Locally recorded HTTPS receipts, not cryptographically authenticated provider attestations.",
+  "source_run_hash": "81af66525adfb197fb3c48911fb07c05c3668fa8f7c75987a6143aac54a636de",
+  "version": 1
+}

@@ -1,6 +1,6 @@
 # Study state
 
-As of 2026-11-08 UTC. Source: implementation and local test commands;
+As of 2026-11-09 UTC. Source: implementation and local test commands;
 classification: PROJECT_REPORTED. Engineering fixtures and actual model
 observations are explicitly separated below.
 
@@ -8,14 +8,27 @@ observations are explicitly separated below.
   scalar/vector semantics, exhaustive certificates, seeded disjoint datasets,
   natural translation and paired certificate replay, offline adapters, manifest,
   incremental logging, freeze rehearsal, audit, and paired analysis.
-- Latest complete test pass: 171 tests, Python 3.14.6, 21.834 seconds. This includes
+- Latest complete test pass: 171 tests, Python 3.14.6, 21.591 seconds. This includes
   the original 105 tests plus 66 live-interface/exclusion/ledger/SSE/pacing tests.
+  A separate reporting/accounting suite passed 28 tests in 0.289 seconds.
 - The original live pilot is complete: 51 actual HTTP200 calls for 52 scheduled
   roles; 50 schema-completed, one invalid translation and one dependent blocked
   review. Known API cost and conservative settled wallet both USD0.39923650,
   with zero technical retries, HTTP429, unknown charges or pricing overruns.
-  Main acquisition began at 21:51:10Z after renewed authorization and a fresh
-  successful execution review. No completed main result or submission is claimed.
+  Main began at 21:51:10Z after renewed authorization and ended at 23:44:59Z:
+  100 originals, 260 scheduled roles, 259 physical attempts, 253 schema-valid
+  responses, four schema errors and three blocked dependent reviews.
+- Completed main: natural utility 36/40, semantic C/Q drift 0/37 valid
+  translations, false SAFE 0/36 assessed natural reviews; B/N/S each correctly
+  answered all 40 planted originals and all 20 equivalent controls. No observed
+  false guarantee or abstention. Both paired fault contrasts are zero on 40
+  complete pairs; bootstrap [0,0] does not establish equivalence. The bounded-iid
+  interval is approximately [-0.4294694,0.4294694], with independence and transfer
+  beyond shared templates unestablished.
+- Campaign known reported cost and conservative settlements: USD2.39640830 for
+  308/310 attempts. Two HTTP429 costs remain UNKNOWN, with USD1.22683392 full
+  holds and USD3.62324222 cumulative commitment. No unsettled reservation or
+  pricing overrun. Both existing-policy retries used identical same-role payloads.
 - A separate live HTTP interface, persistent USD20 wallet, source/configuration/
   manifest-bound GO, actual-pilot freeze and campaign auditor are implemented.
   The renewed authorized experiment now targets Qwen3.5-122B-A10B via Alibaba.
@@ -38,20 +51,22 @@ observations are explicitly separated below.
   https://github.com/RuslansAleksejevs/boundary-conditions/pull/4, not yet integrated.
   Frozen acquisition commit: `83aa8ee313d4f054ac47af038a8b5c33a6a1e859`.
 
-Next: preserve the unchanged, single-process main acquisition; after completion
-run the full audit, analysis and evidence checks before exporting held-out data.
-The pilot/campaign/evidence audits and fixed gate passed (50/52 valid roles,
-11/12 clean originals). A prospective empirical freeze was authorized and saved
-at 2026-11-08T21:03:14.925378Z. No completed main evaluation or report PDF
-containing held-out results exists yet. The portable pilot-only report has been
-compiled and checked; it is not a completed main report or submission.
-The first main execution review denied dispatch without creating any run or
-wallet event. A later genuinely renewed authorization in the execution-owning
-context enabled one fresh review and the existing main process; no duplicate
-process was started by this study worker.
-Publication remains draft PR #4. The pilot report/evidence update was pushed at
-`8b431b26a6020bad9c98defd7a027ada5f34d6c5`; it has not been integrated. Acquisition
-source remains bound to `83aa8ee313d4f054ac47af038a8b5c33a6a1e859`.
+Next: finish reviewed publication through existing draft PR #4, then await
+coordinator integration and human author review. No more model acquisition or
+competition submission is authorized. The full private and exported native
+campaign audits, empty false-guarantee evidence check, journal bindings and exact
+approved scientific GO comparison all passed. The public complete campaign is
+in `results/live-main-2026-11-08/`; the standalone English report is in
+`reports/main/` (seven-page PDF, 211-word abstract, no TeX warnings, required
+ethics and AI-use disclosures). The public export has 14 hash-inventoried files.
+All visible main answers and publication-boundary patterns were reviewed.
+
+The historical pilot PDF is preserved byte-for-byte at its published version;
+its README records the exact presentation-source revision. Current main wording
+clarifies the oracle's trusted-AST/computation privilege without suggesting hidden
+original-task semantics. Neither report has been submitted. Frozen acquisition
+commit remains `83aa8ee313d4f054ac47af038a8b5c33a6a1e859`; its source inventory is
+87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e.
 
 ## Earlier preparation — 8 November 2026 UTC, before restored access
 
@@ -234,3 +249,106 @@ No completed main run file existed. The pilot-only update was committed and
 pushed to PR#4 after staged scope/privacy, append-only history and PDF checks.
 The final reporting-test rerun passed 18 tests in0.292s. The PR description now
 distinguishes the completed pilot from the ongoing main; no self-merge occurred.
+
+At22:10:57Z, main had47 HTTP200 receipts with known costUSD0.37256648. Its first
+translator-format failure was malformed JSON (438 visible characters); the
+dependent review was blocked, not retried. Processed logical statuses were
+46 completed, one schema error and one blocked translation-dependent review.
+This is a preserved normal outcome, not demonstrated C/Q drift or a transport
+stop. Acquisition continues under the unchanged schedule. The current public
+branch also includes documentation-only status clarification commit3832913.
+
+At22:33:55Z, main had100 HTTP200 receipts, all costs known, totaling
+USD0.77680018 for main (USD1.17603668 including the completed pilot). Its101
+processed logical roles were98 completed, two schema errors and one dependent
+blocked review. The second malformed response was a reviewer answer, retained
+without repair. There was no transport failure or completed main run file.
+The exact purpose-written main authorization paragraph has now been separately
+approved for eventual publication after completed-run audits and content review;
+no private confirmation record or coordination text is included in that scope.
+
+At22:46:45Z, main reached125 HTTP200 receipts/126 processed roles, with123
+schema-valid responses, the same two schema failures and one dependent blocked
+review. Known main cost was USD1.01474282; no transport error or completed run
+file was observed. Reporting source now clarifies that the oracle's privilege
+is a trusted structured original-AST interface and exhaustive computation, not
+secret original-task semantics. All reviewers see the full controlled original.
+This is a wording correction only, not a protocol/input/scoring change; it will
+be checked in the final report build. The published pilot PDF remains unchanged.
+
+At23:12:04Z, main had183 physical receipts:181 HTTP200 and two HTTP429.
+Known main cost was USD1.42809550 across181 charged receipts; the two429 costs
+remain UNKNOWN, with both full-context conservative wallet holds retained.
+The184 processed scheduled roles comprise177 completed, four schema failures
+and three dependent blocked reviews. The two additional malformed translator
+responses were preserved without repair or semantic retry.
+
+The429s at22:55:37Z and22:57:26Z each recovered on the existing automatic
+same-role retry after at least60s. This is not a new API process or a change to
+the frozen retry policy; exact payload equality and full pacing will be checked
+in the final audit. The provider returned only error code429, so its cause is
+unknown. No completed main run file or final scientific result exists yet.
+
+At23:17:32Z,200 of260 scheduled roles were processed:193 completed, four schema
+failures and three blocked dependent reviews. There were199 physical receipts
+(197 HTTP200, two HTTP429), with known main cost USD1.51224684 and the same two
+unknown charges. No new failure, stop or completed run file was observed.
+
+The report-only `acquisition_summary.py` now requires an ended main, full native
+campaign audit and matching acquisition inventory. It separates decimal reported
+API costs, conservative settlements, unknown full holds and unsettled reserves;
+it also reproduces actual UTC request gaps and exact-payload technical retries.
+Twenty-eight reporting tests passed in0.287s, including eight simple accounting
+fixtures and two replays of already-published pilot metadata. No new model calls,
+task generation or scientific analysis were performed. The source inventory is
+still87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e.
+
+At23:35:55Z,240 of260 logical roles were processed (233 completed, four schema
+errors, three blocked reviews), using239 physical receipts (237 HTTP200,
+two429). Known main cost was USD1.84807792; two unknown full holds remain.
+No new failure, halt or completed run file was observed. Independent read-only
+review repeated all28 reporting tests in0.293s without a blocker. Its decimal
+wording clarification was applied: the helper converts each parsed provider
+cost through Decimal, not an original JSON wire lexeme. Report prose also
+distinguishes scheduled roles from physical attempts and makes uncertainty
+assumptions explicit; no frozen acquisition or scoring source changed.
+
+## Completed main and full release checks — 8 November 2026, after 23:44 UTC
+
+The sole acquisition process exited successfully after the unchanged 260-role
+schedule. Main run digest:
+`81af66525adfb197fb3c48911fb07c05c3668fa8f7c75987a6143aac54a636de`.
+Native private/public audits agree on 259 main and 310 cumulative physical
+attempts, 220 main reviewer outcomes and zero false guarantees. Main private
+journal equality covers all calls, receipts, outcomes and the terminal hash
+(1000 events); the pilot likewise matches its 200 events. The preserved main GO
+object matches the exported run, and its original file SHA256 remains
+`55b13ad6cc7822751333c62ad101792acc5865cc0891c57d3bf63452de76f523`.
+
+All four unassessed natural originals were SAFE: three translations were malformed
+JSON and one review included Markdown fences. These are not repaired, resampled
+or counted as semantic drift. The frozen generic natural missingness bounds
+[0,0.10] remain unchanged. All 20 natural UNSAFE witnesses and 120 planted-arm
+witnesses independently pass. Equivalent utility is 20/20 per arm; clean-original
+utility is 56/60. The false-guarantee packet is correctly empty.
+
+The two exact-payload retries began 60.004940 and 60.004454 seconds after their
+HTTP429 receipts. Minimum observed UTC start spacing is 20.000076 seconds;
+monotonic elapsed main duration is 6829.286533 seconds. Known main cost is
+USD1.99717180; two failed-attempt costs and token usages remain unknown. Two
+responses reported 10,723 and 8,283 output tokens against requested 8192, within
+the prospectively reserved full context; neither was reported truncated.
+
+Full export and operational summary reproduced the audits with zero new API
+calls. Every inventoried byte/canonical digest passed; public/private main and
+operational summaries match exactly. All 37 valid translator texts, all 39 unique
+valid reviewer texts covering 216 responses, and all four malformed answers
+were manually read; no private content was found. Seven-page main PDF title,
+results/figure and mandatory appendix were visually checked after a warning-free
+cached Tectonic 0.16.9 build. Its abstract contains 211 whitespace-delimited words.
+An incidental rebuild of the pilot presentation was restored to its exact
+historical published PDF; source-version guidance now prevents silent replacement.
+Independent coordinator and peer reviews found no blocking claim, provenance,
+privacy or denominator issue. Independent tests passed 171 in 21.312 seconds
+and 28 in 0.281 seconds; both reviewers also repeated public campaign/evidence
+checks. No private account data or additional model observations are published.

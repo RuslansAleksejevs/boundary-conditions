@@ -133,7 +133,8 @@ valid Retry-After up to 300 seconds; longer values stop. Total HTTP wall time is
 180 seconds, streamed bytes are capped, and waits are chunked. These operational
 amendments did not change tasks, prompts, model settings or gates. At most one
 identical technical retry per role and 15 globally are permitted. The complete
-core schedule is 312 calls; a genuine interface-repair pilot, only if needed and
+core schedule is 312 logical roles; blocked dependencies need no HTTP request,
+whereas a technical retry adds one. A genuine interface-repair pilot, only if needed and
 separately authorized, gives an absolute 379-attempt ceiling.
 
 \subsection{Outcomes and uncertainty}
@@ -148,8 +149,11 @@ Counts and marginal Wilson intervals accompany 5000 paired contract-level
 bootstrap draws (seed606), complete-pair denominators, and scheduled missingness
 bounds. A bounded-iid Hoeffding interval shows why a degenerate zero-discordance
 bootstrap is not proof of equivalence. Shared templates limit all inferential
-claims. The original-AST oracle gate is a privileged engineering ceiling, not an
-information-matched empirical defense or a new safety discovery.
+claims: the intervals are assumption-dependent summaries; independence across
+shared-template cases and generalization to real-world tasks are not established.
+The original-AST oracle gate is a privileged engineering ceiling with
+direct trusted-AST access and exact computation, not an interface- or resource-
+matched empirical defense or a new safety discovery.
 
 \section{Results}
 \PilotResults\par
@@ -215,8 +219,11 @@ Checked 8 November 2026; exact settings and tariffs preserved in the manifest.
 \section{Limitations and Dual-Use / Ethical Considerations}
 \textbf{Scope and external validity.} Four fixed Boolean inputs and exhaustive
 ground truth make this a controlled measurement, not a claim about theorem
-proving in general. The original-AST oracle has information the reviewer does
-not. Shared parsing/hashing is a remaining common-mode trust assumption despite
+proving in general. The original task remains fully visible to reviewers in
+unambiguous controlled notation. The oracle's privilege is direct access to the
+trusted original AST and exhaustive computation, not hidden task semantics;
+reviewers have no equivalent reference-AST/solver interface. Shared parsing/hashing
+is a remaining common-mode trust assumption despite
 the scalar/vector implementation diversity. Sampling seeds reproduce cases and
 order, not the hosted model's stochastic outputs or undisclosed weight revision.
 Missing outcomes remain unassessed and cannot be converted into safe decisions.

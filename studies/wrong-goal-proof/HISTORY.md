@@ -445,3 +445,171 @@ roles and17 known costs totaling USD0.12502880; the last receipt finished at
 remains owned by its execution context; this worker starts no second process.
 Frozen source and all scientific settings are unchanged. Full main audit,
 analysis, counterexample verification and eventual public export remain pending.
+
+## 2026-11-08 — First main formatting failure preserved without retry
+
+By22:10:57Z the existing main journal contained47 HTTP200 receipts, with47 known
+costs totaling USD0.37256648 for main. One translator returned malformed JSON:
+438 visible characters, expecting a comma at character438. The dependent review
+was correctly blocked. Logical statuses were46 completed, one schema error and
+one blocked review, accounting for48 processed scheduled roles. No transport
+failure, schema repair, semantic retry or sample replacement occurred. The run
+continued; this formatting failure is unassessed, not demonstrated semantic drift.
+
+Read-only review also prompted two documentation-only cutoff clarifications,
+pushed as38329134118a0889c1696e3bc0551b7865147aa0. The source inventory and
+published immutable pilot records/PDF remained unchanged. Current main results
+will only be finalized after the whole run and full audit; public release of its
+exact scientific authorization metadata requires its own scope review.
+
+## 2026-11-08 — One hundred main receipts; fixed acquisition continues
+
+At22:33:55.251661Z, the existing main journal held100 HTTP200 receipts and100
+known costs totaling USD0.77680018. Including the completed pilot, known study
+cost was USD1.17603668. There were101 processed scheduled roles:98 schema-valid,
+two schema errors and one dependent blocked review. The second malformed answer
+was a45-character reviewer response rejected at JSON character0; it was retained
+without repair or semantic retry. No transport failure or completed run file
+was observed. No interim semantic effect or final utility result is claimed.
+
+The exact original scientific main authorization paragraph was separately read
+and approved for publication only after acquisition completion, full audits and
+content review. Its object must match the preserved original. This approval
+does not cover private user-confirmation records, review text, account responses
+or coordination messages. The21:29 scientific GO, later renewed execution
+permission and21:51 start remain distinct chronological events. Frozen source
+and all original task/analysis choices are unchanged.
+
+## 2026-11-08 — Oracle reporting precision; main continues unchanged
+
+Clarified manuscript wording about the original-AST oracle. Every B/N/S reviewer
+already sees the full original task in unambiguous controlled notation. The code
+control has direct access to a trusted structured reference AST and exhaustive
+computation, not additional hidden task semantics. It is an engineering ceiling,
+not an interface-/resource-matched empirical defense or a safety discovery.
+This accuracy clarification changes no prompt, task, scoring rule, analysis or
+acquisition source, and introduces no no-certificate/single-agent comparison.
+The report source will be rebuilt and checked with the eventual main report.
+
+Read-only checkpoint at22:46:45.871100Z:125 HTTP200 receipts and125 known main
+costs totaling USD1.01474282. Processed126 scheduled roles comprise123 completed,
+two schema failures and one dependent blocked review. No new error, transport
+failure or completed run file was observed. Acquisition remains single-process
+and unchanged; no interim scientific conclusion or additional API run is claimed.
+
+## 2026-11-08 — Preserved schema failures and bounded automatic retries
+
+The read-only23:12:04Z checkpoint has183 physical main receipts:181 HTTP200 and
+two HTTP429. Known main cost is USD1.42809550; the two failed-attempt costs
+remain UNKNOWN and both conservative full-context wallet holds are retained.
+Processed184 roles comprise177 schema-completed, four schema errors and three
+dependent blocked reviews. Two further malformed translator JSON responses
+(358 and401 visible characters) were kept unassessed with dependent reviews
+blocked. No schema repair, semantic retry, sample replacement or tuning occurred.
+
+The429 receipts finished at22:55:37.420634Z and22:57:26.122099Z. Each was
+followed by a successful existing same-role automatic retry, beginning
+60.004940s and60.004454s after the failed response respectively. Only code429
+was returned; no Retry-After or diagnosed cause is claimed. Exact payload
+identity and full-run pacing remain final-audit checks. No extra API process
+was launched. The original single main acquisition continues, without a
+completed run file or interim scientific comparison.
+
+## 2026-11-08 — Reproducible operational summary; 200 processed roles
+
+Added presentation-only `reports/acquisition_summary.py` and ten no-network
+tests, outside the prospectively frozen source inventory. Its public command
+requires an ended main, complete native campaign audit and matching source.
+The summary distinguishes decimal provider-reported costs from conservative
+settlements, unknown full holds and unsettled reservations, and records physical
+attempts versus scheduled/blocked roles. Same-role retry records include exact
+payload identity and observed UTC cooldown; monotonic HTTP and stage durations
+are labeled separately. It makes no inference about an HTTP429's cause and does
+not replace the immutable wallet, mathematical scoring or private account review.
+Eight fictional arithmetic/timing tests and two saved-pilot metadata replays bring
+the reporting suite to28 passing tests in0.287s. No new task or API call occurred.
+The full summary has not been run on the still-active main campaign.
+
+At23:17:32.212810Z, the existing journal has199 receipts (197 HTTP200, two429),
+with197 known main costs totaling USD1.51224684 and two unknown charges. Processed
+200 of260 logical roles comprise193 completed, four schema failures and three
+blocked dependent reviews. No new failure, halt or completed run file is present.
+The frozen acquisition source inventory remains87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e.
+
+## 2026-11-08 — Independent accounting review; 240 processed roles
+
+Read-only review independently passed28 reporting tests in0.293s and found no
+blocking functional issue. Clarified that each parsed provider cost is converted
+via Decimal(str(value)); the summary does not preserve the original JSON wire
+lexical spelling of a floating number. Manuscript wording now separates logical
+roles from physical requests and states that sampling/independence assumptions
+are not established merely by sharing generated templates. These are reporting
+clarifications only, with no new scoring rule, source inventory or model call.
+
+Latest receipt at23:35:55.308515Z:239 physical attempts,237 HTTP200 and two429;
+known main cost USD1.84807792 with two unknown full holds. Processed240 of260
+roles comprise233 completed, four schema failures and three blocked dependent
+reviews. No additional error, halt or completed run file was present. Final
+audit, summary, evidence and export still require completed main acquisition.
+
+## 2026-11-08 — Frozen main completed; audited null and complete public package
+
+The sole main process exited code 0 after completion at23:44:59.374908Z. All100
+originals/260 roles remain in the fixed schedule. There were259 physical attempts
+(257 HTTP200, two429),253 schema-valid roles, four schema errors and three blocked
+dependent reviews. No sample replacement, schema repair, model change or additional
+empirical probe occurred. No further study API acquisition is authorized.
+
+Natural C/Q and closed-truth drift is0/37 valid translations, useful completion
+36/40 and observed false SAFE0/36 assessed reviews. Five valid translations
+changed syntax without changing either function. All four unassessed natural
+originals were SAFE; their three malformed translations and one Markdown-fenced
+review remain verbatim. The frozen generic missingness bounds [0,0.10] are not
+post-hoc tightened. All20 natural UNSAFE witnesses pass. B/N/S each have0/40 false
+SAFE and40/40 correct planted witnesses, and20/20 correct equivalent controls.
+No abstention or false guarantee was observed; the independent false-guarantee
+packet is empty. Primary S-B and secondary N-B are0 on40/40 complete pairs,
+bootstrap[0,0], bounded-iid95%[-0.4294694083,0.4294694083]. Shared templates and
+unestablished independence limit inference; this is not presentation equivalence
+or general safety. Clean utility is56/60.
+
+Full native campaign audit passed on private source and exact public export:
+310 physical attempts and264 scheduled reviewer outcomes across both stages.
+Private journal bindings passed for calls, outcomes, receipts and terminal hashes
+(pilot200 events; main1000). Main digest is
+`81af66525adfb197fb3c48911fb07c05c3668fa8f7c75987a6143aac54a636de`.
+The exact approved scientific GO object matched, with preserved file SHA256
+`55b13ad6cc7822751333c62ad101792acc5865cc0891c57d3bf63452de76f523`.
+The earlier scientific GO and later renewed execution permission remain distinct;
+private permission/review records are excluded from publication.
+
+Main known cost USD1.99717180 plus pilotUSD0.39923650 gives known campaign
+USD2.39640830 for308/310 attempts. Two unknown429 costs retain full holds
+USD1.22683392; cumulative conservative commitment isUSD3.62324222, not an exact
+bill. No unsettled reservation or pricing overrun. Same-role exact-payload retry
+checks pass after60.004940s/60.004454s; observed UTC minimum start gap20.000076s.
+Monotonic main elapsed time6829.286533s, mean/max HTTP23.964844/67.663923s.
+Known main input/output/reasoning tokens210478/933869/921437 exclude two unknown
+attempts. Output usage10723 and8283 exceeded requested8192 on two responses but
+not the full-context bound; both finished with stop. No429 cause is inferred.
+
+Unchanged acquisition suite:171 tests PASS21.591s. Reporting suite:28 tests
+PASS0.289s; independent coordinator reruns passed171 in21.312s and28 in0.281s.
+The14-file export inventory, privacy patterns, exact private/public run and
+operational-summary equality passed. All37 valid translator answers,39 unique
+valid reviewer texts covering216 responses, and all4 malformed main answers were
+manually checked. Export/analysis/reporting sent zero new API requests. The
+seven-page English main PDF has a211-word abstract, required ethics and AI-use
+statements, a warning-free Tectonic0.16.9 cached build, and visually checked
+title/results/appendix. A later shared-source pilot rebuild was restored to the
+exact previously published PDF; its README now pins historical presentation
+source3832913. No pilot observation or published snapshot was replaced.
+
+Coordinator and peer read-only reviews found no blocking claim, provenance,
+privacy or denominator issue. Both repeated the public campaign and evidence
+checks; the coordinator additionally checked source/private-public equality and
+the final PDF. Public material is confined to this study's subtree, with immutable
+acquisition inventory87e58d63f04fad074d3793527964d6431521067d399f205616307f558257960e.
+Existing draft PR#4 remains the publication route; no self-merge or competition
+submission was performed. Complete no-network reproduction commands are in
+`reports/main/README.md` and `results/live-main-2026-11-08/README.md`.

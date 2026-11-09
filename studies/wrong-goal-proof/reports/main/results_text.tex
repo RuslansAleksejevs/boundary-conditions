@@ -1,0 +1,135 @@
+% Actual frozen main results. Reporting does not change acquisition or scoring.
+\newcommand{\ReportDate}{8 November 2026 --- completed held-out evaluation}
+\newcommand{\RunAbstract}{An exact local proof need not establish the task a user
+originally requested. We examine this boundary in a finite translator--solver--reviewer
+pipeline with strict Boolean contracts and independently checked exhaustive
+certificates. Honest translation is separated from planted handoff faults.
+For fixed original tasks, altered candidates and valid local evidence, a model
+reviewer sees an ordinary PASS heading, a neutral heading or explicit candidate-only
+scope wording. Every condition retains the original task and correspondence-checking
+instruction. After a passing development pilot, the frozen Qwen3.5-122B-A10B
+evaluation covered 100 new originals and 260 scheduled roles. All three
+presentations returned correct original counterexamples on all 40 planted faults
+and correct SAFE answers on all 20 equivalent controls. Primary and secondary
+paired false-SAFE differences were zero on 40 complete pairs each; degenerate
+bootstrap intervals do not establish equivalence, and the bounded-iid interval
+was approximately [-0.4295,0.4295]. Natural translation preserved both open
+contract functions in 37/37 valid translations, while three malformed translations
+and one malformed review reduced useful completion to 36/40. The main required
+259 physical attempts, including two identical technical retries with unknown
+failed-attempt charges retained in the budget. No false guarantee was observed.
+The result is a reproducible null under an explicit, small-task boundary condition,
+not a general mathematical equivalence criterion, demonstrated scope-label benefit
+or model-safety guarantee.}
+\newcommand{\PilotResults}{The original development pilot passed its fixed gate:
+50/52 scheduled roles were schema-valid and 11/12 clean originals were correct.
+It used 51 physical HTTP200 requests, with one malformed translation and its
+dependent review blocked. No interface-repair pilot, prompt tuning, model change
+or sample replacement was used. Pilot results remain separate from the held-out
+analysis; they are not pooled to enlarge the confirmatory sample.}
+\newcommand{\MainResults}{The frozen main completed at 23:44:59 UTC on 8 November
+2026 without a halt: 100 originals, 260 scheduled roles and 220 reviewer outcomes.
+There were 253 schema-valid role responses, four schema errors and three blocked
+dependent reviews. Of 40 natural translations, 37 parsed and preserved $C$, $Q$
+and closed-claim truth; five of these changed AST syntax while preserving the
+functions. Three malformed translations and one review wrapped in Markdown fences
+were retained without repair. All four unassessed natural originals were SAFE.
+Natural useful completion was 36/40, with 20/20 valid UNSAFE witnesses and
+0/36 observed false SAFE answers among assessed reviews. The frozen generic
+missingness calculation remains [0,0.10], without post-hoc tightening by true label.}
+\newcommand{\ResultsTable}{\begin{table}[htbp]\centering
+\caption{Held-out outcomes. False SAFE uses assessed answers; useful completion
+uses scheduled originals. B/N/S share originals, not independent samples.
+The four natural unassessed reviews are not counted as correct or abstentions.}
+\begin{tabular}{lrrr}\toprule
+Population/arm & False SAFE & Correct completion & Unassessed\\\midrule
+Natural B & 0/36 assessed & 36/40 & 4\\
+Planted B & 0/40 & 40/40 & 0\\
+Planted N & 0/40 & 40/40 & 0\\
+Planted S & 0/40 & 40/40 & 0\\
+Equivalent B & 0/20 & 20/20 & 0\\
+Equivalent N & 0/20 & 20/20 & 0\\
+Equivalent S & 0/20 & 20/20 & 0\\\bottomrule
+\end{tabular}\end{table}}
+\newcommand{\FigurePath}{figure.pdf}
+\newcommand{\FigureCaption}{Completed held-out evaluation. Every presentation
+correctly rejects all 40 planted substitutions with valid original counterexamples,
+and retains useful completion on all 20 equivalent controls. Marginal Wilson
+intervals and paired uncertainty are assumption-dependent summaries. A collapsed
+bootstrap does not establish absence of an effect; the original task and candidate
+evidence are unchanged across B/N/S.}
+\newcommand{\PrimaryResults}{On planted faults, B, N and S each yielded 0/40 false
+SAFE answers and 40/40 correct original UNSAFE witnesses. Each of the four fault
+families contributed ten originals per arm, all correctly answered. These are
+120 answers on 40 originals, not 120 independent cases. Primary S minus B and
+secondary N minus B were both zero on 40/40 complete pairs, with no excluded
+pairs and scheduled difference bounds [0,0]. Both empirical bootstrap intervals
+were [0,0]; both bounded-iid 95\% intervals were [-0.42947,0.42947]. Each arm's
+marginal false-SAFE Wilson interval was [0,0.08762].
+
+Equivalent controls were correct in 20/20 cases per arm, with no false rejection.
+Clean-original utility was 56/60 (36 natural plus 20 equivalent, requiring all
+assigned arms). No reviewer abstention or false guarantee was observed; the
+independently verified false-guarantee packet is therefore empty. The code oracle
+was correct on all 97 cases with valid candidate structures, accepted all 20
+equivalent candidates despite zero literal AST matches, and bound none of the
+40 altered certificates to their originals. Those guaranteed code-control results
+are not model-defense evidence.}
+\newcommand{\ResourceResults}{The main used 257 first attempts and two technical
+retries: 257 HTTP200 and two HTTP429 receipts. Known main API cost was
+USD1.99717180 for 257/259 attempts; both failed-attempt costs remain unknown.
+Including the pilot, known reported cost and conservative settled charges were
+USD2.39640830 for 308/310 attempts. The two unknown charges retain USD1.22683392
+in full holds, making the cumulative wallet commitment USD3.62324222, below USD20.
+There are no unsettled reservations or pricing overruns; the committed amount
+is not an exact final bill.
+
+Both retries used the identical same-role payload, starting 60.004940 s and
+60.004454 s after the failed receipt. The minimum recorded UTC attempt-start
+gap was 20.000076 s. Main elapsed time was 6829.287 s (113 min 49.3 s), with
+mean/max HTTP latency 23.965/67.664 s; these durations use client monotonic clocks.
+Known input/output tokens totaled 210,478/933,869, including 921,437 reasoning
+tokens; the two HTTP429 token totals are unknown. Two responses reported 10,723 and
+8,283 output tokens despite the requested 8192, within the prospectively reserved
+full context. Neither was reported truncated. No cause for the HTTP429s is inferred.}
+\newcommand{\DiscussionResults}{This evaluation did not elicit the proposed
+false-assurance failure on any assessed case. With an unambiguous original and
+explicit correspondence instruction visible even in B, the model returned correct
+original-task verdicts and witnesses despite the altered candidates' locally
+valid SAFE certificates.
+Scope wording showed no observed advantage; the sample and dependence assumptions
+do not support a claim that wording is universally irrelevant. The actual loss
+of useful completion came from strict-format failures, which are not evidence
+of semantic drift. The Markdown-wrapped answer was not rescued after inspection.
+The null, all malformed records and both unknown charges are retained without
+changing the original sample or adding a more favorable experiment.}
+\newcommand{\ConclusionResults}{The frozen real-model evaluation completed with
+no observed false guarantee: all three presentations correctly handled every
+planted fault and equivalent control. Natural useful completion was 36/40, with
+no open-function drift among 37 valid translations. This is a transparent null
+under the tested visible-original, finite-contract conditions, not a safety
+guarantee, a proof of presentation equivalence or a new general criterion of
+mathematical faithfulness.}
+\newcommand{\ReproductionResults}{On Python 3.14.6, the unchanged acquisition suite
+passed 171 tests in 21.591 s; separate reporting tests passed 28 in 0.289 s and
+also passed independent read-only review. These tests are not model observations.
+The complete native audit passed with 310 physical attempts and 264 scheduled
+reviewer outcomes. Private journals matched final calls, receipts, outcomes and
+terminal hashes (200 pilot events; 1000 main events). The main scientific GO
+object was preserved; its earlier scientific approval is distinct from renewed
+execution permission obtained before dispatch.
+
+The public export contains 120 originals, the manifest/freeze, both visible runs,
+analyses, evidence and unchanged wallet. The native audit passed again on this
+copy. Export and reporting issue no API requests. Private journals, account and
+permission records, credentials and hidden reasoning text are excluded. The
+operational summary preserves unknown charges and separate cost denominators.
+
+\begin{itemize}
+\item Main run digest: \code{81af66525adfb197fb3c48911fb07c05c3668fa8f7c75987a6143aac54a636de}.
+\item Prospective freeze: \code{e5b6cc5c66c3698284e5af2145add1983a02b195067c23ef920c7a1c766dab7a}.
+\end{itemize}
+The freeze at 21:03:14.925378 UTC preceded the 21:51:10.093347 main start; it is
+not a public preregistration. Credential-free reproduction commands accompany
+the report. Only explicit acquire contacts a model; no new acquisition is
+authorized by this release.}

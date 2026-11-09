@@ -2,15 +2,18 @@
 
 A finite, independently checked testbed for **certificate scope at an agent handoff**.
 
-**Status: real development pilot completed; frozen main acquisition in progress.**
-Qwen3.5-122B-A10B / Alibaba made 51 requests for 52 scheduled roles at a known
-cost of USD 0.39923650. The fixed gate passed: 50/52 schema-valid roles and 11/12
-clean originals correct. Each B/N/S arm had 0/8 false SAFE answers on planted
-faults; this small development null is not a safety or equivalence guarantee.
-One malformed translation and its blocked review remain preserved.
-See the [pilot-only report and PDF](reports/pilot/README.md),
-[public development evidence](results/live-pilot-2026-11-08/README.md), and
-[STATE](STATE.md). Earlier test-double failure rates remain deliberately scripted
+**Status: real pilot and unchanged frozen main completed; observed null retained.**
+Qwen3.5-122B-A10B / Alibaba completed the 100-original, 260-role main with
+259 physical attempts. B/N/S each correctly answered all 40 planted originals
+and all 20 equivalent controls: zero observed false guarantees. Natural utility
+was 36/40, with 0/37 open-function drift among valid translations. Four schema
+errors, three blocked reviews and two technical retries are preserved. Both
+paired contrasts are zero on 40 pairs; this is not a safety or equivalence guarantee.
+Known pilot-plus-main cost is USD2.39640830; two unknown charges retain full holds.
+See the [completed main report and PDF](reports/main/README.md),
+[complete public campaign](results/live-main-2026-11-08/README.md),
+[historical pilot-only report](reports/pilot/README.md), and [STATE](STATE.md).
+Earlier test-double failure rates remain deliberately scripted
 software checks, not model-behavior estimates. Also see
 [the study plan](PLAN.md), [design decisions](DESIGN.md), and
 [actual engineering validation](VALIDATION.md).
@@ -40,11 +43,12 @@ for C'=p AND q, Q'=q does not repair that original claim.
 
 All task inputs are synthetic. The implementation never executes generated code
 and uses no external dependencies. Offline commands remain network-free. The
-separate [live acquisition interface](LIVE.md) acquired the real pilot. After an
+separate [live acquisition interface](LIVE.md) acquired the real pilot and main. After an
 initial permission stop before dispatch, renewed stage-specific authorization and
 a fresh successful execution review allowed the unchanged main to start at
-21:51:10Z on 8 November 2026. No complete main result is reported yet; only pilot
-records are public. No alternate provider route or competition submission occurred.
+21:51:10Z on 8 November 2026. It ended at 23:44:59Z, passed the full native audit,
+and was exported only after completion. No further model acquisition is authorized
+by this release. No alternate provider route or competition submission occurred.
 
 ## Quick check
 
@@ -147,7 +151,8 @@ handling, and the distinction between requested output and financial reservation
 | `wgp/records.py`, `analysis.py`, `cli.py` | Manifests, freeze rehearsal, counts and uncertainty |
 | `wgp/live*.py`, `run_live.py` | Explicit acquisition, persistent budget, strict live audit and evidence |
 | `tests/` | Unit and seeded property tests; no third-party testing library |
-| `reports/`, `results/live-pilot-2026-11-08/` | Development-only manuscript, figures and scoped public replay |
+| `reports/`, `results/live-main-2026-11-08/` | Completed main manuscript, figures, operational accounting and full campaign audit |
+| `reports/pilot/`, `results/live-pilot-2026-11-08/` | Preserved development-only checkpoint and scoped public replay |
 
 No shared infrastructure was copied from the other study. Public plans predate
 this implementation; all testbed code here was added during the hackathon work.
